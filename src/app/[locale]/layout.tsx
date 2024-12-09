@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 import './globals.css';
 
+import { bodyChildClassName, bodyClassName } from '@/components/class-names/body-class-names';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { APP_CONFIG } from '@/configs/APP_CONFIG';
@@ -17,11 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="grid h-screen grid-rows-[auto,1fr,auto]">
+      <body className={bodyClassName}>
         <ApolloProvider>
           <HolyLoader />
           <Header />
-          <div className="py-4">{children}</div>
+          <div className={bodyChildClassName}>{children}</div>
           <Footer />
           <ToastContainer />
         </ApolloProvider>

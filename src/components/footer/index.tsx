@@ -1,3 +1,3 @@
 export function Footer() {
-  return <div>Footer</div>;
+  return <footer className="grid h-20 place-items-center border-t bg-base-300">Footer</footer>;
 }

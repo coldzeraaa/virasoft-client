@@ -7,8 +7,8 @@ export const APP_CONFIG: AppConfigType = {
   appIndex: 'uc',
 
   tokens: {
-    uid: 'backoffice',
-    secret: '70194bbc6f42d6f07207252d56fef245a8eb24513f7637eabbda6bdd1d36ba7a',
+    uid: 'virasoft',
+    secret: 'Jt18B9M6m0UKpF94T8RKjMVI4dqgjfmBskKv1E462R0rS1FWWS',
   },
   map: {
     defaultCenter: { lat: 47.918, lng: 106.917 },

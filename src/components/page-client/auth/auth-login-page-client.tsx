@@ -8,15 +8,14 @@ import AnimateHeight from 'react-animate-height';
 import { catchHelper } from 'simple-helper-fns';
 
 export function AuthLoginPageClient() {
-  const [verify, setVerify] = useState(false);
+  const [verify] = useState(false);
 
   return (
     <div className="container max-w-96">
       <FieldForm
-        // form={form}
-        onFinish={(values) => {
-          console.log('>>>  , values >>>', values);
-        }}
+        // onFinish={(values) => {
+        //   console.log('>>>  , values >>>', values);
+        // }}
         onFinishFailed={catchHelper}
       >
         <div className="mb-4">
