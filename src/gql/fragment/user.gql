@@ -1,0 +1,10 @@
+fragment UserFields on User {
+  id
+  firstName
+  lastName
+  email
+  mobile
+  nickName
+  createdAt
+  updatedAt
+}

@@ -7,7 +7,7 @@ const customPreset = fs.existsSync(presetSrc) ? require(presetSrc) : require('./
 
 const config: Config = {
   presets: [customPreset],
-  content: ['./src/components/**/*.{ts,tsx}', './src/app/**/*.{ts,tsx}'],
+  content: ['./src/components/**/*.{ts,tsx}', './src/app/**/*.{ts,tsx}', './node_modules/field-form/dist/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       screens: {

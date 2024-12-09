@@ -14,23 +14,41 @@
     "codegen:local": "graphql-codegen --config codegen.local.yml"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
+    "@apollo/experimental-nextjs-app-support": "^0.11.7",
+    "apollo-upload-client": "^18.0.1",
+    "holy-loader": "^2.3.11",
+    "js-cookie": "^3.0.5",
     "next": "14.2.17",
     "nextjs-middleware-client": "^1.0.12",
-    "simple-helper-fns": "^1.0.7"
+    "react": "^18",
+    "react-dom": "^18",
+    "simple-helper-fns": "^1.0.7",
+    "react-toastify": "^10.0.6",
+    "field-form": "^1.2.10",
+    "@heroicons/react": "^2.1.1",
+    "react-animate-height": "^3.2.3"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/client-preset": "4.2.4",
+    "@graphql-codegen/near-operation-file-preset": "^3.0.0",
+    "@graphql-codegen/typescript": "^4.0.6",
+    "@graphql-codegen/typescript-operations": "^4.2.0",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.0",
+    "@graphql-codegen/typescript-resolvers": "^4.0.6",
+    "@graphql-eslint/eslint-plugin": "^3.20.1",
+    "@munkhsukhj/eslint-config-mjts": "^1.0.10",
+    "@tailwindcss/typography": "^0.5.15",
+    "@types/apollo-upload-client": "^18.0.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "daisyui": "^4.10.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.17",
-    "@munkhsukhj/eslint-config-mjts": "^1.0.10",
-    "daisyui": "^4.10.2",
-    "@tailwindcss/typography": "^0.5.15"
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
