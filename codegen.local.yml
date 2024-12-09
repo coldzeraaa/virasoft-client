@@ -1,0 +1,18 @@
+overwrite: true
+schema:
+  http://127.0.0.1:3201/graphql:
+    headers:
+      Authorization: Bearer eyJraWQiOiJiYWNrb2ZmaWNlIiwiYXBwIjo0LCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJTdXBwIiwiaWF0IjoxNzMyNTE0NDA3LCJleHAiOjE3NjQwNzEzNTksIndpZCI6NCwiaWR4IjoiYmFja29mZmljZSIsImp0aSI6IjJhZTkxOTczLTQ5YTAtNGEwNi1hOWU1LWFhZWY0YzY1Zjk0MCIsInNjb3BlcyI6InB1YmxpYyJ9.F7r5kVfC68XEuSwZquutbcBuUcWwLaJUp_QhsC2t4Z4Rr0P3x-4f8Il0AINGFLHtj-vx_U5WIYs2oI6VLUMAdxuhzMlmpJObFKoXXm96ru-QjIRh8YIj6cRXzEU0pd_3awBEAazIsFmnB2y4XYEMd33XcbbTP5COEaR2FGaDgPEwRM7U_kW2PHnsUcdCHPD_sqIeUaf0bth1vX9NpMJ3s-WK7BG9YpT-UwXhqKQ_SH8HzvbIoeb64kxekhmoYgIBA8fl74hrbh7i-hjSEnCjiwYZBMAzIp_L6xkJVUi4OZfT4FakAfdO9lFcAOxr33zeKkFRThcHpVR2eve_kDS8dQ
+documents: src/gql/**/*.gql
+generates:
+  src/gql/graphql.d.ts:
+    plugins:
+      - typescript
+  src/gql/:
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: /graphql.d.ts
+      extension: .generated.tsx
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo

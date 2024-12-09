@@ -1,0 +1,21 @@
+extends:
+  - next/core-web-vitals
+  - next/typescript
+  - "@munkhsukhj/mjts"
+ignorePatterns:
+  - graphql.d.ts
+  - graphql.d
+  - "*.generated.tsx"
+  - '**/*.generated.tsx$'
+rules:
+  "@next/next/no-async-client-component": 0
+  react-hooks/exhaustive-deps: 0
+overrides:
+  - parser: "@graphql-eslint/eslint-plugin"
+    files:
+      - "*.graphql"
+      - "*.gql"
+    plugins:
+      - "@graphql-eslint"
+    rules:
+      "@graphql-eslint/known-type-names": 2

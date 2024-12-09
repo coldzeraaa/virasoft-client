@@ -1,0 +1,18 @@
+overwrite: true
+schema:
+  https://api.matsup.mn/graphql:
+    headers:
+      Authorization: Bearer eyJraWQiOiJiYWNrb2ZmaWNlIiwiYXBwIjo0LCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJTdXBwIiwiaWF0IjoxNzMyNTE3MTc5LCJleHAiOjE3NjQwNzQxMzEsIndpZCI6NCwiaWR4IjoiYmFja29mZmljZSIsImp0aSI6IjdkYzAwM2M1LTE4NWUtNDQxYi04ODkzLTRlNzMwYzQzN2YyZiIsInNjb3BlcyI6InB1YmxpYyJ9.mZND32k9AGZNeedERLdNOWWTvoRNXKhkC7loXrScW3FZaF6_LfCSmjtAEBnpxYVyWKL0lQ8gCm3SlHGNsUIJTjkpgOfxNorLbF4EfItJ9bQ0Yt95OaBR1yZxQEhc3OmwHdftHDS78FtMVGTTOBxSrVHzHlIW8_ftKCidluXFrI0qkiHxhOkRElVDQhz8auhPd43MyHdF6ANS_V7EZdwedlJpCQdp2mf0G_oY-qdRgdjwvzIb7kwuWJxSFEqaFNekmAxpNvgSMBNsyWLoKTq0Xk5Rtz5sXIUy_kNBqCt3xxhqAl-2qloEHXr8V2BGI44JBS0ZzY4DQvvF0QxoO61f0A
+documents: src/gql/**/*.gql
+generates:
+  src/gql/graphql.d.ts:
+    plugins:
+      - typescript
+  src/gql/:
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: /graphql.d.ts
+      extension: .generated.tsx
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo

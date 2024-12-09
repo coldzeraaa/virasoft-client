@@ -3,15 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "clean:cache": "rm -rf .next/cache",
+    "dev:virasoft:prod": "npm run clean:cache && APP_INDEX=virasoft next dev -p 3202",
+    "dev:virasoft:local": "npm run clean:cache && STAGE=local APP_INDEX=virasoft next dev -p 3203",
+    "dev:virasoft:docker": "npm run clean:cache && STAGE=docker APP_INDEX=virasoft next dev -p 3204",
+    "build:virasoft": "APP_INDEX=virasoft next build",
     "start": "next start",
-    "lint": "next lint"
+    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen:docker": "graphql-codegen --config codegen.docker.yml",
+    "codegen:local": "graphql-codegen --config codegen.local.yml"
   },
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.17"
+    "next": "14.2.17",
+    "nextjs-middleware-client": "^1.0.12",
+    "simple-helper-fns": "^1.0.7"
   },
   "devDependencies": {
     "typescript": "^5",
@@ -21,6 +28,9 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "eslint": "^8",
-    "eslint-config-next": "14.2.17"
+    "eslint-config-next": "14.2.17",
+    "@munkhsukhj/eslint-config-mjts": "^1.0.10",
+    "daisyui": "^4.10.2",
+    "@tailwindcss/typography": "^0.5.15"
   }
 }

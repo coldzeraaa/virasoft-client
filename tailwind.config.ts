@@ -1,19 +1,29 @@
-import type { Config } from "tailwindcss";
+import fs from 'fs';
+import type { Config } from 'tailwindcss';
+
+const presetSrc = `./src/configs/colors.${process.env.APP_INDEX}.ts`;
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const customPreset = fs.existsSync(presetSrc) ? require(presetSrc) : require('./src/configs/colors.ts');
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  presets: [customPreset],
+  content: ['./src/components/**/*.{ts,tsx}', './src/app/**/*.{ts,tsx}'],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      screens: {
+        tall: { raw: '(min-height: 800px)' },
+        short: { raw: '(min-height: 400px)' },
+      },
+      container: {
+        padding: {
+          DEFAULT: '1rem',
+        },
+        center: true,
       },
     },
   },
-  plugins: [],
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
 };
+
 export default config;
