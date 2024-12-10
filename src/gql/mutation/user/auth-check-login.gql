@@ -1,5 +1,5 @@
-#mutation authCheckLogin($input: authCheckLoginInput!) {
-#  authCheckLogin(input: $input) {
-#    exists
-#  }
-#}
+mutation authCheckLogin($input: authCheckLoginInput!) {
+  authCheckLogin(input: $input) {
+    exists
+  }
+}
