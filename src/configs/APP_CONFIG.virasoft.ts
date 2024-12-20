@@ -4,7 +4,7 @@ export const APP_CONFIG: AppConfigType = {
   locale: 'mn',
   locales: ['en'],
   sourceLocale: 'en',
-  appIndex: 'uc',
+  appIndex: 'virasoft',
 
   tokens: {
     uid: 'virasoft',

@@ -15,18 +15,23 @@
   },
   "dependencies": {
     "@apollo/experimental-nextjs-app-support": "^0.11.7",
+    "@heroicons/react": "^2.1.1",
+    "@searchkit/api": "^4.13.0",
+    "@searchkit/instantsearch-client": "^4.14.1",
     "apollo-upload-client": "^18.0.1",
+    "field-form": "^1.2.10",
     "holy-loader": "^2.3.11",
     "js-cookie": "^3.0.5",
+    "ks-instantsearch-routing": "^1.0.2",
     "next": "14.2.17",
     "nextjs-middleware-client": "^1.0.12",
     "react": "^18",
+    "react-animate-height": "^3.2.3",
     "react-dom": "^18",
-    "simple-helper-fns": "^1.0.7",
+    "react-instantsearch-nextjs": "^0.3.20",
+    "react-instantsearch-router-nextjs": "^7.13.9",
     "react-toastify": "^10.0.6",
-    "field-form": "^1.2.10",
-    "@heroicons/react": "^2.1.1",
-    "react-animate-height": "^3.2.3"
+    "simple-helper-fns": "^1.0.7"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.2",
