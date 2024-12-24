@@ -12,7 +12,7 @@ export default function BuildSlugPage({ searchParams, params }: BuildSlugPagePro
   const origin = `${headersList.get('x-forwarded-proto') || 'http'}://${headersList.get('host')}`;
 
   return (
-    <main className="container grid grid-cols-[1fr,300px] gap-4">
+    <main className="container grid grid-cols-[1fr,300px] gap-4 ">
       <ProductDetail />
       <ProductList type={type} origin={origin} searchParams={searchParams} />
     </main>
