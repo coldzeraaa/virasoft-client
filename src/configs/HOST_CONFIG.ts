@@ -1,7 +1,7 @@
 export const HOST_CONFIG = {
-  host: 'http://154.38.182.159:3001',
+  host: 'https://api.virasoft.mn',
   elastic: {
-    host: 'http://154.38.182.159:9200',
+    host: 'https://es.virasoft.mn',
     username: 'elastic',
     password: 'elasticsearch0123prod!virasoft',
   },
