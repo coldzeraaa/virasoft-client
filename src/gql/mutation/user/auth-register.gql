@@ -1,0 +1,8 @@
+mutation authRegister($input: authRegisterInput!) {
+  authRegister(input: $input) {
+    firstName
+    lastName 
+    mobile
+    id
+  }
+}

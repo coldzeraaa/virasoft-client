@@ -66,6 +66,15 @@ export function AuthLoginPageClient() {
             rules={[{ required: true, message: 'Утасны дугаар оруулна уу' }]}
             input={{ placeholder: '990011**' }}
           />
+          <div className="flex justify-end">
+            <button
+              onClick={() => {
+                router.push('/auth/register');
+              }}
+            >
+              register
+            </button>
+          </div>
           <AnimateHeight height={verified ? 'auto' : 0}>
             <FormInput
               label="Нууц үг"
