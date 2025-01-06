@@ -66,15 +66,6 @@ export function AuthLoginPageClient() {
             rules={[{ required: true, message: 'Утасны дугаар оруулна уу' }]}
             input={{ placeholder: '990011**' }}
           />
-          <div className="flex justify-end">
-            <button
-              onClick={() => {
-                router.push('/auth/register');
-              }}
-            >
-              register
-            </button>
-          </div>
           <AnimateHeight height={verified ? 'auto' : 0}>
             <FormInput
               label="Нууц үг"
@@ -89,6 +80,16 @@ export function AuthLoginPageClient() {
           <BtnLoader loading={loading || loadingAuth} icon={ChevronRightIcon} />
         </button>
       </FieldForm>
+      <div className="flex  items-center justify-end py-[20px]">
+        <button
+          className="btn"
+          onClick={() => {
+            router.push('/auth/register');
+          }}
+        >
+          register
+        </button>
+      </div>
     </div>
   );
 }

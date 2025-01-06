@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "clean:cache": "rm -rf .next/cache",
-    "dev:virasoft:prod": "npm run clean:cache && cross-env APP_INDEX=virasoft next dev -p 3202",
+    "dev:virasoft:prod": "npm run clean:cache &&  APP_INDEX=virasoft next dev -p 3202",
+    "dev:virasoft:windows:prod": "npm run clean:cache && cross-env APP_INDEX=virasoft next dev -p 3202",
     "dev:virasoft:local": "npm run clean:cache && STAGE=local APP_INDEX=virasoft next dev -p 3203",
     "dev:virasoft:docker": "npm run clean:cache && STAGE=docker APP_INDEX=virasoft next dev -p 3204",
     "build:virasoft": "APP_INDEX=virasoft next build",

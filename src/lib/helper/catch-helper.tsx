@@ -2,8 +2,6 @@ import { ApolloError } from '@apollo/client';
 import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { toast } from 'react-toastify';
 
-import { Error } from '@/components/notification';
-
 export function catchHelper(error: unknown): void {
   if (error instanceof ApolloError) {
     error.graphQLErrors.forEach((field) => toast.error(field.message));
