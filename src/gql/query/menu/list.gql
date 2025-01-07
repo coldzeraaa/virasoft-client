@@ -1,0 +1,21 @@
+query menus($filter: MenuFilter) {
+  menus(filter: $filter) {
+    nodes {
+      id
+      title
+      link
+      images
+      children {
+        id
+        title
+        link
+        images
+        children {
+          images
+          title
+          link
+        }
+      }
+    }
+  }
+}

@@ -1,18 +1,18 @@
 export const LIGHT_COLORS = {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   ...require('daisyui/src/theming/themes')['light'],
-  primary: '#FF5A2D',
-  'primary-content': '#FDF0EC',
-  secondary: '#21272D',
-  'secondary-content': '#EDF2F8',
-  accent: '#17DDDD',
-  'accent-content': '#222529',
-  neutral: '222529',
-  'neutral-content': '#6C707D',
-  'base-100': '#FFFFFF',
-  'base-200': '#F6F7F9',
-  'base-300': '#E7EAEF',
-  'base-content': '#222529',
+  primary: '#102F31', //emerald green
+  'primary-content': '#FDF0EC', //grey with pinkish hue
+  secondary: '#C09049', //golden yellow
+  'secondary-content': '#EDF2F8', //neutral grey
+  accent: '#17DDDD', //teel
+  'accent-content': '#222529', //black
+  neutral: '222529', //black
+  'neutral-content': '#6C707D', //muted grey with blue undertone
+  'base-100': '#FBFAEE', //off-white
+  'base-200': '#F6F7F9', //light grey
+  'base-300': '#E7EAEF', //light grey
+  'base-content': '#BBBBBB', //dark grey
   info: '#0060F0',
   'info-content': '#FFFFFF',
   success: '#09A557',

@@ -1,50 +1,44 @@
-import { ChevronLeftIcon } from '@heroicons/react/16/solid';
 import { headers } from 'next/headers';
 
-import { BaseHits } from '@/components/build/base-hits';
-import { ButtonPersistSearchParams } from '@/components/build/btn-persist-search-params';
 import { ProductDetail } from '@/components/build/product-detail';
-import { BuildProvider } from '@/lib/provider/build-provider';
+import { ProductList } from '@/components/build/product-list';
+import { BuildPageClient } from '@/components/page-client/build/build-page-client';
 
-export default function BuildSlugPage({ searchParams, params }: BuildSlugPageProps) {
-  const type = params.type?.['0'];
+export default function BuildPage({ params }: BuildPageProps) {
   const headersList = headers();
   const origin = `${headersList.get('x-forwarded-proto') || 'http'}://${headersList.get('host')}`;
 
+  if (!params?.type) {
+    return (
+      <div className="h-full w-full bg-gray-100 px-4 py-12 sm:px-6 lg:px-8">
+        <BuildPageClient />
+      </div>
+    );
+  }
   return (
-    <main className="container grid grid-cols-[1fr,300px] gap-4 ">
-      <ProductDetail />
-      <ProductList type={type} origin={origin} searchParams={searchParams} />
+    <main className="grid h-[calc(100vh-44px)] grid-rows-[70fr_30fr] lg:flex lg:h-[calc(100vh-80px)] lg:flex-row">
+      {/* Left Section: Image */}
+      <div className="h-full lg:w-[70%] lg:flex-1">
+        <div className="h-full overflow-hidden bg-[#efefef] transition-all duration-300">
+          <ProductDetail />
+        </div>
+      </div>
+
+      {/* Right Section: Menu */}
+      <div className="h-full w-full overflow-hidden bg-white lg:h-full lg:min-h-0 lg:w-[30%]">
+        <div className="h-full overflow-hidden">
+          <ProductList type={params?.type} origin={origin} />
+        </div>
+      </div>
     </main>
   );
 }
 
-function ProductList({ origin, type }: { origin: string; searchParams?: Record<string, string>; type?: string }) {
-  if (!type)
-    return (
-      <ul>
-        <li className="space-y-2">
-          <ButtonPersistSearchParams href="/build/coat">coat</ButtonPersistSearchParams>
-          <ButtonPersistSearchParams href="/build/button">button</ButtonPersistSearchParams>
-          <ButtonPersistSearchParams href="/build/lining">lining</ButtonPersistSearchParams>
-        </li>
-      </ul>
-    );
-
-  return (
-    <div>
-      <ButtonPersistSearchParams href="/build">
-        <ChevronLeftIcon className="w-4" />
-        Back
-      </ButtonPersistSearchParams>
-      <BuildProvider key={`build_${type}`} origin={origin} type={type}>
-        <BaseHits type={type} />
-      </BuildProvider>
-    </div>
-  );
-}
-
-interface BuildSlugPageProps {
-  params: { type: string[]; locale: string };
-  searchParams?: Record<string, string>;
+interface BuildPageProps {
+  params: {
+    type?: string;
+  };
+  searchParams: {
+    [key: string]: string | string[] | undefined;
+  };
 }
