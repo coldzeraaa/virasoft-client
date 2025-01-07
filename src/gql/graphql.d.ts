@@ -17,6 +17,14 @@ export type Scalars = {
   Upload: { input: any; output: any; }
 };
 
+export type AddressInput = {
+  icon?: InputMaybe<Scalars['String']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  preferences?: InputMaybe<Scalars['JSON']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Application = BaseModelInterface & {
   __typename?: 'Application';
   confidential: Scalars['Boolean']['output'];
@@ -98,6 +106,7 @@ export type AssetRoleFilter = {
   createdAt?: InputMaybe<DateFilter>;
   id?: InputMaybe<IdFilter>;
   updatedAt?: InputMaybe<DateFilter>;
+  vendorId?: InputMaybe<IdFilter>;
 };
 
 export type AuthCheckLogin = {
@@ -179,6 +188,93 @@ export type DateFilter = {
   null?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type Event = BaseModelInterface & {
+  __typename?: 'Event';
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  id: Scalars['ID']['output'];
+  params: Scalars['JSON']['output'];
+  recordId: Scalars['ID']['output'];
+  recordType: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+};
+
+export type FuelPrice = BaseModelInterface & {
+  __typename?: 'FuelPrice';
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  effectiveDate: Scalars['ISO8601DateTime']['output'];
+  fuelQuote: FuelQuote;
+  fuelQuoteId: Scalars['ID']['output'];
+  fuelType: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  price: Scalars['Float']['output'];
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+};
+
+/** The connection type for FuelPrice. */
+export type FuelPriceConnection = {
+  __typename?: 'FuelPriceConnection';
+  /** A list of edges. */
+  edges: Array<FuelPriceEdge>;
+  /** A list of nodes. */
+  nodes: Array<FuelPrice>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type FuelPriceEdge = {
+  __typename?: 'FuelPriceEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node?: Maybe<FuelPrice>;
+};
+
+export type FuelPriceFilter = {
+  createdAt?: InputMaybe<DateFilter>;
+  id?: InputMaybe<IdFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
+};
+
+export type FuelQuote = BaseModelInterface & {
+  __typename?: 'FuelQuote';
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  fuelType: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  merchant: Merchant;
+  merchantId: Scalars['ID']['output'];
+  preferences: Scalars['JSON']['output'];
+  price: Scalars['Float']['output'];
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+};
+
+/** The connection type for FuelQuote. */
+export type FuelQuoteConnection = {
+  __typename?: 'FuelQuoteConnection';
+  /** A list of edges. */
+  edges: Array<FuelQuoteEdge>;
+  /** A list of nodes. */
+  nodes: Array<FuelQuote>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type FuelQuoteEdge = {
+  __typename?: 'FuelQuoteEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node?: Maybe<FuelQuote>;
+};
+
+export type FuelQuoteFilter = {
+  createdAt?: InputMaybe<DateFilter>;
+  id?: InputMaybe<IdFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
+};
+
 export type IdFilter = {
   /** is null ? */
   blank?: InputMaybe<Scalars['Boolean']['input']>;
@@ -200,6 +296,17 @@ export type IdFilter = {
   notIn?: InputMaybe<Array<Scalars['ID']['input']>>;
   /** Starts with */
   start?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Image = Menu | Page;
+
+export type ImageObject = {
+  __typename?: 'ImageObject';
+  fileName: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  recordId: Scalars['Int']['output'];
+  recordType: Scalars['String']['output'];
+  url: Scalars['String']['output'];
 };
 
 export type IntFilter = {
@@ -227,10 +334,12 @@ export type IntFilter = {
 
 export type Listing = BaseModelInterface & {
   __typename?: 'Listing';
+  approved: Scalars['Boolean']['output'];
   createdAt: Scalars['ISO8601DateTime']['output'];
   id: Scalars['ID']['output'];
   product: Product;
   productId: Scalars['ID']['output'];
+  published: Scalars['Boolean']['output'];
   slug: Scalars['String']['output'];
   updatedAt: Scalars['ISO8601DateTime']['output'];
   website: Website;
@@ -258,9 +367,64 @@ export type ListingEdge = {
 };
 
 export type ListingFilter = {
+  approved?: InputMaybe<BoolFilter>;
   createdAt?: InputMaybe<DateFilter>;
   id?: InputMaybe<IdFilter>;
+  product?: InputMaybe<ProductFilter>;
+  productId?: InputMaybe<IdFilter>;
+  published?: InputMaybe<BoolFilter>;
+  slug?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateFilter>;
+  website?: InputMaybe<WebsiteFilter>;
+  websiteId?: InputMaybe<IdFilter>;
+};
+
+export type Menu = BaseModelInterface & {
+  __typename?: 'Menu';
+  children?: Maybe<Array<Menu>>;
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  hasChildren?: Maybe<Scalars['Boolean']['output']>;
+  icon?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  imageObjects: Array<ImageObject>;
+  images?: Maybe<Array<Scalars['String']['output']>>;
+  link: Scalars['String']['output'];
+  parent?: Maybe<Menu>;
+  parentId?: Maybe<Scalars['ID']['output']>;
+  preferences?: Maybe<Scalars['JSON']['output']>;
+  title: Scalars['String']['output'];
+  type?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  website?: Maybe<Website>;
+};
+
+/** The connection type for Menu. */
+export type MenuConnection = {
+  __typename?: 'MenuConnection';
+  /** A list of edges. */
+  edges: Array<MenuEdge>;
+  /** A list of nodes. */
+  nodes: Array<Menu>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type MenuEdge = {
+  __typename?: 'MenuEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node?: Maybe<Menu>;
+};
+
+export type MenuFilter = {
+  createdAt?: InputMaybe<DateFilter>;
+  id?: InputMaybe<IdFilter>;
+  parentId?: InputMaybe<IdFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
+  website?: InputMaybe<WebsiteFilter>;
+  websiteId?: InputMaybe<IdFilter>;
 };
 
 export type Merchant = BaseModelInterface & {
@@ -309,11 +473,19 @@ export type Mutation = {
   /** Checks if email or mobile registered */
   authCheckLogin?: Maybe<AuthCheckLogin>;
   authRegister?: Maybe<User>;
+  buildAssetRole?: Maybe<AssetRole>;
+  checkOtp?: Maybe<Scalars['Boolean']['output']>;
   createApplication?: Maybe<Application>;
   createAssetRole?: Maybe<AssetRole>;
   createBrand?: Maybe<Brand>;
+  createFuelQuote?: Maybe<FuelQuote>;
+  createImage?: Maybe<Image>;
   createListing?: Maybe<Listing>;
+  createMenu?: Maybe<Menu>;
   createMerchant?: Maybe<Merchant>;
+  createOptionType?: Maybe<OptionType>;
+  createOptionValue?: Maybe<OptionValue>;
+  createPage?: Maybe<Page>;
   createProduct?: Maybe<Product>;
   createUser?: Maybe<User>;
   createVariant?: Maybe<Variant>;
@@ -323,21 +495,33 @@ export type Mutation = {
   destroyApplication?: Maybe<Application>;
   destroyAssetRole?: Maybe<AssetRole>;
   destroyBrand?: Maybe<Brand>;
+  destroyFuelQuote?: Maybe<FuelQuote>;
+  destroyImage?: Maybe<Menu>;
   destroyListing?: Maybe<Listing>;
+  destroyMenu?: Maybe<Menu>;
   destroyMerchant?: Maybe<Merchant>;
+  destroyOptionType?: Maybe<OptionType>;
+  destroyOptionValue?: Maybe<OptionValue>;
+  destroyPage?: Maybe<Page>;
   destroyProduct?: Maybe<Product>;
   destroyVariant?: Maybe<Variant>;
   destroyVendor?: Maybe<Vendor>;
   destroyVendorUser?: Maybe<VendorUser>;
   destroyWebsite?: Maybe<Website>;
+  removeImageVariant?: Maybe<Variant>;
   resetPassword?: Maybe<User>;
   /** Returns boolean whether sms is sent or not */
   sendOtp?: Maybe<User>;
   updateApplication?: Maybe<Application>;
   updateAssetRole?: Maybe<AssetRole>;
   updateBrand?: Maybe<Brand>;
+  updateFuelQuote?: Maybe<FuelQuote>;
   updateListing?: Maybe<Listing>;
+  updateMenu?: Maybe<Menu>;
   updateMerchant?: Maybe<Merchant>;
+  updateOptionType?: Maybe<OptionType>;
+  updateOptionValue?: Maybe<OptionValue>;
+  updatePage?: Maybe<Page>;
   updateProduct?: Maybe<Product>;
   updateVariant?: Maybe<Variant>;
   updateVendor?: Maybe<Vendor>;
@@ -361,6 +545,16 @@ export type MutationAuthRegisterArgs = {
 };
 
 
+export type MutationBuildAssetRoleArgs = {
+  input: BuildAssetRoleInput;
+};
+
+
+export type MutationCheckOtpArgs = {
+  input: CheckOtpInput;
+};
+
+
 export type MutationCreateApplicationArgs = {
   input: CreateApplicationInput;
 };
@@ -376,13 +570,43 @@ export type MutationCreateBrandArgs = {
 };
 
 
+export type MutationCreateFuelQuoteArgs = {
+  input: CreateFuelQuoteInput;
+};
+
+
+export type MutationCreateImageArgs = {
+  input: CreateImageInput;
+};
+
+
 export type MutationCreateListingArgs = {
   input: CreateListingInput;
 };
 
 
+export type MutationCreateMenuArgs = {
+  input: CreateMenuInput;
+};
+
+
 export type MutationCreateMerchantArgs = {
   input: CreateMerchantInput;
+};
+
+
+export type MutationCreateOptionTypeArgs = {
+  input: CreateOptionTypeInput;
+};
+
+
+export type MutationCreateOptionValueArgs = {
+  input: CreateOptionValueInput;
+};
+
+
+export type MutationCreatePageArgs = {
+  input: CreatePageInput;
 };
 
 
@@ -431,13 +655,43 @@ export type MutationDestroyBrandArgs = {
 };
 
 
+export type MutationDestroyFuelQuoteArgs = {
+  input: DestroyFuelQuoteInput;
+};
+
+
+export type MutationDestroyImageArgs = {
+  input: DestroyImageInput;
+};
+
+
 export type MutationDestroyListingArgs = {
   input: DestroyListingInput;
 };
 
 
+export type MutationDestroyMenuArgs = {
+  input: DestroyMenuInput;
+};
+
+
 export type MutationDestroyMerchantArgs = {
   input: DestroyMerchantInput;
+};
+
+
+export type MutationDestroyOptionTypeArgs = {
+  input: DestroyOptionTypeInput;
+};
+
+
+export type MutationDestroyOptionValueArgs = {
+  input: DestroyOptionValueInput;
+};
+
+
+export type MutationDestroyPageArgs = {
+  input: DestroyPageInput;
 };
 
 
@@ -466,6 +720,11 @@ export type MutationDestroyWebsiteArgs = {
 };
 
 
+export type MutationRemoveImageVariantArgs = {
+  input: RemoveImageVariantInput;
+};
+
+
 export type MutationResetPasswordArgs = {
   input: ResetPasswordInput;
 };
@@ -491,13 +750,38 @@ export type MutationUpdateBrandArgs = {
 };
 
 
+export type MutationUpdateFuelQuoteArgs = {
+  input: UpdateFuelQuoteInput;
+};
+
+
 export type MutationUpdateListingArgs = {
   input: UpdateListingInput;
 };
 
 
+export type MutationUpdateMenuArgs = {
+  input: UpdateMenuInput;
+};
+
+
 export type MutationUpdateMerchantArgs = {
   input: UpdateMerchantInput;
+};
+
+
+export type MutationUpdateOptionTypeArgs = {
+  input: UpdateOptionTypeInput;
+};
+
+
+export type MutationUpdateOptionValueArgs = {
+  input: UpdateOptionValueInput;
+};
+
+
+export type MutationUpdatePageArgs = {
+  input: UpdatePageInput;
 };
 
 
@@ -523,6 +807,163 @@ export type MutationUpdateVendorUserArgs = {
 
 export type MutationUpdateWebsiteArgs = {
   input: UpdateWebsiteInput;
+};
+
+export type Notification = BaseModelInterface & {
+  __typename?: 'Notification';
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  event: Event;
+  eventId: Scalars['ID']['output'];
+  id: Scalars['ID']['output'];
+  recipient: User;
+  recipientId: Scalars['ID']['output'];
+  recipientType: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+};
+
+/** The connection type for Notification. */
+export type NotificationConnection = {
+  __typename?: 'NotificationConnection';
+  /** A list of edges. */
+  edges: Array<NotificationEdge>;
+  /** A list of nodes. */
+  nodes: Array<Notification>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type NotificationEdge = {
+  __typename?: 'NotificationEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node?: Maybe<Notification>;
+};
+
+export type NotificationFilter = {
+  createdAt?: InputMaybe<DateFilter>;
+  id?: InputMaybe<IdFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
+};
+
+export type OptionType = BaseModelInterface & {
+  __typename?: 'OptionType';
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  position?: Maybe<Scalars['Int']['output']>;
+  presentation: Scalars['String']['output'];
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+};
+
+/** The connection type for OptionType. */
+export type OptionTypeConnection = {
+  __typename?: 'OptionTypeConnection';
+  /** A list of edges. */
+  edges: Array<OptionTypeEdge>;
+  /** A list of nodes. */
+  nodes: Array<OptionType>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type OptionTypeEdge = {
+  __typename?: 'OptionTypeEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node?: Maybe<OptionType>;
+};
+
+export type OptionTypeFilter = {
+  createdAt?: InputMaybe<DateFilter>;
+  id?: InputMaybe<IdFilter>;
+  name?: InputMaybe<StringFilter>;
+  presentation?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
+};
+
+export type OptionValue = BaseModelInterface & {
+  __typename?: 'OptionValue';
+  code?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  optionType: OptionType;
+  optionTypeId: Scalars['ID']['output'];
+  position?: Maybe<Scalars['Int']['output']>;
+  presentation: Scalars['String']['output'];
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+};
+
+/** The connection type for OptionValue. */
+export type OptionValueConnection = {
+  __typename?: 'OptionValueConnection';
+  /** A list of edges. */
+  edges: Array<OptionValueEdge>;
+  /** A list of nodes. */
+  nodes: Array<OptionValue>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type OptionValueEdge = {
+  __typename?: 'OptionValueEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node?: Maybe<OptionValue>;
+};
+
+export type OptionValueFilter = {
+  createdAt?: InputMaybe<DateFilter>;
+  id?: InputMaybe<IdFilter>;
+  name?: InputMaybe<StringFilter>;
+  presentation?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
+};
+
+export type Page = BaseModelInterface & {
+  __typename?: 'Page';
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  id: Scalars['ID']['output'];
+  items?: Maybe<Array<Scalars['JSON']['output']>>;
+  metaData: Scalars['JSON']['output'];
+  preferences: Scalars['JSON']['output'];
+  slug: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  website: Website;
+};
+
+/** The connection type for Page. */
+export type PageConnection = {
+  __typename?: 'PageConnection';
+  /** A list of edges. */
+  edges: Array<PageEdge>;
+  /** A list of nodes. */
+  nodes: Array<Page>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type PageEdge = {
+  __typename?: 'PageEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node?: Maybe<Page>;
+};
+
+export type PageFilter = {
+  createdAt?: InputMaybe<DateFilter>;
+  id?: InputMaybe<IdFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
 };
 
 /** Information about pagination in a connection. */
@@ -611,11 +1052,24 @@ export type Query = {
   assetRoles: AssetRoleConnection;
   brand?: Maybe<Brand>;
   brands: BrandConnection;
+  fuelPrice?: Maybe<FuelPrice>;
+  fuelPrices: FuelPriceConnection;
+  fuelQuote?: Maybe<FuelQuote>;
+  fuelQuotes: FuelQuoteConnection;
   listing?: Maybe<Listing>;
   listings: ListingConnection;
   me?: Maybe<User>;
+  menu?: Maybe<Menu>;
+  menus: MenuConnection;
   merchant?: Maybe<Merchant>;
   merchants: MerchantConnection;
+  noticedNotifications: NotificationConnection;
+  optionType?: Maybe<OptionType>;
+  optionTypes: OptionTypeConnection;
+  optionValue?: Maybe<OptionValue>;
+  optionValues: OptionValueConnection;
+  page?: Maybe<Page>;
+  pages: PageConnection;
   product?: Maybe<Product>;
   products: ProductConnection;
   user?: Maybe<User>;
@@ -676,6 +1130,36 @@ export type QueryBrandsArgs = {
 };
 
 
+export type QueryFuelPriceArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryFuelPricesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<FuelPriceFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
+};
+
+
+export type QueryFuelQuoteArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryFuelQuotesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<FuelQuoteFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
+};
+
+
 export type QueryListingArgs = {
   id: Scalars['ID']['input'];
 };
@@ -691,6 +1175,21 @@ export type QueryListingsArgs = {
 };
 
 
+export type QueryMenuArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryMenusArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<MenuFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
+};
+
+
 export type QueryMerchantArgs = {
   id: Scalars['ID']['input'];
 };
@@ -700,6 +1199,61 @@ export type QueryMerchantsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<MerchantFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
+};
+
+
+export type QueryNoticedNotificationsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<NotificationFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
+};
+
+
+export type QueryOptionTypeArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryOptionTypesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<OptionTypeFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
+};
+
+
+export type QueryOptionValueArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryOptionValuesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<OptionValueFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
+};
+
+
+export type QueryPageArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryPagesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<PageFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<SortFilter>;
@@ -758,6 +1312,7 @@ export type QueryVendorArgs = {
 
 export type QueryVendorUserArgs = {
   id: Scalars['ID']['input'];
+  vendorId?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
@@ -845,7 +1400,19 @@ export type User = BaseModelInterface & {
   registerNum?: Maybe<Scalars['String']['output']>;
   role?: Maybe<Scalars['Int']['output']>;
   roleMatrix?: Maybe<Scalars['JSON']['output']>;
+  roles?: Maybe<Array<Scalars['String']['output']>>;
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  vendorUsers: VendorUserConnection;
+};
+
+
+export type UserVendorUsersArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<VendorUserFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
 };
 
 /** The connection type for User. */
@@ -892,6 +1459,7 @@ export type Variant = BaseModelInterface & {
   description?: Maybe<Scalars['String']['output']>;
   height?: Maybe<Scalars['Float']['output']>;
   id: Scalars['ID']['output'];
+  imageObjects: Array<ImageObject>;
   images: Array<Scalars['String']['output']>;
   isMaster: Scalars['Boolean']['output'];
   merchantSku?: Maybe<Scalars['String']['output']>;
@@ -903,13 +1471,9 @@ export type Variant = BaseModelInterface & {
   salePrice?: Maybe<Scalars['Float']['output']>;
   sku: Scalars['String']['output'];
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  variantOptionValues?: Maybe<Array<Scalars['ID']['output']>>;
   weight?: Maybe<Scalars['Float']['output']>;
   width?: Maybe<Scalars['Float']['output']>;
-};
-
-
-export type VariantImagesArgs = {
-  size?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** The connection type for Variant. */
@@ -983,6 +1547,7 @@ export type VendorFilter = {
 export type VendorUser = BaseModelInterface & {
   __typename?: 'VendorUser';
   addedBy: User;
+  assetRoles: AssetRoleConnection;
   createdAt: Scalars['ISO8601DateTime']['output'];
   email?: Maybe<Scalars['String']['output']>;
   firstName?: Maybe<Scalars['String']['output']>;
@@ -994,6 +1559,16 @@ export type VendorUser = BaseModelInterface & {
   updatedAt: Scalars['ISO8601DateTime']['output'];
   user: User;
   vendor: Vendor;
+};
+
+
+export type VendorUserAssetRolesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<AssetRoleFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
 };
 
 /** The connection type for VendorUser. */
@@ -1021,6 +1596,7 @@ export type VendorUserFilter = {
   firstName?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
   updatedAt?: InputMaybe<DateFilter>;
+  vendorId?: InputMaybe<IdFilter>;
 };
 
 /** Role */
@@ -1037,6 +1613,7 @@ export type Website = BaseModelInterface & {
   domain: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   index: Scalars['String']['output'];
+  merchants: Array<Merchant>;
   name: Scalars['String']['output'];
   updatedAt: Scalars['ISO8601DateTime']['output'];
 };
@@ -1098,6 +1675,33 @@ export type AuthRegisterInput = {
   token: Scalars['String']['input'];
 };
 
+/** Autogenerated input type of buildAssetRole */
+export type BuildAssetRoleInput = {
+  /** Asset id of vendor, or website */
+  assetId: Scalars['ID']['input'];
+  /** Asset type. Supp::Vendor, Supp::Website, Supp::Merchant */
+  assetType: Scalars['String']['input'];
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** roles */
+  roles: Array<Scalars['String']['input']>;
+  /** First name */
+  vendorId: Scalars['ID']['input'];
+  /** Employee id. supp_vendor_users */
+  vendorUserId: Scalars['ID']['input'];
+};
+
+/** Autogenerated input type of checkOtp */
+export type CheckOtpInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** mobile */
+  login: Scalars['String']['input'];
+  /** confirmation token */
+  token: Scalars['String']['input'];
+  unconfirmedMobile?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 /** Autogenerated input type of createApplication */
 export type CreateApplicationInput = {
   /** A unique identifier for the client performing the mutation. */
@@ -1137,6 +1741,29 @@ export type CreateBrandInput = {
   verified?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** Autogenerated input type of createFuelQuote */
+export type CreateFuelQuoteInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** А80, A92, A98, A95, Diesel */
+  fuelType: Scalars['String']['input'];
+  merchantId: Scalars['ID']['input'];
+  preferences?: InputMaybe<Scalars['JSON']['input']>;
+  price: Scalars['Float']['input'];
+};
+
+/** Autogenerated input type of createImage */
+export type CreateImageInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Class ID */
+  id: Scalars['ID']['input'];
+  /** Image ID */
+  images: Array<Scalars['Upload']['input']>;
+  /** Supp::Menu or Supp::Page */
+  type: Scalars['String']['input'];
+};
+
 /** Autogenerated input type of createListing */
 export type CreateListingInput = {
   approved?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1148,11 +1775,57 @@ export type CreateListingInput = {
   websiteId: Scalars['ID']['input'];
 };
 
+/** Autogenerated input type of createMenu */
+export type CreateMenuInput = {
+  childrenAttributes?: InputMaybe<Array<AddressInput>>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  parentId?: InputMaybe<Scalars['ID']['input']>;
+  preferences?: InputMaybe<Scalars['JSON']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+  websiteId: Scalars['ID']['input'];
+};
+
 /** Autogenerated input type of createMerchant */
 export type CreateMerchantInput = {
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   vendorId: Scalars['ID']['input'];
+  websiteId: Scalars['ID']['input'];
+};
+
+/** Autogenerated input type of createOptionType */
+export type CreateOptionTypeInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  position?: InputMaybe<Scalars['Int']['input']>;
+  presentation: Scalars['String']['input'];
+};
+
+/** Autogenerated input type of createOptionValue */
+export type CreateOptionValueInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  code?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  optionTypeId: Scalars['ID']['input'];
+  position?: InputMaybe<Scalars['Int']['input']>;
+  presentation: Scalars['String']['input'];
+};
+
+/** Autogenerated input type of createPage */
+export type CreatePageInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<Scalars['JSON']['input']>>;
+  metaData?: InputMaybe<Scalars['JSON']['input']>;
+  preferences?: InputMaybe<Scalars['JSON']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
   websiteId: Scalars['ID']['input'];
 };
 
@@ -1199,6 +1872,7 @@ export type CreateVariantInput = {
   isMaster?: InputMaybe<Scalars['Boolean']['input']>;
   merchantSku?: InputMaybe<Scalars['String']['input']>;
   netWeight?: InputMaybe<Scalars['Float']['input']>;
+  optionValues: Array<Scalars['ID']['input']>;
   position?: InputMaybe<Scalars['Int']['input']>;
   price: Scalars['Float']['input'];
   productId: Scalars['ID']['input'];
@@ -1238,7 +1912,8 @@ export type CreateVendorUserInput = {
 export type CreateWebsiteInput = {
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  code: Scalars['String']['input'];
+  domain: Scalars['String']['input'];
+  index: Scalars['String']['input'];
   name: Scalars['String']['input'];
 };
 
@@ -1263,6 +1938,25 @@ export type DestroyBrandInput = {
   id: Scalars['ID']['input'];
 };
 
+/** Autogenerated input type of destroyFuelQuote */
+export type DestroyFuelQuoteInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+};
+
+/** Autogenerated input type of destroyImage */
+export type DestroyImageInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Menu ID */
+  id: Scalars['ID']['input'];
+  /** Image ID */
+  imageId: Scalars['ID']['input'];
+  /** Supp::Menu or Supp::Page */
+  type: Scalars['String']['input'];
+};
+
 /** Autogenerated input type of destroyListing */
 export type DestroyListingInput = {
   /** A unique identifier for the client performing the mutation. */
@@ -1270,8 +1964,36 @@ export type DestroyListingInput = {
   id: Scalars['ID']['input'];
 };
 
+/** Autogenerated input type of destroyMenu */
+export type DestroyMenuInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+};
+
 /** Autogenerated input type of destroyMerchant */
 export type DestroyMerchantInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+};
+
+/** Autogenerated input type of destroyOptionType */
+export type DestroyOptionTypeInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+};
+
+/** Autogenerated input type of destroyOptionValue */
+export type DestroyOptionValueInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+};
+
+/** Autogenerated input type of destroyPage */
+export type DestroyPageInput = {
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
@@ -1310,6 +2032,14 @@ export type DestroyWebsiteInput = {
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
+};
+
+/** Autogenerated input type of removeImageVariant */
+export type RemoveImageVariantInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  variantId: Scalars['ID']['input'];
 };
 
 /** Autogenerated input type of resetPassword */
@@ -1372,6 +2102,14 @@ export type UpdateBrandInput = {
   verified?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** Autogenerated input type of updateFuelQuote */
+export type UpdateFuelQuoteInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  price: Scalars['Float']['input'];
+};
+
 /** Autogenerated input type of updateListing */
 export type UpdateListingInput = {
   approved?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1384,6 +2122,20 @@ export type UpdateListingInput = {
   websiteId?: InputMaybe<Scalars['ID']['input']>;
 };
 
+/** Autogenerated input type of updateMenu */
+export type UpdateMenuInput = {
+  childrenAttributes?: InputMaybe<Array<AddressInput>>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  link?: InputMaybe<Scalars['String']['input']>;
+  parentId?: InputMaybe<Scalars['ID']['input']>;
+  preferences?: InputMaybe<Scalars['JSON']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** Autogenerated input type of updateMerchant */
 export type UpdateMerchantInput = {
   /** A unique identifier for the client performing the mutation. */
@@ -1391,6 +2143,40 @@ export type UpdateMerchantInput = {
   id: Scalars['ID']['input'];
   vendorId?: InputMaybe<Scalars['ID']['input']>;
   websiteId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+/** Autogenerated input type of updateOptionType */
+export type UpdateOptionTypeInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
+  presentation?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Autogenerated input type of updateOptionValue */
+export type UpdateOptionValueInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  code?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+  optionTypeId?: InputMaybe<Scalars['ID']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
+  presentation?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Autogenerated input type of updatePage */
+export type UpdatePageInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  items?: InputMaybe<Array<Scalars['JSON']['input']>>;
+  metaData?: InputMaybe<Scalars['JSON']['input']>;
+  preferences?: InputMaybe<Scalars['JSON']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Autogenerated input type of updateProduct */
@@ -1424,6 +2210,7 @@ export type UpdateVariantInput = {
   isMaster?: InputMaybe<Scalars['Boolean']['input']>;
   merchantSku?: InputMaybe<Scalars['String']['input']>;
   netWeight?: InputMaybe<Scalars['Float']['input']>;
+  optionValues?: InputMaybe<Array<Scalars['ID']['input']>>;
   position?: InputMaybe<Scalars['Int']['input']>;
   price?: InputMaybe<Scalars['Float']['input']>;
   productId?: InputMaybe<Scalars['ID']['input']>;
