@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 
-export function CategoryCard({ href, text, imageSrc = '/api/placeholder/116/116', imageAlt = '' }: CategoryCardProps) {
+export default function CategoryCard({ href, text, imageSrc, imageAlt = '' }: CategoryCardProps) {
   return (
     <Link href={href}>
       <div className="group relative flex h-full flex-col items-center lg:flex-row">
@@ -19,8 +19,6 @@ export function CategoryCard({ href, text, imageSrc = '/api/placeholder/116/116'
     </Link>
   );
 }
-
-export default CategoryCard;
 
 interface CategoryCardProps {
   href: string;

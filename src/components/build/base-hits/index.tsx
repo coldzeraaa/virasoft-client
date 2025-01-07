@@ -19,8 +19,9 @@ export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
       <div className="flex flex-nowrap gap-2 overflow-x-auto lg:flex-col lg:space-y-2 lg:overflow-x-visible">
         {hits.map((hit) => (
           <div key={hit.id} className="relative flex-shrink-0">
-            <div
+            <button
               onClick={() => selectProduct(type, hit.id)}
+              type="button"
               className={`relative flex cursor-pointer
                   flex-col items-center gap-1 rounded-sm border transition-all duration-150
                    ease-linear hover:border-base-content md:gap-2 lg:flex-row lg:gap-3 lg:p-1
@@ -47,7 +48,7 @@ export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
                   {hit.title}
                 </div>
               </div>
-            </div>
+            </button>
           </div>
         ))}
       </div>
