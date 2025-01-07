@@ -10,6 +10,33 @@ import { CategoryCard } from './category-card';
 import { useMenusQuery } from '@/gql/query/menu/list.generated';
 import { BuildProvider } from '@/lib/provider/build-provider';
 
+function getMenuByType(data: GraphQLResponse, menuType: string | string[] | undefined) {
+  if (!data?.menus.nodes) return null;
+
+  const menuType2 = Array.isArray(menuType) ? menuType[0] : menuType;
+  switch (menuType2) {
+    case 'coat':
+      return data.menus.nodes.find((menu: Menu) => menu.title === 'палто');
+    case 'uniform':
+      return data.menus.nodes.find((menu: Menu) => menu.title === 'ажлын хувцас');
+    default:
+      return null;
+  }
+}
+
+function getProductType(title: string): string {
+  switch (title) {
+    case 'доторлогоо':
+      return 'lining';
+    case 'товч':
+      return 'button';
+    case 'хүрэм':
+      return 'coat';
+    default:
+      return '';
+  }
+}
+
 export function ProductList({ origin, type }: { origin: string; type?: string | string[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -21,45 +48,15 @@ export function ProductList({ origin, type }: { origin: string; type?: string | 
     },
   });
 
-  const getMenuByType = (menuType: string | string[] | undefined) => {
-    if (!data?.menus.nodes) return null;
-    const menuType2 = Array.isArray(menuType) ? menuType[0] : menuType;
-    switch (menuType2) {
-      case 'coat':
-        return data?.menus.nodes.find((menu) => menu.title === 'палто');
-      case 'uniform':
-        return data?.menus.nodes.find((menu) => menu.title === 'ажлын хувцас');
-      default:
-        return null;
-    }
-  };
-
-  const selectedMenu = getMenuByType(type);
-
-  const getProductType = (title: string) => {
-    switch (title) {
-      case 'доторлогоо':
-        return 'lining';
-      case 'товч':
-        return 'button';
-      case 'хүрэм':
-        return 'coat';
-      default:
-        return '';
-    }
-  };
-
-  const handleCategoryClick = (menuTitle: string) => {
-    setSelectedCategory(menuTitle);
-  };
-
+  const selectedMenu = getMenuByType(data as GraphQLResponse, type);
+  
   return (
     <div className="flex h-full w-full flex-col overflow-hidden">
       <div className="h-full w-full overflow-y-auto p-4 lg:px-4">
         {!selectedCategory ? (
           <div className="flex h-full w-full flex-row gap-4 lg:flex-col">
-            {selectedMenu?.children?.map((menuItem, index) => (
-              <div key={`${menuItem.title}-${index}`} onClick={() => handleCategoryClick(menuItem.title)}>
+            {selectedMenu?.children?.map((menuItem: any, index: number) => (
+              <div key={`${menuItem.title}-${index}`} onClick={() => setSelectedCategory(menuItem.title)}>
                 <CategoryCard href="#" text={menuItem.title} imageSrc={menuItem.images?.[0] || ''} />
               </div>
             ))}
@@ -82,4 +79,22 @@ export function ProductList({ origin, type }: { origin: string; type?: string | 
       </div>
     </div>
   );
+}
+
+interface Menu {
+  __typename: string;
+  id: string;
+  title: string;
+  link: string;
+  images: string[];
+  children: Menu[];
+}
+
+interface MenuConnection {
+  __typename: string;
+  nodes: Menu[];
+}
+
+interface GraphQLResponse {
+  menus: MenuConnection;
 }
