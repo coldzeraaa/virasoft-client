@@ -80,6 +80,16 @@ export function AuthLoginPageClient() {
           <BtnLoader loading={loading || loadingAuth} icon={ChevronRightIcon} />
         </button>
       </FieldForm>
+      <div className="flex  items-center justify-end py-[20px]">
+        <button
+          className="btn"
+          onClick={() => {
+            router.push('/auth/register');
+          }}
+        >
+          register
+        </button>
+      </div>
     </div>
   );
 }
