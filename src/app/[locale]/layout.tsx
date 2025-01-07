@@ -3,11 +3,11 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { ToastContainer } from 'react-toastify';
 
-import { LayoutContent } from './layout-content';
-
 import './globals.css';
 
-import { bodyClassName } from '@/components/class-names/body-class-names';
+import { bodyClassName, lightTheme } from '@/components/class-names/body-class-names';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 import { APP_CONFIG } from '@/configs/APP_CONFIG';
 import { BuildContextProvider } from '@/lib/context/build-context';
 import { ApolloProvider } from '@/lib/provider/apollo-provider';
@@ -18,14 +18,16 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" data-theme={lightTheme}>
       <body className={bodyClassName}>
         <ApolloProvider>
-          <HolyLoader />
           <BuildContextProvider>
-            <LayoutContent>{children}</LayoutContent>
+            <HolyLoader />
+            <Header />
+            <div>{children}</div>
+            <Footer />
+            <ToastContainer />
           </BuildContextProvider>
-          <ToastContainer />
         </ApolloProvider>
       </body>
     </html>

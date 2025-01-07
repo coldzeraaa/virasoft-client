@@ -5,16 +5,13 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 interface BuildContextType {
-  activeSection: string;
   selectedProducts: Record<string, string>;
-  setActiveSection: (section: string) => void;
   selectProduct: (type: string, id: string) => void;
 }
 
 const BuildContext = createContext<BuildContextType | undefined>(undefined);
 
 export function BuildContextProvider({ children }: { children: React.ReactNode }) {
-  const [activeSection, setActiveSection] = useState('Загвар');
   const [selectedProducts, setSelectedProducts] = useState<Record<string, string>>({});
   const router = useRouter();
   const pathname = usePathname();
@@ -43,8 +40,6 @@ export function BuildContextProvider({ children }: { children: React.ReactNode }
   return (
     <BuildContext.Provider
       value={{
-        activeSection,
-        setActiveSection,
         selectedProducts,
         selectProduct,
       }}

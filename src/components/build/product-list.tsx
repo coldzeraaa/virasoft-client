@@ -5,12 +5,12 @@ import { useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
 
 import { BaseHits } from './base-hits';
-import CategoryCard from './category-card';
+import { CategoryCard } from './category-card';
 
 import { useMenusQuery } from '@/gql/query/menu/list.generated';
 import { BuildProvider } from '@/lib/provider/build-provider';
 
-export function ProductList({ origin, type }: { origin: string; type?: string }) {
+export function ProductList({ origin, type }: { origin: string; type?: string | string[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const { data } = useMenusQuery({
@@ -21,10 +21,10 @@ export function ProductList({ origin, type }: { origin: string; type?: string })
     },
   });
 
-  const getMenuByType = (menuType: string | undefined) => {
+  const getMenuByType = (menuType: string | string[] | undefined) => {
     if (!data?.menus.nodes) return null;
-
-    switch (menuType) {
+    const menuType2 = Array.isArray(menuType) ? menuType[0] : menuType;
+    switch (menuType2) {
       case 'coat':
         return data?.menus.nodes.find((menu) => menu.title === 'палто');
       case 'uniform':
@@ -66,17 +66,12 @@ export function ProductList({ origin, type }: { origin: string; type?: string })
           </div>
         ) : (
           <div className="flex flex-col gap-4">
-            {/* Back button in a fixed container */}
             <div className="sticky left-0 top-0 z-10 bg-white">
-              <button
-                onClick={() => setSelectedCategory(null)}
-                className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900"
-              >
+              <button onClick={() => setSelectedCategory(null)} className="flex items-center gap-2 text-sm text-neutral">
                 <ArrowLeft className="h-4 w-4" />
                 Буцах
               </button>
             </div>
-            {/* Content container */}
             <div className="w-full">
               <BuildProvider origin={origin} type={getProductType(selectedCategory)}>
                 <BaseHits type={getProductType(selectedCategory)} />

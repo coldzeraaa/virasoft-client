@@ -43,27 +43,24 @@ export function ProductDetail() {
     <div className="relative h-full w-full bg-[#efefef]">
       <Link href="/order">
         <div className="absolute right-4 top-4 z-30 cursor-pointer">
-          <button className="rounded-3xl bg-white px-4 py-3 text-black">Дуусгах</button>
+          <button className="rounded-3xl bg-white px-4 py-3 text-neutral">Дуусгах</button>
         </div>
       </Link>
       <div className="relative flex h-full w-full flex-col items-center justify-center">
-        {products.map((product, index) => {
-          const firstImage = product.images[0];
-
-          return (
-            firstImage && (
+        {products.map(
+          (product, index) =>
+            product.images[0] && (
               <div
                 key={product.id}
-                className="absolute h-full w-full lg:h-[500px]"
+                className="absolute h-full w-full lg:h-4/6"
                 style={{
                   zIndex: index + 1,
                 }}
               >
-                <img src={imageUrlHelper(firstImage)} alt={product.name} className="h-full w-full object-contain" />
+                <img src={imageUrlHelper(product.images[0])} alt={product.name} className="h-full w-full object-contain" />
               </div>
-            )
-          );
-        })}
+            ),
+        )}
       </div>
     </div>
   );

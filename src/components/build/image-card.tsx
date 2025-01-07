@@ -2,12 +2,6 @@ import React from 'react';
 
 import Image from 'next/image';
 
-interface ImageCardProps {
-  imageUrl: string;
-  title: string;
-  onClick?: () => void;
-}
-
 export const ImageCard: React.FC<ImageCardProps> = ({ imageUrl, title, onClick }) => (
   <div>
     <div
@@ -21,3 +15,9 @@ export const ImageCard: React.FC<ImageCardProps> = ({ imageUrl, title, onClick }
     <p className="text-center text-base font-medium md:text-lg lg:text-2xl">{title}</p>
   </div>
 );
+
+interface ImageCardProps {
+  imageUrl: string;
+  title: string;
+  onClick?: () => void;
+}
