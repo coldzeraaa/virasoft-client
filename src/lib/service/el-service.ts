@@ -48,7 +48,7 @@ function getSkuTerms(acc: QueryStringType[], value: ElServiceProps['skuString'])
 }
 function getIds(acc: QueryStringType[], value: ElServiceProps['ids']): QueryStringType[] {
   if (!value) return [];
-  return [...acc, { terms: { pid: value } }];
+  return [...acc, { terms: { id: value } }];
 }
 function getQueryString(acc: QueryStringType[], value: string | string[], key: string): QueryStringType[] {
   if (!value) return acc;

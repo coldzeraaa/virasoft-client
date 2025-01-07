@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { ImageCard } from '@/components/build/image-card';
-import { useMenusQuery } from '@/gql/query/menu/list.generated';
+import { useMenusQuery } from '../../../gql/query/menu/list.generated';
+import { ImageCard } from '../../build/image-card';
+
 export const BuildPageClient = () => {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);

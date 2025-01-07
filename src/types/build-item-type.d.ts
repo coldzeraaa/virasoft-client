@@ -3,4 +3,5 @@ export interface BuildItemType {
   name: string;
   images: string[];
   options: string[];
+  title: string;
 }
