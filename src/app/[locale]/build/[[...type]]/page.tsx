@@ -10,7 +10,7 @@ export default function BuildPage({ params }: BuildPageProps) {
 
   if (!params?.type) {
     return (
-      <div className="h-full w-full bg-gray-100 px-4 py-12 sm:px-6 lg:px-8">
+      <div className="h-full w-full px-4 py-12 sm:px-6 lg:px-8">
         <BuildPageClient />
       </div>
     );

@@ -13,7 +13,7 @@ export const ImageCard: React.FC<ImageCardProps> = ({ imageUrl, title, onClick }
         <Image src={imageUrl} alt={title} fill className="object-cover transition-transform duration-300 ease-in-out hover:scale-105" />
       </div>
     </button>
-    <p className="text-center text-base font-medium md:text-lg lg:text-2xl">{title}</p>
+    <p className="text-center font-medium text-neutral md:text-lg lg:text-2xl">{title}</p>
   </div>
 );
 

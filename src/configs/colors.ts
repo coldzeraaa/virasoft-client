@@ -9,7 +9,7 @@ export const LIGHT_COLORS = {
   'accent-content': '#222529', //black
   neutral: '222529', //black
   'neutral-content': '#6C707D', //muted grey with blue undertone
-  'base-100': '#FBFAEE', //off-white
+  'base-100': '#ffffff', //off-white
   'base-200': '#F6F7F9', //light grey
   'base-300': '#E7EAEF', //light grey
   'base-content': '#BBBBBB', //dark grey
