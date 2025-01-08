@@ -31,6 +31,8 @@ export function Header() {
                 className="h-8 w-auto"
                 src="https://upload.wikimedia.org/wikipedia/en/9/92/Chanel_logo_interlocking_cs.svg"
                 alt="Company Logo"
+                width={32}
+                height={32}
               />
             </Link>
           </div>
