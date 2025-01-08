@@ -852,6 +852,8 @@ input MenuFilter {
   id: IDFilter
   createdAt: DateFilter
   updatedAt: DateFilter
+  title: StringFilter
+  type: StringFilter
   parentId: IDFilter
   websiteId: IDFilter
   website: WebsiteFilter

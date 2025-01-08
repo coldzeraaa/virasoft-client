@@ -31,34 +31,40 @@ export default function AuthRegister() {
       toast.success('User registered. Please login');
     },
   });
-  const handleFormSubmit = async (values: RegisterFormValues) => {
-    try {
-      if (!verified && step === 0) {
-        await authCheckLogin({ variables: { input: { login: values.login, sendToken: true } } });
-        setStep(1);
-      } else if (step === 1) {
-        const response = await authCheckOTP({
-          variables: { input: { login: values.login, token: values.token, unconfirmedMobile: true } },
-        });
-        if (response?.data?.checkOtp) {
-          setStep(2);
-          toast.success('OTP verified');
-        } else {
-          toast.error('Invalid OTP');
-        }
-      } else if (step === 2) {
-        await authRegister({ variables: { input: values } });
-      }
-    } catch (error) {
-      catchHelper(error);
+  const checkLogin = async (values: RegisterFormValues) => {
+    await authCheckLogin({ variables: { input: { login: values.login, sendToken: true } } });
+    setStep(1);
+  };
+  const checkOtp = async (values: RegisterFormValues) => {
+    const response = await authCheckOTP({
+      variables: { input: { login: values.login, token: values.token, unconfirmedMobile: true } },
+    });
+    if (response?.data?.checkOtp) {
+      setStep(2);
+      toast.success('OTP verified');
+    } else {
+      toast.error('Invalid OTP');
     }
+  };
+  const register = async (values: RegisterFormValues) => {
+    await authRegister({ variables: { input: values } });
   };
 
   return (
     <Form
       className="flex flex-col items-center justify-center gap-[12px] "
       onFinish={(values) => {
-        handleFormSubmit(values);
+        try {
+          if (!verified && step === 0) {
+            checkLogin(values);
+          } else if (step === 1) {
+            checkOtp(values);
+          } else if (step === 2) {
+            register(values);
+          }
+        } catch (error) {
+          catchHelper(error);
+        }
       }}
       onFinishFailed={catchHelper}
     >
