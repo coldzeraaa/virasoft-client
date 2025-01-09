@@ -94,18 +94,10 @@ export default function AuthRegisterClient() {
   );
 }
 
-interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  value?: string;
-}
-
 const CustomInput: React.FC<CustomInputProps> = ({ value = '', onChange, ...props }: CustomInputProps) => (
   <input className="input shadow-md " value={value} onChange={onChange} {...props} />
 );
 
-// interface RegisterFormValues {
-//   login: string;
-//   token: string;
-//   firstName: string;
-//   lastName: string;
-//   password: string;
-// }
+interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  value?: string;
+}

@@ -78,19 +78,10 @@ const ForgotPasswordClient = () => {
   );
 };
 
-interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  value?: string;
-}
-
 const CustomInput: React.FC<CustomInputProps> = ({ value = '', onChange, ...props }: CustomInputProps) => (
   <input className="input flex  shadow-md" value={value} onChange={onChange} {...props} />
 );
-
-// interface ResetpasswordFormValues {
-//   login: string;
-//   token: string;
-//   password: string;
-//   repassword: string;
-// }
-
+interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  value?: string;
+}
 export default ForgotPasswordClient;
