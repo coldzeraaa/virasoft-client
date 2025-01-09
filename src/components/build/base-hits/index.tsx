@@ -18,12 +18,13 @@ export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
       <div className="flex flex-nowrap gap-2 overflow-x-auto lg:flex-col lg:space-y-2 lg:overflow-x-visible">
         {hits.map((hit) => (
           <div key={hit.id} className="relative flex-shrink-0">
-            <div
+            <button
               onClick={() => selectProduct(type, hit.id)}
-              className={`relative flex cursor-pointer
-                  flex-col items-center gap-1 rounded-sm border transition-all duration-150
+              type="button"
+              className={`relative flex w-full
+                  cursor-pointer flex-col items-center gap-1 rounded-sm border transition-all duration-150
                    ease-linear hover:border-base-content md:gap-2 lg:flex-row lg:gap-3 lg:p-1
-                  ${selectedProducts[type] === hit.id ? 'border-neutral' : 'border-base-300'}`}
+                  ${selectedProducts[type] === `${hit.id}` ? 'border-base-content' : 'border-base-300'}`}
             >
               <div
                 className={`relative aspect-square h-20
@@ -46,7 +47,7 @@ export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
                   {hit.title}
                 </div>
               </div>
-            </div>
+            </button>
           </div>
         ))}
       </div>

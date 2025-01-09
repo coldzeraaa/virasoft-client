@@ -4,12 +4,10 @@ import React from 'react';
 import { BellIcon, HeartIcon, MagnifyingGlassIcon, ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import Router from 'next/router';
 
 import { useMeQuery } from '@/gql/query/user/me.generated';
 export function Header() {
   const { data: userData, loading } = useMeQuery();
-  const isAuthenticated = Boolean(userData?.me);
 
   if (loading) {
     return (
@@ -27,7 +25,6 @@ export function Header() {
       </header>
     );
   }
-  
 
   return (
     <header className="z-40 w-full bg-white shadow-md">
@@ -55,7 +52,6 @@ export function Header() {
                   type="text"
                   className="w-full rounded-full border border-base-content px-4 py-1 text-neutral focus:outline-none"
                   placeholder="Бүтээгдэхүүн хайх..."
-                  onKeyDown={() => Router.push('/search')}
                 />
                 <MagnifyingGlassIcon className="absolute right-3 top-1.5 h-5 w-5 text-gray-400" />
               </div>
@@ -69,9 +65,9 @@ export function Header() {
               >
                 <MagnifyingGlassIcon className="h-5 w-5" />
               </Link>
-              {isAuthenticated && (
+              {Boolean(userData?.me) && (
                 <Link
-                  href={isAuthenticated ? '/notification' : '/auth/login'}
+                  href={userData?.me ? '/notification' : '/auth/login'}
                   className="flex flex-col items-center rounded-lg p-1 text-neutral transition-colors hover:text-secondary md:flex lg:p-2"
                 >
                   <BellIcon className="h-5 w-5" />
@@ -79,25 +75,25 @@ export function Header() {
                 </Link>
               )}
               <Link
-                href={isAuthenticated ? '/wishlist' : '/auth/login'}
+                href={userData?.me ? '/wishlist' : '/auth/login'}
                 className="hidden flex-col items-center rounded-lg p-1 text-neutral transition-colors hover:text-secondary md:flex lg:p-2"
               >
                 <HeartIcon className="h-5 w-5" />
                 <p className="hidden md:block">Хадгалсан</p>
               </Link>
               <Link
-                href={isAuthenticated ? '/checkout' : '/auth/login'}
+                href={userData?.me ? '/checkout' : '/auth/login'}
                 className="hidden flex-col items-center rounded-lg p-1 text-neutral transition-colors hover:text-secondary md:flex lg:p-2"
               >
                 <ShoppingCartIcon className="h-5 w-5" />
                 <p className="hidden md:block">Сагс</p>
               </Link>
               <Link
-                href={isAuthenticated ? '/profile' : '/auth/login'}
+                href={userData?.me ? '/profile' : '/auth/login'}
                 className="hidden flex-col items-center rounded-lg p-1 text-neutral transition-colors hover:text-secondary md:flex lg:p-2"
               >
                 <UserIcon className="h-5 w-5" />
-                <p className="hidden md:block">{isAuthenticated ? 'Профайл' : 'Нэвтрэх'}</p>
+                <p className="hidden md:block">{userData?.me ? 'Профайл' : 'Нэвтрэх'}</p>
               </Link>
             </nav>
           </div>

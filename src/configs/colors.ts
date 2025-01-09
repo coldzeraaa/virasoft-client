@@ -4,7 +4,7 @@ export const LIGHT_COLORS = {
   primary: '#102F31', //emerald green
   'primary-content': '#FDF0EC', //grey with pinkish hue
   secondary: '#C09049', //golden yellow
-  'secondary-content': '#EDF2F8', //neutral grey
+  'secondary-content': '#EDF2F8', //neutral light grey
   accent: '#17DDDD', //teel
   'accent-content': '#222529', //black
   neutral: '222529', //black
