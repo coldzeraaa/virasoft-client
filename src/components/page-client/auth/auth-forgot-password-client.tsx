@@ -12,9 +12,9 @@ import { catchHelper } from '@/lib/helper/catch-helper';
 const ForgotPasswordClient = () => {
   const [step, setStep] = useState(0);
   const router = useRouter();
-  const [AuthResetPassword] = useAuthResetPasswordMutation({
+  const [authResetPassword, { loading: resetPasswordLoading }] = useAuthResetPasswordMutation({
     onCompleted(TData) {
-      if (TData?.resetPassword?.id) {
+      if (TData?.resetPassword?.id && !resetPasswordLoading) {
         toast.success('Password reset successful');
         router.push('/auth/login');
       }
@@ -31,9 +31,9 @@ const ForgotPasswordClient = () => {
   });
 
   return (
-    <div className="container items-center justify-center py-[40px]">
+    <div className="container flex  items-center justify-center py-10">
       <Form
-        className=" flex gap-[20px]"
+        className=" flex flex-col gap-4"
         onFinish={(values) => {
           try {
             if (step === 0) {
@@ -41,7 +41,7 @@ const ForgotPasswordClient = () => {
             } else if (step === 1) {
               sendOtp({ variables: { input: { login: values.login } } });
             } else if (step === 2 && values.password === values.repassword) {
-              AuthResetPassword({ variables: { input: { login: values.login, password: values.password, token: values.token } } });
+              authResetPassword({ variables: { input: { login: values.login, password: values.password, token: values.token } } });
               toast.success('Password reset successful');
             } else if (values.password !== values.repassword) {
               toast.error(' password not match');
@@ -70,7 +70,7 @@ const ForgotPasswordClient = () => {
           </Field>
         </div>
 
-        <button className="btn" disabled={sentOtpLoading} type="submit">
+        <button className="btn btn-primary  " disabled={sentOtpLoading || resetPasswordLoading} type="submit">
           Submit
         </button>
       </Form>
@@ -83,7 +83,7 @@ interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({ value = '', onChange, ...props }: CustomInputProps) => (
-  <input className="flex h-[50px] w-[250px] rounded-[8px] px-[4px] py-[8px]" value={value} onChange={onChange} {...props} />
+  <input className="input flex  shadow-md" value={value} onChange={onChange} {...props} />
 );
 
 // interface ResetpasswordFormValues {

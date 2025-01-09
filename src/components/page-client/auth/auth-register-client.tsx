@@ -14,7 +14,7 @@ export default function AuthRegisterClient() {
   const [verified, setVerified] = useState(false);
   const [step, setStep] = useState(0);
   const router = useRouter();
-  const [authCheckOTP] = useAuthCheckOtpMutation({
+  const [authCheckOTP, { loading: checkOtpLoading }] = useAuthCheckOtpMutation({
     onCompleted(TData) {
       if (TData.checkOtp) {
         setStep(2);
@@ -37,8 +37,10 @@ export default function AuthRegisterClient() {
   const [authRegister, { loading: loadingAuthRegister }] = useAuthRegisterMutation({
     onError: catchHelper,
     onCompleted() {
-      router.push('/auth/login');
-      toast.success('User registered. Please login');
+      if (!loadingAuthRegister) {
+        router.push('/auth/login');
+        toast.success('User registered. Please login');
+      }
     },
   });
   return (
@@ -84,7 +86,7 @@ export default function AuthRegisterClient() {
       </div>
 
       <div className="">
-        <button className="btn btn-primary" disabled={loadingAuthRegister || loadingAuthCheckLogin} type="submit">
+        <button className="btn btn-primary " disabled={loadingAuthRegister || loadingAuthCheckLogin || checkOtpLoading} type="submit">
           Submit
         </button>
       </div>
@@ -97,7 +99,7 @@ interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({ value = '', onChange, ...props }: CustomInputProps) => (
-  <input className="flex h-[50px] w-[250px] rounded-[8px] px-[4px] py-[8px]" value={value} onChange={onChange} {...props} />
+  <input className="input shadow-md " value={value} onChange={onChange} {...props} />
 );
 
 // interface RegisterFormValues {
