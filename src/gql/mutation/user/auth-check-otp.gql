@@ -1,5 +1,3 @@
-mutation authCheckOTP ($input: checkOtpInput!){
-    checkOtp(input: $input)
-
-    
+mutation authCheckOTP($input: checkOtpInput!) {
+  checkOtp(input: $input)
 }
