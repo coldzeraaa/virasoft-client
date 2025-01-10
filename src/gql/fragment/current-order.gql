@@ -1,0 +1,24 @@
+fragment CurrentOrderFields on Order {
+  id
+  number
+  token
+  userId
+  total
+  itemTotal
+  itemCount
+
+  items {
+    id
+    price
+    quantity
+    variant {
+      id
+      images
+      price
+      product {
+        id
+        name
+      }
+    }
+  }
+}

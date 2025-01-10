@@ -1,0 +1,22 @@
+query product($slug: String!) {
+  product(slug: $slug) {
+    id
+    name
+    title
+    description
+    images
+    master {
+      id
+      price
+      sku
+    }
+    variants {
+      nodes {
+        id
+        id
+        price
+        sku
+      }
+    }
+  }
+}

@@ -16,6 +16,7 @@ import { APP_CONFIG } from '@/configs/APP_CONFIG';
 import { HOST_CONFIG } from '@/configs/HOST_CONFIG';
 import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
 import { useAuthCheckLoginMutation } from '@/gql/mutation/user/auth-check-login.generated';
+import { useAuth } from '@/lib/context/auth-context';
 
 export function AuthLoginPageClient() {
   const [verified, setVerified] = useState(false);
@@ -23,6 +24,7 @@ export function AuthLoginPageClient() {
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { loginWithRouter } = useAuth();
 
   return (
     <div className="container max-w-96">
@@ -36,12 +38,12 @@ export function AuthLoginPageClient() {
                 headers: { Authorization: `Basic ${btoa(`${APP_CONFIG.tokens.uid}:${APP_CONFIG.tokens.secret}`)}` },
                 body: { grant_type: 'password', password: values.password, username: values.login },
               });
-              setLoading(false);
-              if (!response) toast.error('Нэвтрэх нэр, нууц үг буруу байна');
-              else {
-                toast.success('Амжилттай нэвтэрлээ');
+              if (response?.access_token) {
+                setLoading(false);
                 cookies.set(STORE_KEY_CONFIG.NEXT_USER_TOKEN, JSON.stringify(response));
-                router.replace('/');
+                loginWithRouter();
+              } else {
+                setLoading(false);
               }
             } else {
               const response = await authCheckLogin({ variables: { input: { login: values.login } } });
