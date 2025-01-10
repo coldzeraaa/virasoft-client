@@ -13,7 +13,7 @@ export default function CategoryCard({ href, text, imageSrc, imageAlt = '' }: Ca
           <Image src={imageUrlHelper(imageSrc)} alt={imageAlt} width={116} height={116} className="h-full object-cover" loading="lazy" />
         </div>
         <div className="flex-grow px-4 pt-3">
-          <div className="text-sm font-light text-neutral group-hover:text-base-content lg:text-lg lg:font-semibold">{text}</div>
+          <div className="text-sm font-light text-base-content group-hover:text-base-content lg:text-lg lg:font-semibold">{text}</div>
         </div>
       </div>
     </Link>
