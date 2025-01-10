@@ -5,14 +5,14 @@ import { useRouter } from 'next/navigation';
 import Form, { Field } from 'rc-field-form';
 import { toast } from 'react-toastify';
 
-import { useAuthResetPasswordMutation } from '@/gql/mutation/user/auth-reset-password.generated';
+import { useResetPasswordMutation } from '@/gql/mutation/user/auth-reset-password.generated';
 import { useSendOtpMutation } from '@/gql/mutation/user/auth-sendOtp.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
 const ForgotPasswordClient = () => {
   const [step, setStep] = useState(0);
   const router = useRouter();
-  const [authResetPassword, { loading: resetPasswordLoading }] = useAuthResetPasswordMutation({
+  const [resetPassword, { loading: resetPasswordLoading }] = useResetPasswordMutation({
     onCompleted(TData) {
       if (TData?.resetPassword?.id && !resetPasswordLoading) {
         toast.success('Password reset successful');
@@ -41,7 +41,7 @@ const ForgotPasswordClient = () => {
             } else if (step === 1) {
               sendOtp({ variables: { input: { login: values.login } } });
             } else if (step === 2 && values.password === values.repassword) {
-              authResetPassword({ variables: { input: { login: values.login, password: values.password, token: values.token } } });
+              resetPassword({ variables: { input: { login: values.login, password: values.password, token: values.token } } });
               toast.success('Password reset successful');
             } else if (values.password !== values.repassword) {
               toast.error(' password not match');

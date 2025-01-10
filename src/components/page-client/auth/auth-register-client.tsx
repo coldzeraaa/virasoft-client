@@ -6,7 +6,7 @@ import Form, { Field } from 'rc-field-form';
 import { toast } from 'react-toastify';
 
 import { useAuthCheckLoginMutation } from '@/gql/mutation/user/auth-check-login.generated';
-import { useAuthCheckOtpMutation } from '@/gql/mutation/user/auth-check-otp.generated';
+import { useCheckOtpMutation } from '@/gql/mutation/user/auth-check-otp.generated';
 import { useAuthRegisterMutation } from '@/gql/mutation/user/auth-register.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
@@ -14,7 +14,7 @@ export default function AuthRegisterClient() {
   const [verified, setVerified] = useState(false);
   const [step, setStep] = useState(0);
   const router = useRouter();
-  const [authCheckOTP, { loading: checkOtpLoading }] = useAuthCheckOtpMutation({
+  const [CheckOTP, { loading: checkOtpLoading }] = useCheckOtpMutation({
     onCompleted(TData) {
       if (TData.checkOtp) {
         setStep(2);
@@ -51,7 +51,7 @@ export default function AuthRegisterClient() {
           if (!verified && step === 0) {
             authCheckLogin({ variables: { input: { login: values.login, sendToken: true } } });
           } else if (step === 1) {
-            authCheckOTP({
+            CheckOTP({
               variables: { input: { login: values.login, token: values.token, unconfirmedMobile: true } },
             });
           } else if (step === 2) {
