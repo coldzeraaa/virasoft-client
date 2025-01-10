@@ -40,7 +40,7 @@ export function ProductList({ origin, type }: { origin: string; type?: string | 
           </div>
         ) : (
           <div className="flex flex-col gap-4">
-            <div className="sticky left-0 top-0 z-10 bg-white">
+            <div className="sticky left-0 top-0 z-10 ">
               <button onClick={() => setSelectedCategory(null)} type="button" className="flex items-center gap-2 text-sm text-neutral">
                 Буцах
               </button>

@@ -5,19 +5,21 @@ import { BellIcon, HeartIcon, MagnifyingGlassIcon, ShoppingCartIcon, UserIcon } 
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { ThemeToggleButton } from './theme-toggle-button';
+
 import { useMeQuery } from '@/gql/query/user/me.generated';
 export function Header() {
   const { data: userData, loading } = useMeQuery();
 
   if (loading) {
     return (
-      <header className="z-40 w-full bg-white shadow-md">
+      <header className="z-40 w-full bg-base-100 shadow-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            <div className="h-8 w-8 animate-pulse rounded-full bg-gray-200" />
+            <div className="h-8 w-8 animate-pulse rounded-full bg-base-content" />
             <div className="flex gap-4">
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-8 w-8 animate-pulse rounded bg-gray-200" />
+                <div key={i} className="h-8 w-8 animate-pulse rounded bg-base-content" />
               ))}
             </div>
           </div>
@@ -27,7 +29,7 @@ export function Header() {
   }
 
   return (
-    <header className="z-40 w-full bg-white shadow-md">
+    <header className="z-40 w-full bg-base-100 shadow-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -58,43 +60,24 @@ export function Header() {
             </div>
 
             {/* Navigation Items */}
-            <nav className="flex items-center text-xs">
-              <Link
-                href="/search"
-                className="flex flex-col items-center rounded-lg p-1 text-neutral transition-colors hover:text-secondary md:hidden lg:p-2"
-              >
-                <MagnifyingGlassIcon className="h-5 w-5" />
-              </Link>
-              {Boolean(userData?.me) && (
-                <Link
-                  href={userData?.me ? '/notification' : '/auth/login'}
-                  className="flex flex-col items-center rounded-lg p-1 text-neutral transition-colors hover:text-secondary md:flex lg:p-2"
-                >
-                  <BellIcon className="h-5 w-5" />
-                  <p className="hidden md:block">Мэдэгдэл</p>
-                </Link>
-              )}
-              <Link
-                href={userData?.me ? '/wishlist' : '/auth/login'}
-                className="hidden flex-col items-center rounded-lg p-1 text-neutral transition-colors hover:text-secondary md:flex lg:p-2"
-              >
-                <HeartIcon className="h-5 w-5" />
-                <p className="hidden md:block">Хадгалсан</p>
-              </Link>
-              <Link
-                href={userData?.me ? '/checkout' : '/auth/login'}
-                className="hidden flex-col items-center rounded-lg p-1 text-neutral transition-colors hover:text-secondary md:flex lg:p-2"
-              >
-                <ShoppingCartIcon className="h-5 w-5" />
-                <p className="hidden md:block">Сагс</p>
-              </Link>
-              <Link
-                href={userData?.me ? '/profile' : '/auth/login'}
-                className="hidden flex-col items-center rounded-lg p-1 text-neutral transition-colors hover:text-secondary md:flex lg:p-2"
-              >
-                <UserIcon className="h-5 w-5" />
-                <p className="hidden md:block">{userData?.me ? 'Профайл' : 'Нэвтрэх'}</p>
-              </Link>
+            <nav className="flex items-center gap-2 text-xs">
+              <ThemeToggleButton />
+              <ul className="flex">
+                {links
+                  .filter((item) => !(item.text === 'Мэдэгдэл' && !userData?.me))
+                  .map((item, index) => (
+                    <Link
+                      key={index}
+                      href={userData?.me ? item.href : '/auth/login'}
+                      className={`flex flex-col items-center rounded-lg p-1 text-base-content transition-colors hover:text-secondary ${item.linkClassName} lg:p-2`}
+                    >
+                      <item.icon className="h-5 w-5 text-base-content" />
+                      <li className={item.elementClassName}>
+                        {item.text === 'Профайл' ? (userData?.me ? item.text : 'Нэвтрэх') : item.text}
+                      </li>
+                    </Link>
+                  ))}
+              </ul>
             </nav>
           </div>
         </div>
@@ -102,3 +85,11 @@ export function Header() {
     </header>
   );
 }
+
+const links = [
+  { href: '/search', text: 'Хайлт', icon: MagnifyingGlassIcon, linkClassName: 'md:hidden', elementClassName: 'hidden md:block' },
+  { href: '/notification', text: 'Мэдэгдэл', icon: BellIcon, linkClassName: 'md:flex', elementClassName: 'hidden md:block' },
+  { href: '/wishlist', text: 'Хадгалсан', icon: HeartIcon, linkClassName: 'md:flex', elementClassName: 'hidden md:block' },
+  { href: '/checkout', text: 'Сагс', icon: ShoppingCartIcon, linkClassName: 'md:flex', elementClassName: 'hidden md:block' },
+  { href: '/profile', text: 'Профайл', icon: UserIcon, linkClassName: 'md:flex', elementClassName: 'hidden md:block' },
+];

@@ -422,6 +422,8 @@ export type MenuFilter = {
   createdAt?: InputMaybe<DateFilter>;
   id?: InputMaybe<IdFilter>;
   parentId?: InputMaybe<IdFilter>;
+  title?: InputMaybe<StringFilter>;
+  type?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateFilter>;
   website?: InputMaybe<WebsiteFilter>;
   websiteId?: InputMaybe<IdFilter>;

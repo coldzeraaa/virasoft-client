@@ -25,7 +25,7 @@ export default function BuildPage({ params }: BuildPageProps) {
       </div>
 
       {/* Right Section: Menu */}
-      <div className="h-full w-full overflow-hidden bg-white lg:h-full lg:min-h-0 lg:w-[30%]">
+      <div className="h-full w-full overflow-hidden  lg:h-full lg:min-h-0 lg:w-[30%]">
         <div className="h-full overflow-hidden">
           <ProductList type={params?.type} origin={origin} />
         </div>
