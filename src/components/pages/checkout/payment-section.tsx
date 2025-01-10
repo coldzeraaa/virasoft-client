@@ -15,7 +15,6 @@ export function PaymentSection() {
 
   return (
     <>
-      <h2 className="t-text-base mb-2">Payment info</h2>
       <p className="t-text-sm mb-2 flex justify-between">
         <span>Items</span>
         <span>{order.items.length}</span>

@@ -27,7 +27,7 @@ export function LineItemsSection() {
 
 function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQuery['currentOrder']>['items'][0]) {
   return (
-    <li className="flex gap-6 py-8">
+    <li className="flex gap-6">
       <div className="aspect-square h-fit w-24 rounded-lg border bg-base-300">
         <Image
           src={variant.images[0] ? imageUrlHelper(variant.images[0]) : `https://via.placeholder.com/80?text=-`}
@@ -37,7 +37,7 @@ function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQu
           className="rounded-lg object-contain"
         />
       </div>
-      <div>
+      <div className="flex-1">
         <div className="mb-3 flex items-start justify-between">
           <div>
             <h3 className="t-text-base mb-2">{variant.product.name}</h3>
