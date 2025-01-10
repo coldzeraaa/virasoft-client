@@ -6,7 +6,6 @@ import { ToastContainer } from 'react-toastify';
 import './globals.css';
 
 import { bodyClassName } from '@/components/class-names/body-class-names';
-// import { lightTheme } from '@/components/class-names/data-theme-name';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { APP_CONFIG } from '@/configs/APP_CONFIG';
