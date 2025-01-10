@@ -15,6 +15,7 @@ fragment CurrentOrderFields on Order {
       id
       images
       price
+      sku
       product {
         id
         name
