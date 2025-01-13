@@ -1,11 +1,11 @@
 query headerFooter($filter: MenuFilter) {
-  headerFooter(filter: $filter) {
+  menus(filter: $filter) {
     nodes {
       children {
         title
+        link
         children {
           title
-          images
           link
         }
       }

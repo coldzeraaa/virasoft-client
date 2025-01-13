@@ -8,7 +8,7 @@ export type HeaderFooterQueryVariables = Types.Exact<{
 }>;
 
 
-export type HeaderFooterQuery = { __typename?: 'Query', menus: { __typename?: 'MenuConnection', nodes: Array<{ __typename?: 'Menu', children?: Array<{ __typename?: 'Menu', title: string, children?: Array<{ __typename?: 'Menu', title: string, images?: Array<string> | null, link: string }> | null }> | null }> } };
+export type HeaderFooterQuery = { __typename?: 'Query', menus: { __typename?: 'MenuConnection', nodes: Array<{ __typename?: 'Menu', children?: Array<{ __typename?: 'Menu', title: string, link: string, children?: Array<{ __typename?: 'Menu', title: string, link: string }> | null }> | null }> } };
 
 
 export const HeaderFooterDocument = gql`
@@ -17,9 +17,9 @@ export const HeaderFooterDocument = gql`
     nodes {
       children {
         title
+        link
         children {
           title
-          images
           link
         }
       }
