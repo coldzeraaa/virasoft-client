@@ -15,17 +15,16 @@ export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
 
   return (
     <div className="h-full w-full">
-      {/* Changed from flex to flex-nowrap and added overflow-x-auto for mobile */}
       <div className="flex flex-nowrap gap-2 overflow-x-auto lg:flex-col lg:space-y-2 lg:overflow-x-visible">
         {hits.map((hit) => (
           <div key={hit.id} className="relative flex-shrink-0">
             <button
               onClick={() => selectProduct(type, hit.id)}
               type="button"
-              className={`relative flex cursor-pointer
-                  flex-col items-center gap-1 rounded-sm border transition-all duration-150
+              className={`relative flex w-full
+                  cursor-pointer flex-col items-center gap-1 rounded-sm border transition-all duration-150
                    ease-linear hover:border-base-content md:gap-2 lg:flex-row lg:gap-3 lg:p-1
-                  ${selectedProducts[type] === hit.id ? 'border-neutral' : 'border-base-300'}`}
+                  ${selectedProducts[type] === `${hit.id}` ? 'border-base-content' : 'border-base-300 dark:border-neutral-content'}`}
             >
               <div
                 className={`relative aspect-square h-20
@@ -44,7 +43,7 @@ export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
                 </div>
               </div>
               <div className="flex w-full justify-center overflow-hidden lg:w-2/3">
-                <div className="max-w-20 truncate text-base text-neutral md:max-w-28 lg:max-w-full lg:text-start lg:text-lg lg:font-semibold">
+                <div className="max-w-20 truncate text-base text-base-content md:max-w-28 lg:max-w-full lg:text-start lg:text-lg lg:font-semibold">
                   {hit.title}
                 </div>
               </div>

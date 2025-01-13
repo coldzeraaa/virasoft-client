@@ -1,0 +1,5 @@
+mutation removeItem($input: removeItemInput!) {
+  removeItem(input: $input) {
+    ...CurrentOrderFields
+  }
+}
