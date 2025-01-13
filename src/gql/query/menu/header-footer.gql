@@ -1,5 +1,5 @@
 query headerFooter($filter: MenuFilter) {
-  menus(filter: $filter) {
+  headerFooter(filter: $filter) {
     nodes {
       children {
         title

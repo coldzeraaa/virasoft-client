@@ -7,13 +7,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { useHeaderFooterQuery } from '@/gql/query/menu/header-footer.generated';
+import { useMeQuery } from '@/gql/query/user/me.generated';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
-
 export function Footer() {
   const [activeTab, setActiveTab] = useState('home');
   const { data, loading } = useHeaderFooterQuery({
     variables: { filter: { title: { in: ['header', 'footer'] } } },
   });
+  const { data: userData } = useMeQuery();
 
   if (loading) {
     return (
@@ -45,7 +46,7 @@ export function Footer() {
           </div>
         </footer>
         {/* Mobile footer skeleton */}
-        <div className="fixed bottom-0 left-0 right-0 md:hidden">
+        <div className="fixed bottom-0 left-0 right-0 bg-base-100 md:hidden">
           <div className="flex flex-row justify-between p-2">
             {[...Array(6)].map((_, idx) => (
               <div key={idx}>
@@ -88,19 +89,21 @@ export function Footer() {
         </div>
       </footer>
       {/* Mobile Footer - Hidden on desktop */}
-      <div className="fixed bottom-0 left-0 right-0 border-t md:hidden">
+      <div className="fixed bottom-0 left-0 right-0 border-t bg-base-100 md:hidden">
         <nav className="sm:px-4">
           <div className="grid grid-cols-6 gap-1">
             {mobileFooter.map((tab) => (
-              <button
+              <Link
+                href={tab.link === '/profile' ? (userData?.me ? '/profile' : '/auth/login') : tab.link}
                 key={tab.key}
-                type="button"
                 onClick={() => setActiveTab(tab.key)}
                 className={`flex flex-col items-center justify-center py-2 ${activeTab === tab.key ? 'text-secondary' : 'text-gray-500'}`}
               >
                 <tab.icon className="h-6 w-6" />
-                <span className="dm:text-xs mt-1 text-[11px]">{tab.label}</span>
-              </button>
+                <span className="dm:text-xs mt-1 text-[11px]">
+                  {tab.label === 'Профайл' ? (userData?.me ? 'Профайл' : 'Нэвтрэх') : tab.label}
+                </span>
+              </Link>
             ))}
           </div>
         </nav>
@@ -110,10 +113,10 @@ export function Footer() {
 }
 
 const mobileFooter = [
-  { key: 'home', label: 'Нүүр', icon: HomeIcon },
-  { key: 'categories', label: 'Ангилал', icon: Bars3BottomLeftIcon },
-  { key: 'featured', label: 'Онцлох', icon: StarIcon },
-  { key: 'brands', label: 'Брэндүүд', icon: TagIcon },
-  { key: 'saved', label: 'Хадгалсан', icon: HeartIcon },
-  { key: 'profile', label: 'Профайл', icon: UserCircleIcon },
+  { key: 'home', label: 'Нүүр', icon: HomeIcon, link: '/' },
+  { key: 'categories', label: 'Ангилал', icon: Bars3BottomLeftIcon, link: '/s' },
+  { key: 'featured', label: 'Онцлох', icon: StarIcon, link: '/featured' },
+  { key: 'brands', label: 'Брэндүүд', icon: TagIcon, link: '/brands' },
+  { key: 'wishlist', label: 'Хадгалсан', icon: HeartIcon, link: '/wishlist' },
+  { key: 'profile', label: 'Профайл', icon: UserCircleIcon, link: '/profile' },
 ];
