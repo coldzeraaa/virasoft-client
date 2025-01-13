@@ -1,0 +1,14 @@
+query headerFooter($filter: MenuFilter) {
+  menus(filter: $filter) {
+    nodes {
+      children {
+        title
+        children {
+          title
+          images
+          link
+        }
+      }
+    }
+  }
+}

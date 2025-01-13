@@ -18,7 +18,7 @@ export function Header() {
           <div className="flex h-16 items-center justify-between">
             <div className="h-8 w-8 animate-pulse rounded-full bg-base-content" />
             <div className="flex gap-4">
-              {[1, 2, 3, 4].map((i) => (
+              {[1, 2, 3].map((i) => (
                 <div key={i} className="h-8 w-8 animate-pulse rounded bg-base-content" />
               ))}
             </div>
@@ -89,7 +89,7 @@ export function Header() {
 const links = [
   { href: '/search', text: 'Хайлт', icon: MagnifyingGlassIcon, linkClassName: 'md:hidden', elementClassName: 'hidden md:block' },
   { href: '/notification', text: 'Мэдэгдэл', icon: BellIcon, linkClassName: 'md:flex', elementClassName: 'hidden md:block' },
-  { href: '/wishlist', text: 'Хадгалсан', icon: HeartIcon, linkClassName: 'md:flex', elementClassName: 'hidden md:block' },
+  { href: '/wishlist', text: 'Хадгалсан', icon: HeartIcon, linkClassName: 'hidden md:flex', elementClassName: 'hidden md:block' },
   { href: '/checkout', text: 'Сагс', icon: ShoppingCartIcon, linkClassName: 'md:flex', elementClassName: 'hidden md:block' },
-  { href: '/profile', text: 'Профайл', icon: UserIcon, linkClassName: 'md:flex', elementClassName: 'hidden md:block' },
+  { href: '/profile', text: 'Профайл', icon: UserIcon, linkClassName: 'hidden md:flex', elementClassName: 'hidden md:block' },
 ];
