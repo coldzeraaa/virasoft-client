@@ -3,42 +3,42 @@ import * as Types from '../../graphql.d';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type AuthCheckOtpMutationVariables = Types.Exact<{
+export type CheckOtpMutationVariables = Types.Exact<{
   input: Types.CheckOtpInput;
 }>;
 
 
-export type AuthCheckOtpMutation = { __typename?: 'Mutation', checkOtp?: boolean | null };
+export type CheckOtpMutation = { __typename?: 'Mutation', checkOtp?: boolean | null };
 
 
-export const AuthCheckOtpDocument = gql`
-    mutation authCheckOTP($input: checkOtpInput!) {
+export const CheckOtpDocument = gql`
+    mutation checkOtp($input: checkOtpInput!) {
   checkOtp(input: $input)
 }
     `;
-export type AuthCheckOtpMutationFn = Apollo.MutationFunction<AuthCheckOtpMutation, AuthCheckOtpMutationVariables>;
+export type CheckOtpMutationFn = Apollo.MutationFunction<CheckOtpMutation, CheckOtpMutationVariables>;
 
 /**
- * __useAuthCheckOtpMutation__
+ * __useCheckOtpMutation__
  *
- * To run a mutation, you first call `useAuthCheckOtpMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAuthCheckOtpMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCheckOtpMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCheckOtpMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [authCheckOtpMutation, { data, loading, error }] = useAuthCheckOtpMutation({
+ * const [checkOtpMutation, { data, loading, error }] = useCheckOtpMutation({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useAuthCheckOtpMutation(baseOptions?: Apollo.MutationHookOptions<AuthCheckOtpMutation, AuthCheckOtpMutationVariables>) {
+export function useCheckOtpMutation(baseOptions?: Apollo.MutationHookOptions<CheckOtpMutation, CheckOtpMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<AuthCheckOtpMutation, AuthCheckOtpMutationVariables>(AuthCheckOtpDocument, options);
+        return Apollo.useMutation<CheckOtpMutation, CheckOtpMutationVariables>(CheckOtpDocument, options);
       }
-export type AuthCheckOtpMutationHookResult = ReturnType<typeof useAuthCheckOtpMutation>;
-export type AuthCheckOtpMutationResult = Apollo.MutationResult<AuthCheckOtpMutation>;
-export type AuthCheckOtpMutationOptions = Apollo.BaseMutationOptions<AuthCheckOtpMutation, AuthCheckOtpMutationVariables>;
+export type CheckOtpMutationHookResult = ReturnType<typeof useCheckOtpMutation>;
+export type CheckOtpMutationResult = Apollo.MutationResult<CheckOtpMutation>;
+export type CheckOtpMutationOptions = Apollo.BaseMutationOptions<CheckOtpMutation, CheckOtpMutationVariables>;

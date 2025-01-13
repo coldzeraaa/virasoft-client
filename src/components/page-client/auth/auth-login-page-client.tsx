@@ -6,6 +6,7 @@ import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import { OauthFlow } from 'doorkeeper-oauth-flow';
 import { BtnLoader, FieldForm, FormInput } from 'field-form';
 import cookies from 'js-cookie';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import AnimateHeight from 'react-animate-height';
@@ -82,15 +83,13 @@ export function AuthLoginPageClient() {
           <BtnLoader loading={loading || loadingAuth} icon={ChevronRightIcon} />
         </button>
       </FieldForm>
-      <div className="flex  items-center justify-end py-[20px]">
-        <button
-          className="btn"
-          onClick={() => {
-            router.push('/auth/register');
-          }}
-        >
-          register
-        </button>
+      <div className="flex justify-end gap-4">
+        <div className="flex  items-center  py-4">
+          <Link href="/auth/forgot-password">forgot password</Link>
+        </div>
+        <div className="flex  items-center  py-4">
+          <Link href="/auth/register">register</Link>
+        </div>
       </div>
     </div>
   );

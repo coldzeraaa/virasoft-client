@@ -265,10 +265,22 @@ type MenuConnection {
 
 "An edge in a connection."
 type MenuEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Menu
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Menu
+}
+
+input MenuFilter {
+  id: IDFilter
+  createdAt: DateFilter
+  updatedAt: DateFilter
+  title: StringFilter
+  type: StringFilter
+  parentId: IDFilter
+  websiteId: IDFilter
+  website: WebsiteFilter
 }
 
 type Merchant implements BaseModelInterface {
