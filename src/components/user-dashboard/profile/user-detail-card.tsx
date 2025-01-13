@@ -3,10 +3,10 @@ import { ReactElement } from 'react';
 import Link from 'next/link';
 
 const UserDetailCard = (props: CardDataType) => (
-  <Link href={props.link} className="flex items-center gap-1 px-2 py-2">
-    <div>{props.icon}</div>
-    <div>{props.text}</div>
-    <div>{props.value}</div>
+  <Link href={props.link} className="flex h-fit flex-col items-start justify-start gap-1 rounded-md px-4  py-4 shadow-lg    ">
+    <div className="text-neutral">{props.icon}</div>
+    <h1 className="text-neutral">{props.text}</h1>
+    <p className="text-neutral">{props.value}</p>
   </Link>
 );
 

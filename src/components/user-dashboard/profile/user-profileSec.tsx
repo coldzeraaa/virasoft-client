@@ -12,12 +12,12 @@ const UserProfile = (props: UserData) => (
           />
         </div>
       </div>
-      <p className="text-center">{props.email || 'Email not provided'}</p>
-      <p className="text-center">Мэдээлэл засах</p>
+      <p className="text-center text-neutral">{props.email || 'Email not provided'}</p>
+      <p className="text-center text-neutral">Мэдээлэл засах</p>
     </div>
     <div className="flex gap-2">
-      <button className="btn">Устгах</button>
-      <button className="btn">Зурагаа өөрчлөх</button>
+      <button className="btn text-neutral">Устгах</button>
+      <button className="btn text-neutral">Зурагаа өөрчлөх</button>
     </div>
   </div>
 );

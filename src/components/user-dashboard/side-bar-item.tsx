@@ -4,9 +4,9 @@ import Link from 'next/link';
 
 const SideBarItem = (props: CardDataType) => (
   <Link href={props.link} className="flex items-center gap-1">
-    <div>{props.icon}</div>
-    <div>{props.text}</div>
-    <div>{props.value}</div>
+    <p className="text-neutral">{props.icon}</p>
+    <p className="text-neutral">{props.text}</p>
+    <p>{props.value}</p>
   </Link>
 );
 
