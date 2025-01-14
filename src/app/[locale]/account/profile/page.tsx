@@ -1,6 +1,5 @@
 import UserDetailCard from '@/components/user-dashboard/profile/user-detail-card';
 import UserProfile from '@/components/user-dashboard/profile/user-profileSec';
-
 const detailsCardData = [
   {
     text: 'Хувийн мэдээлэл',
@@ -10,7 +9,7 @@ const detailsCardData = [
       </svg>
     ),
     value: 'Мэдээлэл засах',
-    link: '',
+    link: '/account/profile/info',
   },
   {
     text: 'Гар утас',
@@ -60,11 +59,11 @@ const UserDetail = () => {
   const user = '';
   return (
     <div>
-      <div className="flex  gap-6  ">
-        <UserProfile></UserProfile>
-        <div className="flex  gap-4">
+      <div className="flex gap-6">
+        <UserProfile />
+        <div className="flex gap-4">
           {detailsCardData.map((element, i) => (
-            <UserDetailCard key={i} text={element.text} icon={element.icon} value={element.value} link={element.link}></UserDetailCard>
+            <UserDetailCard key={i} text={element.text} icon={element.icon} value={element.value} link={element.link} />
           ))}
         </div>
       </div>

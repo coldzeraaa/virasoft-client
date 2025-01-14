@@ -1,10 +1,11 @@
 'use client';
-import { InputHTMLAttributes, useState } from 'react';
+import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 import Form, { Field } from 'rc-field-form';
 import { toast } from 'react-toastify';
 
+import { CustomInput } from '@/components/common/input';
 import { useAuthCheckLoginMutation } from '@/gql/mutation/user/auth-check-login.generated';
 import { useAuthCheckOtpMutation } from '@/gql/mutation/user/auth-check-otp.generated';
 import { useAuthRegisterMutation } from '@/gql/mutation/user/auth-register.generated';
@@ -92,14 +93,6 @@ export default function AuthRegister() {
     </Form>
   );
 }
-
-interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  value?: string;
-}
-
-const CustomInput: React.FC<CustomInputProps> = ({ value = '', onChange, ...props }: CustomInputProps) => (
-  <input className="flex h-[50px] w-[250px] rounded-[8px] px-[4px] py-[8px]" value={value} onChange={onChange} {...props} />
-);
 
 interface RegisterFormValues {
   login: string;
