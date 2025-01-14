@@ -8,7 +8,6 @@ import singletonRouter from 'next/router';
 import { InstantSearchNext } from 'react-instantsearch-nextjs';
 import { createInstantSearchRouterNext } from 'react-instantsearch-router-nextjs';
 
-// import { SearchBoxDefine } from '@/components/algolia/search-box-define';
 import { APP_CONFIG } from '@/configs/APP_CONFIG';
 
 export const searchClient = Client({ url: '/api/search' });
@@ -30,9 +29,6 @@ export function SearchProvider({ children, origin, referer }: { children: ReactN
       routing={router.routing(referer)}
     >
       {children}
-      {/*<Suspense>*/}
-      {/*  <SearchBoxDefine />*/}
-      {/*</Suspense>*/}
     </InstantSearchNext>
   );
 }

@@ -1,26 +1,26 @@
 export const LIGHT_COLORS = {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  ...require('daisyui/src/theming/themes')['light'],
-  primary: '#102F31', //emerald green
-  'primary-content': '#FDF0EC', //grey with pinkish hue
-  secondary: '#C09049', //golden yellow
-  'secondary-content': '#EDF2F8', //neutral grey
-  accent: '#17DDDD', //teel
-  'accent-content': '#222529', //black
-  neutral: '222529', //black
-  'neutral-content': '#6C707D', //muted grey with blue undertone
-  'base-100': '#FBFAEE', //off-white
-  'base-200': '#F6F7F9', //light grey
-  'base-300': '#E7EAEF', //light grey
-  'base-content': '#BBBBBB', //dark grey
-  info: '#0060F0',
-  'info-content': '#FFFFFF',
-  success: '#09A557',
-  'success-content': '#FFFFFF',
-  warning: '#E98F03',
-  'warning-content': '#FFFFFF',
-  error: '#DD382C',
-  'error-content': '#FFFFFF',
+  ...require('daisyui/src/theming/themes')['[data-theme=light]'],
+  primary: '#570df8',
+  'primary-content': '#ffffff',
+  secondary: '#f000b8',
+  'secondary-content': '#ffffff',
+  accent: '#37cdbe',
+  'accent-content': '#163835',
+  neutral: '#3d4451',
+  'neutral-content': '#ffffff',
+  'base-100': '#ffffff',
+  'base-200': '#f9fafb',
+  'base-300': '#d1d5db',
+  'base-content': '#1f2937',
+  info: '#3abff8',
+  'info-content': '#002b3d',
+  success: '#36d399',
+  'success-content': '#003320',
+  warning: '#fbbd23',
+  'warning-content': '#382800',
+  error: '#f87272',
+  'error-content': '#470000',
 };
 
 export const DARK_COLORS = {

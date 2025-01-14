@@ -1,0 +1,5 @@
+query currentOrder($number: String, $token: String) {
+  currentOrder(number: $number, token: $token) {
+    ...CurrentOrderFields
+  }
+}

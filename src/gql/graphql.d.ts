@@ -991,6 +991,7 @@ export type Order = BaseModelInterface & {
   websiteId: Scalars['ID']['output'];
 };
 
+<<<<<<< HEAD
 /** The connection type for Order. */
 export type OrderConnection = {
   __typename?: 'OrderConnection';
@@ -1017,6 +1018,8 @@ export type OrderFilter = {
   updatedAt?: InputMaybe<DateFilter>;
 };
 
+=======
+>>>>>>> main
 export type Page = BaseModelInterface & {
   __typename?: 'Page';
   createdAt: Scalars['ISO8601DateTime']['output'];
