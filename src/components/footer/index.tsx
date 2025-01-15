@@ -23,10 +23,10 @@ export function Footer() {
             <div className="grid grid-cols-3 gap-8">
               {Array.from({ length: 6 }).map((_, i) => (
                 <div key={i}>
-                  <div className="mb-4 h-6 w-1/2 bg-base-content" />
+                  <div className="mb-4 h-6 w-1/2 animate-pulse rounded-sm bg-base-content" />
                   <div className="space-y-2">
                     {Array.from({ length: 4 }).map((__, j) => (
-                      <div key={j} className="h-4 w-3/4 bg-base-content" />
+                      <div key={j} className="h-4 w-3/4 animate-pulse rounded-sm bg-base-content" />
                     ))}
                   </div>
                 </div>

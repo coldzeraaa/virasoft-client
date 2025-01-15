@@ -1,0 +1,9 @@
+mutation destroyUserAddressAddress($input: destroyUserAddressInput!) {
+  destroyUserAddress(input: $input) {
+    address {
+      address1
+      address2
+      addressAlias
+    }
+  }
+}

@@ -7,7 +7,7 @@ const defaultOptions = {} as const;
 export type MeQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: string, firstName?: string | null, lastName?: string | null, email?: string | null, mobile?: string | null, nickName?: string | null, createdAt: any, updatedAt: any } | null };
+export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: string, firstName?: string | null, lastName?: string | null, email?: string | null, mobile?: string | null, nickName?: string | null, createdAt: any, updatedAt: any, userAddresses: { __typename?: 'UserAddressConnection', edges: Array<{ __typename?: 'UserAddressEdge', node: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null, id: string } } }> } } | null };
 
 
 export const MeDocument = gql`

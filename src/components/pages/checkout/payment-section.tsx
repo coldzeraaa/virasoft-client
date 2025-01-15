@@ -6,11 +6,12 @@ import Link from 'next/link';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
+import { usePathname } from 'next/navigation';
 
 export function PaymentSection() {
   const { loading, order } = useCurrentOrder();
   const { data } = useMeQuery();
-
+const pathName = usePathname();
   if (loading || !order) return <div className="skeleton h-60 w-full" />;
 
   return (
@@ -39,7 +40,7 @@ export function PaymentSection() {
         <span className="t-text-base">Total</span>
         <span className="heading-4">{moneyFormatHelper(order.total || 0)}</span>
       </p>
-      <Link href={data?.me ? '/checkout/address' : '/checkout/login'} className="btn btn-primary btn-block">
+      <Link href={pathName === '/checkout/address' ? '/checkout/review' : data?.me ? '/checkout/address' : '/auth/login'} className="btn btn-primary btn-block">
         <span>Continue</span>
         <ChevronRightIcon className="w-4" />
       </Link>

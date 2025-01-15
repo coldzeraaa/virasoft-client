@@ -6,15 +6,14 @@ import { toast } from 'react-toastify';
 
 import { ErrorResult } from '@/components/result/error-result';
 import { useRemoveItemMutation } from '@/gql/mutation/checkout/remove-item.generated';
+import { useUpdateItemMutation } from '@/gql/mutation/checkout/update-item.generated';
 import { CurrentOrderQuery } from '@/gql/query/order/current-order.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { catchHelper } from '@/lib/helper/catch-helper';
 import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
-
 export function LineItemsSection() {
   const { order, loading } = useCurrentOrder();
-
   if (loading) return <div>Loading...</div>;
   if (!order) return <ErrorResult message="Order not found" />;
 
@@ -46,7 +45,7 @@ function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQu
           <RemoveItem id={id} />
         </div>
         <div className="flex items-center justify-between">
-          <UpdateQuantity quantity={quantity} />
+          <UpdateQuantity quantity={quantity} id={id} />
           <div className="grid min-w-32 gap-2">
             <p aria-label="price" className="heading-4 text-right">
               {moneyFormatHelper(price)}
@@ -58,20 +57,48 @@ function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQu
   );
 }
 
-function UpdateQuantity({ quantity }: { quantity: number }) {
+function UpdateQuantity({ quantity, id }: { quantity: number; id: string }) {
+  const [updateItem, { loading }] = useUpdateItemMutation({
+    onError: catchHelper,
+    onCompleted: () => {
+      toast.success('Item updated successfully');
+    },
+  });
+
   return (
-    <div aria-label="adjustment quantity" className="grid grid-cols-3 items-center">
-      <button className="btn btn-outline join-item btn-xs" type="button">
+    <div aria-label="adjust quantity" className="grid grid-cols-3 items-center">
+      <button
+        onClick={() =>
+          updateItem({
+            variables: {
+              input: { id, quantity: quantity - 1 },
+            },
+          })
+        }
+        className="btn btn-outline join-item btn-xs"
+        type="button"
+        disabled={loading || quantity <= 1}
+      >
         <MinusIcon className="w-4" />
       </button>
-      <p className="text-center">{quantity || 1}</p>
-      <button className="btn btn-outline join-item btn-xs" type="button">
+      <p className="text-center">{quantity}</p>
+      <button
+        onClick={() =>
+          updateItem({
+            variables: {
+              input: { id, quantity: quantity + 1 },
+            },
+          })
+        }
+        className="btn btn-outline join-item btn-xs"
+        type="button"
+        disabled={loading}
+      >
         <PlusIcon className="w-4" />
       </button>
     </div>
   );
 }
-
 function RemoveItem({ id }: { id: string }) {
   const [updateItem, { loading }] = useRemoveItemMutation({
     variables: { input: { id } },

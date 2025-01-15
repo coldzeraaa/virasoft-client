@@ -17,12 +17,59 @@ export type Scalars = {
   Upload: { input: any; output: any; }
 };
 
+export type Address = BaseModelInterface & {
+  __typename?: 'Address';
+  address1: Scalars['String']['output'];
+  address2: Scalars['String']['output'];
+  addressAlias?: Maybe<Scalars['String']['output']>;
+  alternativeEmail?: Maybe<Scalars['String']['output']>;
+  alternativeMobile?: Maybe<Scalars['String']['output']>;
+  company?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  email?: Maybe<Scalars['String']['output']>;
+  firstName?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  isCompany?: Maybe<Scalars['Boolean']['output']>;
+  lastName?: Maybe<Scalars['String']['output']>;
+  latitude?: Maybe<Scalars['String']['output']>;
+  longitude?: Maybe<Scalars['String']['output']>;
+  mobile?: Maybe<Scalars['String']['output']>;
+  phone?: Maybe<Scalars['String']['output']>;
+  preferences: Scalars['JSON']['output'];
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  zipcode?: Maybe<Scalars['String']['output']>;
+};
+
+export type AddressFilter = {
+  address1?: InputMaybe<StringFilter>;
+  address2?: InputMaybe<StringFilter>;
+  createdAt?: InputMaybe<DateFilter>;
+  email?: InputMaybe<StringFilter>;
+  firstName?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IdFilter>;
+  isCompany?: InputMaybe<BoolFilter>;
+  lastName?: InputMaybe<StringFilter>;
+  mobile?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
+};
+
 export type AddressInput = {
-  icon?: InputMaybe<Scalars['String']['input']>;
-  link?: InputMaybe<Scalars['String']['input']>;
+  address1?: InputMaybe<Scalars['String']['input']>;
+  address2?: InputMaybe<Scalars['String']['input']>;
+  addressAlias?: InputMaybe<Scalars['String']['input']>;
+  alternativeEmail?: InputMaybe<Scalars['String']['input']>;
+  alternativeMobile?: InputMaybe<Scalars['String']['input']>;
+  company?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  firstName?: InputMaybe<Scalars['String']['input']>;
+  isCompany?: InputMaybe<Scalars['Boolean']['input']>;
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  latitude?: InputMaybe<Scalars['String']['input']>;
+  longitude?: InputMaybe<Scalars['String']['input']>;
+  mobile?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
   preferences?: InputMaybe<Scalars['JSON']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
+  zipcode?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Application = BaseModelInterface & {
@@ -57,7 +104,7 @@ export type ApplicationEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Application>;
+  node: Application;
 };
 
 export type ApplicationFilter = {
@@ -99,7 +146,7 @@ export type AssetRoleEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<AssetRole>;
+  node: AssetRole;
 };
 
 export type AssetRoleFilter = {
@@ -160,7 +207,7 @@ export type BrandEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Brand>;
+  node: Brand;
 };
 
 export type BrandFilter = {
@@ -239,7 +286,7 @@ export type FuelPriceEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<FuelPrice>;
+  node: FuelPrice;
 };
 
 export type FuelPriceFilter = {
@@ -277,7 +324,7 @@ export type FuelQuoteEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<FuelQuote>;
+  node: FuelQuote;
 };
 
 export type FuelQuoteFilter = {
@@ -389,7 +436,7 @@ export type ListingEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Listing>;
+  node: Listing;
 };
 
 export type ListingFilter = {
@@ -424,6 +471,14 @@ export type Menu = BaseModelInterface & {
   website?: Maybe<Website>;
 };
 
+export type MenuChildrenInput = {
+  icon?: InputMaybe<Scalars['String']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  preferences?: InputMaybe<Scalars['JSON']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** The connection type for Menu. */
 export type MenuConnection = {
   __typename?: 'MenuConnection';
@@ -441,7 +496,7 @@ export type MenuEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Menu>;
+  node: Menu;
 };
 
 export type MenuFilter = {
@@ -486,7 +541,7 @@ export type MerchantEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Merchant>;
+  node: Merchant;
 };
 
 export type MerchantFilter = {
@@ -517,6 +572,7 @@ export type Mutation = {
   createPage?: Maybe<Page>;
   createProduct?: Maybe<Product>;
   createUser?: Maybe<User>;
+  createUserAddress?: Maybe<UserAddress>;
   createVariant?: Maybe<Variant>;
   createVendor?: Maybe<Vendor>;
   createVendorUser?: Maybe<VendorUser>;
@@ -533,6 +589,7 @@ export type Mutation = {
   destroyOptionValue?: Maybe<OptionValue>;
   destroyPage?: Maybe<Page>;
   destroyProduct?: Maybe<Product>;
+  destroyUserAddress?: Maybe<UserAddress>;
   destroyVariant?: Maybe<Variant>;
   destroyVendor?: Maybe<Vendor>;
   destroyVendorUser?: Maybe<VendorUser>;
@@ -546,6 +603,7 @@ export type Mutation = {
   updateAssetRole?: Maybe<AssetRole>;
   updateBrand?: Maybe<Brand>;
   updateFuelQuote?: Maybe<FuelQuote>;
+  updateItem?: Maybe<Order>;
   updateListing?: Maybe<Listing>;
   updateMenu?: Maybe<Menu>;
   updateMerchant?: Maybe<Merchant>;
@@ -553,6 +611,7 @@ export type Mutation = {
   updateOptionValue?: Maybe<OptionValue>;
   updatePage?: Maybe<Page>;
   updateProduct?: Maybe<Product>;
+  updateUserAddress?: Maybe<UserAddress>;
   updateVariant?: Maybe<Variant>;
   updateVendor?: Maybe<Vendor>;
   updateVendorUser?: Maybe<VendorUser>;
@@ -655,6 +714,11 @@ export type MutationCreateUserArgs = {
 };
 
 
+export type MutationCreateUserAddressArgs = {
+  input: CreateUserAddressInput;
+};
+
+
 export type MutationCreateVariantArgs = {
   input: CreateVariantInput;
 };
@@ -735,6 +799,11 @@ export type MutationDestroyProductArgs = {
 };
 
 
+export type MutationDestroyUserAddressArgs = {
+  input: DestroyUserAddressInput;
+};
+
+
 export type MutationDestroyVariantArgs = {
   input: DestroyVariantInput;
 };
@@ -795,6 +864,11 @@ export type MutationUpdateFuelQuoteArgs = {
 };
 
 
+export type MutationUpdateItemArgs = {
+  input: UpdateItemInput;
+};
+
+
 export type MutationUpdateListingArgs = {
   input: UpdateListingInput;
 };
@@ -827,6 +901,11 @@ export type MutationUpdatePageArgs = {
 
 export type MutationUpdateProductArgs = {
   input: UpdateProductInput;
+};
+
+
+export type MutationUpdateUserAddressArgs = {
+  input: UpdateUserAddressInput;
 };
 
 
@@ -879,7 +958,7 @@ export type NotificationEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Notification>;
+  node: Notification;
 };
 
 export type NotificationFilter = {
@@ -915,7 +994,7 @@ export type OptionTypeEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<OptionType>;
+  node: OptionType;
 };
 
 export type OptionTypeFilter = {
@@ -956,7 +1035,7 @@ export type OptionValueEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<OptionValue>;
+  node: OptionValue;
 };
 
 export type OptionValueFilter = {
@@ -983,6 +1062,32 @@ export type Order = BaseModelInterface & {
   userId?: Maybe<Scalars['ID']['output']>;
   website: Website;
   websiteId: Scalars['ID']['output'];
+};
+
+/** The connection type for Order. */
+export type OrderConnection = {
+  __typename?: 'OrderConnection';
+  /** A list of edges. */
+  edges: Array<OrderEdge>;
+  /** A list of nodes. */
+  nodes: Array<Order>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type OrderEdge = {
+  __typename?: 'OrderEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Order;
+};
+
+export type OrderFilter = {
+  createdAt?: InputMaybe<DateFilter>;
+  id?: InputMaybe<IdFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
 };
 
 export type Page = BaseModelInterface & {
@@ -1015,7 +1120,7 @@ export type PageEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Page>;
+  node: Page;
 };
 
 export type PageFilter = {
@@ -1085,7 +1190,7 @@ export type ProductEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Product>;
+  node: Product;
 };
 
 export type ProductFilter = {
@@ -1129,11 +1234,13 @@ export type Query = {
   optionTypes: OptionTypeConnection;
   optionValue?: Maybe<OptionValue>;
   optionValues: OptionValueConnection;
+  orders?: Maybe<OrderConnection>;
   page?: Maybe<Page>;
   pages: PageConnection;
   product?: Maybe<Product>;
   products: ProductConnection;
   user?: Maybe<User>;
+  userAddresses: UserAddressConnection;
   users: UserConnection;
   variant?: Maybe<Variant>;
   variants: VariantConnection;
@@ -1312,6 +1419,16 @@ export type QueryOptionValuesArgs = {
 };
 
 
+export type QueryOrdersArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<OrderFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
+};
+
+
 export type QueryPageArgs = {
   id: Scalars['ID']['input'];
 };
@@ -1345,6 +1462,16 @@ export type QueryProductsArgs = {
 
 export type QueryUserArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type QueryUserAddressesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<UserAddressFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
 };
 
 
@@ -1465,12 +1592,34 @@ export type User = BaseModelInterface & {
   lastName?: Maybe<Scalars['String']['output']>;
   mobile?: Maybe<Scalars['String']['output']>;
   nickName?: Maybe<Scalars['String']['output']>;
+  orders: OrderConnection;
   registerNum?: Maybe<Scalars['String']['output']>;
   role?: Maybe<Scalars['Int']['output']>;
   roleMatrix?: Maybe<Scalars['JSON']['output']>;
   roles?: Maybe<Array<Scalars['String']['output']>>;
   updatedAt: Scalars['ISO8601DateTime']['output'];
+  userAddresses: UserAddressConnection;
   vendorUsers: VendorUserConnection;
+};
+
+
+export type UserOrdersArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<OrderFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
+};
+
+
+export type UserUserAddressesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<UserAddressFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
 };
 
 
@@ -1481,6 +1630,47 @@ export type UserVendorUsersArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<SortFilter>;
+};
+
+export type UserAddress = BaseModelInterface & {
+  __typename?: 'UserAddress';
+  address: Address;
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  preferences?: Maybe<Scalars['JSON']['output']>;
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  user: User;
+};
+
+/** The connection type for UserAddress. */
+export type UserAddressConnection = {
+  __typename?: 'UserAddressConnection';
+  /** A list of edges. */
+  edges: Array<UserAddressEdge>;
+  /** A list of nodes. */
+  nodes: Array<UserAddress>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type UserAddressEdge = {
+  __typename?: 'UserAddressEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: UserAddress;
+};
+
+export type UserAddressFilter = {
+  address?: InputMaybe<AddressFilter>;
+  addressId?: InputMaybe<IdFilter>;
+  createdAt?: InputMaybe<DateFilter>;
+  id?: InputMaybe<IdFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
+  user?: InputMaybe<UserFilter>;
+  userId?: InputMaybe<IdFilter>;
 };
 
 /** The connection type for User. */
@@ -1500,7 +1690,7 @@ export type UserEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<User>;
+  node: User;
 };
 
 export type UserFilter = {
@@ -1561,7 +1751,7 @@ export type VariantEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Variant>;
+  node: Variant;
 };
 
 export type VariantFilter = {
@@ -1602,7 +1792,7 @@ export type VendorEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Vendor>;
+  node: Vendor;
 };
 
 export type VendorFilter = {
@@ -1656,7 +1846,7 @@ export type VendorUserEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<VendorUser>;
+  node: VendorUser;
 };
 
 export type VendorUserFilter = {
@@ -1703,7 +1893,7 @@ export type WebsiteEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
-  node?: Maybe<Website>;
+  node: Website;
 };
 
 export type WebsiteFilter = {
@@ -1854,7 +2044,7 @@ export type CreateListingInput = {
 
 /** Autogenerated input type of createMenu */
 export type CreateMenuInput = {
-  childrenAttributes?: InputMaybe<Array<AddressInput>>;
+  childrenAttributes?: InputMaybe<Array<MenuChildrenInput>>;
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   icon?: InputMaybe<Scalars['String']['input']>;
@@ -1924,6 +2114,14 @@ export type CreateProductInput = {
   slug: Scalars['String']['input'];
   title: Scalars['String']['input'];
   vendorId: Scalars['ID']['input'];
+};
+
+/** Autogenerated input type of createUserAddress */
+export type CreateUserAddressInput = {
+  addressAttributes: AddressInput;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  userId?: InputMaybe<Scalars['ID']['input']>;
 };
 
 /** Autogenerated input type of createUser */
@@ -2083,6 +2281,13 @@ export type DestroyProductInput = {
   id: Scalars['ID']['input'];
 };
 
+/** Autogenerated input type of destroyUserAddress */
+export type DestroyUserAddressInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+};
+
 /** Autogenerated input type of destroyVariant */
 export type DestroyVariantInput = {
   /** A unique identifier for the client performing the mutation. */
@@ -2194,6 +2399,14 @@ export type UpdateFuelQuoteInput = {
   price: Scalars['Float']['input'];
 };
 
+/** Autogenerated input type of updateItem */
+export type UpdateItemInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+};
+
 /** Autogenerated input type of updateListing */
 export type UpdateListingInput = {
   approved?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2208,7 +2421,7 @@ export type UpdateListingInput = {
 
 /** Autogenerated input type of updateMenu */
 export type UpdateMenuInput = {
-  childrenAttributes?: InputMaybe<Array<AddressInput>>;
+  childrenAttributes?: InputMaybe<Array<MenuChildrenInput>>;
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   icon?: InputMaybe<Scalars['String']['input']>;
@@ -2280,6 +2493,15 @@ export type UpdateProductInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   vendorId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+/** Autogenerated input type of updateUserAddress */
+export type UpdateUserAddressInput = {
+  addressAttributes?: InputMaybe<AddressInput>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Autogenerated input type of updateVariant */
