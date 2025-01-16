@@ -9,7 +9,7 @@ export type CreateAddressMutationVariables = Types.Exact<{
 }>;
 
 
-export type CreateAddressMutation = { __typename?: 'Mutation', createUserAddress?: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null } } | null };
+export type CreateAddressMutation = { __typename?: 'Mutation', createUserAddress?: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null, latitude?: string | null, longitude?: string | null } } | null };
 
 
 export const CreateAddressDocument = gql`

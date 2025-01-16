@@ -9,7 +9,7 @@ export type DestroyUserAddressMutationVariables = Types.Exact<{
 }>;
 
 
-export type DestroyUserAddressMutation = { __typename?: 'Mutation', destroyUserAddress?: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null } } | null };
+export type DestroyUserAddressMutation = { __typename?: 'Mutation', destroyUserAddress?: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null, latitude?: string | null, longitude?: string | null } } | null };
 
 
 export const DestroyUserAddressDocument = gql`

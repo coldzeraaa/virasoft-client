@@ -3,5 +3,7 @@ fragment AddressFields on UserAddress {
     address1
     address2
     addressAlias
+    latitude
+    longitude
   }
 }

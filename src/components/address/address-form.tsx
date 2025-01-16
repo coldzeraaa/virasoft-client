@@ -1,3 +1,6 @@
+// DeliveryOptions.tsx remains the same
+
+// AddressForm.tsx
 import { useEffect, useState } from 'react';
 
 import { toast } from 'react-toastify';
@@ -6,8 +9,12 @@ import { useCreateAddressMutation } from '@/gql/mutation/address/create-address.
 import { useUpdateUserAddressMutation } from '@/gql/mutation/address/update-address.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
-export function AddressForm({ onSuccess, editAddress }: AddressFormProps): JSX.Element {
-  const [formData, setFormData] = useState<{ alias: string | null | undefined; address1: string; address2: string }>({
+export function AddressForm({ onSuccess, editAddress, coordinates }: AddressFormProps): JSX.Element {
+  const [formData, setFormData] = useState<{
+    alias: string | null | undefined;
+    address1: string;
+    address2: string;
+  }>({
     alias: '',
     address1: '',
     address2: '',
@@ -47,38 +54,44 @@ export function AddressForm({ onSuccess, editAddress }: AddressFormProps): JSX.E
     },
   });
 
-  return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
 
-        const addressData = {
-          addressAttributes: {
-            address1: formData.address1,
-            address2: formData.address2,
-            addressAlias: formData.alias,
+    if (!coordinates) {
+      toast.error('Газрын зургаас байршлаа сонгоно уу');
+      return;
+    }
+
+    const addressData = {
+      addressAttributes: {
+        address1: formData.address1,
+        address2: formData.address2,
+        addressAlias: formData.alias,
+        latitude: coordinates.lat,
+        longitude: coordinates.lng,
+      },
+    };
+
+    if (editAddress) {
+      updateAddress({
+        variables: {
+          input: {
+            id: editAddress.id,
+            ...addressData,
           },
-        };
+        },
+      });
+    } else {
+      createAddress({
+        variables: {
+          input: addressData,
+        },
+      });
+    }
+  };
 
-        if (editAddress) {
-          updateAddress({
-            variables: {
-              input: {
-                id: editAddress.id,
-                ...addressData,
-              },
-            },
-          });
-        } else {
-          createAddress({
-            variables: {
-              input: addressData,
-            },
-          });
-        }
-      }}
-      className="card bg-base-100 shadow-xl"
-    >
+  return (
+    <form onSubmit={handleSubmit} className="card bg-base-100 shadow-xl">
       <div className="card-body">
         <h2 className="card-title mb-6 text-lg">{editAddress ? 'Хаяг засах' : 'Хүргэлтийн хаяг нэмэх'}</h2>
 
@@ -130,6 +143,8 @@ export function AddressForm({ onSuccess, editAddress }: AddressFormProps): JSX.E
           />
         </div>
 
+        {!coordinates && <div className="mt-4 text-sm text-error">Газрын зургаас байршлаа заавал сонгоно уу</div>}
+
         <div className="card-actions mt-6 justify-end gap-2">
           <button type="button" onClick={() => onSuccess()} className="btn btn-ghost">
             Цуцлах
@@ -146,6 +161,7 @@ export function AddressForm({ onSuccess, editAddress }: AddressFormProps): JSX.E
 interface AddressFormProps {
   onSuccess: () => void;
   editAddress?: Address;
+  coordinates: { lat: string; lng: string } | null;
 }
 
 interface Address {
