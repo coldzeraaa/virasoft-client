@@ -15,6 +15,8 @@ fragment UserFields on User {
           address2
           addressAlias
           id
+          longitude
+          latitude
         }
       }
     }

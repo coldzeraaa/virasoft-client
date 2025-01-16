@@ -47,7 +47,7 @@ export function Footer() {
   return (
     <>
       <footer className="hidden w-full border-t bg-primary text-primary-content md:block">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl p-6 lg:py-6">
           <div className="grid grid-cols-3 gap-8">
             {data?.menus.nodes[1].children?.map((item, idx) => (
               <div key={idx}>

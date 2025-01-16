@@ -1,7 +1,7 @@
 import * as Types from '../graphql.d';
 
 import { gql } from '@apollo/client';
-export type UserFieldsFragment = { __typename?: 'User', id: string, firstName?: string | null, lastName?: string | null, email?: string | null, mobile?: string | null, nickName?: string | null, createdAt: any, updatedAt: any, userAddresses: { __typename?: 'UserAddressConnection', edges: Array<{ __typename?: 'UserAddressEdge', node: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null, id: string } } }> } };
+export type UserFieldsFragment = { __typename?: 'User', id: string, firstName?: string | null, lastName?: string | null, email?: string | null, mobile?: string | null, nickName?: string | null, createdAt: any, updatedAt: any, userAddresses: { __typename?: 'UserAddressConnection', edges: Array<{ __typename?: 'UserAddressEdge', node: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null, id: string, longitude?: string | null, latitude?: string | null } } }> } };
 
 export const UserFieldsFragmentDoc = gql`
     fragment UserFields on User {
@@ -21,6 +21,8 @@ export const UserFieldsFragmentDoc = gql`
           address2
           addressAlias
           id
+          longitude
+          latitude
         }
       }
     }

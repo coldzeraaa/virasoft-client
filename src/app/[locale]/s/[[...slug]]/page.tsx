@@ -26,7 +26,7 @@ export default async function Page({
               Filters
             </aside>
             <div className="space-y-6 md:col-span-9">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col items-center justify-between lg:flex-row">
                 <div className="flex flex-1 gap-2">Title</div>
                 <div className="hidden md:block">Sort</div>
               </div>

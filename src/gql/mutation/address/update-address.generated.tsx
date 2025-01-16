@@ -1,6 +1,7 @@
 import * as Types from '../../graphql.d';
 
 import { gql } from '@apollo/client';
+import { AddressFieldsFragmentDoc } from '../../fragment/address.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type UpdateUserAddressMutationVariables = Types.Exact<{
@@ -14,14 +15,10 @@ export type UpdateUserAddressMutation = { __typename?: 'Mutation', updateUserAdd
 export const UpdateUserAddressDocument = gql`
     mutation updateUserAddress($input: updateUserAddressInput!) {
   updateUserAddress(input: $input) {
-    address {
-      address1
-      address2
-      addressAlias
-    }
+    ...AddressFields
   }
 }
-    `;
+    ${AddressFieldsFragmentDoc}`;
 export type UpdateUserAddressMutationFn = Apollo.MutationFunction<UpdateUserAddressMutation, UpdateUserAddressMutationVariables>;
 
 /**

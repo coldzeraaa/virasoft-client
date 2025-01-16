@@ -26,7 +26,7 @@ export function Header() {
   if (loading) {
     return (
       <header className="z-40 w-full bg-base-100 shadow-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
           <div className="flex h-16 items-center justify-between">
             <div className="h-8 w-8 animate-pulse rounded-full bg-base-content" />
             <div className="flex gap-4">
@@ -41,7 +41,7 @@ export function Header() {
   }
   return (
     <header className="z-40 w-full bg-base-100 shadow-md">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="mr-3 flex flex-shrink-0 items-center">
             <Image

@@ -1,50 +1,47 @@
 import * as Types from '../../graphql.d';
 
 import { gql } from '@apollo/client';
+import { AddressFieldsFragmentDoc } from '../../fragment/address.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type DestroyUserAddressAddressMutationVariables = Types.Exact<{
+export type DestroyUserAddressMutationVariables = Types.Exact<{
   input: Types.DestroyUserAddressInput;
 }>;
 
 
-export type DestroyUserAddressAddressMutation = { __typename?: 'Mutation', destroyUserAddress?: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null } } | null };
+export type DestroyUserAddressMutation = { __typename?: 'Mutation', destroyUserAddress?: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null } } | null };
 
 
-export const DestroyUserAddressAddressDocument = gql`
-    mutation destroyUserAddressAddress($input: destroyUserAddressInput!) {
+export const DestroyUserAddressDocument = gql`
+    mutation destroyUserAddress($input: destroyUserAddressInput!) {
   destroyUserAddress(input: $input) {
-    address {
-      address1
-      address2
-      addressAlias
-    }
+    ...AddressFields
   }
 }
-    `;
-export type DestroyUserAddressAddressMutationFn = Apollo.MutationFunction<DestroyUserAddressAddressMutation, DestroyUserAddressAddressMutationVariables>;
+    ${AddressFieldsFragmentDoc}`;
+export type DestroyUserAddressMutationFn = Apollo.MutationFunction<DestroyUserAddressMutation, DestroyUserAddressMutationVariables>;
 
 /**
- * __useDestroyUserAddressAddressMutation__
+ * __useDestroyUserAddressMutation__
  *
- * To run a mutation, you first call `useDestroyUserAddressAddressMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDestroyUserAddressAddressMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useDestroyUserAddressMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDestroyUserAddressMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [destroyUserAddressAddressMutation, { data, loading, error }] = useDestroyUserAddressAddressMutation({
+ * const [destroyUserAddressMutation, { data, loading, error }] = useDestroyUserAddressMutation({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useDestroyUserAddressAddressMutation(baseOptions?: Apollo.MutationHookOptions<DestroyUserAddressAddressMutation, DestroyUserAddressAddressMutationVariables>) {
+export function useDestroyUserAddressMutation(baseOptions?: Apollo.MutationHookOptions<DestroyUserAddressMutation, DestroyUserAddressMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DestroyUserAddressAddressMutation, DestroyUserAddressAddressMutationVariables>(DestroyUserAddressAddressDocument, options);
+        return Apollo.useMutation<DestroyUserAddressMutation, DestroyUserAddressMutationVariables>(DestroyUserAddressDocument, options);
       }
-export type DestroyUserAddressAddressMutationHookResult = ReturnType<typeof useDestroyUserAddressAddressMutation>;
-export type DestroyUserAddressAddressMutationResult = Apollo.MutationResult<DestroyUserAddressAddressMutation>;
-export type DestroyUserAddressAddressMutationOptions = Apollo.BaseMutationOptions<DestroyUserAddressAddressMutation, DestroyUserAddressAddressMutationVariables>;
+export type DestroyUserAddressMutationHookResult = ReturnType<typeof useDestroyUserAddressMutation>;
+export type DestroyUserAddressMutationResult = Apollo.MutationResult<DestroyUserAddressMutation>;
+export type DestroyUserAddressMutationOptions = Apollo.BaseMutationOptions<DestroyUserAddressMutation, DestroyUserAddressMutationVariables>;
