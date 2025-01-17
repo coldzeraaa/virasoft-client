@@ -1,6 +1,9 @@
 'use client';
 
+import { useCallback, useState } from 'react';
+
 import { MinusIcon, PlusIcon, TrashIcon } from '@heroicons/react/16/solid';
+import { debounce } from 'lodash';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 
@@ -58,6 +61,7 @@ function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQu
 }
 
 function UpdateQuantity({ quantity, id }: { quantity: number; id: string }) {
+  const [qty, setQty] = useState(quantity);
   const [updateItem, { loading }] = useUpdateItemMutation({
     onError: catchHelper,
     onCompleted: () => {
@@ -65,31 +69,32 @@ function UpdateQuantity({ quantity, id }: { quantity: number; id: string }) {
     },
   });
 
+  const onUpdate = useCallback(
+    debounce((q: number) => updateItem({ variables: { input: { id, quantity: q } } }), 800),
+    [],
+  );
+
   return (
     <div aria-label="adjust quantity" className="grid grid-cols-3 items-center">
       <button
-        onClick={() =>
-          updateItem({
-            variables: {
-              input: { id, quantity: quantity - 1 },
-            },
-          })
-        }
+        onClick={() => {
+          if (qty > 0) {
+            setQty(qty - 1);
+            onUpdate(qty - 1);
+          }
+        }}
         className="btn btn-outline join-item btn-xs"
         type="button"
         disabled={loading || quantity <= 1}
       >
         <MinusIcon className="w-4" />
       </button>
-      <p className="text-center">{quantity}</p>
+      <p className="text-center">{qty}</p>
       <button
-        onClick={() =>
-          updateItem({
-            variables: {
-              input: { id, quantity: quantity + 1 },
-            },
-          })
-        }
+        onClick={() => {
+          setQty(qty + 1);
+          onUpdate(qty + 1);
+        }}
         className="btn btn-outline join-item btn-xs"
         type="button"
         disabled={loading}
