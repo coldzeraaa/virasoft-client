@@ -1,5 +1,5 @@
 mutation createAddress($input: createUserAddressInput!) {
   createUserAddress(input: $input) {
-    ...AddressFields
+    ...UserAddressFields
   }
 }

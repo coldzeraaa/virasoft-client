@@ -5,6 +5,8 @@ import { PaymentSection } from '../checkout/payment-section';
 
 import { DeliveryOptions } from './delivery-options';
 
+import UserAddresses from '@/components/pages/address/user-addresses';
+
 export function AddressPageClient() {
   const [selectedAddress, setSelectedAddress] = useState<Address | undefined>(undefined);
   const [coordinates, setCoordinates] = useState<{ lat: string; lng: string } | null>(null);
@@ -12,6 +14,7 @@ export function AddressPageClient() {
     <div className="container grid h-full max-w-7xl grid-cols-1 gap-14 px-0 py-8 lg:grid-cols-2">
       <main className="col-span-1 h-full">
         <section aria-label="items" className="">
+          <UserAddresses />
           <DeliveryOptions
             selectedAddress={selectedAddress}
             setSelectedAddress={setSelectedAddress}

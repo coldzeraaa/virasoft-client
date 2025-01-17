@@ -1,7 +1,7 @@
 import * as Types from '../../graphql.d';
 
 import { gql } from '@apollo/client';
-import { AddressFieldsFragmentDoc } from '../../fragment/address.generated';
+import { UserAddressFieldsFragmentDoc } from '../../fragment/user-address.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type CreateAddressMutationVariables = Types.Exact<{
@@ -9,16 +9,16 @@ export type CreateAddressMutationVariables = Types.Exact<{
 }>;
 
 
-export type CreateAddressMutation = { __typename?: 'Mutation', createUserAddress?: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null, latitude?: string | null, longitude?: string | null } } | null };
+export type CreateAddressMutation = { __typename?: 'Mutation', createUserAddress?: { __typename?: 'UserAddress', id: string, user: { __typename?: 'User', id: string }, address: { __typename?: 'Address', id: string, address1: string, address2: string, addressAlias?: string | null, longitude?: string | null, latitude?: string | null } } | null };
 
 
 export const CreateAddressDocument = gql`
     mutation createAddress($input: createUserAddressInput!) {
   createUserAddress(input: $input) {
-    ...AddressFields
+    ...UserAddressFields
   }
 }
-    ${AddressFieldsFragmentDoc}`;
+    ${UserAddressFieldsFragmentDoc}`;
 export type CreateAddressMutationFn = Apollo.MutationFunction<CreateAddressMutation, CreateAddressMutationVariables>;
 
 /**
