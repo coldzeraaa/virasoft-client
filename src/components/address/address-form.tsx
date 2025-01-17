@@ -1,6 +1,3 @@
-// DeliveryOptions.tsx remains the same
-
-// AddressForm.tsx
 import { useEffect, useState } from 'react';
 
 import { toast } from 'react-toastify';
