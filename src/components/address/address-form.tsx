@@ -1,39 +1,11 @@
-import { useEffect, useState } from 'react';
-
+import Form, { Field } from 'rc-field-form';
 import { toast } from 'react-toastify';
 
 import { useCreateAddressMutation } from '@/gql/mutation/address/create-address.generated';
 import { useUpdateUserAddressMutation } from '@/gql/mutation/address/update-address.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
-
 export function AddressForm({ onSuccess, editAddress, coordinates }: AddressFormProps): JSX.Element {
-  const [formData, setFormData] = useState<{
-    alias: string | null | undefined;
-    address1: string;
-    address2: string;
-  }>({
-    alias: '',
-    address1: '',
-    address2: '',
-  });
-
-  useEffect(() => {
-    if (editAddress) {
-      setFormData({
-        alias: editAddress.addressAlias,
-        address1: editAddress.address1,
-        address2: editAddress.address2,
-      });
-    }
-  }, [editAddress]);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const [form] = Form.useForm();
 
   const [createAddress] = useCreateAddressMutation({
     onError: catchHelper,
@@ -51,94 +23,116 @@ export function AddressForm({ onSuccess, editAddress, coordinates }: AddressForm
     },
   });
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (!coordinates) {
-      toast.error('Газрын зургаас байршлаа сонгоно уу');
-      return;
-    }
-
-    const addressData = {
-      addressAttributes: {
-        address1: formData.address1,
-        address2: formData.address2,
-        addressAlias: formData.alias,
-        latitude: coordinates.lat,
-        longitude: coordinates.lng,
-      },
-    };
-
-    if (editAddress) {
-      updateAddress({
-        variables: {
-          input: {
-            id: editAddress.id,
-            ...addressData,
-          },
-        },
-      });
-    } else {
-      createAddress({
-        variables: {
-          input: addressData,
-        },
-      });
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="card bg-base-100 shadow-xl">
+    <Form
+      form={form}
+      initialValues={
+        editAddress
+          ? {
+              alias: editAddress.addressAlias || 'Үндсэн',
+              address1: editAddress.address1,
+              address2: editAddress.address2,
+            }
+          : {
+              alias: '',
+              address1: '',
+              address2: '',
+            }
+      }
+      onFinish={(values) => {
+        if (!coordinates) {
+          toast.error('Газрын зургаас байршлаа сонгоно уу');
+          return;
+        }
+        if (editAddress) {
+          updateAddress({
+            variables: {
+              input: {
+                id: editAddress.id,
+                addressAttributes: {
+                  address1: values.address1,
+                  address2: values.address2,
+                  addressAlias: values.alias,
+                  latitude: coordinates.lat,
+                  longitude: coordinates.lng,
+                },
+              },
+            },
+          });
+        } else {
+          createAddress({
+            variables: {
+              input: {
+                addressAttributes: {
+                  address1: values.address1,
+                  address2: values.address2,
+                  addressAlias: values.alias,
+                  latitude: coordinates.lat,
+                  longitude: coordinates.lng,
+                },
+              },
+            },
+          });
+        }
+      }}
+      className="card bg-base-100 shadow-xl"
+    >
       <div className="card-body">
         <h2 className="card-title mb-6 text-lg">{editAddress ? 'Хаяг засах' : 'Хүргэлтийн хаяг нэмэх'}</h2>
 
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text">
-              Хаягийн нэр<span className="text-error">*</span>
-            </span>
-          </label>
-          <input
-            name="alias"
-            value={formData.alias ?? 'Үндсэн'}
-            onChange={handleChange}
-            placeholder="Хаягийн нэр"
-            className="input input-bordered w-full border-gray-200 focus:border-gray-300 focus:ring-0"
-            required
-          />
-        </div>
+        <Field name="alias">
+          {(control) => (
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">
+                  Хаягийн нэр<span className="text-error">*</span>
+                </span>
+              </label>
+              <input
+                {...control}
+                placeholder="Хаягийн нэр"
+                className="input input-bordered w-full border-gray-200 focus:border-gray-300 focus:ring-0"
+                required
+              />
+            </div>
+          )}
+        </Field>
 
-        <div className="form-control mt-4 w-full">
-          <label className="label">
-            <span className="label-text">
-              Байршил<span className="text-error">*</span>
-            </span>
-          </label>
-          <textarea
-            name="address1"
-            value={formData.address1}
-            onChange={handleChange}
-            className="textarea textarea-bordered h-20 border-gray-200 focus:border-gray-300 focus:ring-0"
-            placeholder="Аймаг, хот, дүүрэг, хороо болон багаа бичнэ үү"
-            required
-          />
-        </div>
+        <Field name="address1">
+          {(control) => (
+            <div className="form-control mt-4 w-full">
+              <label className="label">
+                <span className="label-text">
+                  Байршил<span className="text-error">*</span>
+                </span>
+              </label>
+              <textarea
+                {...control}
+                className="textarea textarea-bordered h-20 border-gray-200 focus:border-gray-300 focus:ring-0"
+                placeholder="Аймаг, хот, дүүрэг, хороо болон багаа бичнэ үү"
+                required
+              />
+            </div>
+          )}
+        </Field>
 
-        <div className="form-control mt-4 w-full">
-          <label className="label">
-            <span className="label-text">
-              Дэлгэрэнгүй хаяг<span className="text-error">*</span>
-            </span>
-          </label>
-          <textarea
-            name="address2"
-            value={formData.address2}
-            onChange={handleChange}
-            className="textarea textarea-bordered h-24 border-gray-200 focus:border-gray-300 focus:ring-0"
-            placeholder="Та хаягаа зөв дэлгэрэнгүй, тодорхой оруулаагүйгээс үүдэн хүргэлт удаашрах, эсвэл хүргэгдэхгүй байж болзошгүйг анхаарна уу!"
-            required
-          />
-        </div>
+        <Field name="address2">
+          {(control) => (
+            <div className="form-control mt-4 w-full">
+              <label className="label">
+                <span className="label-text">
+                  Дэлгэрэнгүй хаяг<span className="text-error">*</span>
+                </span>
+              </label>
+              <textarea
+                {...control}
+                className="textarea textarea-bordered h-24 border-gray-200 focus:border-gray-300 focus:ring-0"
+                placeholder="Та хаягаа зөв дэлгэрэнгүй, тодорхой оруулаагүйгээс үүдэн хүргэлт удаашрах, эсвэл хүргэгдэхгүй байж болзошгүйг анхаарна уу!"
+                required
+              />
+            </div>
+          )}
+        </Field>
 
         {!coordinates && <div className="mt-4 text-sm text-error">Газрын зургаас байршлаа заавал сонгоно уу</div>}
 
@@ -151,7 +145,7 @@ export function AddressForm({ onSuccess, editAddress, coordinates }: AddressForm
           </button>
         </div>
       </div>
-    </form>
+    </Form>
   );
 }
 

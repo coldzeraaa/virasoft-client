@@ -1,20 +1,22 @@
 'use client';
 import { useCallback, useState } from 'react';
 
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, Libraries, useJsApiLoader } from '@react-google-maps/api';
 import { Trash } from 'lucide-react';
 import { toast } from 'react-toastify';
 
 import { AddressForm } from '@/components/address/address-form';
-import { APP_CONFIG } from '@/configs/APP_CONFIG';
+import { APP_CONFIG } from '@/configs/APP_CONFIG.virasoft';
 import { useDestroyUserAddressMutation } from '@/gql/mutation/address/destroy-address.generated';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
+const libraries: Libraries = ['places', 'marker'];
+
 export function DeliveryOptions({ selectedAddress, setSelectedAddress, coordinates, setCoordinates }: DeliveryOptionsProps): JSX.Element {
   const { data, loading: queryLoading, refetch } = useMeQuery();
   const [map, setMap] = useState<google.maps.Map | null>(null);
-  const [marker, setMarker] = useState<google.maps.marker.AdvancedMarkerElement | null>(null);
+  const [marker, setMarker] = useState<google.maps.Marker | null>(null);
 
   const [destroyAddress, { loading: deleteLoading }] = useDestroyUserAddressMutation({
     onError: catchHelper,
@@ -34,7 +36,7 @@ export function DeliveryOptions({ selectedAddress, setSelectedAddress, coordinat
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: APP_CONFIG.map.googleMapApiKey || '',
-    libraries: ['marker'],
+    libraries: libraries,
   });
 
   const onLoad = useCallback(
@@ -55,16 +57,15 @@ export function DeliveryOptions({ selectedAddress, setSelectedAddress, coordinat
       if (!map) return;
 
       if (marker) {
-        marker.map = null;
+        marker.setMap(null);
       }
-      const newMarker = new google.maps.marker.AdvancedMarkerElement({
+      const newMarker = new google.maps.Marker({
         map,
         position,
-        gmpDraggable: true,
+        draggable: true,
       });
-
       newMarker.addListener('dragend', () => {
-        const markerPosition = newMarker.position as google.maps.LatLng;
+        const markerPosition = newMarker.getPosition();
         if (markerPosition) {
           setCoordinates({
             lat: markerPosition.lat().toString(),
@@ -100,16 +101,18 @@ export function DeliveryOptions({ selectedAddress, setSelectedAddress, coordinat
     setShowAddressForm({ map: true, address: true });
 
     if (address.latitude && address.longitude) {
-      const position = {
-        lat: parseFloat(address.latitude),
-        lng: parseFloat(address.longitude),
-      };
       setCoordinates({
         lat: address.latitude,
         lng: address.longitude,
       });
-      map?.panTo(position);
-      updateMarker(position);
+      map?.panTo({
+        lat: parseFloat(address.latitude),
+        lng: parseFloat(address.longitude),
+      });
+      updateMarker({
+        lat: parseFloat(address.latitude),
+        lng: parseFloat(address.longitude),
+      });
     }
   };
 
@@ -139,11 +142,12 @@ export function DeliveryOptions({ selectedAddress, setSelectedAddress, coordinat
     setEditingAddress(undefined);
     setCoordinates(null);
     if (marker) {
-      marker.map = null;
+      marker.setMap(null);
       setMarker(null);
     }
     refetch();
   };
+
   useCallback(() => {
     if (coordinates && map) {
       const position = {
@@ -204,7 +208,6 @@ export function DeliveryOptions({ selectedAddress, setSelectedAddress, coordinat
             </div>
           </div>
         ))}
-
         {!showAddressForm.address && (
           <button
             onClick={() => setShowAddressForm({ map: true, address: true })}
@@ -219,8 +222,17 @@ export function DeliveryOptions({ selectedAddress, setSelectedAddress, coordinat
             {isLoaded && (
               <GoogleMap
                 mapContainerClassName="w-full h-[400px] rounded-lg mt-4"
-                center={coordinates ? { lat: parseFloat(coordinates.lat), lng: parseFloat(coordinates.lng) } : center}
+                center={
+                  editingAddress?.latitude && editingAddress?.longitude
+                    ? { lat: parseFloat(editingAddress.latitude), lng: parseFloat(editingAddress.longitude) }
+                    : APP_CONFIG.map.defaultCenter
+                }
                 zoom={14}
+                options={{
+                  mapId: APP_CONFIG.map.mapId || '',
+                  disableDefaultUI: false,
+                  clickableIcons: false,
+                }}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
                 onClick={handleMapClick}
