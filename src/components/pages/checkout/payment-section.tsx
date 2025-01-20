@@ -1,18 +1,18 @@
 'use client';
 
 import { ChevronRightIcon } from '@heroicons/react/16/solid';
-import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
+import { PaymentMethodEnum } from '@/gql/graphql';
 import { useUpdateCheckoutAddressMutation } from '@/gql/mutation/address/update-checkout-address.generated';
-import { useMeQuery } from '@/gql/query/user/me.generated';
+import { usePaymentCheckoutMutation } from '@/gql/mutation/checkout/payment-checkout.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { catchHelper } from '@/lib/helper/catch-helper';
 import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
-export function PaymentSection({ selectedAddress }: { selectedAddress: string | null }): JSX.Element {
+
+export function PaymentSection({ selectedAddress }: { selectedAddress?: string | null }): JSX.Element {
   const { loading, order } = useCurrentOrder();
-  const { data } = useMeQuery();
   const pathName = usePathname();
   const router = useRouter();
 
@@ -24,9 +24,17 @@ export function PaymentSection({ selectedAddress }: { selectedAddress: string | 
     },
   });
 
+  const [paymentCheckout] = usePaymentCheckoutMutation({
+    onError: catchHelper,
+    onCompleted: () => {
+      toast.success('Захиалга амжилттай үүслээ');
+    },
+  });
+
   const handleContinue = (e: React.MouseEvent) => {
+    e.preventDefault();
+
     if (pathName === '/checkout/address') {
-      e.preventDefault();
       if (!selectedAddress) {
         toast.error('Хүргэлтийн хаягаа оруулна уу');
         return;
@@ -39,9 +47,21 @@ export function PaymentSection({ selectedAddress }: { selectedAddress: string | 
         },
       });
     }
+
+    if (pathName === '/checkout/review') {
+      paymentCheckout({
+        variables: {
+          input: {
+            action: PaymentMethodEnum.VirasoftPay,
+          },
+        },
+      });
+    } else {
+      router.push('/checkout/address');
+    }
   };
 
-  if (loading || !order) <div className="skeleton h-60 w-full" />;
+  if (loading || !order) return <div className="skeleton h-60 w-full" />;
 
   return (
     <>
@@ -69,14 +89,10 @@ export function PaymentSection({ selectedAddress }: { selectedAddress: string | 
         <span className="t-text-base">Total</span>
         <span className="heading-4">{moneyFormatHelper(order?.total || 0)}</span>
       </p>
-      <Link
-        href={pathName === '/checkout/address' ? '/checkout/review' : data?.me ? '/checkout/address' : '/auth/login'}
-        className="btn btn-primary btn-block"
-        onClick={handleContinue}
-      >
+      <button className="btn btn-primary btn-block" onClick={handleContinue}>
         <span>Continue</span>
         <ChevronRightIcon className="w-4" />
-      </Link>
+      </button>
     </>
   );
 }

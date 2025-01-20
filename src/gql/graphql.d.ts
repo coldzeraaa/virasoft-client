@@ -257,82 +257,6 @@ export type Event = BaseModelInterface & {
   updatedAt: Scalars['ISO8601DateTime']['output'];
 };
 
-export type FuelPrice = BaseModelInterface & {
-  __typename?: 'FuelPrice';
-  createdAt: Scalars['ISO8601DateTime']['output'];
-  effectiveDate: Scalars['ISO8601DateTime']['output'];
-  fuelQuote: FuelQuote;
-  fuelQuoteId: Scalars['ID']['output'];
-  fuelType: Scalars['String']['output'];
-  id: Scalars['ID']['output'];
-  price: Scalars['Float']['output'];
-  updatedAt: Scalars['ISO8601DateTime']['output'];
-};
-
-/** The connection type for FuelPrice. */
-export type FuelPriceConnection = {
-  __typename?: 'FuelPriceConnection';
-  /** A list of edges. */
-  edges: Array<FuelPriceEdge>;
-  /** A list of nodes. */
-  nodes: Array<FuelPrice>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-/** An edge in a connection. */
-export type FuelPriceEdge = {
-  __typename?: 'FuelPriceEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node: FuelPrice;
-};
-
-export type FuelPriceFilter = {
-  createdAt?: InputMaybe<DateFilter>;
-  id?: InputMaybe<IdFilter>;
-  updatedAt?: InputMaybe<DateFilter>;
-};
-
-export type FuelQuote = BaseModelInterface & {
-  __typename?: 'FuelQuote';
-  createdAt: Scalars['ISO8601DateTime']['output'];
-  fuelType: Scalars['String']['output'];
-  id: Scalars['ID']['output'];
-  merchant: Merchant;
-  merchantId: Scalars['ID']['output'];
-  preferences: Scalars['JSON']['output'];
-  price: Scalars['Float']['output'];
-  updatedAt: Scalars['ISO8601DateTime']['output'];
-};
-
-/** The connection type for FuelQuote. */
-export type FuelQuoteConnection = {
-  __typename?: 'FuelQuoteConnection';
-  /** A list of edges. */
-  edges: Array<FuelQuoteEdge>;
-  /** A list of nodes. */
-  nodes: Array<FuelQuote>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-/** An edge in a connection. */
-export type FuelQuoteEdge = {
-  __typename?: 'FuelQuoteEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node: FuelQuote;
-};
-
-export type FuelQuoteFilter = {
-  createdAt?: InputMaybe<DateFilter>;
-  id?: InputMaybe<IdFilter>;
-  updatedAt?: InputMaybe<DateFilter>;
-};
-
 export type IdFilter = {
   /** is null ? */
   blank?: InputMaybe<Scalars['Boolean']['input']>;
@@ -558,11 +482,11 @@ export type Mutation = {
   authCheckLogin?: Maybe<AuthCheckLogin>;
   authRegister?: Maybe<User>;
   buildAssetRole?: Maybe<AssetRole>;
+  checkOrder?: Maybe<PaymentCheck>;
   checkOtp?: Maybe<Scalars['Boolean']['output']>;
   createApplication?: Maybe<Application>;
   createAssetRole?: Maybe<AssetRole>;
   createBrand?: Maybe<Brand>;
-  createFuelQuote?: Maybe<FuelQuote>;
   createImage?: Maybe<Image>;
   createListing?: Maybe<Listing>;
   createMenu?: Maybe<Menu>;
@@ -570,6 +494,7 @@ export type Mutation = {
   createOptionType?: Maybe<OptionType>;
   createOptionValue?: Maybe<OptionValue>;
   createPage?: Maybe<Page>;
+  createPaymentMethod?: Maybe<PaymentMethod>;
   createProduct?: Maybe<Product>;
   createUser?: Maybe<User>;
   createUserAddress?: Maybe<UserAddress>;
@@ -580,7 +505,6 @@ export type Mutation = {
   destroyApplication?: Maybe<Application>;
   destroyAssetRole?: Maybe<AssetRole>;
   destroyBrand?: Maybe<Brand>;
-  destroyFuelQuote?: Maybe<FuelQuote>;
   destroyImage?: Maybe<Menu>;
   destroyListing?: Maybe<Listing>;
   destroyMenu?: Maybe<Menu>;
@@ -588,6 +512,7 @@ export type Mutation = {
   destroyOptionType?: Maybe<OptionType>;
   destroyOptionValue?: Maybe<OptionValue>;
   destroyPage?: Maybe<Page>;
+  destroyPaymentMethod?: Maybe<PaymentMethod>;
   destroyProduct?: Maybe<Product>;
   destroyUserAddress?: Maybe<UserAddress>;
   destroyVariant?: Maybe<Variant>;
@@ -605,7 +530,6 @@ export type Mutation = {
   updateAssetRole?: Maybe<AssetRole>;
   updateBrand?: Maybe<Brand>;
   updateCheckoutAddress?: Maybe<Order>;
-  updateFuelQuote?: Maybe<FuelQuote>;
   updateItem?: Maybe<Order>;
   updateListing?: Maybe<Listing>;
   updateMenu?: Maybe<Menu>;
@@ -613,6 +537,7 @@ export type Mutation = {
   updateOptionType?: Maybe<OptionType>;
   updateOptionValue?: Maybe<OptionValue>;
   updatePage?: Maybe<Page>;
+  updatePaymentMethod?: Maybe<PaymentMethod>;
   updateProduct?: Maybe<Product>;
   updateUserAddress?: Maybe<UserAddress>;
   updateVariant?: Maybe<Variant>;
@@ -647,6 +572,11 @@ export type MutationBuildAssetRoleArgs = {
 };
 
 
+export type MutationCheckOrderArgs = {
+  input: CheckOrderInput;
+};
+
+
 export type MutationCheckOtpArgs = {
   input: CheckOtpInput;
 };
@@ -664,11 +594,6 @@ export type MutationCreateAssetRoleArgs = {
 
 export type MutationCreateBrandArgs = {
   input: CreateBrandInput;
-};
-
-
-export type MutationCreateFuelQuoteArgs = {
-  input: CreateFuelQuoteInput;
 };
 
 
@@ -704,6 +629,11 @@ export type MutationCreateOptionValueArgs = {
 
 export type MutationCreatePageArgs = {
   input: CreatePageInput;
+};
+
+
+export type MutationCreatePaymentMethodArgs = {
+  input: CreatePaymentMethodInput;
 };
 
 
@@ -757,11 +687,6 @@ export type MutationDestroyBrandArgs = {
 };
 
 
-export type MutationDestroyFuelQuoteArgs = {
-  input: DestroyFuelQuoteInput;
-};
-
-
 export type MutationDestroyImageArgs = {
   input: DestroyImageInput;
 };
@@ -794,6 +719,11 @@ export type MutationDestroyOptionValueArgs = {
 
 export type MutationDestroyPageArgs = {
   input: DestroyPageInput;
+};
+
+
+export type MutationDestroyPaymentMethodArgs = {
+  input: DestroyPaymentMethodInput;
 };
 
 
@@ -877,11 +807,6 @@ export type MutationUpdateCheckoutAddressArgs = {
 };
 
 
-export type MutationUpdateFuelQuoteArgs = {
-  input: UpdateFuelQuoteInput;
-};
-
-
 export type MutationUpdateItemArgs = {
   input: UpdateItemInput;
 };
@@ -914,6 +839,11 @@ export type MutationUpdateOptionValueArgs = {
 
 export type MutationUpdatePageArgs = {
   input: UpdatePageInput;
+};
+
+
+export type MutationUpdatePaymentMethodArgs = {
+  input: UpdatePaymentMethodInput;
 };
 
 
@@ -1073,6 +1003,7 @@ export type Order = BaseModelInterface & {
   itemTotal?: Maybe<Scalars['Int']['output']>;
   items: Array<Item>;
   number: Scalars['String']['output'];
+  payments: Array<Payment>;
   shipAddress?: Maybe<UserAddress>;
   token?: Maybe<Scalars['String']['output']>;
   total?: Maybe<Scalars['Int']['output']>;
@@ -1161,10 +1092,80 @@ export type PageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
+export type Payment = BaseModelInterface & {
+  __typename?: 'Payment';
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  id: Scalars['ID']['output'];
+  number: Scalars['String']['output'];
+  paymentMethod: PaymentMethod;
+  source: Scalars['JSON']['output'];
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+};
+
+export type PaymentCheck = {
+  __typename?: 'PaymentCheck';
+  count: Scalars['Int']['output'];
+  paidAmount?: Maybe<Scalars['Int']['output']>;
+  rows: Array<Row>;
+};
+
+export type PaymentMethod = BaseModelInterface & {
+  __typename?: 'PaymentMethod';
+  active: Scalars['Boolean']['output'];
+  createdAt: Scalars['ISO8601DateTime']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  preferences?: Maybe<Scalars['JSON']['output']>;
+  testMode: Scalars['Boolean']['output'];
+  type: Scalars['String']['output'];
+  updatedAt: Scalars['ISO8601DateTime']['output'];
+  website: Website;
+};
+
+/** The connection type for PaymentMethod. */
+export type PaymentMethodConnection = {
+  __typename?: 'PaymentMethodConnection';
+  /** A list of edges. */
+  edges: Array<PaymentMethodEdge>;
+  /** A list of nodes. */
+  nodes: Array<PaymentMethod>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type PaymentMethodEdge = {
+  __typename?: 'PaymentMethodEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: PaymentMethod;
+};
+
 /** Payment Method */
 export enum PaymentMethodEnum {
   /** VirasoftPay */
   VirasoftPay = 'virasoft_pay'
+}
+
+export type PaymentMethodFilter = {
+  createdAt?: InputMaybe<DateFilter>;
+  id?: InputMaybe<IdFilter>;
+  name?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateFilter>;
+};
+
+/** Гүйлгээ төлөв */
+export enum PaymentStatusEnum {
+  /** Гүйлгээ амжилтгүй */
+  Failed = 'FAILED',
+  /** Гүйлгээ үүсгэгдсэн */
+  New = 'NEW',
+  /** Төлөгдсөн */
+  Paid = 'PAID',
+  /** Гүйлгээ буцаагдсан */
+  Refunded = 'REFUNDED'
 }
 
 export type Product = BaseModelInterface & {
@@ -1243,10 +1244,6 @@ export type Query = {
   brand?: Maybe<Brand>;
   brands: BrandConnection;
   currentOrder?: Maybe<Order>;
-  fuelPrice?: Maybe<FuelPrice>;
-  fuelPrices: FuelPriceConnection;
-  fuelQuote?: Maybe<FuelQuote>;
-  fuelQuotes: FuelQuoteConnection;
   listing?: Maybe<Listing>;
   listings: ListingConnection;
   me?: Maybe<User>;
@@ -1262,6 +1259,8 @@ export type Query = {
   orders?: Maybe<OrderConnection>;
   page?: Maybe<Page>;
   pages: PageConnection;
+  paymentMethod?: Maybe<PaymentMethod>;
+  paymentMethods: PaymentMethodConnection;
   product?: Maybe<Product>;
   products: ProductConnection;
   user?: Maybe<User>;
@@ -1326,36 +1325,6 @@ export type QueryBrandsArgs = {
 export type QueryCurrentOrderArgs = {
   number?: InputMaybe<Scalars['String']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryFuelPriceArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QueryFuelPricesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<FuelPriceFilter>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<SortFilter>;
-};
-
-
-export type QueryFuelQuoteArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QueryFuelQuotesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<FuelQuoteFilter>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<SortFilter>;
 };
 
 
@@ -1469,6 +1438,21 @@ export type QueryPagesArgs = {
 };
 
 
+export type QueryPaymentMethodArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryPaymentMethodsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<PaymentMethodFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
+};
+
+
 export type QueryProductArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -1570,6 +1554,24 @@ export type QueryWebsitesArgs = {
   sort?: InputMaybe<SortFilter>;
 };
 
+export type Row = {
+  __typename?: 'Row';
+  /** 100: Гүйлгээний дүн */
+  paymentAmount: Scalars['String']['output'];
+  /** MNT: Гүйлгээний валют */
+  paymentCurrency: Scalars['String']['output'];
+  /** Гүйлгээ хийгдсэн хугацаа: 2020-10-19T08:58:46.641Z */
+  paymentDate: Scalars['String']['output'];
+  /** 1: Гүйлгээний шимтгэл шимтгэл */
+  paymentFee: Scalars['String']['output'];
+  /** 593744473409193: QPay-ээс үүссэн гүйлгээний дугаар */
+  paymentId: Scalars['Int']['output'];
+  paymentStatus: PaymentStatusEnum;
+  /** 0fc9b71c-cd87-4ffd-9cac-2279ebd9deb0: Гүйлгээ хийгдэн воллет */
+  paymentWallet: Scalars['String']['output'];
+  transactionType: TransactionTypeEnum;
+};
+
 /** Sort Direction */
 export enum SortDirection {
   /** Ascending */
@@ -1605,6 +1607,14 @@ export type StringFilter = {
   /** starts with */
   start?: InputMaybe<Scalars['String']['input']>;
 };
+
+/** Гүйлгээний төрөл */
+export enum TransactionTypeEnum {
+  /** Картын гүйлгээ */
+  Card = 'CARD',
+  /** Дансны гүйлгээ */
+  P2P = 'P2P'
+}
 
 export type User = BaseModelInterface & {
   __typename?: 'User';
@@ -1983,6 +1993,14 @@ export type BuildAssetRoleInput = {
   vendorUserId: Scalars['ID']['input'];
 };
 
+/** Autogenerated input type of checkOrder */
+export type CheckOrderInput = {
+  action?: InputMaybe<PaymentMethodEnum>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  invoiceId: Scalars['String']['input'];
+};
+
 /** Autogenerated input type of checkOtp */
 export type CheckOtpInput = {
   /** A unique identifier for the client performing the mutation. */
@@ -2031,17 +2049,6 @@ export type CreateBrandInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   verified?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Autogenerated input type of createFuelQuote */
-export type CreateFuelQuoteInput = {
-  /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** А80, A92, A98, A95, Diesel */
-  fuelType: Scalars['String']['input'];
-  merchantId: Scalars['ID']['input'];
-  preferences?: InputMaybe<Scalars['JSON']['input']>;
-  price: Scalars['Float']['input'];
 };
 
 /** Autogenerated input type of createImage */
@@ -2118,6 +2125,20 @@ export type CreatePageInput = {
   preferences?: InputMaybe<Scalars['JSON']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  websiteId: Scalars['ID']['input'];
+};
+
+/** Autogenerated input type of createPaymentMethod */
+export type CreatePaymentMethodInput = {
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  preferences?: InputMaybe<Scalars['JSON']['input']>;
+  testMode?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Supp::PaymentMethod::QPay::VirasoftPay */
+  type: Scalars['String']['input'];
   websiteId: Scalars['ID']['input'];
 };
 
@@ -2238,13 +2259,6 @@ export type DestroyBrandInput = {
   id: Scalars['ID']['input'];
 };
 
-/** Autogenerated input type of destroyFuelQuote */
-export type DestroyFuelQuoteInput = {
-  /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  id: Scalars['ID']['input'];
-};
-
 /** Autogenerated input type of destroyImage */
 export type DestroyImageInput = {
   /** A unique identifier for the client performing the mutation. */
@@ -2294,6 +2308,13 @@ export type DestroyOptionValueInput = {
 
 /** Autogenerated input type of destroyPage */
 export type DestroyPageInput = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+};
+
+/** Autogenerated input type of destroyPaymentMethod */
+export type DestroyPaymentMethodInput = {
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
@@ -2441,14 +2462,6 @@ export type UpdateCheckoutAddressInput = {
   shipAddressId?: InputMaybe<Scalars['ID']['input']>;
 };
 
-/** Autogenerated input type of updateFuelQuote */
-export type UpdateFuelQuoteInput = {
-  /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  id: Scalars['ID']['input'];
-  price: Scalars['Float']['input'];
-};
-
 /** Autogenerated input type of updateItem */
 export type UpdateItemInput = {
   /** A unique identifier for the client performing the mutation. */
@@ -2524,6 +2537,20 @@ export type UpdatePageInput = {
   preferences?: InputMaybe<Scalars['JSON']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Autogenerated input type of updatePaymentMethod */
+export type UpdatePaymentMethodInput = {
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+  preferences?: InputMaybe<Scalars['JSON']['input']>;
+  testMode?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Supp::PaymentMethod::QPay::VirasoftPay */
+  type?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Autogenerated input type of updateProduct */

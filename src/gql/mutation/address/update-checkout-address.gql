@@ -1,9 +1,5 @@
 mutation updateCheckoutAddress($input: updateCheckoutAddressInput!) {
   updateCheckoutAddress(input: $input) {
-    shipAddress {
-      address {
-        id
-      }
-    }
+    ...CurrentOrderFields
   }
 }

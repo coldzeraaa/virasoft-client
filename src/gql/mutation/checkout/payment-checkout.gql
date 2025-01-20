@@ -1,0 +1,3 @@
+mutation paymentCheckout($input: paymentCheckoutInput!) {
+  paymentCheckout(input: $input)
+}
