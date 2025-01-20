@@ -10,7 +10,7 @@ import { useMeQuery } from '@/gql/query/user/me.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { catchHelper } from '@/lib/helper/catch-helper';
 import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
-export function PaymentSection({ selectedAddress }: PaymentSectionProps): JSX.Element {
+export function PaymentSection({ selectedAddress }: { selectedAddress: string | null }): JSX.Element {
   const { loading, order } = useCurrentOrder();
   const { data } = useMeQuery();
   const pathName = usePathname();
@@ -34,7 +34,7 @@ export function PaymentSection({ selectedAddress }: PaymentSectionProps): JSX.El
       updateCheckoutAddress({
         variables: {
           input: {
-            shipAddressId: selectedAddress.id,
+            shipAddressId: selectedAddress,
           },
         },
       });
@@ -79,17 +79,4 @@ export function PaymentSection({ selectedAddress }: PaymentSectionProps): JSX.El
       </Link>
     </>
   );
-}
-
-interface PaymentSectionProps {
-  selectedAddress?: Address | undefined;
-}
-
-interface Address {
-  id: string;
-  address1: string;
-  address2: string;
-  addressAlias?: string | null | undefined;
-  latitude?: string | null | undefined;
-  longitude?: string | null | undefined;
 }
