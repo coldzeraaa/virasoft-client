@@ -30,10 +30,10 @@ export function Header() {
       <header className="z-40 w-full bg-base-100 shadow-md">
         <div className="mx-auto max-w-7xl">
           <div className="flex h-16 items-center justify-between">
-            <div className="h-8 w-8 animate-pulse rounded-full bg-base-content" />
+            <div className="skeleton h-8 w-8 rounded-full bg-base-content" />
             <div className="flex gap-4">
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="h-8 w-8 animate-pulse rounded bg-base-content" />
+                <div key={i} className="skeleton h-8 w-8 rounded bg-base-content" />
               ))}
             </div>
           </div>
@@ -86,7 +86,7 @@ export function Header() {
                       )}
                       {iconMapping[item.title as MenuTitle]}
                       <li className="hidden group-hover:text-secondary md:block">
-                        {item.title === 'Профайл' ? (userData?.me ? 'Профайл' : 'Нэвтрэх') : item.title}
+                        {item.title === 'Профайл' ? (userData?.me ? userData?.me.firstName : 'Нэвтрэх') : item.title}
                       </li>
                     </Link>
                   ))}

@@ -23,10 +23,10 @@ export function Footer() {
             <div className="grid grid-cols-3 gap-8">
               {Array.from({ length: 6 }).map((_, i) => (
                 <div key={i}>
-                  <div className="mb-4 h-6 w-1/2 animate-pulse rounded-sm bg-base-content" />
+                  <div className="skeleton mb-4 h-6 w-1/2 rounded-sm bg-base-content" />
                   <div className="space-y-2">
                     {Array.from({ length: 4 }).map((__, j) => (
-                      <div key={j} className="h-4 w-3/4 animate-pulse rounded-sm bg-base-content" />
+                      <div key={j} className="skeleton h-4 w-3/4 rounded-sm bg-base-content" />
                     ))}
                   </div>
                 </div>
@@ -37,7 +37,7 @@ export function Footer() {
         <div className="fixed inset-x-0 bottom-0 bg-base-100 md:hidden">
           <div className="flex justify-between p-2">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="h-10 w-10 animate-pulse rounded-md bg-base-content" />
+              <div key={i} className="skeleton h-10 w-10 rounded-md bg-base-content" />
             ))}
           </div>
         </div>

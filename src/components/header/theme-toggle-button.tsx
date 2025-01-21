@@ -19,6 +19,7 @@ export function ThemeToggleButton() {
 
   return (
     <button
+      type="button"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       className="flex h-10 w-10 items-center justify-center rounded-full bg-base-300 text-base-content
                    transition-colors duration-300 hover:bg-base-300"

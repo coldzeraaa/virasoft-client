@@ -17,7 +17,7 @@ import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 export function LineItemsSection() {
   const { order, loading } = useCurrentOrder();
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="skeleton h-52 w-full" />;
   if (!order) return <ErrorResult message="Order not found" />;
 
   return (

@@ -17,7 +17,7 @@ export function AddressPageClient() {
       </main>
       <aside aria-label="payment info and action" className="col-span-1">
         <h2 className="mb-4 text-2xl font-semibold">Payment info</h2>
-        <div className="rounded-lg border border-neutral-content p-4">
+        <div className="rounded-lg bg-base-200 p-8">
           <PaymentSection selectedAddress={selectedAddress} />
         </div>
       </aside>

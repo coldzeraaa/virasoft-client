@@ -16,7 +16,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
   const pathName = usePathname();
   const router = useRouter();
 
-  const [updateCheckoutAddress] = useUpdateCheckoutAddressMutation({
+  const [updateCheckoutAddress, { loading: checkoutAddressLoading }] = useUpdateCheckoutAddressMutation({
     onError: catchHelper,
     onCompleted: () => {
       toast.success('Хүргэлтийн хаягийг амжилттай сонголоо');
@@ -24,7 +24,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
     },
   });
 
-  const [paymentCheckout] = usePaymentCheckoutMutation({
+  const [paymentCheckout, { loading: paymentCheckoutLoading }] = usePaymentCheckoutMutation({
     onError: catchHelper,
     onCompleted: () => {
       toast.success('Захиалга амжилттай үүслээ');
@@ -62,7 +62,8 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
     }
   };
 
-  if (loading || !order) return <div className="skeleton h-60 w-full" />;
+  if (loading || paymentCheckoutLoading || checkoutAddressLoading) return <div className="skeleton h-60 w-full" />;
+  if (!order) return <div className="h-60 w-full">Танд захиалга байхгүй байна</div>;
 
   return (
     <>
@@ -89,7 +90,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
         <span className="">Нийт</span>
         <span className="heading-4">{moneyFormatHelper(order?.total || 0)}</span>
       </p>
-      <button className="btn btn-secondary btn-block" onClick={handleContinue}>
+      <button className="btn btn-secondary btn-block" type="button" onClick={handleContinue}>
         <span>Үргэлжлүүлэх</span>
         <ChevronRightIcon className="w-4" />
       </button>
