@@ -11,13 +11,14 @@ const OrderInfo = ({ data }) => {
         </div>
       </div>
       <hr />
-      <div className="text-lg">Захиалан барааны тоо : {data?.items.length} бараа</div>
+      <div className="text-lg">Захиалан барааны тоо : {data?.myOrder?.itemCount} бараа</div>
       <div className="flex justify-around ">
         <button className="btn">Захиалга цуцлах</button>
         <div>
           <button
+            type="button"
             onClick={() => {
-              router.push('/account/payment');
+              router.push(`/account/payment/${data?.myOrder?.number}`);
             }}
             className="btn  btn-primary"
           >

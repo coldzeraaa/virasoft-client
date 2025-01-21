@@ -6,50 +6,9 @@ import Link from 'next/link';
 import { useMeOrdersQuery } from '@/gql/query/user/me-orders.generated';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 
-const Orders = () => {
+export default function Orders() {
   const { data, loading: userDataLoading } = useMeOrdersQuery();
   const userOrderNodes = data?.me?.orders?.nodes;
-
-  const mockData = [
-    {
-      createdAt: '2025-01-13T12:00:00Z',
-      currency: 'USD',
-      id: '12345',
-      itemCount: 3,
-      itemTotal: 4500,
-      items: [
-        {
-          id: 'item1',
-          name: 'Laptop',
-          price: 1500,
-          quantity: 1,
-        },
-        {
-          id: 'item2',
-          name: 'Mouse',
-          price: 500,
-          quantity: 2,
-        },
-      ],
-      number: 'INV-2025-0001',
-      token: 'abcde12345',
-      total: 5000,
-      updatedAt: '2025-01-13T12:30:00Z',
-      user: {
-        id: 'user123',
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-      },
-      userId: 'user123',
-      website: {
-        id: 'website567',
-        name: 'MyShop',
-        url: 'https://www.myshop.com',
-      },
-      websiteId: 'website567',
-    },
-  ];
-  console.log(userOrderNodes);
 
   if (userDataLoading) {
     return (
@@ -78,7 +37,7 @@ const Orders = () => {
             <tr key={data.number || data.id} className="px-2 py-4">
               <td>{idx + 1}</td>
               <td>{data.number}</td>
-              <td className="flex   gap-4">
+              <td className="flex gap-4">
                 {data.items.map((item, i) => (
                   <div className="" key={i}>
                     {item.variant.product.name}-{item.quantity} ширхэг
@@ -103,5 +62,4 @@ const Orders = () => {
       </table>
     </div>
   );
-};
-export default Orders;
+}

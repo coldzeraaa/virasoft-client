@@ -8,7 +8,7 @@ export type MyOrderQueryVariables = Types.Exact<{
 }>;
 
 
-export type MyOrderQuery = { __typename?: 'Query', myOrder?: { __typename?: 'Order', id: string, createdAt: any, total?: number | null, itemCount?: number | null, itemTotal?: number | null, payments: Array<{ __typename?: 'Payment', source: any, id: string }>, items: Array<{ __typename?: 'Item', id: string, total: number, price: number, quantity: number, variant: { __typename?: 'Variant', images: Array<string>, sku: string, price: number } }>, shipAddress?: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, latitude?: string | null, longitude?: string | null, zipcode?: string | null, mobile?: string | null, phone?: string | null } } | null } | null };
+export type MyOrderQuery = { __typename?: 'Query', myOrder?: { __typename?: 'Order', id: string, createdAt: any, total?: number | null, itemCount?: number | null, number: string, itemTotal?: number | null, payments: Array<{ __typename?: 'Payment', source: any, id: string }>, items: Array<{ __typename?: 'Item', id: string, total: number, price: number, quantity: number, variant: { __typename?: 'Variant', images: Array<string>, sku: string, price: number } }>, shipAddress?: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, latitude?: string | null, longitude?: string | null, zipcode?: string | null, mobile?: string | null, phone?: string | null } } | null } | null };
 
 
 export const MyOrderDocument = gql`
@@ -18,6 +18,7 @@ export const MyOrderDocument = gql`
     createdAt
     total
     itemCount
+    number
     itemTotal
     payments {
       source

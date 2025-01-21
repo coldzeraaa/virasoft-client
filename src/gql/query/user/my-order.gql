@@ -4,6 +4,7 @@ query myOrder($number: String!) {
     createdAt
     total
     itemCount
+    number
     itemTotal
     payments {
       source

@@ -43,7 +43,7 @@ const Mobile = () => {
           <CustomInput value={data?.me?.mobile || ''} placeholder="Phone number"></CustomInput>
         </Field>
 
-        <button className="btn btn-primary w-fit" type="submit">
+        <button disabled={sentOtpLoading} className="btn btn-primary w-fit" type="submit">
           {data?.me?.mobile ? 'Дугаар солих' : 'Баталгаажуулах код авах'}
         </button>
       </div>

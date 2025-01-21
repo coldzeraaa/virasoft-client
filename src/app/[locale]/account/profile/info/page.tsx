@@ -1,42 +1,39 @@
-'use client';
+// 'use client';
 import Form, { Field } from 'rc-field-form';
 
 import { CustomInput } from '@/components/common/input';
-import { useMeQuery } from '@/gql/query/user/me.generated';
 
-const Info = () => {
-  const { data, loading: meLoading } = useMeQuery();
+const Info = () => (
+  // const { data, loading: meLoading } = useMeQuery();
   //   if (userDataLoading) {
   //     return <span className="loading loading-dots loading-lg"></span>;
   //   }
   //   const user = data?.me; // Assuming `me` contains user information
-  if (meLoading) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <span className="loading loading-dots loading-lg"></span>
-      </div>
-    );
-  }
-  return (
-    <Form
-      className="flex gap-6"
-      data={data}
-      onFinish={(values) => {
-        console.log(values);
-      }}
-    >
-      <Field name="firstName">
-        <CustomInput value="" placeholder="Firstname"></CustomInput>
-      </Field>
-      <Field name="lastName">
-        <CustomInput value="" placeholder="Lastname" type="password"></CustomInput>
-      </Field>
+  // if (meLoading) {
+  //   return (
+  //     <div className="flex h-full items-center justify-center">
+  //       <span className="loading loading-dots loading-lg"></span>
+  //     </div>
+  //   );
+  // }
+  <Form
+    className="flex gap-6"
+    data={data}
+    onFinish={(values) => {
+      console.log(values);
+    }}
+  >
+    <Field name="firstName">
+      <CustomInput value="" placeholder="Firstname"></CustomInput>
+    </Field>
+    <Field name="lastName">
+      <CustomInput value="" placeholder="Lastname" type="password"></CustomInput>
+    </Field>
 
-      <button className="btn btn-primary" type="submit">
-        {' '}
-        submit
-      </button>
-    </Form>
-  );
-};
+    <button className="btn btn-primary" type="submit">
+      {' '}
+      submit
+    </button>
+  </Form>
+);
 export default Info;
