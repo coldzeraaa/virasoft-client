@@ -14,7 +14,7 @@ export const APP_CONFIG: AppConfigType = {
     defaultCenter: { lat: 47.918, lng: 106.917 },
     defaultZoom: 12,
     googleMapApiKey: 'AIzaSyCA3KMFHGBwiVTo6M0FEvB4Gnk5wPoqoMM',
-    mapId: '1f6ed92fb97c2924',
+    googleMapId: '1f6ed92fb97c2924',
   },
   metadataBase: {
     title: 'Virasoft',

@@ -14,7 +14,7 @@ export const APP_CONFIG: AppConfigType = {
     defaultCenter: { lat: 47.918, lng: 106.917 },
     defaultZoom: 12,
     googleMapApiKey: '',
-    mapId: '',
+    googleMapId: '',
   },
   metadataBase: {
     title: 'Default',

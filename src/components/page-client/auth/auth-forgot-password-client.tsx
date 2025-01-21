@@ -70,7 +70,7 @@ const ForgotPasswordClient = () => {
           </Field>
         </div>
 
-        <button className="btn btn-primary  " disabled={sentOtpLoading || resetPasswordLoading} type="submit">
+        <button className="btn btn-primary" disabled={sentOtpLoading || resetPasswordLoading} type="submit">
           Submit
         </button>
       </Form>

@@ -2,7 +2,7 @@
 import { MapPin, Package, Truck } from 'lucide-react';
 import Image from 'next/image';
 
-import { PaymentSection } from '../checkout/payment-section';
+import { PaymentSection } from '../../checkout/payment-section';
 
 import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
@@ -16,7 +16,7 @@ export default function OrderReviewPageClient() {
 
   return (
     <div className="container mx-auto max-w-7xl p-4">
-      <h1 className="mb-8 text-3xl font-bold">Order Review</h1>
+      <h1 className="mb-8 text-3xl font-bold">Захиалгын дэлгэрэнгүй мэдээлэл</h1>
 
       <div className="grid gap-8 lg:grid-cols-[2fr,1fr]">
         {/* Main Content */}
@@ -25,7 +25,7 @@ export default function OrderReviewPageClient() {
           <div className="rounded-lg border border-base-300 bg-base-100 p-6">
             <div className="mb-4 flex items-center gap-2">
               <Package className="text-primary" />
-              <h2 className="text-xl font-semibold">Order Items</h2>
+              <h2 className="text-xl font-semibold">Бүтээгдэхүүний дэлгэрэнгүй</h2>
             </div>
 
             <div className="divide-y divide-base-300">
@@ -36,14 +36,14 @@ export default function OrderReviewPageClient() {
                       src={item.variant.images[1] ? imageUrlHelper(item.variant.images[1]) : `/api/placeholder/96/96`}
                       alt={item.variant.product.name || 'product'}
                       fill
-                      className="rounded-lg object-contain"
+                      className="h-full w-full rounded-lg object-cover"
                     />
                   </div>
 
-                  <div className="flex flex-1 flex-col justify-between">
+                  <div className="grid w-full grid-cols-2">
                     <div>
                       <h3 className="font-medium">{item.variant.product.name}</h3>
-                      <p className="text-sm text-base-content/70">Quantity: {item.quantity}</p>
+                      <p className="text-sm text-base-content/70">Тоо ширхэг: {item.quantity}</p>
                     </div>
                     <p className="text-right font-semibold">{moneyFormatHelper(item.price)}</p>
                   </div>
@@ -56,7 +56,7 @@ export default function OrderReviewPageClient() {
           <div className="rounded-lg border border-base-300 bg-base-100 p-6">
             <div className="mb-4 flex items-center gap-2">
               <MapPin className="text-primary" />
-              <h2 className="text-xl font-semibold">Delivery Address</h2>
+              <h2 className="text-xl font-semibold">Хүргэлтийн хаяг</h2>
             </div>
 
             <div className="rounded-lg bg-base-200 p-4">
@@ -72,7 +72,7 @@ export default function OrderReviewPageClient() {
 
         {/* Payment Section Sidebar */}
         <div className="rounded-lg border border-base-300 bg-base-100 p-6">
-          <h2 className="mb-4 text-xl font-semibold">Payment Summary</h2>
+          <h2 className="mb-4 text-xl font-semibold">Төлбөрийн дэлгэрэнгүй</h2>
           <PaymentSection />
         </div>
       </div>

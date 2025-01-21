@@ -4,21 +4,22 @@ import { FieldForm, FormInput, type FormInputProps } from 'field-form';
 import { toast } from 'react-toastify';
 
 import { MapInput } from '@/components/form/inputs/map-input';
-import { useCreateAddressMutation } from '@/gql/mutation/address/create-address.generated';
-import { useDestroyUserAddressMutation } from '@/gql/mutation/address/destroy-address.generated';
-import { useUpdateUserAddressMutation } from '@/gql/mutation/address/update-address.generated';
+import { useCreateAddressMutation } from '@/gql/mutation/address/create-user-address.generated';
+import { useDestroyUserAddressMutation } from '@/gql/mutation/address/destroy-user-address.generated';
+import { useUpdateUserAddressMutation } from '@/gql/mutation/address/update-user-address.generated';
 import { type MeUserAddressQuery, useMeUserAddressQuery } from '@/gql/query/user/me-user-address.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
 export default function UserAddresses({ setSelectedAddress }: { setSelectedAddress: (address: string | null) => void }) {
   const { data, loading } = useMeUserAddressQuery();
 
-  if (loading) return <div>Loading...</div>;
-  if (!data?.me) return <div>Failed to fetch</div>;
+  if (loading) return <div className="skeleton h-60 w-full" />;
+  if (!data?.me) return <div className="h-60 w-full">Хэрэглэгч олдсонгүй</div>;
 
   return (
     <div className="px-4">
-      {data.me.userAddresses.nodes.length === 0 && <p>Танд хүргэлтийн аяг алга байна</p>}
+      <p className="mb-4 text-2xl font-semibold">Хүргэлтийн хаяг</p>
+      {data.me.userAddresses.nodes.length === 0 && <p>Танд хүргэлтийн хаяг байхгүй байна</p>}
       {data.me && data.me.userAddresses.nodes.length > 0 && (
         <ul className="grid grid-cols-1 gap-3">
           {data.me.userAddresses.nodes.map((node) => (
@@ -42,7 +43,7 @@ function SingleAddress({ node, setSelectedAddress }: SingleAddressProps) {
     },
   });
 
-  if (deleteLoading) return <div>Түр хүлээнэ үү</div>;
+  if (deleteLoading) return <div className="skeleton h-60 w-full" />;
   if (show) return <UpdateAddress setShow={setShow} node={node} />;
 
   return (
@@ -64,7 +65,7 @@ function SingleAddress({ node, setSelectedAddress }: SingleAddressProps) {
       <button onClick={() => setShow(true)} type="button" className="btn btn-info">
         Засварлах
       </button>
-      <button className="btn" onClick={() => modalRef.current?.showModal()}>
+      <button className="btn" type="button" onClick={() => modalRef.current?.showModal()}>
         Устгах
       </button>
       <dialog ref={modalRef} className="modal">
@@ -72,7 +73,9 @@ function SingleAddress({ node, setSelectedAddress }: SingleAddressProps) {
           <p className="py-4">Та хаяг устгахдаа итгэлтэй байна уу?</p>
           <div className="modal-action">
             <form method="dialog">
-              <button className="btn">Болих</button>
+              <button className="btn" type="button">
+                Болих
+              </button>
               <button type="button" className="btn btn-error" onClick={() => destroyAddress({ variables: { input: { id: node.id } } })}>
                 Устгах
               </button>
@@ -92,7 +95,7 @@ function UpdateAddress({ setShow, node }: UpdateAddressProps) {
       setShow(false);
     },
   });
-
+  if (loading) return <div className="skeleton h-60 w-full" />;
   return (
     <div>
       <FieldForm<AddressAttributes>
@@ -146,7 +149,7 @@ function AddAddress() {
       setShow(false);
     },
   });
-
+  if (loading) return <div className="skeleton h-60 w-full" />;
   if (show)
     return (
       <div>
@@ -182,7 +185,7 @@ function AddAddress() {
     );
 
   return (
-    <button className="btn btn-primary w-full" type="button" onClick={() => setShow(true)}>
+    <button className="btn btn-primary mt-8 w-full" type="button" onClick={() => setShow(true)}>
       Хаяг нэмэх
     </button>
   );

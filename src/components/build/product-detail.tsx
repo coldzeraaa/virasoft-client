@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { catchHelper } from 'simple-helper-fns';
@@ -59,7 +60,13 @@ export function ProductDetail() {
                   zIndex: index + 1,
                 }}
               >
-                <img src={imageUrlHelper(product.images[0])} alt={product.name} className="h-full w-full object-contain" />
+                <Image
+                  src={imageUrlHelper(product.images[0])}
+                  alt={product.name}
+                  height={500}
+                  width={400}
+                  className="h-full w-full object-contain"
+                />
               </div>
             ),
         )}
