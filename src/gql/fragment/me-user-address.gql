@@ -1,0 +1,15 @@
+fragment MeUserAddressFields on User {
+  id
+  firstName
+  lastName
+  email
+  mobile
+  nickName
+  createdAt
+  updatedAt
+  userAddresses {
+    nodes {
+      ...UserAddressFields
+    }
+  }
+}

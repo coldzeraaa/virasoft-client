@@ -1,0 +1,13 @@
+mutation createAddress($input: createUserAddressInput!) {
+  createUserAddress(input: $input) {
+    id
+    user {
+      id
+      userAddresses {
+        nodes {
+          ...UserAddressFields
+        }
+      }
+    }
+  }
+}
