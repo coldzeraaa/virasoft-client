@@ -1,0 +1,13 @@
+query mePayments($filter: OrderFilter) {
+  me {
+    orders(filter: $filter) {
+      nodes {
+        payments {
+          paymentMethod {
+            preferences
+          }
+        }
+      }
+    }
+  }
+}
