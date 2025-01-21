@@ -8,12 +8,14 @@ export type PaymentCheckoutMutationVariables = Types.Exact<{
 }>;
 
 
-export type PaymentCheckoutMutation = { __typename?: 'Mutation', paymentCheckout?: any | null };
+export type PaymentCheckoutMutation = { __typename?: 'Mutation', paymentCheckout?: { __typename?: 'Order', id: string } | null };
 
 
 export const PaymentCheckoutDocument = gql`
     mutation paymentCheckout($input: paymentCheckoutInput!) {
-  paymentCheckout(input: $input)
+  paymentCheckout(input: $input) {
+    id
+  }
 }
     `;
 export type PaymentCheckoutMutationFn = Apollo.MutationFunction<PaymentCheckoutMutation, PaymentCheckoutMutationVariables>;

@@ -520,7 +520,7 @@ export type Mutation = {
   destroyVendorUser?: Maybe<VendorUser>;
   destroyWebsite?: Maybe<Website>;
   emptyItem?: Maybe<Order>;
-  paymentCheckout?: Maybe<Scalars['JSON']['output']>;
+  paymentCheckout?: Maybe<Order>;
   removeImageVariant?: Maybe<Variant>;
   removeItem?: Maybe<Order>;
   resetPassword?: Maybe<User>;

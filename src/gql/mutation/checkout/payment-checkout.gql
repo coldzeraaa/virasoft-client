@@ -1,3 +1,5 @@
 mutation paymentCheckout($input: paymentCheckoutInput!) {
-  paymentCheckout(input: $input)
+  paymentCheckout(input: $input) {
+    id
+  }
 }

@@ -21,7 +21,7 @@ export function LineItemsSection() {
   if (!order) return <ErrorResult message="Order not found" />;
 
   return (
-    <ul aria-label="line items" className="divide-y divide-neutral-content">
+    <ul aria-label="line items" className="divide divide-y divide-dashed">
       {order?.items.map((item) => <SingleItem {...item} key={item.id} />)}
     </ul>
   );
@@ -29,14 +29,14 @@ export function LineItemsSection() {
 
 function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQuery['currentOrder']>['items'][0]) {
   return (
-    <li className="flex gap-6">
+    <li className="flex gap-6 py-4">
       <div className="aspect-square h-fit w-24 rounded-lg border bg-base-300">
         <Image
-          src={variant.images[0] ? imageUrlHelper(variant.images[0]) : `https://via.placeholder.com/80?text=-`}
+          src={variant.images[1] ? imageUrlHelper(variant.images[1]) : `https://via.placeholder.com/80?text=-`}
           alt={variant.product.name || 'product'}
           width={96}
           height={96}
-          className="rounded-lg object-contain"
+          className="h-full w-full rounded-lg object-cover"
         />
       </div>
       <div className="flex-1">
@@ -50,7 +50,7 @@ function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQu
         <div className="flex items-center justify-between">
           <UpdateQuantity quantity={quantity} id={id} />
           <div className="grid min-w-32 gap-2">
-            <p aria-label="price" className="heading-4 text-right">
+            <p aria-label="price" className="heading-4 text-right font-semibold">
               {moneyFormatHelper(price)}
             </p>
           </div>
@@ -83,7 +83,7 @@ function UpdateQuantity({ quantity, id }: { quantity: number; id: string }) {
             onUpdate(qty - 1);
           }
         }}
-        className="btn btn-outline join-item btn-xs"
+        className="btn join-item btn-xs"
         type="button"
         disabled={loading || quantity <= 1}
       >
@@ -95,7 +95,7 @@ function UpdateQuantity({ quantity, id }: { quantity: number; id: string }) {
           setQty(qty + 1);
           onUpdate(qty + 1);
         }}
-        className="btn btn-outline join-item btn-xs"
+        className="btn join-item btn-xs"
         type="button"
         disabled={loading}
       >

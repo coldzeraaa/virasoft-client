@@ -15,6 +15,7 @@ export function Header() {
     variables: { filter: { title: { in: ['header', 'footer'] } } },
   });
   const { order, loading: orderLoading } = useCurrentOrder();
+console.log(order);
 
   const router = useRouter();
 

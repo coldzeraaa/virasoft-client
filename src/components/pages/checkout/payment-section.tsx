@@ -66,12 +66,12 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
 
   return (
     <>
-      <p className="t-text-sm mb-2 flex justify-between">
-        <span>Items</span>
-        <span>{order?.items.length}</span>
+      <p className="mb-2 flex justify-between font-semibold">
+        <span>Бүтээгдэхүүний тоо ширхэг</span>
+        <span>{order?.items.length}ш</span>
       </p>
-      <p className="t-text-sm mb-1 flex justify-between">
-        <span>Products</span>
+      <p className="mb-1 flex justify-between font-semibold">
+        <span>Бүтээгдэхүүн</span>
         <span>{moneyFormatHelper(order?.itemTotal || 0)}</span>
       </p>
       <ul className="space-y-1 py-1 pl-4">
@@ -79,19 +79,18 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
           <li key={item.id}>
             <p className="grid grid-cols-[1fr,auto,auto] items-center gap-2">
               <span className="t-text-xs line-clamp-2 truncate">{item.variant.product.name}</span>
-              <span className="t-text-xs h-fit rounded bg-base-300 p-1">x{item.quantity}</span>
+              <span className="t-text-xs h-fit rounded bg-base-300 p-1 px-2">{item.quantity}ш</span>
               <span className="t-text-xs min-w-20 text-right">{moneyFormatHelper(item.price)}</span>
             </p>
           </li>
         ))}
       </ul>
-      <div className="h-px w-full bg-secondary" />
-      <p className="mb-6 flex items-center justify-between py-3">
-        <span className="t-text-base">Total</span>
+      <p className="mb-6 flex items-center justify-between border-t border-dashed py-3 font-bold">
+        <span className="">Нийт</span>
         <span className="heading-4">{moneyFormatHelper(order?.total || 0)}</span>
       </p>
-      <button className="btn btn-primary btn-block" onClick={handleContinue}>
-        <span>Continue</span>
+      <button className="btn btn-secondary btn-block" onClick={handleContinue}>
+        <span>Үргэлжлүүлэх</span>
         <ChevronRightIcon className="w-4" />
       </button>
     </>

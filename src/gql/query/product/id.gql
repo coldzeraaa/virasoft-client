@@ -9,6 +9,7 @@ query product($slug: String!) {
       id
       price
       sku
+      images
     }
     variants {
       nodes {
