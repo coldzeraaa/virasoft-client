@@ -4,7 +4,7 @@ import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
-import { PaymentMethodEnum } from '@/gql/graphql';
+import { PaymentMethodEnum } from '@/gql/graphql.d';
 import { useUpdateCheckoutAddressMutation } from '@/gql/mutation/address/update-checkout-address.generated';
 import { usePaymentCheckoutMutation } from '@/gql/mutation/checkout/payment-checkout.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
@@ -28,6 +28,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
     onError: catchHelper,
     onCompleted: () => {
       toast.success('Захиалга амжилттай үүслээ');
+      router.push('/account/payment');
     },
   });
 
