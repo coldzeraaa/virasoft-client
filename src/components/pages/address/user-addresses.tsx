@@ -10,18 +10,6 @@ import { useUpdateUserAddressMutation } from '@/gql/mutation/address/update-addr
 import { type MeUserAddressQuery, useMeUserAddressQuery } from '@/gql/query/user/me-user-address.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
-type UserAddressNode = NonNullable<MeUserAddressQuery['me']>['userAddresses']['edges'][0]['node'];
-type AddressAttributes = {
-  addressAttributes: {
-    address1: string;
-    addressAlias: string;
-    location: {
-      lat: number;
-      lng: number;
-    };
-  };
-};
-
 export default function UserAddresses({ setSelectedAddress }: { setSelectedAddress: (address: string | null) => void }) {
   const { data, loading } = useMeUserAddressQuery();
 
@@ -30,124 +18,32 @@ export default function UserAddresses({ setSelectedAddress }: { setSelectedAddre
 
   return (
     <div className="px-4">
-      {data.me.userAddresses.edges.length === 0 && <p>Танд хүргэлтийн аяг алга байна</p>}
-      {data.me && data.me.userAddresses.edges.length > 0 && (
+      {data.me.userAddresses.nodes.length === 0 && <p>Танд хүргэлтийн аяг алга байна</p>}
+      {data.me && data.me.userAddresses.nodes.length > 0 && (
         <ul className="grid grid-cols-1 gap-3">
-          {data.me.userAddresses.edges.map(({ node }) => (
+          {data.me.userAddresses.nodes.map((node) => (
             <SingleAddress node={node} key={node.id} user={data.me!} setSelectedAddress={setSelectedAddress} />
           ))}
         </ul>
       )}
-      <AddAddress user={data.me} />
+      <AddAddress />
     </div>
   );
 }
 
-function SingleAddress({
-  node,
-  user,
-  setSelectedAddress,
-}: {
-  node: UserAddressNode;
-  user: NonNullable<MeUserAddressQuery['me']>;
-  setSelectedAddress: (address: string | null) => void;
-}) {
+function SingleAddress({ node, setSelectedAddress }: SingleAddressProps) {
   const [show, setShow] = useState<boolean>(false);
   const modalRef = useRef<HTMLDialogElement>(null);
-  const [updateAddress, { loading }] = useUpdateUserAddressMutation({
-    onError: catchHelper,
-    onCompleted: () => {
-      toast.success('Хаяг амжилттай шинэчлэгдлээ');
-      setShow(false);
-    },
-    update: (cache, { data: TData }) => {
-      if (!TData?.updateUserAddress) return;
-
-      cache.modify({
-        id: cache.identify(node),
-        fields: {
-          address: () => ({
-            ...node.address,
-            addressAlias: TData?.updateUserAddress?.address.addressAlias,
-            address1: TData?.updateUserAddress?.address.address1,
-            latitude: TData?.updateUserAddress?.address.latitude,
-            longitude: TData?.updateUserAddress?.address.longitude,
-          }),
-        },
-      });
-    },
-  });
   const [destroyAddress, { loading: deleteLoading }] = useDestroyUserAddressMutation({
     onError: catchHelper,
-    onCompleted: () => {
+    onCompleted() {
       toast.success('Хаяг амжилттай устлаа');
-    },
-    update: (cache, { data: TData }) => {
-      if (!TData?.destroyUserAddress) return;
-
-      const cacheId = cache.identify(user);
-
-      cache.modify({
-        id: cacheId,
-        fields: {
-          userAddresses(existing = { edges: [] }, { readField }) {
-            return {
-              ...existing,
-              edges: existing.edges.filter((edge: { node: UserAddressNode }) => {
-                const nodeId = readField('id', edge.node);
-                return nodeId !== node.id;
-              }),
-            };
-          },
-        },
-      });
+      modalRef.current?.close();
     },
   });
 
   if (deleteLoading) return <div>Түр хүлээнэ үү</div>;
-  if (show)
-    return (
-      <div>
-        <FieldForm<AddressAttributes>
-          initialValues={{
-            addressAttributes: {
-              ...node.address,
-              location: {
-                lat: parseFloat(node.address.latitude || '0'),
-                lng: parseFloat(node.address.longitude || '0'),
-              },
-            },
-          }}
-          onFinishFailed={catchHelper}
-          onFinish={(values) =>
-            updateAddress({
-              variables: {
-                input: {
-                  id: node.id,
-                  addressAttributes: {
-                    address1: values.addressAttributes.address1,
-                    addressAlias: values.addressAttributes.addressAlias,
-                    longitude: `${values.addressAttributes.location.lng}`,
-                    latitude: `${values.addressAttributes.location.lat}`,
-                  },
-                },
-              },
-            })
-          }
-        >
-          {addressInputs.map((input, idx) => (
-            <FormInput key={idx} {...input} />
-          ))}
-          <button disabled={loading} className="btn btn-primary" type="submit">
-            {loading && <div className="loading" />}
-            Хадгалах
-          </button>
-          <button onClick={() => setShow(false)} type="button" className="btn">
-            Буцах
-          </button>
-        </FieldForm>
-      </div>
-    );
+  if (show) return <UpdateAddress setShow={setShow} node={node} />;
 
   return (
     <li className="flex gap-2">
@@ -177,18 +73,7 @@ function SingleAddress({
           <div className="modal-action">
             <form method="dialog">
               <button className="btn">Болих</button>
-              <button
-                type="button"
-                className="btn btn-error"
-                onClick={() => {
-                  destroyAddress({
-                    variables: {
-                      input: { id: node.id },
-                    },
-                  });
-                  modalRef.current?.close();
-                }}
-              >
+              <button type="button" className="btn btn-error" onClick={() => destroyAddress({ variables: { input: { id: node.id } } })}>
                 Устгах
               </button>
             </form>
@@ -199,27 +84,66 @@ function SingleAddress({
   );
 }
 
-function AddAddress({ user }: { user: NonNullable<MeUserAddressQuery['me']> }) {
+function UpdateAddress({ setShow, node }: UpdateAddressProps) {
+  const [updateAddress, { loading }] = useUpdateUserAddressMutation({
+    onError: catchHelper,
+    onCompleted: () => {
+      toast.success('Хаяг амжилттай шинэчлэгдлээ');
+      setShow(false);
+    },
+  });
+
+  return (
+    <div>
+      <FieldForm<AddressAttributes>
+        initialValues={{
+          addressAttributes: {
+            ...node.address,
+            location: {
+              lat: parseFloat(node.address.latitude || '0'),
+              lng: parseFloat(node.address.longitude || '0'),
+            },
+          },
+        }}
+        onFinishFailed={catchHelper}
+        onFinish={(values) =>
+          updateAddress({
+            variables: {
+              input: {
+                id: node.id,
+                addressAttributes: {
+                  address1: values.addressAttributes.address1,
+                  addressAlias: values.addressAttributes.addressAlias,
+                  longitude: `${values.addressAttributes.location.lng}`,
+                  latitude: `${values.addressAttributes.location.lat}`,
+                },
+              },
+            },
+          })
+        }
+      >
+        {addressInputs.map((input, idx) => (
+          <FormInput key={idx} {...input} />
+        ))}
+        <button disabled={loading} className="btn btn-primary" type="submit">
+          {loading && <div className="loading" />}
+          Хадгалах
+        </button>
+        <button onClick={() => setShow(false)} type="button" className="btn">
+          Буцах
+        </button>
+      </FieldForm>
+    </div>
+  );
+}
+
+function AddAddress() {
   const [show, setShow] = useState<boolean>(false);
   const [createAddress, { loading }] = useCreateAddressMutation({
     onError: catchHelper,
     onCompleted: () => {
       toast.success('Хаяг амжилттай үүслээ');
       setShow(false);
-    },
-    update: (cache, { data: TData }) => {
-      if (!TData?.createUserAddress) return;
-
-      cache.modify({
-        id: cache.identify(user),
-        fields: {
-          userAddresses(existingRefs = { edges: [] }) {
-            return {
-              edges: [{ node: TData?.createUserAddress?.id }, ...existingRefs.edges],
-            };
-          },
-        },
-      });
     },
   });
 
@@ -258,11 +182,9 @@ function AddAddress({ user }: { user: NonNullable<MeUserAddressQuery['me']> }) {
     );
 
   return (
-    show && (
-      <button className="btn btn-primary w-full" type="button" onClick={() => setShow(true)}>
-        Хаяг нэмэх
-      </button>
-    )
+    <button className="btn btn-primary w-full" type="button" onClick={() => setShow(true)}>
+      Хаяг нэмэх
+    </button>
   );
 }
 
@@ -286,3 +208,24 @@ const addressInputs: FormInputProps[] = [
     input: { type: 'custom', component: MapInput },
   },
 ];
+
+interface SingleAddressProps {
+  node: UserAddressNode;
+  user: NonNullable<MeUserAddressQuery['me']>;
+  setSelectedAddress: (address: string | null) => void;
+}
+interface UpdateAddressProps {
+  setShow(val: boolean): void;
+  node: SingleAddressProps['node'];
+}
+type UserAddressNode = NonNullable<MeUserAddressQuery['me']>['userAddresses']['nodes'][0];
+type AddressAttributes = {
+  addressAttributes: {
+    address1: string;
+    addressAlias: string;
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+};

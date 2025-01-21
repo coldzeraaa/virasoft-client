@@ -7,18 +7,4 @@ fragment UserFields on User {
   nickName
   createdAt
   updatedAt
-  userAddresses {
-    edges {
-      node {
-        address {
-          address1
-          address2
-          addressAlias
-          id
-          longitude
-          latitude
-        }
-      }
-    }
-  }
 }

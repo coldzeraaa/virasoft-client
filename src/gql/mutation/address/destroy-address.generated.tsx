@@ -1,7 +1,7 @@
 import * as Types from '../../graphql.d';
 
 import { gql } from '@apollo/client';
-import { AddressFieldsFragmentDoc } from '../../fragment/address.generated';
+import { UserAddressFieldsFragmentDoc } from '../../fragment/user-address.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type DestroyUserAddressMutationVariables = Types.Exact<{
@@ -9,16 +9,24 @@ export type DestroyUserAddressMutationVariables = Types.Exact<{
 }>;
 
 
-export type DestroyUserAddressMutation = { __typename?: 'Mutation', destroyUserAddress?: { __typename?: 'UserAddress', address: { __typename?: 'Address', address1: string, address2: string, addressAlias?: string | null, latitude?: string | null, longitude?: string | null } } | null };
+export type DestroyUserAddressMutation = { __typename?: 'Mutation', destroyUserAddress?: { __typename?: 'UserAddress', id: string, user: { __typename?: 'User', id: string, userAddresses: { __typename?: 'UserAddressConnection', nodes: Array<{ __typename?: 'UserAddress', id: string, user: { __typename?: 'User', id: string }, address: { __typename?: 'Address', id: string, address1: string, address2: string, addressAlias?: string | null, longitude?: string | null, latitude?: string | null } }> } } } | null };
 
 
 export const DestroyUserAddressDocument = gql`
     mutation destroyUserAddress($input: destroyUserAddressInput!) {
   destroyUserAddress(input: $input) {
-    ...AddressFields
+    id
+    user {
+      id
+      userAddresses {
+        nodes {
+          ...UserAddressFields
+        }
+      }
+    }
   }
 }
-    ${AddressFieldsFragmentDoc}`;
+    ${UserAddressFieldsFragmentDoc}`;
 export type DestroyUserAddressMutationFn = Apollo.MutationFunction<DestroyUserAddressMutation, DestroyUserAddressMutationVariables>;
 
 /**

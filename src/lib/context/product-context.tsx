@@ -15,6 +15,7 @@ export const ProductPageContext = createContext<ProductPageContextProps>({
       id: '',
       price: 0,
       sku: '',
+      images: [],
     },
   },
   variant: undefined,

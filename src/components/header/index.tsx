@@ -1,4 +1,5 @@
 'use client';
+
 import { Bell, Heart, Search, ShoppingCart, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,13 +10,13 @@ import { ThemeToggleButton } from './theme-toggle-button';
 import { useHeaderFooterQuery } from '@/gql/query/menu/header-footer.generated';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
+
 export function Header() {
   const { data: userData, loading } = useMeQuery();
   const { data: menuData } = useHeaderFooterQuery({
     variables: { filter: { title: { in: ['header', 'footer'] } } },
   });
   const { order, loading: orderLoading } = useCurrentOrder();
-console.log(order);
 
   const router = useRouter();
 

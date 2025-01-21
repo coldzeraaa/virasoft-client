@@ -1251,6 +1251,7 @@ export type Query = {
   menus: MenuConnection;
   merchant?: Maybe<Merchant>;
   merchants: MerchantConnection;
+  myOrder?: Maybe<Order>;
   noticedNotifications: NotificationConnection;
   optionType?: Maybe<OptionType>;
   optionTypes: OptionTypeConnection;
@@ -1370,6 +1371,11 @@ export type QueryMerchantsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<SortFilter>;
+};
+
+
+export type QueryMyOrderArgs = {
+  number: Scalars['String']['input'];
 };
 
 

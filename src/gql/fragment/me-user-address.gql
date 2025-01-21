@@ -8,10 +8,8 @@ fragment MeUserAddressFields on User {
   createdAt
   updatedAt
   userAddresses {
-    edges {
-      node {
-        ...UserAddressFields
-      }
+    nodes {
+      ...UserAddressFields
     }
   }
 }
