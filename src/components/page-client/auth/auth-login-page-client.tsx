@@ -8,7 +8,6 @@ import { BtnLoader, FieldForm, FormInput } from 'field-form';
 import cookies from 'js-cookie';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
 import AnimateHeight from 'react-animate-height';
 import { toast } from 'react-toastify';
 import { catchHelper } from 'simple-helper-fns';
@@ -24,7 +23,6 @@ export function AuthLoginPageClient() {
   const [authCheckLogin, { loading: loadingAuth }] = useAuthCheckLoginMutation();
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
-  const router = useRouter();
   const { loginWithRouter } = useAuth();
 
   return (

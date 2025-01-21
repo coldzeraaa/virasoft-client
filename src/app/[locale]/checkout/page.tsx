@@ -4,17 +4,17 @@ import { PaymentSection } from '@/components/pages/checkout/payment-section';
 export default function Page() {
   return (
     <div className="grid py-8">
-      <div className="container grid h-full grid-cols-12 gap-14 overflow-hidden">
-        <main className="col-span-6 h-full overflow-auto md:col-span-7 xl:col-span-8">
+      <div className="container grid h-full max-w-7xl grid-cols-1 grid-rows-1 gap-14 overflow-hidden md:grid-cols-2">
+        <main className="col-span-1 h-full overflow-auto">
           <h1 className="sr-only">Checkout</h1>
-          <section aria-label="items" className="">
-            <h1 className="mb-4 text-2xl font-semibold">My cart</h1>
+          <section aria-label="items">
+            <h1 className="mb-4 text-2xl font-semibold">Миний сагс</h1>
             <LineItemsSection />
           </section>
         </main>
-        <aside aria-label="payment info and action" className="col-span-4 md:col-span-5 xl:col-span-4">
-          <h2 className="mb-4 text-2xl font-semibold">Payment info</h2>
-          <div className="rounded-lg border border-neutral-content p-4">
+        <aside aria-label="payment info and action" className="col-span-1">
+          <h2 className="mb-4 text-2xl font-semibold">Төлбөрийн мэдээлэл</h2>
+          <div className="rounded-xl bg-base-200 p-8">
             <PaymentSection />
           </div>
         </aside>

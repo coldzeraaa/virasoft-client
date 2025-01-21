@@ -22,7 +22,7 @@ export default function ProductSlugPage({ params }: ProductSlugPageProps) {
           <main className="container py-10">
             <div aria-label="base info section" className="mb-6 grid gap-14 md:grid-cols-12">
               <div aria-label="images, descriptions sections" className="grid gap-6 md:col-span-8">
-                <ImageSectionProduct images={data.product.images} alt={data.product.name} />
+                <ImageSectionProduct images={data.product.master.images} alt={data.product.name} />
                 {data.product.description && (
                   <section className="w-full overflow-auto" aria-label="description">
                     <div className="pl-4" dangerouslySetInnerHTML={{ __html: data.product.description }} />

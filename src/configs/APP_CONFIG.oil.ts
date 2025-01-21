@@ -4,11 +4,11 @@ export const APP_CONFIG: AppConfigType = {
   locale: 'mn',
   locales: ['en'],
   sourceLocale: 'en',
-  appIndex: 'virasoft',
+  appIndex: 'oil',
 
   tokens: {
-    uid: 'virasoft',
-    secret: 'Jt18B9M6m0UKpF94T8RKjMVI4dqgjfmBskKv1E462R0rS1FWWS',
+    uid: 'oil',
+    secret: '6mtLdZ6izdyI6ZPni9zK',
   },
   map: {
     defaultCenter: { lat: 47.918, lng: 106.917 },
@@ -19,13 +19,13 @@ export const APP_CONFIG: AppConfigType = {
   metadataBase: {
     title: 'Virasoft',
     description: 'Welcome to Virasoft',
-    metadataBase: new URL('https://virasoft.mn'),
+    metadataBase: new URL('https://goldenoil.mn'),
     icons: { icon: { url: `/public/virasoft/favicon.ico` } },
     openGraph: {
       images: `/public/virasoft/share.webp`,
       type: 'website',
       locale: 'mn',
-      siteName: 'https://virasoft.mn',
+      siteName: 'https://goldenoil.mn',
     },
   },
 };

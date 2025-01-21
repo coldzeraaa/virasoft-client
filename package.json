@@ -4,12 +4,21 @@
   "private": true,
   "scripts": {
     "clean:cache": "rm -rf .next/cache",
+
     "dev:virasoft:prod": "npm run clean:cache &&  APP_INDEX=virasoft next dev -p 3202",
     "dev:virasoft:windows:prod": "npm run clean:cache && cross-env APP_INDEX=virasoft next dev -p 3202",
     "dev:virasoft:local": "npm run clean:cache && STAGE=local APP_INDEX=virasoft next dev -p 3203",
     "dev:virasoft:docker": "npm run clean:cache && STAGE=docker APP_INDEX=virasoft next dev -p 3204",
     "build:virasoft": "APP_INDEX=virasoft next build",
     "build:virasoft:windows": "cross-env APP_INDEX=virasoft next build",
+
+    "dev:oil:prod": "npm run clean:cache &&  APP_INDEX=oil next dev -p 3212",
+    "dev:oil:windows:prod": "npm run clean:cache && cross-env APP_INDEX=oil next dev -p 3212",
+    "dev:oil:local": "npm run clean:cache && STAGE=local APP_INDEX=oil next dev -p 3213",
+    "dev:oil:docker": "npm run clean:cache && STAGE=docker APP_INDEX=oil next dev -p 3214",
+    "build:oil": "APP_INDEX=oil next build",
+    "build:oil:windows": "cross-env APP_INDEX=oil next build",
+
     "start": "next start",
     "codegen": "graphql-codegen --config codegen.yml",
     "codegen:docker": "graphql-codegen --config codegen.docker.yml",
@@ -18,6 +27,7 @@
   "dependencies": {
     "@apollo/experimental-nextjs-app-support": "^0.11.7",
     "@heroicons/react": "^2.1.1",
+    "@react-google-maps/api": "^2.20.5",
     "@searchkit/api": "^4.13.0",
     "@searchkit/instantsearch-client": "^4.14.1",
     "apollo-upload-client": "^18.0.1",
