@@ -3,15 +3,10 @@ import PaymentCard from '@/components/user-dashboard/orders/payment/bank/bank-ca
 import { useMyOrderQuery } from '@/gql/query/user/my-order.generated';
 
 export default function PaymentPage({ params }: { params: { number: string } }): JSX.Element {
-  const {
-    data,
-    loading: meLoading,
-    error,
-  } = useMyOrderQuery({
+  const { data } = useMyOrderQuery({
     variables: { number: params.number },
   });
 
-  console.log(data);
   const bankList = data?.myOrder?.payments[0].source.bank_list;
   return (
     <div>

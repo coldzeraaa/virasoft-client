@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const UserProfile = ({ data }: UserData) => (
+const UserProfilePage = ({ data }: UserData) => (
   <div className="flex w-fit flex-col gap-4 rounded-md px-4 py-4 shadow-md">
     <div className="flex w-full flex-col justify-center ">
       <div className="avatar flex items-center justify-center ">
@@ -20,8 +20,12 @@ const UserProfile = ({ data }: UserData) => (
       <p className="text-center text-neutral">Мэдээлэл засах</p>
     </div>
     <div className="flex gap-2">
-      <button className="btn text-neutral">Устгах</button>
-      <button className="btn text-neutral">Зурагаа өөрчлөх</button>
+      <button type="button" className="btn text-neutral">
+        Устгах
+      </button>
+      <button type="button" className="btn text-neutral">
+        Зурагаа өөрчлөх
+      </button>
     </div>
   </div>
 );
@@ -31,4 +35,4 @@ interface UserData {
   profileimg?: string;
 }
 
-export default UserProfile;
+export default UserProfilePage;

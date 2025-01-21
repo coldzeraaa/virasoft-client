@@ -13,7 +13,9 @@ const OrderInfo = ({ data }) => {
       <hr />
       <div className="text-lg">Захиалан барааны тоо : {data?.myOrder?.itemCount} бараа</div>
       <div className="flex justify-around ">
-        <button className="btn">Захиалга цуцлах</button>
+        <button type="button" className="btn">
+          Захиалга цуцлах
+        </button>
         <div>
           <button
             type="button"
