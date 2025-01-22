@@ -1,39 +1,33 @@
-// 'use client';
+'use client';
+import { FormInput } from 'field-form';
 import Form, { Field } from 'rc-field-form';
 
-import { CustomInput } from '@/components/common/input';
-
-const Info = () => (
-  // const { data, loading: meLoading } = useMeQuery();
-  //   if (userDataLoading) {
-  //     return <span className="loading loading-dots loading-lg"></span>;
-  //   }
-  //   const user = data?.me; // Assuming `me` contains user information
-  // if (meLoading) {
-  //   return (
-  //     <div className="flex h-full items-center justify-center">
-  //       <span className="loading loading-dots loading-lg"></span>
-  //     </div>
-  //   );
-  // }
-  <Form
-    className="flex gap-6"
-    data={data}
-    onFinish={(values) => {
-      console.log(values);
-    }}
-  >
-    <Field name="firstName">
-      <CustomInput value="" placeholder="Firstname"></CustomInput>
+export function Info() {
+  <Form className="flex gap-6">
+    <Field>
+      <FormInput label="firstName" name="firstName" />
     </Field>
     <Field name="lastName">
-      <CustomInput value="" placeholder="Lastname" type="password"></CustomInput>
+      <FormInput label="Lastname" name="lastName" />
     </Field>
 
     <button className="btn btn-primary" type="submit">
       {' '}
       submit
     </button>
-  </Form>
-);
+  </Form>;
+}
 export default Info;
+
+// const { data, loading: meLoading } = useMeQuery();
+//   if (userDataLoading) {
+//     return <span className="loading loading-dots loading-lg"></span>;
+//   }
+//   const user = data?.me; // Assuming `me` contains user information
+// if (meLoading) {
+//   return (
+//     <div className="flex h-full items-center justify-center">
+//       <span className="loading loading-dots loading-lg"></span>
+//     </div>
+//   );
+// }

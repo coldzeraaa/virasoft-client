@@ -1,25 +1,12 @@
 // 'use client';
+import { FormInput } from 'field-form';
 import Form, { Field } from 'rc-field-form';
 
-import { CustomInput } from '@/components/common/input';
-
 export default function Info() {
-  // const { data, laoding: meLoading } = useMeQuery();
-  //   if (userDataLoading) {
-  //     return <span className="loading loading-dots loading-lg"></span>;
-  //   }
-  //   const user = data?.me; // Assuming `me` contains user information
-  // if (meLoading) {
-  //   return (
-  //     <div className="flex h-full items-center justify-center">
-  //       <span className="loading loading-dots loading-lg"></span>
-  //     </div>
-  //   );
-  // }
   return (
-    <Form className="flex  gap-6" onFinish={(values) => {}}>
-      <Field name="email">
-        <CustomInput value="" placeholder="email"></CustomInput>
+    <Form className="flex  gap-6">
+      <Field>
+        <FormInput label="edmail" name="email" />
       </Field>
 
       <button className="btn btn-primary" type="submit">
@@ -29,3 +16,16 @@ export default function Info() {
     </Form>
   );
 }
+
+// const { data, laoding: meLoading } = useMeQuery();
+//   if (userDataLoading) {
+//     return <span className="loading loading-dots loading-lg"></span>;
+//   }
+//   const user = data?.me; // Assuming `me` contains user information
+// if (meLoading) {
+//   return (
+//     <div className="flex h-full items-center justify-center">
+//       <span className="loading loading-dots loading-lg"></span>
+//     </div>
+//   );
+// }

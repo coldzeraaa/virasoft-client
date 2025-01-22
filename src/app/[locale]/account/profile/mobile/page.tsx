@@ -1,19 +1,15 @@
 'use client';
 
+import { FormInput } from 'field-form';
 import Form, { Field } from 'rc-field-form';
 import { toast } from 'react-toastify';
 
-import { CustomInput } from '@/components/common/input';
 import { useSendOtpMutation } from '@/gql/mutation/user/auth-sendOtp.generated';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
-const Mobile = () => {
+export default function Mobile() {
   const { data, loading: userDataLoading } = useMeQuery();
-  //   if (userDataLoading) {
-  //     return <span className="loading loading-dots loading-lg"></span>;
-  //   }
-  //   const user = data?.me; // Assuming `me` contains user information
 
   const [sendOtp, { loading: sentOtpLoading }] = useSendOtpMutation({
     onError: catchHelper,
@@ -40,7 +36,7 @@ const Mobile = () => {
     >
       <div className="container flex flex-col items-center justify-center gap-6 ">
         <Field name="mobile">
-          <CustomInput value={data?.me?.mobile || ''} placeholder="Phone number"></CustomInput>
+          <FormInput label="Утас" name="mobile" />
         </Field>
 
         <button disabled={sentOtpLoading} className="btn btn-primary w-fit" type="submit">
@@ -49,5 +45,4 @@ const Mobile = () => {
       </div>
     </Form>
   );
-};
-export default Mobile;
+}

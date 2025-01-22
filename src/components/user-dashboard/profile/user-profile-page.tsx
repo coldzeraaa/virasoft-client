@@ -7,7 +7,7 @@ import { useMeQuery } from '@/gql/query/user/me.generated';
 
 const UserDetailPage = () => {
   const { data, loading: meLoading } = useMeQuery();
-  const user = '';
+
   if (meLoading) {
     return (
       <div className="flex h-full items-center justify-center">
@@ -15,12 +15,11 @@ const UserDetailPage = () => {
       </div>
     );
   }
-  console.log(data);
 
   return (
     <div>
       <div className="flex gap-6">
-        <UserProfile data={data} />
+        <UserProfile me={data} />
         <div className="flex gap-4">
           {detailsCardData.map((element, i) => (
             <UserDetailCard key={i} text={element.text} icon={element.icon} value={element.value} link={element.link} />

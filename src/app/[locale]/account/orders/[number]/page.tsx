@@ -1,17 +1,11 @@
-// Replace with the actual import
 'use client';
 
-import OrderInfo from '@/components/user-dashboard/orders/order-info';
-import ProductPaymentSec from '@/components/user-dashboard/orders/product-sec';
-import UserAddressDetail from '@/components/user-dashboard/orders/user-address-detail';
+import { OrderInfo } from '@/components/page-client/account/[number]/order-info';
+import { ProductPaymentSec } from '@/components/page-client/account/[number]/product-sec';
 import { useMyOrderQuery } from '@/gql/query/user/my-order.generated';
 
 export default function AccountOrdersNumberPage({ params }: { params: { number: string } }) {
-  const {
-    data,
-    loading: meLoading,
-    error,
-  } = useMyOrderQuery({
+  const { data, loading: meLoading } = useMyOrderQuery({
     variables: { number: params.number },
   });
 
@@ -25,9 +19,8 @@ export default function AccountOrdersNumberPage({ params }: { params: { number: 
 
   return (
     <div className="w-full">
-      <OrderInfo data={data}></OrderInfo>
-      <ProductPaymentSec data={data}></ProductPaymentSec>
-      <UserAddressDetail data={data}></UserAddressDetail>
+      <OrderInfo data={data?.myOrder}></OrderInfo>
+      <ProductPaymentSec myOrder={data?.myOrder}></ProductPaymentSec>
     </div>
   );
 }
