@@ -1,5 +1,3 @@
-'use client';
-
 import AuthRegisterClient from '@/components/page-client/auth/auth-register-client';
 
 export default function AuthRegister() {

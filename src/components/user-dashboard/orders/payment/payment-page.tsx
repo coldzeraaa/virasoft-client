@@ -8,10 +8,11 @@ export default function PaymentPage({ params }: { params: { number: string } }):
   });
 
   const bankList = data?.myOrder?.payments[0].source.bank_list;
+
   return (
     <div>
       <h1 className="text-2xl">Төлбөрийн төрөл</h1>
-      <div className="flex flex-wrap gap-6 py-3 ">{bankList?.map((element, idx) => <PaymentCard key={idx} data={element} />)}</div>
+      <div className="flex flex-wrap gap-6 py-3 ">{bankList?.map((element, idx) => <PaymentCard key={idx} bankList={element} />)}</div>
       <hr />
       <div className="text-2xl">Хувааж төлөх нөхцөл</div>
       <div>
