@@ -5,11 +5,11 @@ import { ProductPaymentSec } from '@/components/page-client/account/[number]/pro
 import { useMyOrderQuery } from '@/gql/query/user/my-order.generated';
 
 export default function AccountOrdersNumberPage({ params }: { params: { number: string } }) {
-  const { data, loading: meLoading } = useMyOrderQuery({
+  const { data, loading: loading } = useMyOrderQuery({
     variables: { number: params.number },
   });
 
-  if (meLoading) {
+  if (loading) {
     return (
       <div className="flex h-full items-center justify-center">
         <span className="loading loading-dots loading-lg"></span>
@@ -19,7 +19,7 @@ export default function AccountOrdersNumberPage({ params }: { params: { number: 
 
   return (
     <div className="w-full">
-      <OrderInfo data={data?.myOrder}></OrderInfo>
+      <OrderInfo myOrder={data?.myOrder}></OrderInfo>
       <ProductPaymentSec myOrder={data?.myOrder}></ProductPaymentSec>
     </div>
   );

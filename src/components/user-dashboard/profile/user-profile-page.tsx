@@ -6,9 +6,9 @@ import UserProfile from '@/components/user-dashboard/profile/user-profileSec';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 
 const UserDetailPage = () => {
-  const { data, loading: meLoading } = useMeQuery();
+  const { data, loading: loading } = useMeQuery();
 
-  if (meLoading) {
+  if (loading) {
     return (
       <div className="flex h-full items-center justify-center">
         <span className="loading loading-dots loading-lg"></span>

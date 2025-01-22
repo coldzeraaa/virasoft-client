@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 const UserDetailCard = (props: CardDataType) => (
   <Link href={props.link} className="flex h-fit  items-center  justify-start gap-1 gap-4 rounded-md px-4  py-4 shadow-lg    ">
-    <div className="text-neutral">{props.icon}</div>
+    <div className="text-base">{props.icon}</div>
     <div className="flex flex-col justify-center">
-      <h1 className="text-neutral">{props.text}</h1>
-      <p className="text-neutral">{props.value}</p>
+      <h1 className="text-base">{props.text}</h1>
+      <p className="text-base">{props.value}</p>
     </div>
   </Link>
 );

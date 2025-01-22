@@ -7,10 +7,10 @@ import { useMeOrdersQuery } from '@/gql/query/user/me-orders.generated';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 
 export default function Orders() {
-  const { data, loading: userDataLoading } = useMeOrdersQuery();
+  const { data, loading: loading } = useMeOrdersQuery();
   const userOrderNodes = data?.me?.orders?.nodes;
 
-  if (userDataLoading) {
+  if (loading) {
     return (
       <div className="flex h-full items-center justify-center">
         <span className="loading loading-dots loading-lg"></span>
@@ -37,10 +37,12 @@ export default function Orders() {
             <tr key={data.number || data.id} className="px-2 py-4">
               <td>{idx + 1}</td>
               <td>{data.number}</td>
-              <td className="flex gap-4">
+              <td className=" ">
                 {data.items.map((item, i) => (
-                  <div className="" key={i}>
-                    {item.variant.product.name}-{item.quantity} ширхэг
+                  <div className="flex gap-4" key={i}>
+                    <div>
+                      {item.variant.product.name}-{item.quantity} ширхэг
+                    </div>
                   </div>
                 ))}
               </td>

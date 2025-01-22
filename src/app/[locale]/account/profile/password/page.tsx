@@ -15,8 +15,7 @@ export default function Info() {
     </Field>
 
     <button className="btn btn-primary" type="submit">
-      {' '}
-      submit
+      Шинэчлэх
     </button>
   </Form>;
 }
