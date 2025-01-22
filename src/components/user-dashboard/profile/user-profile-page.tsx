@@ -19,7 +19,7 @@ const UserDetailPage = () => {
   return (
     <div>
       <div className="flex gap-6">
-        <UserProfile me={data} />
+        <UserProfile me={data?.me} />
         <div className="flex gap-4">
           {detailsCardData.map((element, i) => (
             <UserDetailCard key={i} text={element.text} icon={element.icon} value={element.value} link={element.link} />

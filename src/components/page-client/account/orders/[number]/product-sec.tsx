@@ -1,4 +1,6 @@
-export function ProductPaymentSec({ myOrder }: NonNullable<myOrder>) {
+import { MyOrderQuery } from '@/gql/query/user/my-order.generated';
+
+export function ProductPaymentSec({ myOrder }: { myOrder: MyOrderQuery['myOrder'] }) {
   return (
     <div className="w-full rounded-2xl shadow-lg hover:shadow-xl">
       <div className="flex w-full justify-between px-4 py-6">

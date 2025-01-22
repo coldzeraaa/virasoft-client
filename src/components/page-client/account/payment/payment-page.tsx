@@ -13,7 +13,7 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
   return (
     <div>
       <h1 className="text-2xl">Төлбөрийн төрөл</h1>
-      <div className="flex flex-wrap gap-6 py-3 ">{bankList?.map((element, idx) => <PaymentCard key={idx} bankList={element} />)}</div>
+      <div className="flex flex-wrap gap-6 py-3 ">{bankList?.map((el: TBank, idx: number) => <PaymentCard key={idx} bankList={el} />)}</div>
       <hr />
       <div className="text-2xl">Хувааж төлөх нөхцөл</div>
       <div>
@@ -27,4 +27,10 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
       </div>
     </div>
   );
+}
+interface TBank {
+  description: string;
+  link: string;
+  logo: string;
+  name: string;
 }

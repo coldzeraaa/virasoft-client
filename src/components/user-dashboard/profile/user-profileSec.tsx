@@ -1,6 +1,8 @@
 import Image from 'next/image';
 
-const UserProfilePage = ({ me }) => (
+import { MeQuery } from '@/gql/query/user/me.generated';
+
+const UserProfilePage = ({ me }: { me: MeQuery['me'] }) => (
   <div className="flex w-fit flex-col gap-4 rounded-md px-4 py-4 shadow-md">
     <div className="flex w-full flex-col justify-center  gap-2">
       <div className="avatar flex items-center justify-center ">

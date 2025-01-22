@@ -1,6 +1,8 @@
 import Link from 'next/link';
 
-export function OrderInfo({ myOrder }: NonNullable<myOrder>) {
+import { MyOrderQuery } from '@/gql/query/user/my-order.generated';
+
+export function OrderInfo({ myOrder }: { myOrder: MyOrderQuery['myOrder'] }) {
   return (
     <div className="flex flex-col gap-6 rounded-2xl px-6 py-4 shadow-lg">
       <div className="flex items-center justify-between">

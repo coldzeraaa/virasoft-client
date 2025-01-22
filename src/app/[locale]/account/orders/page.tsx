@@ -33,12 +33,12 @@ export default function Orders() {
           </tr>
         </thead>
         <tbody>
-          {userOrderNodes?.map((data, idx) => (
-            <tr key={data.number || data.id} className="px-2 py-4">
+          {userOrderNodes?.map((order, idx: number) => (
+            <tr key={order.number || order.id} className="px-2 py-4">
               <td>{idx + 1}</td>
-              <td>{data.number}</td>
+              <td>{order.number}</td>
               <td className=" ">
-                {data.items.map((item, i) => (
+                {order.items.map((item, i: number) => (
                   <div className="flex gap-4" key={i}>
                     <div>
                       {item.variant.product.name}-{item.quantity} ширхэг
@@ -48,13 +48,13 @@ export default function Orders() {
               </td>
               <td>
                 <div className="flex h-[50px] w-[50px] items-center justify-center rounded-full border-[1px] border-solid border-gray-400 px-1 py-1">
-                  <Image width={500} height={500} src={imageUrlHelper(data.items[0].variant.images[1])} alt="" />
+                  <Image width={500} height={500} src={imageUrlHelper(order.items[0].variant.images[1])} alt="" />
                 </div>
               </td>
-              <td>{new Date(data.createdAt).toLocaleString()}</td>
-              <td>{data.total}₮</td>
+              <td>{new Date(order.createdAt).toLocaleString()}</td>
+              <td>{order.total}₮</td>
               <td>
-                <Link href={`orders/${data?.number}`} className="flex items-center justify-center gap-1  ">
+                <Link href={`orders/${order?.number}`} className="flex items-center justify-center gap-1  ">
                   <ArrowRight />
                 </Link>
               </td>
