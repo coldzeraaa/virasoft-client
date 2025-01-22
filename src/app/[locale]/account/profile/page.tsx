@@ -1,9 +1,9 @@
-import UserProfilePage from '@/components/user-dashboard/profile/user-profileSec';
+import UserDetailPage from '@/components/user-dashboard/profile/user-profile-page';
 
 export default function UserDetail() {
   return (
     <div>
-      <UserProfilePage />
+      <UserDetailPage />
     </div>
   );
 }

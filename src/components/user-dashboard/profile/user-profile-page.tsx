@@ -5,7 +5,7 @@ import UserDetailCard from '@/components/user-dashboard/profile/user-detail-card
 import UserProfile from '@/components/user-dashboard/profile/user-profileSec';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 
-const UserDetail = () => {
+const UserDetailPage = () => {
   const { data, loading: meLoading } = useMeQuery();
   const user = '';
   if (meLoading) {
@@ -59,4 +59,4 @@ const detailsCardData = [
     link: '/account/profile/e-mail',
   },
 ];
-export default UserDetail;
+export default UserDetailPage;
