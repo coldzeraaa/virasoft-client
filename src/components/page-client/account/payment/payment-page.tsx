@@ -3,7 +3,7 @@ import { PaymentCard } from './bank-card';
 
 import { useMyOrderQuery } from '@/gql/query/user/my-order.generated';
 
-export default function PaymentPage({ params }: { params: { number: string } }): JSX.Element {
+export default function PaymentPage({ params }: { params: { number: string } }) {
   const { data } = useMyOrderQuery({
     variables: { number: params.number },
   });

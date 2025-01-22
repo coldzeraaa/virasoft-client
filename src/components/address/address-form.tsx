@@ -1,8 +1,8 @@
 import Form, { Field } from 'rc-field-form';
 import { toast } from 'react-toastify';
 
-import { useCreateAddressMutation } from '@/gql/mutation/address/create-address.generated';
-import { useUpdateUserAddressMutation } from '@/gql/mutation/address/update-address.generated';
+import { useCreateAddressMutation } from '@/gql/mutation/address/create-user-address.generated';
+import { useUpdateUserAddressMutation } from '@/gql/mutation/address/update-user-address.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 export function AddressForm({ onSuccess, editAddress, coordinates }: AddressFormProps): JSX.Element {
   const [form] = Form.useForm();
