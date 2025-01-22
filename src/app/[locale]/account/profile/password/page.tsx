@@ -1,24 +1,4 @@
-// 'use client';
-import { FormInput } from 'field-form';
-import Form, { Field } from 'rc-field-form';
-
-export default function Info() {
-  <Form className="flex gap-6">
-    <Field>
-      <FormInput label="old Password" name="old-assword" />
-    </Field>
-    <Field>
-      <FormInput label="new-password" name="new-password" />
-    </Field>
-    <Field>
-      <FormInput label="re-password" name="re-password" />
-    </Field>
-
-    <button className="btn btn-primary" type="submit">
-      Шинэчлэх
-    </button>
-  </Form>;
-}
+export default function Info() {}
 // const { data, loading: userDataLoading } = useMeQuery();
 // if (userDataLoading) {
 //   return (
