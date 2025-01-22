@@ -1,5 +1,6 @@
 'use client';
-import PaymentCard from '@/components/user-dashboard/orders/payment/bank/bank-card';
+import { PaymentCard } from './bank-card';
+
 import { useMyOrderQuery } from '@/gql/query/user/my-order.generated';
 
 export default function PaymentPage({ params }: { params: { number: string } }): JSX.Element {

@@ -1,7 +1,7 @@
 'use client';
 
-import { OrderInfo } from '@/components/page-client/account/[number]/order-info';
-import { ProductPaymentSec } from '@/components/page-client/account/[number]/product-sec';
+import { OrderInfo } from '@/components/page-client/account/orders/[number]/order-info';
+import { ProductPaymentSec } from '@/components/page-client/account/orders/[number]/product-sec';
 import { useMyOrderQuery } from '@/gql/query/user/my-order.generated';
 
 export default function AccountOrdersNumberPage({ params }: { params: { number: string } }) {
