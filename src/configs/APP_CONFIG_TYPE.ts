@@ -24,6 +24,6 @@ export interface AppConfigType {
     defaultCenter: { lat: number; lng: number };
     defaultZoom: number;
     googleMapApiKey: string;
-    mapId: string;
+    googleMapId: string;
   };
 }

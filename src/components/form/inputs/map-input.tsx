@@ -18,7 +18,7 @@ export function MapInput({ value, onChange }: MapInputProps) {
       center={APP_CONFIG.map.defaultCenter}
       zoom={14}
       options={{
-        mapId: APP_CONFIG.map.mapId || '',
+        mapId: APP_CONFIG.map.googleMapId || '',
         disableDefaultUI: false,
         clickableIcons: false,
       }}

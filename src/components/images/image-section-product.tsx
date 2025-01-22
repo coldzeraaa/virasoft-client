@@ -42,6 +42,7 @@ export function ImageSectionProduct({ images, alt }: { images: string[]; alt: st
         {images.length > 1 && (
           <div className="absolute top-1/2 flex w-full -translate-y-1/2 justify-between px-4">
             <button
+              type="button"
               disabled={selected === 0}
               onClick={() => {
                 if (selected === 0) return;
@@ -52,6 +53,7 @@ export function ImageSectionProduct({ images, alt }: { images: string[]; alt: st
               <ChevronLeftIcon className="w-4" />
             </button>
             <button
+              type="button"
               disabled={selected + 1 === images.length}
               className="btn btn-sm"
               onClick={() => {
