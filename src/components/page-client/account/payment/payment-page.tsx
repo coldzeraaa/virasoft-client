@@ -26,10 +26,3 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
     </div>
   );
 }
-
-{
-  /* {data &&
-          data?.map((element, idx) => {
-            <PaymentCard key={idx} data={element}></PaymentCard>;
-          })} */
-}

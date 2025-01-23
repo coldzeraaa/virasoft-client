@@ -23,8 +23,8 @@ export function MobilePageClient() {
   });
 
   if (userDataLoading) return <LoadingResult />;
+  if (error) return <ErrorResult message={error.message} />;
 
-  if (error) return <ErrorResult message={error?.message || 'User not found'} />;
   return (
     <Form
       className="flex flex-col gap-6 "
