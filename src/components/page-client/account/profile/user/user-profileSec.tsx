@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import { MeQuery } from '@/gql/query/user/me.generated';
 
-export function UserProfilePage({ me }: MeType) {
+export function UserProfileSec({ me }: MeType) {
   return (
     <div className="flex w-fit flex-col gap-4 rounded-md px-4 py-4 shadow-md">
       <div className="flex w-full flex-col justify-center  gap-2">
@@ -12,14 +12,6 @@ export function UserProfilePage({ me }: MeType) {
           </div>
         </div>
         <p className="text-center text-neutral">{me?.email || 'Email not provided'}</p>
-      </div>
-      <div className="flex gap-2">
-        <button type="button" className="btn text-base">
-          Устгах
-        </button>
-        <button type="button" className="btn text-base">
-          Зурагаа өөрчлөх
-        </button>
       </div>
     </div>
   );

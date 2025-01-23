@@ -39,11 +39,11 @@ export default function Orders() {
                 <p>{idx + 1}</p>
               </td>
               <td>
-                <p>{order.number}</p>
+                <p>{order.number ?? 0}</p>
               </td>
-              <td className=" ">
+              <td>
                 {order.items.map((item, i: number) => (
-                  <div className="flex gap-4" key={i}>
+                  <div className="flex" key={i}>
                     <p>
                       {item.variant.product.name}-{item.quantity} ширхэг
                     </p>
@@ -56,10 +56,10 @@ export default function Orders() {
                 </div>
               </td>
               <td>
-                <p>{new Date(order.createdAt).toLocaleString()}</p>
+                <p>{order.createdAt ? new Date(order.createdAt).toLocaleString() : 'Мэдээлэл байхгүй байна.'}</p>
               </td>
               <td>
-                <p>{order.total}₮</p>
+                <p>{order.total ?? 0}₮</p>
               </td>
               <td>
                 <Link href={`orders/${order?.number}`} className="flex items-center justify-center gap-1  ">

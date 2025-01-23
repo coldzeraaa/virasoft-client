@@ -7,7 +7,7 @@ import { ErrorResult } from '@/components/result/error-result';
 import { LoadingResult } from '@/components/result/loading-result';
 import { useMyOrderQuery } from '@/gql/query/user/my-order.generated';
 
-export default function AccountOrdersNumberPage({ params }: { params: { number: string } }) {
+export default function AccountOrdersNumberPage({ params }: ParamsType) {
   const { data, loading, error } = useMyOrderQuery({
     variables: { number: params.number },
   });
@@ -25,4 +25,8 @@ export default function AccountOrdersNumberPage({ params }: { params: { number: 
       <ProductPaymentSec myOrder={data?.myOrder} />
     </div>
   );
+}
+
+interface ParamsType {
+  params: { number: string };
 }

@@ -2,7 +2,7 @@
 import { Lock, Mail, Phone, UserPen } from 'lucide-react';
 
 import UserDetailCard from './user-detail-card';
-import { UserProfilePage } from './user-profileSec';
+import { UserProfileSec } from './user-profileSec';
 
 import { ErrorResult } from '@/components/result/error-result';
 import { LoadingResult } from '@/components/result/loading-result';
@@ -14,13 +14,13 @@ export function UserDetailPage() {
   if (loading) {
     return <LoadingResult />;
   }
-  if (error) {
+  if (error || !data?.me) {
     return <ErrorResult message={error?.message || 'User not found'} />;
   }
   return (
     <div>
       <div className="flex gap-6">
-        <UserProfilePage me={data?.me} />
+        <UserProfileSec me={data?.me} />
         <div className="flex gap-4">
           {detailsCardData.map((element, i) => (
             <UserDetailCard key={i} text={element.text} icon={element.icon} value={element.value} link={element.link} />
