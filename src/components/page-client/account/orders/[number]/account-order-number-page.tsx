@@ -14,7 +14,7 @@ export default function AccountOrdersNumberPage({ params }: ParamsType) {
 
   if (loading) return <LoadingResult />;
 
-  if (error || !data?.myOrder) return <ErrorResult message={error?.message || 'Product not found'} />;
+  if (error || !data?.myOrder) return <ErrorResult message={error?.message || 'Order is not found'} />;
 
   return (
     <div className="w-full">

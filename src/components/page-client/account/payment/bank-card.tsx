@@ -12,8 +12,8 @@ export function PaymentCard({ bankList }: { bankList: BankListType }) {
           <Image priority width={800} height={800} src={`${bankList.logo}`} alt="" />
         </div>
         <div>
-          <p className=" text-ls font-medium">{bankList?.name}</p>
-          <p className="text-sm text-gray-400">{bankList?.description}</p>
+          {bankList?.name ?? <p className=" text-ls font-medium">{bankList?.name}</p>}
+          {bankList?.description ?? <p className="text-sm text-gray-400">{bankList?.description}</p>}
         </div>
       </div>
       <div>
