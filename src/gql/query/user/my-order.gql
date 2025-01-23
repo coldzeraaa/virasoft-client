@@ -1,0 +1,36 @@
+query myOrder($number: String!) {
+  myOrder(number: $number) {
+    id
+    createdAt
+    total
+    itemCount
+    number
+    itemTotal
+    payments {
+      source
+
+      id
+    }
+    items {
+      id
+      total
+      price
+      quantity
+      variant {
+        images
+        sku
+        price
+      }
+    }
+    shipAddress {
+      address {
+        address1
+        latitude
+        longitude
+        zipcode
+        mobile
+        phone
+      }
+    }
+  }
+}

@@ -30,6 +30,7 @@
     "@react-google-maps/api": "^2.20.5",
     "@searchkit/api": "^4.13.0",
     "@searchkit/instantsearch-client": "^4.14.1",
+    "@types/qrcode": "^1.5.5",
     "apollo-upload-client": "^18.0.1",
     "field-form": "^1.2.10",
     "holy-loader": "^2.3.11",
