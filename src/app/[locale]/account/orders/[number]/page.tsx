@@ -1,26 +1,5 @@
-'use client';
+import AccountOrdersNumberPage from '@/components/page-client/account/orders/[number]/account-order-number-page';
 
-import { OrderInfo } from '@/components/page-client/account/orders/[number]/order-info';
-import { ProductPaymentSec } from '@/components/page-client/account/orders/[number]/product-sec';
-import { useMyOrderQuery } from '@/gql/query/user/my-order.generated';
-
-export default function AccountOrdersNumberPage({ params }: { params: { number: string } }) {
-  const { data, loading: loading } = useMyOrderQuery({
-    variables: { number: params.number },
-  });
-
-  if (loading) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <span className="loading loading-dots loading-lg"></span>
-      </div>
-    );
-  }
-
-  return (
-    <div className="w-full">
-      <OrderInfo myOrder={data?.myOrder}></OrderInfo>
-      <ProductPaymentSec myOrder={data?.myOrder}></ProductPaymentSec>
-    </div>
-  );
+export default function AccountOrdersDetailPage({ params }: { params: { number: string } }) {
+  return <AccountOrdersNumberPage params={params} />;
 }

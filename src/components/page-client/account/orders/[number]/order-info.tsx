@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { MyOrderQuery } from '@/gql/query/user/my-order.generated';
+import { MyOrderType } from '@/types/my-order-type';
 
-export function OrderInfo({ myOrder }: { myOrder: MyOrderQuery['myOrder'] }) {
+export function OrderInfo({ myOrder }: MyOrderType) {
   return (
     <div className="flex flex-col gap-6 rounded-2xl px-6 py-4 shadow-lg">
       <div className="flex items-center justify-between">
@@ -12,7 +12,7 @@ export function OrderInfo({ myOrder }: { myOrder: MyOrderQuery['myOrder'] }) {
         </div>
       </div>
       <hr />
-      <div className="text-lg">Захиалан барааны тоо : {myOrder?.itemCount} бараа</div>
+      <p className="text-lg">Захиалан барааны тоо : {myOrder?.itemCount} бараа</p>
       <div className="flex justify-around ">
         <button type="button" className="btn">
           Захиалга цуцлах

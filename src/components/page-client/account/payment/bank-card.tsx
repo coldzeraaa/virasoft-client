@@ -4,7 +4,9 @@ import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export function PaymentCard({ bankList }: { bankList: TData }) {
+import { BankListType } from '@/types/bank-list-type.d';
+
+export function PaymentCard({ bankList }: { bankList: BankListType }) {
   return (
     <div className="flex  w-[300px] items-center justify-between  gap-3  rounded-xl border-[1px] border-solid border-gray-200 px-2 py-2 hover:shadow-lg">
       <div className="flex items-center gap-2">
@@ -23,10 +25,4 @@ export function PaymentCard({ bankList }: { bankList: TData }) {
       </div>
     </div>
   );
-}
-interface TData {
-  description: string;
-  link: string;
-  logo: string;
-  name: string;
 }

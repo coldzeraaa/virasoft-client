@@ -75,7 +75,7 @@ export function Header() {
                   .map((item, index) => (
                     <Link
                       key={index}
-                      href={item.title === 'Профайл' ? (userData?.me ? '/profile' : '/auth/login') : item.link}
+                      href={item.title === 'Профайл' ? (userData?.me ? '/account' : '/auth/login') : item.link}
                       className={`group relative flex flex-col items-center rounded-lg p-1 text-base-content transition-colors ${['Профайл', 'Хадгалсан'].includes(item.title) ? 'hidden md:flex' : ['Хайлт'].includes(item.title) ? 'md:hidden' : 'md:flex'} lg:p-2`}
                     >
                       {item.title === 'Сагс' && order?.itemCount !== undefined && (

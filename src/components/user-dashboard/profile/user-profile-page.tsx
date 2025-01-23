@@ -1,25 +1,26 @@
 'use client';
 import { Lock, Mail, Phone, UserPen } from 'lucide-react';
 
+import { UserProfilePage } from './user-profileSec';
+
+import { ErrorResult } from '@/components/result/error-result';
+import { LoadingResult } from '@/components/result/loading-result';
 import UserDetailCard from '@/components/user-dashboard/profile/user-detail-card';
-import UserProfile from '@/components/user-dashboard/profile/user-profileSec';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 
-const UserDetailPage = () => {
-  const { data, loading: loading } = useMeQuery();
+export function UserDetailPage() {
+  const { data, loading, error } = useMeQuery();
 
   if (loading) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <span className="loading loading-dots loading-lg"></span>
-      </div>
-    );
+    return <LoadingResult />;
   }
-
+  if (error) {
+    return <ErrorResult message={error?.message || 'User not found'} />;
+  }
   return (
     <div>
       <div className="flex gap-6">
-        <UserProfile me={data?.me} />
+        <UserProfilePage me={data?.me} />
         <div className="flex gap-4">
           {detailsCardData.map((element, i) => (
             <UserDetailCard key={i} text={element.text} icon={element.icon} value={element.value} link={element.link} />
@@ -28,7 +29,7 @@ const UserDetailPage = () => {
       </div>
     </div>
   );
-};
+}
 
 const detailsCardData = [
   {
@@ -58,4 +59,3 @@ const detailsCardData = [
     link: '/account/profile/e-mail',
   },
 ];
-export default UserDetailPage;
