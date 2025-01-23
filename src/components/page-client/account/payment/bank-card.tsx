@@ -4,8 +4,6 @@ import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { BankListType } from '@/types/bank-list-type.d';
-
 export function PaymentCard({ bankList }: { bankList: BankListType }) {
   return (
     <div className="flex  w-[300px] items-center justify-between  gap-3  rounded-xl border-[1px] border-solid border-gray-200 px-2 py-2 hover:shadow-lg">
@@ -14,8 +12,8 @@ export function PaymentCard({ bankList }: { bankList: BankListType }) {
           <Image priority width={800} height={800} src={`${bankList.logo}`} alt="" />
         </div>
         <div>
-          <div className=" text-ls font-medium">{bankList?.name}</div>
-          <div className="text-sm text-gray-400">{bankList?.description}</div>
+          <p className=" text-ls font-medium">{bankList?.name}</p>
+          <p className="text-sm text-gray-400">{bankList?.description}</p>
         </div>
       </div>
       <div>
@@ -25,4 +23,11 @@ export function PaymentCard({ bankList }: { bankList: BankListType }) {
       </div>
     </div>
   );
+}
+
+export interface BankListType {
+  description: string;
+  link: string;
+  logo: string;
+  name: string;
 }

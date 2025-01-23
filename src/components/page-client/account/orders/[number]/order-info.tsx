@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
-import { MyOrderType } from '@/types/my-order-type';
+import { MyOrderQuery } from '@/gql/query/user/my-order.generated';
 
 export function OrderInfo({ myOrder }: MyOrderType) {
   return (
     <div className="flex flex-col gap-6 rounded-2xl px-6 py-4 shadow-lg">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl">Төлбөрийн мэдээлэл</h1>
+        <h2 className="text-xl">Төлбөрийн мэдээлэл</h2>
         <div>
           <p className=" text-gray-500 ">Төлбөр төлөх хугацаа</p>
         </div>
@@ -25,4 +25,8 @@ export function OrderInfo({ myOrder }: MyOrderType) {
       </div>
     </div>
   );
+}
+
+export interface MyOrderType {
+  myOrder: MyOrderQuery['myOrder'];
 }

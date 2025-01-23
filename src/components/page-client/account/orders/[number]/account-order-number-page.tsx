@@ -15,15 +15,8 @@ export default function AccountOrdersNumberPage({ params }: { params: { number: 
   if (loading) {
     return <LoadingResult />;
   }
-  if (error) {
+  if (error || !data?.myOrder) {
     return <ErrorResult message={error?.message || 'Product not found'} />;
-  }
-  if (!data?.myOrder) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <p>Order not found</p>
-      </div>
-    );
   }
 
   return (

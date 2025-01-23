@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import { MeQuery } from '@/gql/query/user/me.generated';
 
-export function UserProfilePage({ me }: Me) {
+export function UserProfilePage({ me }: MeType) {
   return (
     <div className="flex w-fit flex-col gap-4 rounded-md px-4 py-4 shadow-md">
       <div className="flex w-full flex-col justify-center  gap-2">
@@ -25,6 +25,6 @@ export function UserProfilePage({ me }: Me) {
   );
 }
 
-interface Me {
+interface MeType {
   me: MeQuery['me'];
 }

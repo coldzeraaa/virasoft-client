@@ -1,11 +1,11 @@
 'use client';
 import { Lock, Mail, Phone, UserPen } from 'lucide-react';
 
+import UserDetailCard from './user-detail-card';
 import { UserProfilePage } from './user-profileSec';
 
 import { ErrorResult } from '@/components/result/error-result';
 import { LoadingResult } from '@/components/result/loading-result';
-import UserDetailCard from '@/components/user-dashboard/profile/user-detail-card';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 
 export function UserDetailPage() {

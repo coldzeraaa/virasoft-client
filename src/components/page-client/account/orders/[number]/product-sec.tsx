@@ -1,15 +1,15 @@
-import { MyOrderType } from '@/types/my-order-type';
+import { MyOrderType } from './order-info';
 
 export function ProductPaymentSec({ myOrder }: MyOrderType) {
   return (
     <div className="w-full rounded-2xl shadow-lg hover:shadow-xl">
       <div className="flex w-full justify-between px-4 py-6">
         <div>
-          <p className="text-gray-500">Захиалгийн дугаар</p>
+          <h2 className="text-gray-500">Захиалгийн дугаар</h2>
           <p className="text-lg">{myOrder?.number ?? 'Мэдээлэл байхгүй'}</p>
         </div>
         <div>
-          <p className="text-gray-500">Захиалга хийсэн огноо</p>
+          <h2 className="text-gray-500">Захиалга хийсэн огноо</h2>
           <p className="text-lg">{myOrder?.createdAt ? new Date(myOrder.createdAt).toLocaleDateString() : 'Мэдээлэл байхгүй'}</p>
         </div>
       </div>

@@ -9,7 +9,7 @@ import { useSendOtpMutation } from '@/gql/mutation/user/auth-sendOtp.generated';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
-export function MobilePage() {
+export function MobilePageClient() {
   const { data, loading: userDataLoading } = useMeQuery();
 
   const [sendOtp, { loading: sentOtpLoading }] = useSendOtpMutation({
