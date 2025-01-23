@@ -11,12 +11,10 @@ import { useMeQuery } from '@/gql/query/user/me.generated';
 export function UserDetailPage() {
   const { data, loading, error } = useMeQuery();
 
-  if (loading) {
-    return <LoadingResult />;
-  }
-  if (error || !data?.me) {
-    return <ErrorResult message={error?.message || 'User not found'} />;
-  }
+  if (loading) return <LoadingResult />;
+
+  if (error || !data?.me) return <ErrorResult message={error?.message || 'User not found'} />;
+
   return (
     <div>
       <div className="flex gap-6">

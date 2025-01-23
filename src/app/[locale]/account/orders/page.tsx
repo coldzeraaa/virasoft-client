@@ -11,12 +11,9 @@ import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 export default function Orders() {
   const { data, loading, error } = useMeOrdersQuery();
 
-  if (loading) {
-    return <LoadingResult />;
-  }
-  if (error) {
-    return <ErrorResult message={error.message || 'Something went wrong'} />;
-  }
+  if (loading) return <LoadingResult />;
+
+  if (error && !data?.me?.orders?.nodes) return <ErrorResult message={error?.message || 'Something went wrong'} />;
 
   return (
     <div className="w-full overflow-x-auto rounded-[16px] border-[1px]  border-solid border-gray-200">

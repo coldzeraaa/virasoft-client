@@ -1,5 +1,5 @@
-import AccountOrdersNumberPage from '@/components/page-client/account/orders/[number]/account-order-number-page';
+import AccountOrdersNumberPage, { ParamsType } from '@/components/page-client/account/orders/[number]/account-order-number-page';
 
-export default function AccountOrdersDetailPage({ params }: { params: { number: string } }) {
+export default function AccountOrdersDetailPage({ params }: ParamsType) {
   return <AccountOrdersNumberPage params={params} />;
 }

@@ -12,12 +12,9 @@ export default function AccountOrdersNumberPage({ params }: ParamsType) {
     variables: { number: params.number },
   });
 
-  if (loading) {
-    return <LoadingResult />;
-  }
-  if (error || !data?.myOrder) {
-    return <ErrorResult message={error?.message || 'Product not found'} />;
-  }
+  if (loading) return <LoadingResult />;
+
+  if (error || !data?.myOrder) return <ErrorResult message={error?.message || 'Product not found'} />;
 
   return (
     <div className="w-full">
@@ -27,6 +24,6 @@ export default function AccountOrdersNumberPage({ params }: ParamsType) {
   );
 }
 
-interface ParamsType {
+export interface ParamsType {
   params: { number: string };
 }

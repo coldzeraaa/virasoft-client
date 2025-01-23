@@ -4,13 +4,14 @@ import { FormInput } from 'field-form';
 import Form, { Field } from 'rc-field-form';
 import { toast } from 'react-toastify';
 
+import { ErrorResult } from '@/components/result/error-result';
 import { LoadingResult } from '@/components/result/loading-result';
 import { useSendOtpMutation } from '@/gql/mutation/user/auth-sendOtp.generated';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
 export function MobilePageClient() {
-  const { data, loading: userDataLoading } = useMeQuery();
+  const { data, loading: userDataLoading, error } = useMeQuery();
 
   const [sendOtp, { loading: sentOtpLoading }] = useSendOtpMutation({
     onError: catchHelper,
@@ -21,9 +22,9 @@ export function MobilePageClient() {
     },
   });
 
-  if (userDataLoading) {
-    return <LoadingResult />;
-  }
+  if (userDataLoading) return <LoadingResult />;
+
+  if (error) return <ErrorResult message={error?.message || 'User not found'} />;
   return (
     <Form
       className="flex flex-col gap-6 "

@@ -14,9 +14,6 @@ export function OrderInfo({ myOrder }: MyOrderType) {
       <hr />
       <p className="text-lg">Захиалан барааны тоо : {myOrder?.itemCount} бараа</p>
       <div className="flex justify-around ">
-        <button type="button" className="btn">
-          Захиалга цуцлах
-        </button>
         <div>
           <Link href={`/account/payment/${myOrder?.number}`} className="btn  btn-primary">
             Төлбөр төлөх
