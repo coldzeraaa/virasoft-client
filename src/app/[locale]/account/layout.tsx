@@ -1,6 +1,6 @@
-import { SideBar } from '@/components/user-dashboard/side-bar';
 import { ReactNode } from 'react';
 
+import { SideBar } from '@/components/user-dashboard/side-bar';
 
 export default function DashboardLayout({
   children,
