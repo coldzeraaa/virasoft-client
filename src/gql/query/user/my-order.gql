@@ -5,6 +5,7 @@ query myOrder($number: String!) {
     total
     itemCount
     number
+    paymentStatus
     itemTotal
     payments {
       source
