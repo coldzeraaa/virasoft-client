@@ -17,7 +17,7 @@ export default function Orders() {
   if (data.me.orders.nodes.length === 0) return <EmptyResult message="Захиалга байхгүй байна." />;
 
   return (
-    <div className="w-full overflow-x-auto rounded-[16px] border-[1px] border-solid border-gray-200">
+    <div className="w-full overflow-x-auto rounded-[16px] border border-solid border-gray-200">
       <table className="table shadow-2xl">
         <thead>
           <tr>
@@ -47,7 +47,7 @@ export default function Orders() {
                 ))}
               </td>
               <td>
-                <div className="flex h-[50px] w-[50px] items-center justify-center rounded-full border-[1px] border-solid border-gray-400 px-1 py-1">
+                <div className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-solid border-gray-400 px-1 py-1">
                   <Image width={500} height={500} src={imageUrlHelper(order.items[0].variant.images[1])} alt="" />
                 </div>
               </td>

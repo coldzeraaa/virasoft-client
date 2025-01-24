@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import { Eye, Heart, IdCard, ListOrdered, User } from 'lucide-react';
+import { IdCard, ListOrdered } from 'lucide-react';
 import Link from 'next/link';
 
 export function SideBar() {
@@ -23,23 +23,8 @@ const SideBarItem = (props: CardDataType) => (
 const sidebarItems = [
   {
     name: 'Миний самбар',
-    link: '/user/dashboard/user-detail',
+    link: '/account',
     icon: <IdCard />,
-  },
-  {
-    name: 'Таалагдсан',
-    link: ' ',
-    icon: <Heart />,
-  },
-  {
-    name: 'Хувийн мэдээлэл',
-    link: '/account/profile',
-    icon: <User />,
-  },
-  {
-    name: 'Үзсэн',
-    link: ' ',
-    icon: <Eye />,
   },
   {
     name: 'Захиалгүүд',
