@@ -2,9 +2,12 @@
 
 import { useState } from 'react';
 
-import { CircleUserRound, Facebook, Heart, House, Instagram, Star, Tag, TextSearch } from 'lucide-react';
+import { CircleUserRound, Heart, House, Star, Tag, TextSearch } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
+import facebook from '@/components/icons/facebook.svg';
+import instagram from '@/components/icons/instagram.svg';
 import { useHeaderFooterQuery } from '@/gql/query/menu/header-footer.generated';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 
@@ -57,7 +60,11 @@ export function Footer() {
                     item.title === 'Холбоосууд' ? (
                       <div key={childMenu.title}>
                         <Link href={childMenu.link} className="text-sm font-medium">
-                          {childMenu.title === 'facebook' ? <Facebook /> : <Instagram />}
+                          {childMenu.title === 'facebook' ? (
+                            <Image src={facebook} alt="facebook icon" width={20} height={20} />
+                          ) : (
+                            <Image src={instagram} alt="instagram icon" width={20} height={20} />
+                          )}
                         </Link>
                       </div>
                     ) : (
