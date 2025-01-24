@@ -2,15 +2,19 @@
 
 import { useRef } from 'react';
 
-import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-export function PaymentCard({ bankList, deviceType }: { bankList: BankListType; deviceType: string | undefined }) {
-  const router = useRouter();
+export function PaymentCard({ bankList }: { bankList: BankListType }) {
   const modalRef = useRef<HTMLDialogElement>(null);
   return (
-    <div className="flex  w-full items-center justify-between  gap-3  rounded-xl border border-solid border-gray-200 px-2 py-2 hover:shadow-lg">
+    <button
+      type="button"
+      onClick={() => {
+        modalRef.current?.showModal();
+      }}
+      className="flex  w-full items-center justify-between  gap-3  rounded-xl border border-solid border-gray-200 px-2 py-2 hover:shadow-lg"
+    >
       <div className="flex items-center gap-2">
         <div className="flex h-10 w-10 items-center justify-center">
           <Image priority width={800} height={800} src={`${bankList.logo}`} alt="" />
@@ -20,20 +24,7 @@ export function PaymentCard({ bankList, deviceType }: { bankList: BankListType; 
           <div>{bankList?.description ?? <p className="text-sm text-gray-400">{bankList?.description}</p>}</div>
         </div>
       </div>
-      <div>
-        <button
-          type="button"
-          onClick={() => {
-            if (deviceType === 'desktop') {
-              modalRef.current?.showModal();
-            } else if (deviceType === 'mobile') {
-              router.push(bankList.link);
-            }
-          }}
-        >
-          <ArrowRight />
-        </button>
-      </div>
+
       <dialog ref={modalRef} className="modal">
         <div className="modal-box w-fit  max-w-5xl">
           <div className="flex items-center justify-center">
@@ -44,6 +35,9 @@ export function PaymentCard({ bankList, deviceType }: { bankList: BankListType; 
               alt="image"
             />
           </div>
+          <Link className="btn border border-solid border-gray-300" href={bankList.link}>
+            Апп нээх
+          </Link>
           <div className="modal-action">
             <form method="dialog">
               <button className="btn">Close</button>
@@ -51,7 +45,7 @@ export function PaymentCard({ bankList, deviceType }: { bankList: BankListType; 
           </div>
         </div>
       </dialog>
-    </div>
+    </button>
   );
 }
 
