@@ -10,7 +10,7 @@ export function PaymentCard({ bankList, deviceType }: { bankList: BankListType; 
   const router = useRouter();
   const modalRef = useRef<HTMLDialogElement>(null);
   return (
-    <div className="flex  w-full items-center justify-between  gap-3  rounded-xl border-[1px] border-solid border-gray-200 px-2 py-2 hover:shadow-lg">
+    <div className="flex  w-full items-center justify-between  gap-3  rounded-xl border border-solid border-gray-200 px-2 py-2 hover:shadow-lg">
       <div className="flex items-center gap-2">
         <div className="flex h-10 w-10 items-center justify-center">
           <Image priority width={800} height={800} src={`${bankList.logo}`} alt="" />

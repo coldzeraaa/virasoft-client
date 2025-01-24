@@ -12,8 +12,7 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
 
   const [deviceType, setDeviceType] = useState<string>();
   useEffect(() => {
-    const isDesktop = window.matchMedia('(min-width: 1024px) and (hover: hover)').matches;
-    setDeviceType(isDesktop ? 'desktop' : 'mobile');
+    setDeviceType(window.matchMedia('(min-width: 1024px) and (hover: hover)').matches ? 'desktop' : 'mobile');
   }, []);
   if (loading) return <LoadingResult />;
   if (error) return <ErrorResult message={error.message} />;
@@ -29,7 +28,7 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
       <hr />
       <h2 className="text-2xl">Хувааж төлөх нөхцөл</h2>
       <div>
-        <div className="flex w-fit items-center justify-center gap-3 rounded-xl border-[1px] border-solid border-gray-200 px-2 py-2 hover:shadow-lg">
+        <div className="flex w-fit items-center justify-center gap-3 rounded-xl border border-solid border-gray-200 px-2 py-2 hover:shadow-lg">
           {deviceType === 'desktop' ? 'Desktop Device' : 'Mobile Device'}
         </div>
       </div>
