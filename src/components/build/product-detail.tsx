@@ -57,7 +57,7 @@ export function ProductDetail() {
                 key={product.id}
                 className="absolute h-full w-full lg:h-4/6"
                 style={{
-                  zIndex: index + 1,
+                  zIndex: product.type === 'coat' ? 1 : 100 - index,
                 }}
               >
                 <Image

@@ -11,13 +11,7 @@ import { BuildProvider } from '@/lib/provider/build-provider';
 export function ProductList({ origin, type }: { origin: string; type?: string | string[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const { data, loading } = useMenusQuery({
-    variables: {
-      filter: {
-        parentId: { eq: '9' },
-      },
-    },
-  });
+  const { data, loading } = useMenusQuery({ variables: { filter: { parentId: { eq: '9' } } } });
 
   const selectedMenu = getMenuByType(data, type);
 
@@ -66,6 +60,8 @@ function getMenuByType(data: MenusQuery | undefined, menuType: string | string[]
       return data.menus.nodes.find((menu) => menu.title === 'палто');
     case 'uniform':
       return data.menus.nodes.find((menu) => menu.title === 'ажлын хувцас');
+    case 'shirt':
+      return data.menus.nodes.find((menu) => menu.title === 'Цамц');
     default:
       return null;
   }
@@ -79,6 +75,10 @@ function getProductType(title: string): string {
       return 'button';
     case 'хүрэм':
       return 'coat';
+    case 'Цамц':
+      return 'shirt';
+    case 'Ханцуй':
+      return 'cuff';
     default:
       return '';
   }
