@@ -27,7 +27,7 @@ const sidebarItems = [
     icon: <IdCard />,
   },
   {
-    name: 'Захиалгүүд',
+    name: 'Захиалгууд',
     icon: <ListOrdered />,
     link: '/account/orders',
   },

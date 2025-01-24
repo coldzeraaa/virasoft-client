@@ -32,7 +32,7 @@ function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQu
     <li className="flex gap-6 py-4">
       <div className="aspect-square h-fit w-24 rounded-lg border bg-base-300">
         <Image
-          src={variant.images[1] ? imageUrlHelper(variant.images[1]) : `https://via.placeholder.com/80?text=-`}
+          src={variant.images[0] ? imageUrlHelper(variant.images[0]) : `https://via.placeholder.com/80?text=-`}
           alt={variant.product.name || 'product'}
           width={96}
           height={96}

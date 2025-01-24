@@ -48,20 +48,22 @@ function SingleAddress({ node, setSelectedAddress }: SingleAddressProps) {
 
   return (
     <li className="flex gap-2">
-      <input
-        type="radio"
-        name="address"
-        className="radio"
-        value={node.address.id}
-        onChange={() => {
-          setSelectedAddress(node.address.id);
-        }}
-      />
+      <label className="flex w-full items-center gap-2">
+        <input
+          type="radio"
+          name="address"
+          className="radio"
+          value={node.address.id}
+          onChange={() => {
+            setSelectedAddress(node.address.id);
+          }}
+        />
 
-      <div className="flex-1">
-        <p>{node?.address?.addressAlias}</p>
-        <p>{node?.address?.address1}</p>
-      </div>
+        <div className="flex-1">
+          <p>{node?.address?.addressAlias}</p>
+          <p>{node?.address?.address1}</p>
+        </div>
+      </label>
       <button onClick={() => setShow(true)} type="button" className="btn btn-info">
         Засварлах
       </button>

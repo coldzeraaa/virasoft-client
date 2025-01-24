@@ -20,6 +20,8 @@ const router = new KSRouterInstance({
 });
 
 export function SearchProvider({ children, origin, referer }: { children: ReactNode; origin: string; slug?: string[]; referer: string }) {
+  console.log({app: APP_CONFIG.appIndex});
+  
   return (
     <InstantSearchNext
       future={{ preserveSharedStateOnUnmount: true }}

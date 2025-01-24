@@ -28,7 +28,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
     onError: catchHelper,
     onCompleted: () => {
       toast.success('Захиалга амжилттай үүслээ');
-      router.push('/account/payment');
+      router.push('/account/orders/number/pay');
     },
   });
 
