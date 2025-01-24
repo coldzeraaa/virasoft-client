@@ -55,7 +55,7 @@ export function Header() {
   if (loading) {
     return (
       <header className="z-40 w-full bg-base-100 shadow-md">
-        <div className="mx-auto max-w-7xl">
+        <div className="container mx-auto max-w-7xl">
           <div className="flex h-16 items-center justify-between">
             <div className="skeleton h-8 w-8 rounded-full bg-base-content" />
             <div className="flex gap-4">
@@ -99,7 +99,7 @@ export function Header() {
               <ThemeToggleButton />
               <ul className="flex">
                 {menuItems
-                  .filter((item) => !(item.title === 'Мэдэгдэл' && !userData?.me) && !(item.title === 'Хайлт' && item.mobileOnly))
+                  .filter((item) => !(item.title === 'Мэдэгдэл' && !userData?.me) && (item.title !== 'Хайлт' || item.mobileOnly))
                   .map((item, index) => (
                     <Link
                       key={index}
