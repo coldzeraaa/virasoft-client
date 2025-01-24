@@ -42,7 +42,7 @@ export function Header() {
     },
     {
       title: 'Сагс',
-      link: '/cart',
+      link: '/checkout',
       icon: <ShoppingCart className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
     },
     {

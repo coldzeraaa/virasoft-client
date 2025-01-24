@@ -37,6 +37,7 @@ export const AuthProvider: FC<PropsWithChildren<{ user?: boolean }>> = ({ childr
     try {
       setAuth(true);
       await client.resetStore();
+      window.location.reload();
     } catch (e) {
       catchHelper(e);
     }
@@ -46,9 +47,8 @@ export const AuthProvider: FC<PropsWithChildren<{ user?: boolean }>> = ({ childr
     try {
       setAuth(true);
       toast.success(`Welcome`);
-      const from = cookies.get(STORE_KEY_CONFIG.NEXT_FROM);
-      router.push(from || '/');
       await client.resetStore();
+      window.location.reload();
     } catch (e) {
       catchHelper(e);
     }
