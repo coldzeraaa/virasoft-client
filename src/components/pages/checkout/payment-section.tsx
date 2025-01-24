@@ -15,7 +15,6 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
   const { loading, order } = useCurrentOrder();
   const pathName = usePathname();
   const router = useRouter();
-
   const [updateCheckoutAddress, { loading: checkoutAddressLoading }] = useUpdateCheckoutAddressMutation({
     onError: catchHelper,
     onCompleted: () => {
@@ -28,7 +27,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
     onError: catchHelper,
     onCompleted: () => {
       toast.success('Захиалга амжилттай үүслээ');
-      router.push('/account/orders/number/pay');
+      router.push(`/account/orders/${order?.number}/pay`);
     },
   });
 
@@ -40,23 +39,11 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
         toast.error('Хүргэлтийн хаягаа оруулна уу');
         return;
       }
-      updateCheckoutAddress({
-        variables: {
-          input: {
-            shipAddressId: selectedAddress,
-          },
-        },
-      });
+      updateCheckoutAddress({ variables: { input: { shipAddressId: selectedAddress } } });
     }
 
     if (pathName === '/checkout/review') {
-      paymentCheckout({
-        variables: {
-          input: {
-            action: PaymentMethodEnum.VirasoftPay,
-          },
-        },
-      });
+      paymentCheckout({ variables: { input: { action: PaymentMethodEnum.VirasoftPay } } });
     } else {
       router.push('/checkout/address');
     }
