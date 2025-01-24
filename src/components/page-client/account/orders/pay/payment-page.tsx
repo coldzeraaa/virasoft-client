@@ -8,9 +8,7 @@ import { LoadingResult } from '@/components/result/loading-result';
 import { useMyOrderQuery } from '@/gql/query/user/my-order.generated';
 
 export default function PaymentPage({ params }: { params: { number: string } }) {
-  const { data, loading, error } = useMyOrderQuery({
-    variables: { number: params.number },
-  });
+  const { data, loading, error } = useMyOrderQuery({ variables: { number: params.number } });
 
   const [deviceType, setDeviceType] = useState<string>();
   useEffect(() => {
