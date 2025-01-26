@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export function HomePageHeroSection() {
   return (
-    <div className="w-full">
+    <div className="flex h-[500px] w-full  overflow-hidden  ">
       <Image
         width={1600}
         height={700}
