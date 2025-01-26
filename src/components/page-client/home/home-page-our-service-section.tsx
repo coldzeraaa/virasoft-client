@@ -6,7 +6,7 @@ export function HomePageOurServiceSection() {
       className="flex justify-center  bg-gray-100 py-4
     "
     >
-      <div className=" flex w-[70%] flex-col gap-4">
+      <div className=" flex w-[7/10] flex-col gap-4">
         <h1 className="text-2xl">Манай үйлчилгээ</h1>
         <p>
           Бид үйлчлүүлэгчдийнхээ түлшний хангамжийг цаг алдалгүй тогтвортой хангах мөн өрсөлдөхүйц үнийн саналийг санал болгож түргэн

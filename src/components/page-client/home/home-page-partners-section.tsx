@@ -1,14 +1,14 @@
 import Image from 'next/image';
 
-export default function HomePageParthnerSection() {
+export function HomePageParthnerSection() {
   return (
     <div className=" flex justify-center bg-gray-200 py-4">
-      <div className="w-[80%]">
+      <div className="w-[4/5]">
         <h2>Хамтрагч байгуулга</h2>
         <h2>ХАМТРАН АЖИЛЛАЖ БУЙ БАЙГУУЛЛАГУУД </h2>
         <div>
           {parthnerData.map((element, idx) => (
-            <div className="h-[150px] w-[150px]" key={idx}>
+            <div className="max-h-36 max-w-36" key={idx}>
               <Image alt="logo-image" width={500} height={500} src={element.logo}></Image>
             </div>
           ))}
