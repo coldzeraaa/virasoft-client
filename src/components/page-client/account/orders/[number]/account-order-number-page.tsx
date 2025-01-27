@@ -1,5 +1,6 @@
 'use client';
 
+import { OrderDetailSection } from './order-detail-section';
 import { OrderInfo } from './order-info';
 
 import { ProductPaymentSec } from '@/components/page-client/account/orders/[number]/product-sec';
@@ -19,6 +20,7 @@ export default function AccountOrdersNumberPage({ params }: ParamsType) {
   return (
     <div className="w-full">
       <OrderInfo myOrder={data?.myOrder} />
+      <OrderDetailSection myOrder={data?.myOrder} />
       <ProductPaymentSec myOrder={data?.myOrder} />
     </div>
   );
