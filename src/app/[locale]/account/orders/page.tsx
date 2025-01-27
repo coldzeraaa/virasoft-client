@@ -49,7 +49,7 @@ export default function Orders() {
               </td>
               <td>
                 <div className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-solid border-gray-400 px-1 py-1">
-                  <Image width={500} height={500} src={imageUrlHelper(order?.items[0]?.variant?.images[0])} alt="" />
+                  <Image width={500} height={500} src={imageUrlHelper(order?.items[0]?.variant?.images[1])} alt="" />
                 </div>
               </td>
               <td>
