@@ -3,6 +3,7 @@
 import { createContext, FC, PropsWithChildren, useCallback, useContext, useState } from 'react';
 
 import { useApolloClient } from '@apollo/client';
+import type { OauthTokenType } from 'doorkeeper-oauth-flow';
 import cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
@@ -28,9 +29,13 @@ export const AuthProvider: FC<PropsWithChildren<{ user?: boolean }>> = ({ childr
   const logout = useCallback(() => {
     cookies.remove(STORE_KEY_CONFIG.NEXT_USER_TOKEN);
     setAuth(false);
-    toast.success(`Successfully logged out yes`);
-    router.push('/auth/login');
-    client.resetStore().catch(catchHelper);
+    client
+      .resetStore()
+      .then(() => {
+        toast.success(`Successfully logged out yes`);
+        router.push('/api/auth/logout');
+      })
+      .catch(catchHelper);
   }, []);
 
   const login = useCallback(async () => {
@@ -43,12 +48,13 @@ export const AuthProvider: FC<PropsWithChildren<{ user?: boolean }>> = ({ childr
     }
   }, []);
 
-  const loginWithRouter = useCallback(async () => {
+  const loginWithRouter = useCallback(async (value: OauthTokenType) => {
     try {
       setAuth(true);
       toast.success(`Welcome`);
+      cookies.set(STORE_KEY_CONFIG.NEXT_USER_TOKEN, JSON.stringify(value));
       await client.resetStore();
-      window.location.reload();
+      router.push('/api/auth/login');
     } catch (e) {
       catchHelper(e);
     }
@@ -62,5 +68,5 @@ export interface AuthContextProps {
   setAuth(val: boolean): void;
   logout(): void;
   login(): Promise<void>;
-  loginWithRouter(): void;
+  loginWithRouter(val: OauthTokenType): void;
 }
