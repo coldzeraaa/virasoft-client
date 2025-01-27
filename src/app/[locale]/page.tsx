@@ -1,6 +1,7 @@
-import { HomePageHeroSection } from '@/components/page-client/home/home-page-hero-section';
-import { HomePageOurServiceSection } from '@/components/page-client/home/home-page-our-service-section';
-import { HomePageParthnerSection } from '@/components/page-client/home/home-page-partners-section';
+import { HomePageHeroSection } from '@/components/pages/home/home-page-hero-section';
+import { HomePageOurServiceSection } from '@/components/pages/home/home-page-our-service-section';
+import { HomePageParthnerSection } from '@/components/pages/home/home-page-partners-section';
+
 export default function Home() {
   return (
     <div>

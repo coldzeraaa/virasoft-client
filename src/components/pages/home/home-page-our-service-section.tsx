@@ -2,25 +2,23 @@ import { Droplet, Lightbulb, MapPin, ShieldCheck } from 'lucide-react';
 
 export function HomePageOurServiceSection() {
   return (
-    <div className="flex justify-center  bg-gray-100 py-4">
-      <div className=" flex w-[70%] flex-col gap-4">
-        <h1 className="text-2xl">Манай үйлчилгээ</h1>
-        <p>
-          Бид үйлчлүүлэгчдийнхээ түлшний хангамжийг цаг алдалгүй тогтвортой хангах мөн өрсөлдөхүйц үнийн саналийг санал болгож түргэн
-          шуурхай , найвдартай үйлчилгээг үзүүлэхээр ажиллаж байна.
-        </p>
-        <div className="flex flex-col items-center justify-center gap-2">
-          {informationData.map((element, idx) => (
-            <InformationCard key={idx} data={element} />
-          ))}
-        </div>
+    <div className="mx-auto max-w-screen-xl space-y-4">
+      <h1 className="text-2xl">Манай үйлчилгээ</h1>
+      <p>
+        Бид үйлчлүүлэгчдийнхээ түлшний хангамжийг цаг алдалгүй тогтвортой хангах мөн өрсөлдөхүйц үнийн саналийг санал болгож түргэн шуурхай
+        , найвдартай үйлчилгээг үзүүлэхээр ажиллаж байна.
+      </p>
+      <div className="space-y-2">
+        {informationData.map((element, idx) => (
+          <InformationCard key={idx} data={element} />
+        ))}
       </div>
     </div>
   );
 }
 
 const InformationCard = ({ data }: { data: informationDataType }) => (
-  <div className="flex w-full items-center justify-start gap-2 rounded-md bg-gray-200 ">
+  <div className="flex w-full items-center justify-start gap-2 rounded-md bg-base-200 ">
     <div className="h-8 w-8">{data.icon}</div>
     <div>
       <p>{data.title}</p>

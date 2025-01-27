@@ -2,10 +2,10 @@ import Image from 'next/image';
 
 export function HomePageParthnerSection() {
   return (
-    <div className=" flex justify-center bg-gray-200 py-4">
+    <div className=" flex justify-center bg-base-200 py-4">
       <div className="flex w-4/5 flex-col justify-start">
-        <h2>Хамтрагч байгуулга</h2>
-        <h2>ХАМТРАН АЖИЛЛАЖ БУЙ БАЙГУУЛЛАГУУД </h2>
+        <h2 className="text-base">Хамтрагч байгуулга</h2>
+        <h2 className="text-base">ХАМТРАН АЖИЛЛАЖ БУЙ БАЙГУУЛЛАГУУД </h2>
         <div>
           {parthnerData.map((element, idx) => (
             <div className="max-h-36 max-w-36" key={idx}>
