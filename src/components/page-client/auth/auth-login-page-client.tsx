@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import { OauthFlow } from 'doorkeeper-oauth-flow';
 import { BtnLoader, FieldForm, FormInput } from 'field-form';
-import cookies from 'js-cookie';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import AnimateHeight from 'react-animate-height';
@@ -14,7 +13,6 @@ import { catchHelper } from 'simple-helper-fns';
 
 import { APP_CONFIG } from '@/configs/APP_CONFIG';
 import { HOST_CONFIG } from '@/configs/HOST_CONFIG';
-import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
 import { useAuthCheckLoginMutation } from '@/gql/mutation/user/auth-check-login.generated';
 import { useAuth } from '@/lib/context/auth-context';
 
@@ -39,8 +37,7 @@ export function AuthLoginPageClient() {
               });
               if (response?.access_token) {
                 setLoading(false);
-                cookies.set(STORE_KEY_CONFIG.NEXT_USER_TOKEN, JSON.stringify(response));
-                loginWithRouter();
+                loginWithRouter(response);
               } else {
                 setLoading(false);
               }
