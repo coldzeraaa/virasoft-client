@@ -19,14 +19,6 @@ export function OrderDetailSection({ myOrder }: MyOrderType) {
           </div>
         ))}
       </div>
-
-      <div className="flex justify-around ">
-        <div>
-          {/* <Link href={`/account/orders/${myOrder?.number}/pay`} className="btn  btn-primary">
-            Төлбөр төлөх
-          </Link> */}
-        </div>
-      </div>
     </div>
   );
 }
