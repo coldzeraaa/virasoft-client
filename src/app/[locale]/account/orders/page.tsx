@@ -1,7 +1,5 @@
 'use client';
-import { useState } from 'react';
-
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -13,7 +11,6 @@ import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 
 export default function Orders() {
   const { data, loading, error } = useMeOrdersQuery();
-  const [showAll, setShowAll] = useState(false);
 
   if (loading) return <LoadingResult />;
   if (error || !data?.me) return <ErrorResult message={error?.message || 'Result empty'} />;
@@ -63,7 +60,7 @@ export default function Orders() {
                 </td>
                 <td>
                   <Link href={`orders/${order?.number}`} className="flex items-center justify-center gap-1  ">
-                    <ChevronRight className='stroke-1'/>
+                    <ChevronRight className="stroke-1" />
                   </Link>
                 </td>
               </tr>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Bell, Heart, Search, ShoppingCart, User } from 'lucide-react';
+import { Search, ShoppingCart, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -49,28 +49,26 @@ export function Header() {
             <nav className="flex items-center gap-2 text-xs">
               <ThemeToggleButton />
               <ul className="flex">
-                {menuItems(userData)
-                  .filter((item) => !(item.title === 'Мэдэгдэл' && !userData?.me))
-                  .map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item.link}
-                      className={`group relative flex flex-col items-center rounded-lg p-1 text-base-content transition-colors ${
-                        item.title === 'Хадгалсан' || item.title === 'Профайл' ? 'hidden md:flex' : 'md:flex'
-                      } lg:p-2`}
-                    >
-                      {item.title === 'Сагс' && order?.itemCount !== undefined && (
-                        <div className="badge badge-secondary badge-xs absolute right-0 top-0 py-2">
-                          {order?.itemCount}
-                          {orderLoading && <div className="loading loading-ring w-3"></div>}
-                        </div>
-                      )}
-                      {item.icon}
-                      <li className="hidden group-hover:text-secondary md:block">
-                        {item.title === 'Профайл' ? (userData?.me ? userData?.me.firstName : 'Нэвтрэх') : item.title}
-                      </li>
-                    </Link>
-                  ))}
+                {menuItems(userData).map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.link}
+                    className={`group relative flex flex-col items-center rounded-lg p-1 text-base-content transition-colors ${
+                      item.title === 'Хадгалсан' || item.title === 'Профайл' ? 'hidden md:flex' : 'md:flex'
+                    } lg:p-2`}
+                  >
+                    {item.title === 'Сагс' && order?.itemCount !== undefined && (
+                      <div className="badge badge-secondary badge-xs absolute right-0 top-0 py-2">
+                        {order?.itemCount}
+                        {orderLoading && <div className="loading loading-ring w-3"></div>}
+                      </div>
+                    )}
+                    {item.icon}
+                    <li className="hidden group-hover:text-secondary md:block">
+                      {item.title === 'Профайл' ? (userData?.me ? userData?.me.firstName : 'Нэвтрэх') : item.title}
+                    </li>
+                  </Link>
+                ))}
               </ul>
             </nav>
           </div>
@@ -99,17 +97,6 @@ function Loader() {
 
 function menuItems(userData: MeQuery | undefined) {
   return [
-    {
-      title: 'Мэдэгдэл',
-      link: '/notifications',
-      hideWhenNotLoggedIn: true,
-      icon: <Bell className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
-    },
-    {
-      title: 'Хадгалсан',
-      link: '/saved',
-      icon: <Heart className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
-    },
     {
       title: 'Сагс',
       link: '/checkout',
