@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 import { ThemeToggleButton } from './theme-toggle-button';
 
-import { useMeQuery } from '@/gql/query/user/me.generated';
+import { type MeQuery, useMeQuery } from '@/gql/query/user/me.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
 
 export function Header() {
@@ -16,58 +16,7 @@ export function Header() {
 
   const router = useRouter();
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      router.push('/s');
-    }
-  };
-
-  const menuItems = [
-    {
-      title: 'Мэдэгдэл',
-      link: '/notifications',
-      hideWhenNotLoggedIn: true,
-      icon: <Bell className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
-    },
-    {
-      title: 'Хайлт',
-      link: '/search',
-      mobileOnly: true,
-      icon: <Search className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
-    },
-    {
-      title: 'Хадгалсан',
-      link: '/saved',
-      icon: <Heart className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
-    },
-    {
-      title: 'Сагс',
-      link: '/checkout',
-      icon: <ShoppingCart className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
-    },
-    {
-      title: 'Профайл',
-      link: userData?.me ? '/account' : '/auth/login',
-      icon: <User className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
-    },
-  ];
-
-  if (loading) {
-    return (
-      <header className="z-40 w-full bg-base-100 shadow-md">
-        <div className="container mx-auto max-w-7xl">
-          <div className="flex h-16 items-center justify-between">
-            <div className="skeleton h-8 w-8 rounded-full bg-base-content" />
-            <div className="flex gap-4">
-              {[...Array(3)].map((_, i) => (
-                <div key={i} className="skeleton h-8 w-8 rounded bg-base-content" />
-              ))}
-            </div>
-          </div>
-        </div>
-      </header>
-    );
-  }
+  if (loading) <Loader />;
 
   return (
     <header className="z-40 w-full bg-base-100 shadow-md">
@@ -90,7 +39,9 @@ export function Header() {
                 type="text"
                 className="w-full rounded-full border border-base-content px-4 py-1 text-neutral focus:outline-none"
                 placeholder="Бүтээгдэхүүн хайх..."
-                onKeyDown={handleKeyDown}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') router.push('/s');
+                }}
               />
               <Search className="absolute right-3 top-1.5 h-5 w-5 stroke-1 text-gray-400" />
             </div>
@@ -98,8 +49,8 @@ export function Header() {
             <nav className="flex items-center gap-2 text-xs">
               <ThemeToggleButton />
               <ul className="flex">
-                {menuItems
-                  .filter((item) => !(item.title === 'Мэдэгдэл' && !userData?.me) && (item.title !== 'Хайлт' || item.mobileOnly))
+                {menuItems(userData)
+                  .filter((item) => !(item.title === 'Мэдэгдэл' && !userData?.me))
                   .map((item, index) => (
                     <Link
                       key={index}
@@ -127,4 +78,47 @@ export function Header() {
       </div>
     </header>
   );
+}
+
+function Loader() {
+  return (
+    <header className="z-40 w-full bg-base-100 shadow-md">
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex h-16 items-center justify-between">
+          <div className="skeleton h-8 w-8 rounded-full bg-base-content" />
+          <div className="flex gap-4">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="skeleton h-8 w-8 rounded bg-base-content" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function menuItems(userData: MeQuery | undefined) {
+  return [
+    {
+      title: 'Мэдэгдэл',
+      link: '/notifications',
+      hideWhenNotLoggedIn: true,
+      icon: <Bell className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
+    },
+    {
+      title: 'Хадгалсан',
+      link: '/saved',
+      icon: <Heart className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
+    },
+    {
+      title: 'Сагс',
+      link: '/checkout',
+      icon: <ShoppingCart className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
+    },
+    {
+      title: 'Профайл',
+      link: userData?.me ? '/account' : '/auth/login',
+      icon: <User className="h-5 w-5 stroke-1 text-base-content group-hover:text-secondary" />,
+    },
+  ];
 }

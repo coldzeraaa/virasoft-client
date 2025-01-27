@@ -24,6 +24,7 @@ export default function Orders() {
             <th>№</th>
             <th>Захиалгийн дугаар</th>
             <th>захиалгууд</th>
+            <th />
             <th>Он сар өдөр</th>
             <th>үнэ</th>
           </tr>

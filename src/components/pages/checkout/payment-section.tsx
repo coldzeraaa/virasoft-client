@@ -1,9 +1,11 @@
 'use client';
 
 import { ChevronRightIcon } from '@heroicons/react/16/solid';
+import cookies from 'js-cookie';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
+import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
 import { PaymentMethodEnum } from '@/gql/graphql.d';
 import { useUpdateCheckoutAddressMutation } from '@/gql/mutation/address/update-checkout-address.generated';
 import { usePaymentCheckoutMutation } from '@/gql/mutation/checkout/payment-checkout.generated';
@@ -15,10 +17,9 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
   const { loading, order } = useCurrentOrder();
   const pathName = usePathname();
   const router = useRouter();
-
   const [updateCheckoutAddress, { loading: checkoutAddressLoading }] = useUpdateCheckoutAddressMutation({
     onError: catchHelper,
-    onCompleted: () => {
+    onCompleted() {
       toast.success('Хүргэлтийн хаягийг амжилттай сонголоо');
       router.push('/checkout/review');
     },
@@ -26,41 +27,12 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
 
   const [paymentCheckout, { loading: paymentCheckoutLoading }] = usePaymentCheckoutMutation({
     onError: catchHelper,
-    onCompleted: () => {
+    update: (cache) => cache.evict({ fieldName: 'currentOrder' }),
+    onCompleted() {
       toast.success('Захиалга амжилттай үүслээ');
       router.push(`/account/orders/${order?.number}/pay`);
     },
   });
-
-  const handleContinue = (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    if (pathName === '/checkout/address') {
-      if (!selectedAddress) {
-        toast.error('Хүргэлтийн хаягаа оруулна уу');
-        return;
-      }
-      updateCheckoutAddress({
-        variables: {
-          input: {
-            shipAddressId: selectedAddress,
-          },
-        },
-      });
-    }
-
-    if (pathName === '/checkout/review') {
-      paymentCheckout({
-        variables: {
-          input: {
-            action: PaymentMethodEnum.VirasoftPay,
-          },
-        },
-      });
-    } else {
-      router.push('/checkout/address');
-    }
-  };
 
   if (loading || paymentCheckoutLoading || checkoutAddressLoading) return <div className="skeleton h-60 w-full" />;
   if (!order) return <div className="h-60 w-full">Танд захиалга байхгүй байна</div>;
@@ -90,7 +62,19 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
         <span className="">Нийт</span>
         <span className="heading-4">{moneyFormatHelper(order?.total || 0)}</span>
       </p>
-      <button className="btn btn-secondary btn-block" type="button" onClick={handleContinue}>
+      <button
+        className="btn btn-secondary btn-block"
+        type="button"
+        onClick={() => {
+          if (pathName === '/checkout/address') {
+            if (!selectedAddress) return toast.error('Хүргэлтийн хаягаа оруулна уу');
+            return updateCheckoutAddress({ variables: { input: { shipAddressId: selectedAddress } } });
+          }
+          if (pathName === '/checkout/review') return paymentCheckout({ variables: { input: { action: PaymentMethodEnum.VirasoftPay } } });
+          cookies.set(STORE_KEY_CONFIG.NEXT_FROM, '/checkout/address');
+          router.push('/checkout/address');
+        }}
+      >
         <span>Үргэлжлүүлэх</span>
         <ChevronRightIcon className="w-4" />
       </button>

@@ -20,9 +20,9 @@ export const APP_CONFIG: AppConfigType = {
     title: 'Golden Oil',
     description: 'Welcome to Virasoft',
     metadataBase: new URL('https://virasoft.mn'),
-    icons: { icon: { url: ' /public/afiorstv / favicon.ico ' } },
+    icons: { icon: { url: `/public/virasoft/favicon.ico` } },
     openGraph: {
-      images: '/public/degillnoo / share.webp,',
+      images: `/public/goldenoil/share.webp`,
       type: 'website',
       locale: 'mn',
       siteName: 'https://virasoft.mn',

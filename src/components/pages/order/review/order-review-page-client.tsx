@@ -10,9 +10,7 @@ import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 export default function OrderReviewPageClient() {
   const { order, loading } = useCurrentOrder();
 
-  if (loading) {
-    return <div className="skeleton h-96 w-full"></div>;
-  }
+  if (loading) return <div className="skeleton h-96 w-full" />;
 
   return (
     <div className="container mx-auto max-w-7xl p-4">
@@ -33,7 +31,7 @@ export default function OrderReviewPageClient() {
                 <div key={item.variant.id} className="flex gap-4 py-4">
                   <div className="relative h-24 w-24 flex-shrink-0">
                     <Image
-                      src={item.variant.images[1] ? imageUrlHelper(item.variant.images[1]) : `/api/placeholder/96/96`}
+                      src={item.variant.images[0] ? imageUrlHelper(item.variant.images[0]) : `/api/placeholder/96/96`}
                       alt={item.variant.product.name || 'product'}
                       fill
                       className="h-full w-full rounded-lg object-cover"
