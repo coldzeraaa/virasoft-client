@@ -27,6 +27,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
 
   const [paymentCheckout, { loading: paymentCheckoutLoading }] = usePaymentCheckoutMutation({
     onError: catchHelper,
+    update: (cache) => cache.evict({ fieldName: 'currentOrder' }),
     onCompleted() {
       toast.success('Захиалга амжилттай үүслээ');
       router.push(`/account/orders/${order?.number}/pay`);

@@ -17,7 +17,7 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
       <h2 className="text-2xl">Төлбөрийн төрөл</h2>
       <div className="py-w flex flex-wrap gap-3">
         {data?.myOrder?.payments[0]?.source?.bank_list?.map((element: BankListType, idx: number) => (
-          <PaymentCard key={idx} bankList={element} />
+          <PaymentCard key={idx} orderNumber={data.myOrder?.number} bankList={element} />
         ))}
       </div>
       <hr />

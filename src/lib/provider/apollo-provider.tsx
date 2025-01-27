@@ -19,15 +19,7 @@ export function ApolloProvider({ children }: { children: ReactNode }) {
 
 function makeClient() {
   return new ApolloClient({
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            vendors: relayStylePagination(['filter', 'sort']),
-          },
-        },
-      },
-    }),
+    cache: new InMemoryCache({ typePolicies: { Query: { fields: { vendors: relayStylePagination(['filter', 'sort']) } } } }),
     link: authLink.concat(getLink()),
   });
 }
@@ -46,10 +38,7 @@ export function getLink() {
   const httpLink = ApolloLink.split(
     (operation) => operation.getContext().upload,
     createUploadLink({ uri: `${HOST_CONFIG.host}/graphql` }),
-    new HttpLink({
-      uri: `${HOST_CONFIG.host}/graphql`,
-      fetchOptions: { cache: 'no-store' },
-    }),
+    new HttpLink({ uri: `${HOST_CONFIG.host}/graphql`, fetchOptions: { cache: 'no-store' } }),
   );
 
   if (typeof window === 'undefined') return ApolloLink.from([new SSRMultipartLink({ stripDefer: true }), httpLink]);

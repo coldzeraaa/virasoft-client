@@ -10,9 +10,7 @@ import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 export default function OrderReviewPageClient() {
   const { order, loading } = useCurrentOrder();
 
-  if (loading) {
-    return <div className="skeleton h-96 w-full"></div>;
-  }
+  if (loading) return <div className="skeleton h-96 w-full" />;
 
   return (
     <div className="container mx-auto max-w-7xl p-4">

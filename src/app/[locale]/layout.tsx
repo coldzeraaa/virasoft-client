@@ -13,11 +13,7 @@ import { AuthProvider } from '@/lib/context/auth-context';
 import { CurrentOrderProvider } from '@/lib/context/current-order-context';
 import { ApolloProvider } from '@/lib/provider/apollo-provider';
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <body className={bodyClassName}>
