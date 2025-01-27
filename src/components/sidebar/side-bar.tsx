@@ -1,11 +1,8 @@
 'use client';
 import { ReactElement } from 'react';
 
-import cookies from 'js-cookie';
 import { IdCard, ListOrdered, User } from 'lucide-react';
 import Link from 'next/link';
-
-import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
 
 export function SideBar() {
   return (
@@ -17,14 +14,7 @@ export function SideBar() {
       </div>
       <div className="flex flex-col items-center justify-center gap-3">
         <User className="h-8 w-8" />
-        <button
-          onClick={() => {
-            cookies.remove(STORE_KEY_CONFIG.NEXT_USER_TOKEN);
-            window.location.href = '/auth/login';
-          }}
-          type="button"
-          className="btn w-[70%] "
-        >
+        <button type="button" className="btn w-[70%] ">
           Гарах
         </button>
       </div>
