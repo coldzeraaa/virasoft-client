@@ -10,14 +10,8 @@ import { useUpdateUserAddressMutation } from '@/gql/mutation/address/update-user
 import { type MeUserAddressQuery, useMeUserAddressQuery } from '@/gql/query/user/me-user-address.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
-export default function UserAddresses({ setSelectedAddress }: { setSelectedAddress: (address: string | null) => void }) {
+export default function UserAddresses({ setSelectedAddress }: UserAddressesProps) {
   const { data, loading } = useMeUserAddressQuery();
-
-  // Set the first address by default
-  const firstAddress = data?.me?.userAddresses.nodes[0]?.address.id;
-  if (firstAddress) {
-    setSelectedAddress(firstAddress);
-  }
 
   if (loading) return <div className="skeleton h-60 w-full" />;
   if (!data?.me) return <div className="h-60 w-full">Хэрэглэгч олдсонгүй</div>;
@@ -38,7 +32,7 @@ export default function UserAddresses({ setSelectedAddress }: { setSelectedAddre
   );
 }
 
-function SingleAddress({ node, setSelectedAddress, user }: SingleAddressProps) {
+function SingleAddress({ node, setSelectedAddress }: SingleAddressProps) {
   const [show, setShow] = useState<boolean>(false);
   const modalRef = useRef<HTMLDialogElement>(null);
   const [destroyAddress, { loading: deleteLoading }] = useDestroyUserAddressMutation({
@@ -55,16 +49,7 @@ function SingleAddress({ node, setSelectedAddress, user }: SingleAddressProps) {
   return (
     <li className="flex gap-2">
       <label className="flex w-full items-center gap-2">
-        <input
-          type="radio"
-          name="address"
-          className="radio"
-          value={node.address.id}
-          checked={node === user.userAddresses.nodes[0]}
-          onChange={() => {
-            setSelectedAddress(node.address.id);
-          }}
-        />
+        <input type="radio" name="address" className="radio" value={node.address.id} onChange={() => setSelectedAddress(node.address.id)} />
         <div className="flex-1">
           <p>{node?.address?.addressAlias}</p>
           <p>{node?.address?.address1}</p>
@@ -220,6 +205,9 @@ const addressInputs: FormInputProps[] = [
   },
 ];
 
+export interface UserAddressesProps {
+  setSelectedAddress(address: string | null): void;
+}
 interface SingleAddressProps {
   node: UserAddressNode;
   user: NonNullable<MeUserAddressQuery['me']>;
