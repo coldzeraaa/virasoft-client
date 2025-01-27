@@ -17,7 +17,6 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
   const { loading, order } = useCurrentOrder();
   const pathName = usePathname();
   const router = useRouter();
-
   const [updateCheckoutAddress, { loading: checkoutAddressLoading }] = useUpdateCheckoutAddressMutation({
     onError: catchHelper,
     onCompleted() {
@@ -30,7 +29,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
     onError: catchHelper,
     onCompleted() {
       toast.success('Захиалга амжилттай үүслээ');
-      router.push('/account/payment');
+      router.push(`/account/orders/${order?.number}/pay`);
     },
   });
 
