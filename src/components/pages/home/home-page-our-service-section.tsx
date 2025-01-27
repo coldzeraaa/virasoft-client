@@ -2,11 +2,8 @@ import { Droplet, Lightbulb, MapPin, ShieldCheck } from 'lucide-react';
 
 export function HomePageOurServiceSection() {
   return (
-    <div
-      className="flex justify-center  bg-gray-100 py-4
-    "
-    >
-      <div className=" w-7/10 flex flex-col gap-4">
+    <div className="flex justify-center  bg-gray-100 py-4">
+      <div className=" flex w-[70%] flex-col gap-4">
         <h1 className="text-2xl">Манай үйлчилгээ</h1>
         <p>
           Бид үйлчлүүлэгчдийнхээ түлшний хангамжийг цаг алдалгүй тогтвортой хангах мөн өрсөлдөхүйц үнийн саналийг санал болгож түргэн
