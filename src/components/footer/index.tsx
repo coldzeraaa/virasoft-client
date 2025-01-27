@@ -52,7 +52,7 @@ export function Footer() {
       <footer className="hidden w-full border-t bg-primary text-accent-content md:block">
         <div className="mx-auto w-full max-w-7xl p-6 lg:py-6">
           <div className="grid grid-cols-3 gap-8">
-            {data?.menus.nodes[1].children?.map((item, idx) => (
+            {data?.menus.nodes[1]?.children?.map((item, idx) => (
               <div key={idx}>
                 <h5 className="mb-4 text-xl text-secondary">{item.title}</h5>
                 <div className={`flex ${item.title === 'Холбоосууд' ? 'flex-row items-center gap-1' : 'flex-col space-y-2'}`}>
