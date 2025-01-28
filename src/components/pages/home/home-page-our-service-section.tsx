@@ -1,20 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
 
 import { Droplet, Lightbulb, MapPin, ShieldCheck } from 'lucide-react';
 
-import { elService } from '@/lib/service/el-service';
-
 export function HomePageOurServiceSection() {
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    const b = async () => {
-      const a = await elService({});
-      console.log(a);
-    };
-    b();
-  }, []);
   return (
     <div className="mx-auto max-w-screen-xl space-y-4">
       <h1 className="text-2xl">Манай үйлчилгээ</h1>
