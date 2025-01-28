@@ -9,7 +9,7 @@ import { ThemeToggleButton } from './theme-toggle-button';
 
 import { type MeQuery, useMeQuery } from '@/gql/query/user/me.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
-
+import logo from '@/components/icons/logo.svg'
 export function Header() {
   const { data: userData, loading } = useMeQuery();
   const { order, loading: orderLoading } = useCurrentOrder();
@@ -25,7 +25,7 @@ export function Header() {
           <Link href="/" className="mr-3 flex flex-shrink-0 items-center">
             <Image
               className="h-8 w-auto"
-              src="https://upload.wikimedia.org/wikipedia/en/9/92/Chanel_logo_interlocking_cs.svg"
+              src={logo}
               alt="Company Logo"
               width={32}
               height={42}
@@ -37,7 +37,7 @@ export function Header() {
             <div className="relative hidden max-w-xs flex-1 md:block">
               <input
                 type="text"
-                className="w-full rounded-full border border-base-content px-4 py-1 text-neutral focus:outline-none"
+                className="w-full rounded-lg border px-4 py-1 text-neutral focus:outline-none"
                 placeholder="Бүтээгдэхүүн хайх..."
                 onKeyDown={(event) => {
                   if (event.key === 'Enter') router.push('/s');

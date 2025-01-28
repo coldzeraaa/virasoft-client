@@ -19,12 +19,12 @@ export function Footer() {
   if (loading) <Loader />;
   return (
     <>
-      <footer className="hidden w-full border-t bg-primary text-accent-content md:block">
+      <footer className="hidden w-full border-t bg-base-300 text-neutral md:block">
         <div className="mx-auto w-full max-w-7xl p-6 lg:py-6">
           <div className="grid grid-cols-3 gap-8">
-            {data?.menus.nodes[1]?.children?.map((item, idx) => (
+            {data?.allMenus.nodes[2]?.children?.map((item, idx) => (
               <div key={idx}>
-                <h5 className="mb-4 text-xl text-secondary">{item.title}</h5>
+                <h5 className="mb-4 text-xl text-primary">{item.title}</h5>
                 <div className={`flex ${item.title === 'Холбоосууд' ? 'flex-row items-center gap-1' : 'flex-col space-y-2'}`}>
                   {item.children?.map((childMenu) =>
                     item.title === 'Холбоосууд' ? (

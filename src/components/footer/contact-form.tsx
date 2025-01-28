@@ -1,0 +1,41 @@
+'use client';
+
+import Form, { Field } from 'rc-field-form';
+
+export function ContactForm() {
+  const [form] = Form.useForm();
+
+  const onFinish = (values: any) => {};
+
+  return (
+    <Form form={form} onFinish={onFinish} className="space-y-4">
+      {/* Name Input */}
+      <Field name="name" rules={[{ required: true, message: 'Нэрээ оруулна уу' }]}>
+        <input placeholder="Таны нэр" className="input input-bordered w-full border-l-0 border-r-0 border-t-0 bg-transparent focus:outline-0" />
+      </Field>
+
+      {/* Email Input */}
+      <Field
+        name="email"
+        rules={[
+          { required: true, message: 'И-мэйл хаягаа оруулна уу' },
+          { type: 'email', message: 'Зөв и-мэйл хаяг оруулна уу' },
+        ]}
+      >
+        <input type="email" placeholder="И-мэйл хаяг" className="input input-bordered w-full border-l-0 border-r-0 border-t-0 bg-transparent focus:outline-0" />
+      </Field>
+
+      {/* Message Textarea */}
+      <Field name="message" rules={[{ required: true, message: 'Мессежээ оруулна уу' }]}>
+        <textarea placeholder="Нэмэлт тайлбар болон санал хүсэлтээ бичнэ үү.." className="input resize-none input-bordered w-full border-l-0 border-r-0 border-t-0 bg-transparent focus:outline-0" />
+      </Field>
+
+      {/* Submit Button */}
+      <button type="submit" className="btn btn-primary text-info-content w-fit">
+        ИЛГЭЭХ
+      </button>
+    </Form>
+  );
+}
+
+export default ContactForm;
