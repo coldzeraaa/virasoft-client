@@ -7,9 +7,9 @@ import { useRouter } from 'next/navigation';
 
 import { ThemeToggleButton } from './theme-toggle-button';
 
+import logo from '@/components/icons/logo.svg';
 import { type MeQuery, useMeQuery } from '@/gql/query/user/me.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
-
 export function Header() {
   const { data: userData, loading } = useMeQuery();
   const { order, loading: orderLoading } = useCurrentOrder();
@@ -23,21 +23,14 @@ export function Header() {
       <div className="container max-w-7xl">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="mr-3 flex flex-shrink-0 items-center">
-            <Image
-              className="h-8 w-auto"
-              src="https://upload.wikimedia.org/wikipedia/en/9/92/Chanel_logo_interlocking_cs.svg"
-              alt="Company Logo"
-              width={32}
-              height={42}
-              priority
-            />
+            <Image className="h-8 w-auto" src={logo} alt="Company Logo" width={32} height={42} priority />
           </Link>
 
           <div className="flex flex-1 items-center justify-end gap-4 md:justify-between">
             <div className="relative hidden max-w-xs flex-1 md:block">
               <input
                 type="text"
-                className="w-full rounded-full border border-base-content px-4 py-1 text-neutral focus:outline-none"
+                className="w-full rounded-lg border px-4 py-1 text-neutral focus:outline-none"
                 placeholder="Бүтээгдэхүүн хайх..."
                 onKeyDown={(event) => {
                   if (event.key === 'Enter') router.push('/s');

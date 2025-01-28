@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { catchHelper } from 'simple-helper-fns';
 
@@ -42,13 +41,6 @@ export function ProductDetail() {
 
   return (
     <div className="relative h-full w-full ">
-      <Link href="/order">
-        <div className="absolute right-4 top-4 z-30 cursor-pointer">
-          <button type="button" className="rounded-3xl bg-base-100 px-4 py-3 text-base-content">
-            Дуусгах
-          </button>
-        </div>
-      </Link>
       <div className="relative flex h-full w-full flex-col items-center justify-center">
         {products.map(
           (product, index) =>
