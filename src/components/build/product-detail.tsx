@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { catchHelper } from 'simple-helper-fns';
 
@@ -42,8 +41,6 @@ export function ProductDetail() {
 
   return (
     <div className="relative h-full w-full ">
-      <Link href="/order">
-      </Link>
       <div className="relative flex h-full w-full flex-col items-center justify-center">
         {products.map(
           (product, index) =>
