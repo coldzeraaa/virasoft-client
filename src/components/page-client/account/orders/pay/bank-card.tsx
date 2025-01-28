@@ -6,7 +6,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export function PaymentCard({ bankList, orderNumber, qrCode }: { bankList: BankListType; orderNumber: string | undefined; qrCode: string }) {
+export function PaymentCard({
+  bankList,
+  orderNumber,
+  qrCode,
+}: {
+  bankList: BankListType;
+  orderNumber: string | undefined;
+  qrCode: string;
+}) {
   const modalRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
 
