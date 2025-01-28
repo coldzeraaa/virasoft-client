@@ -1,3 +1,5 @@
+'use client';
+
 import { Droplet, Lightbulb, MapPin, ShieldCheck } from 'lucide-react';
 
 export function HomePageOurServiceSection() {
