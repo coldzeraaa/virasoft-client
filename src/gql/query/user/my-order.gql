@@ -18,6 +18,12 @@ query myOrder($number: String!) {
       price
       quantity
       variant {
+        product {
+          name
+          title
+
+          images
+        }
         images
         sku
         price
