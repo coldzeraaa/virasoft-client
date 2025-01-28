@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { CircleUserRound, Heart, House, Star, Tag, TextSearch } from 'lucide-react';
+import { CircleUserRound, House, TextSearch } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -108,8 +108,5 @@ function Loader() {
 const mobileFooter = [
   { key: 'home', label: 'Нүүр', icon: House, link: '/' },
   { key: 'categories', label: 'Ангилал', icon: TextSearch, link: '/s' },
-  { key: 'featured', label: 'Онцлох', icon: Star, link: '/featured' },
-  { key: 'brands', label: 'Брэндүүд', icon: Tag, link: '/brands' },
-  { key: 'wishlist', label: 'Хадгалсан', icon: Heart, link: '/wishlist' },
-  { key: 'profile', label: 'Профайл', icon: CircleUserRound, link: '/profile' },
+  { key: 'profile', label: 'Профайл', icon: CircleUserRound, link: '/account' },
 ];
