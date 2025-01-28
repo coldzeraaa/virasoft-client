@@ -4,8 +4,12 @@ export function HomePageParthnerSection() {
   return (
     <div className=" flex justify-center bg-base-200 py-4">
       <div className="container mx-auto flex max-w-7xl  flex-col justify-start">
-        <h2 className="text-base">Хамтрагч байгуулга</h2>
-        <h2 className="text-base">ХАМТРАН АЖИЛЛАЖ БУЙ БАЙГУУЛЛАГУУД </h2>
+        <h2 className="text-base">
+          <b>Хамтрагч байгуулга</b>
+        </h2>
+        <h2 className="text-base">
+          <b>ХАМТРАН АЖИЛЛАЖ БУЙ БАЙГУУЛЛАГУУД</b>{' '}
+        </h2>
         <div>
           {parthnerData.map((element, idx) => (
             <div className="max-h-36 max-w-36" key={idx}>
