@@ -10,8 +10,8 @@ import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
 export function SideBar() {
   const router = useRouter();
   return (
-    <div className="justify-betwee ml-4 flex  h-full  w-[20%] flex-col shadow-lg">
-      <div className="   flex h-full  flex-col gap-4 px-2 py-2 ">
+    <div className="ml-4 hidden h-full w-1/5 flex-col justify-between rounded-lg bg-base-100 shadow-lg md:flex">
+      <div className="flex h-full w-full flex-col gap-4 px-6 py-4">
         {sidebarItems.map((element, index) => (
           <SideBarItem key={index} link={element.link} icon={element.icon} text={element.name} />
         ))}
@@ -34,9 +34,9 @@ export function SideBar() {
 }
 
 const SideBarItem = (props: CardDataType) => (
-  <Link href={props.link} className="flex items-center gap-2 text-gray-500  hover:text-neutral">
+  <Link href={props.link} className="flex items-center gap-2 rounded-lg p-2 text-neutral-content hover:bg-base-300 hover:text-neutral">
     {props.icon}
-    <p className="text-lg ">{props.text}</p>
+    <p className="text-lg">{props.text}</p>
   </Link>
 );
 

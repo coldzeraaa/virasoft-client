@@ -17,7 +17,7 @@ export function OrderInfo({ myOrder }: MyOrderType) {
 
       <div className="flex justify-around ">
         <div>
-          <Link href={`/account/orders/${myOrder?.number}/pay`} className="btn  btn-primary">
+          <Link href={`/account/orders/${myOrder?.number}/pay`} className="btn  btn-primary text-base-100">
             Төлбөр төлөх
           </Link>
         </div>
