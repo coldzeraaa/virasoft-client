@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export function PaymentCard({ bankList }: { bankList: BankListType }) {
+export function PaymentCard({ bankList, qrCode }: { bankList: BankListType; qrCode: string }) {
   const modalRef = useRef<HTMLDialogElement>(null);
   return (
     <button
@@ -31,7 +31,9 @@ export function PaymentCard({ bankList }: { bankList: BankListType }) {
             <Image
               width={400}
               height={200}
-              src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+              // src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+              src={qrCode}
+              className="bg-white p-2"
               alt="image"
             />
           </div>
