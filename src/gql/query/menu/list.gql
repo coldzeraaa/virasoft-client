@@ -1,5 +1,5 @@
-query menus($filter: MenuFilter) {
-  menus(filter: $filter) {
+query allMenus($filter: MenuFilter) {
+  allMenus(filter: $filter) {
     nodes {
       id
       title

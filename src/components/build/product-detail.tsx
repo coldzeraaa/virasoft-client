@@ -19,6 +19,7 @@ export function ProductDetail() {
   const coatId = searchparams.get('coat');
   const buttonId = searchparams.get('button');
   const liningId = searchparams.get('lining');
+  const cuffId = searchparams.get('cuff');
 
   useEffect(() => {
     if (coatId) {
@@ -29,6 +30,9 @@ export function ProductDetail() {
     }
     if (liningId) {
       selectProduct('lining', liningId);
+    }
+    if (cuffId) {
+      selectProduct('cuff', cuffId);
     }
   }, []);
 

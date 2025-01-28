@@ -12,7 +12,6 @@ import { BuildItemType } from '@/types/build-item-type';
 export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
   const { hits } = useHits<BuildItemType>();
   const { selectedProducts, selectProduct } = useBuild();
-console.log(hits);
 
   return (
     <div className="h-full w-full">

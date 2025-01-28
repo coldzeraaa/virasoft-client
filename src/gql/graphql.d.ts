@@ -1236,6 +1236,7 @@ export type ProductFilter = {
 
 export type Query = {
   __typename?: 'Query';
+  allMenus: MenuConnection;
   application?: Maybe<Application>;
   applications: ApplicationConnection;
   assetRole?: Maybe<AssetRole>;
@@ -1243,6 +1244,7 @@ export type Query = {
   brand?: Maybe<Brand>;
   brands: BrandConnection;
   currentOrder?: Maybe<Order>;
+  currentWebsite?: Maybe<Website>;
   listing?: Maybe<Listing>;
   listings: ListingConnection;
   me?: Maybe<User>;
@@ -1274,6 +1276,16 @@ export type Query = {
   vendors: VendorConnection;
   website?: Maybe<Website>;
   websites: WebsiteConnection;
+};
+
+
+export type QueryAllMenusArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<MenuFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
 };
 
 
@@ -1886,9 +1898,20 @@ export type Website = BaseModelInterface & {
   domain: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   index: Scalars['String']['output'];
+  menus: MenuConnection;
   merchants: Array<Merchant>;
   name: Scalars['String']['output'];
   updatedAt: Scalars['ISO8601DateTime']['output'];
+};
+
+
+export type WebsiteMenusArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<MenuFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortFilter>;
 };
 
 /** The connection type for Website. */
