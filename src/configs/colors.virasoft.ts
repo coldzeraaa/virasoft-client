@@ -6,10 +6,10 @@ export const LIGHT_COLORS = {
   secondary: '#C09049', //golden yellow
   'secondary-content': '#EDF2F8', //neutral light grey
   accent: '#17DDDD', //teel
-  'accent-content': '#222529', //black
+  'accent-content': '#FFFFFF', //black
   neutral: '222529', //black
   'neutral-content': '#6C707D', //muted grey with blue undertone
-  'base-100': '#ffffff', //off-white
+  'base-100': '#FFFFFF', //off-white
   'base-200': '#F6F7F9', //light grey
   'base-300': '#E7EAEF', //light grey
   'base-content': '#222529', //dark grey

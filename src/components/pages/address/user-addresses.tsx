@@ -10,7 +10,7 @@ import { useUpdateUserAddressMutation } from '@/gql/mutation/address/update-user
 import { type MeUserAddressQuery, useMeUserAddressQuery } from '@/gql/query/user/me-user-address.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
 
-export default function UserAddresses({ setSelectedAddress }: { setSelectedAddress: (address: string | null) => void }) {
+export default function UserAddresses({ setSelectedAddress }: UserAddressesProps) {
   const { data, loading } = useMeUserAddressQuery();
 
   if (loading) return <div className="skeleton h-60 w-full" />;
@@ -48,20 +48,13 @@ function SingleAddress({ node, setSelectedAddress }: SingleAddressProps) {
 
   return (
     <li className="flex gap-2">
-      <input
-        type="radio"
-        name="address"
-        className="radio"
-        value={node.address.id}
-        onChange={() => {
-          setSelectedAddress(node.address.id);
-        }}
-      />
-
-      <div className="flex-1">
-        <p>{node?.address?.addressAlias}</p>
-        <p>{node?.address?.address1}</p>
-      </div>
+      <label className="flex w-full items-center gap-2">
+        <input type="radio" name="address" className="radio" value={node.address.id} onChange={() => setSelectedAddress(node.address.id)} />
+        <div className="flex-1">
+          <p>{node?.address?.addressAlias}</p>
+          <p>{node?.address?.address1}</p>
+        </div>
+      </label>
       <button onClick={() => setShow(true)} type="button" className="btn btn-info">
         Засварлах
       </button>
@@ -212,6 +205,9 @@ const addressInputs: FormInputProps[] = [
   },
 ];
 
+export interface UserAddressesProps {
+  setSelectedAddress(address: string | null): void;
+}
 interface SingleAddressProps {
   node: UserAddressNode;
   user: NonNullable<MeUserAddressQuery['me']>;

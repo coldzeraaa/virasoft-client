@@ -12,12 +12,12 @@
     "build:virasoft": "APP_INDEX=virasoft next build",
     "build:virasoft:windows": "cross-env APP_INDEX=virasoft next build",
 
-    "dev:oil:prod": "npm run clean:cache &&  APP_INDEX=oil next dev -p 3212",
-    "dev:oil:windows:prod": "npm run clean:cache && cross-env APP_INDEX=oil next dev -p 3212",
-    "dev:oil:local": "npm run clean:cache && STAGE=local APP_INDEX=oil next dev -p 3213",
-    "dev:oil:docker": "npm run clean:cache && STAGE=docker APP_INDEX=oil next dev -p 3214",
-    "build:oil": "APP_INDEX=oil next build",
-    "build:oil:windows": "cross-env APP_INDEX=oil next build",
+    "dev:goldenoil:prod": "npm run clean:cache &&  APP_INDEX=goldenoil next dev -p 3212",
+    "dev:goldenoil:windows:prod": "npm run clean:cache && cross-env APP_INDEX=goldenoil next dev -p 3212",
+    "dev:goldenoil:local": "npm run clean:cache && STAGE=local APP_INDEX=goldenoil next dev -p 3213",
+    "dev:goldenoil:docker": "npm run clean:cache && STAGE=docker APP_INDEX=goldenoil next dev -p 3214",
+    "build:goldenoil": "APP_INDEX=goldenoil next build",
+    "build:goldenoil:windows": "cross-env APP_INDEX=goldenoil next build",
 
     "start": "next start",
     "codegen": "graphql-codegen --config codegen.yml",
@@ -30,7 +30,6 @@
     "@react-google-maps/api": "^2.20.5",
     "@searchkit/api": "^4.13.0",
     "@searchkit/instantsearch-client": "^4.14.1",
-    "@types/qrcode": "^1.5.5",
     "apollo-upload-client": "^18.0.1",
     "field-form": "^1.2.10",
     "holy-loader": "^2.3.11",
@@ -47,7 +46,8 @@
     "react-instantsearch-nextjs": "^0.3.20",
     "react-instantsearch-router-nextjs": "^7.13.9",
     "react-toastify": "^10.0.6",
-    "simple-helper-fns": "^1.0.7"
+    "simple-helper-fns": "^1.0.7",
+    "qrcode": "^1.5.3"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.2",
@@ -66,6 +66,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/qrcode": "^1.5.5",
     "cross-env": "^7.0.3",
     "daisyui": "^4.10.2",
     "eslint": "^8",

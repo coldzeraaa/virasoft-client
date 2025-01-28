@@ -2,54 +2,27 @@
 
 import { useState } from 'react';
 
-import { CircleUserRound, Facebook, Heart, House, Instagram, Star, Tag, TextSearch } from 'lucide-react';
+import { CircleUserRound, Heart, House, Star, Tag, TextSearch } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
+import facebook from '@/components/icons/facebook.svg';
+import instagram from '@/components/icons/instagram.svg';
 import { useHeaderFooterQuery } from '@/gql/query/menu/header-footer.generated';
 import { useMeQuery } from '@/gql/query/user/me.generated';
 
 export function Footer() {
   const [activeTab, setActiveTab] = useState('home');
-  const { data, loading } = useHeaderFooterQuery({
-    variables: { filter: { title: { in: ['header', 'footer'] } } },
-  });
+  const { data, loading } = useHeaderFooterQuery({ variables: { filter: { title: { in: ['header', 'footer'] } } } });
   const { data: userData } = useMeQuery();
 
-  if (loading) {
-    return (
-      <>
-        <footer className="hidden w-full bg-base-100 md:block">
-          <div className="mx-auto max-w-7xl p-8">
-            <div className="grid grid-cols-3 gap-8">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i}>
-                  <div className="skeleton mb-4 h-6 w-1/2 rounded-sm bg-base-content" />
-                  <div className="space-y-2">
-                    {Array.from({ length: 4 }).map((__, j) => (
-                      <div key={j} className="skeleton h-4 w-3/4 rounded-sm bg-base-content" />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </footer>
-        <div className="fixed inset-x-0 bottom-0 bg-base-100 md:hidden">
-          <div className="flex justify-between p-2">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="skeleton h-10 w-10 rounded-md bg-base-content" />
-            ))}
-          </div>
-        </div>
-      </>
-    );
-  }
+  if (loading) <Loader />;
   return (
     <>
-      <footer className="hidden w-full border-t bg-primary text-primary-content md:block">
+      <footer className="hidden w-full border-t bg-primary text-accent-content md:block">
         <div className="mx-auto w-full max-w-7xl p-6 lg:py-6">
           <div className="grid grid-cols-3 gap-8">
-            {data?.menus.nodes[1].children?.map((item, idx) => (
+            {data?.menus.nodes[1]?.children?.map((item, idx) => (
               <div key={idx}>
                 <h5 className="mb-4 text-xl text-secondary">{item.title}</h5>
                 <div className={`flex ${item.title === 'Холбоосууд' ? 'flex-row items-center gap-1' : 'flex-col space-y-2'}`}>
@@ -57,7 +30,11 @@ export function Footer() {
                     item.title === 'Холбоосууд' ? (
                       <div key={childMenu.title}>
                         <Link href={childMenu.link} className="text-sm font-medium">
-                          {childMenu.title === 'facebook' ? <Facebook /> : <Instagram />}
+                          {childMenu.title === 'facebook' ? (
+                            <Image src={facebook} alt="facebook icon" width={20} height={20} />
+                          ) : (
+                            <Image src={instagram} alt="instagram icon" width={20} height={20} />
+                          )}
                         </Link>
                       </div>
                     ) : (
@@ -93,6 +70,36 @@ export function Footer() {
             ))}
           </div>
         </nav>
+      </div>
+    </>
+  );
+}
+
+function Loader() {
+  return (
+    <>
+      <footer className="hidden w-full bg-base-100 md:block">
+        <div className="mx-auto max-w-7xl p-8">
+          <div className="grid grid-cols-3 gap-8">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i}>
+                <div className="skeleton mb-4 h-6 w-1/2 rounded-sm bg-base-content" />
+                <div className="space-y-2">
+                  {Array.from({ length: 4 }).map((__, j) => (
+                    <div key={j} className="skeleton h-4 w-3/4 rounded-sm bg-base-content" />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </footer>
+      <div className="fixed inset-x-0 bottom-0 bg-base-100 md:hidden">
+        <div className="flex justify-between p-2">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="skeleton h-10 w-10 rounded-md bg-base-content" />
+          ))}
+        </div>
       </div>
     </>
   );
