@@ -1,0 +1,5 @@
+query currentPage($slug: String!) {
+  currentPage(slug: $slug) {
+    ...CurrentPageFields
+  }
+}

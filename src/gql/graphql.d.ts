@@ -505,7 +505,7 @@ export type Mutation = {
   destroyApplication?: Maybe<Application>;
   destroyAssetRole?: Maybe<AssetRole>;
   destroyBrand?: Maybe<Brand>;
-  destroyImage?: Maybe<Menu>;
+  destroyImage?: Maybe<Image>;
   destroyListing?: Maybe<Listing>;
   destroyMenu?: Maybe<Menu>;
   destroyMerchant?: Maybe<Merchant>;
@@ -1047,6 +1047,7 @@ export type Page = BaseModelInterface & {
   __typename?: 'Page';
   createdAt: Scalars['ISO8601DateTime']['output'];
   id: Scalars['ID']['output'];
+  imageObjects: Array<ImageObject>;
   items?: Maybe<Scalars['JSON']['output']>;
   metaData: Scalars['JSON']['output'];
   preferences: Scalars['JSON']['output'];
