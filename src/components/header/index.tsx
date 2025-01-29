@@ -5,8 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { LoadingResult } from '../result/loading-result';
-
 import { ThemeToggle } from './theme-toggle-button';
 
 import logo from '@/components/icons/logo.svg';
@@ -17,7 +15,7 @@ export function Header() {
   const { order, loading: orderLoading } = useCurrentOrder();
   const router = useRouter();
 
-  if (loading) return <LoadingResult />;
+  if (loading) return <Loader />;
 
   return (
     <header className="z-40 w-full bg-base-100 shadow-md">
@@ -66,6 +64,22 @@ export function Header() {
                 ))}
               </ul>
             </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+function Loader() {
+  return (
+    <header className="z-40 w-full bg-base-100 shadow-md">
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex h-16 items-center justify-between">
+          <div className="skeleton h-8 w-8 rounded-full bg-base-content" />
+          <div className="flex gap-4">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="skeleton h-8 w-8 rounded bg-base-content" />
+            ))}
           </div>
         </div>
       </div>
