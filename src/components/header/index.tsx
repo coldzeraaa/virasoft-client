@@ -87,5 +87,3 @@ function menuItems(userData: MeQuery | undefined) {
     },
   ];
 }
-
-export default Header;
