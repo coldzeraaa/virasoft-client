@@ -38,3 +38,6 @@ next-env.d.ts
 # custom
 /.idea
 /src/tmp
+
+#vs code settings
+/.vscode/
