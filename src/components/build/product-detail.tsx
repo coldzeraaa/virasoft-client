@@ -21,6 +21,8 @@ export function ProductDetail() {
     button: searchParams.get('button'),
     lining: searchParams.get('lining'),
     cuff: searchParams.get('cuff'),
+    shirt: searchParams.get('shirt'),
+    collar: searchParams.get('collar'),
   };
 
   useEffect(() => {

@@ -27,8 +27,10 @@ export const DARK_COLORS = {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   ...require('daisyui/src/theming/themes')['dark'],
   ...LIGHT_COLORS,
+  primary: '#C09049',
   secondary: '#a6adbb',
   'secondary-content': '#21272D',
+  neutral: '#fff',
   'neutral-content': '#6C707D',
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   'base-100': require('daisyui/src/theming/themes')['dark']['base-100'],

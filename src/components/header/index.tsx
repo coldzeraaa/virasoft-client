@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { ThemeToggleButton } from './theme-toggle-button';
+import { ThemeToggle } from './theme-toggle-button';
 
 import logo from '@/components/icons/logo.svg';
 import { type MeQuery, useMeQuery } from '@/gql/query/user/me.generated';
@@ -13,10 +13,9 @@ import { useCurrentOrder } from '@/lib/context/current-order-context';
 export function Header() {
   const { data: userData, loading } = useMeQuery();
   const { order, loading: orderLoading } = useCurrentOrder();
-
   const router = useRouter();
 
-  if (loading) <Loader />;
+  if (loading) return <Loader />;
 
   return (
     <header className="z-40 w-full bg-base-100 shadow-md">
@@ -40,7 +39,8 @@ export function Header() {
             </div>
 
             <nav className="flex items-center gap-2 text-xs">
-              <ThemeToggleButton />
+              <ThemeToggle />
+
               <ul className="flex">
                 {menuItems(userData).map((item, index) => (
                   <Link
@@ -70,7 +70,6 @@ export function Header() {
     </header>
   );
 }
-
 function Loader() {
   return (
     <header className="z-40 w-full bg-base-100 shadow-md">
