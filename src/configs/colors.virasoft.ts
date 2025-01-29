@@ -2,7 +2,7 @@ export const LIGHT_COLORS = {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   ...require('daisyui/src/theming/themes')['light'],
   primary: '#102F31', //emerald green
-  'primary-content': '#FDF0EC', //grey with pinkish hue
+  'primary-content': '#E7EAEF', //grey with pinkish hue
   secondary: '#C09049', //golden yellow
   'secondary-content': '#EDF2F8', //neutral light grey
   accent: '#17DDDD', //teel

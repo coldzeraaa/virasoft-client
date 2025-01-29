@@ -8,7 +8,7 @@ export type AllMenusQueryVariables = Types.Exact<{
 }>;
 
 
-export type AllMenusQuery = { __typename?: 'Query', allMenus: { __typename?: 'MenuConnection', nodes: Array<{ __typename?: 'Menu', id: string, title: string, link: string, images?: Array<string> | null, children?: Array<{ __typename?: 'Menu', id: string, title: string, link: string, images?: Array<string> | null, children?: Array<{ __typename?: 'Menu', images?: Array<string> | null, title: string, link: string }> | null }> | null }> } };
+export type AllMenusQuery = { __typename?: 'Query', allMenus: { __typename?: 'MenuConnection', nodes: Array<{ __typename?: 'Menu', id: string, title: string, link: string, images?: Array<string> | null, icon?: string | null, children?: Array<{ __typename?: 'Menu', id: string, title: string, link: string, images?: Array<string> | null, icon?: string | null, children?: Array<{ __typename?: 'Menu', images?: Array<string> | null, title: string, link: string, icon?: string | null }> | null }> | null }> } };
 
 
 export const AllMenusDocument = gql`
@@ -19,15 +19,18 @@ export const AllMenusDocument = gql`
       title
       link
       images
+      icon
       children {
         id
         title
         link
         images
+        icon
         children {
           images
           title
           link
+          icon
         }
       }
     }

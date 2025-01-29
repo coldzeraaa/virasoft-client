@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run dev:virasoft:windows:prod",
+      "type": "shell",
+      "command": "npm run dev:virasoft:windows:prod",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run build:virasoft:windows",
+      "type": "shell",
+      "command": "npm run build:virasoft:windows",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run dev:goldenoil:windows:prod",
+      "type": "shell",
+      "command": "npm run dev:goldenoil:windows:prod",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run build:goldenoil:windows",
+      "type": "shell",
+      "command": "npm run build:goldenoil:windows",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run codegen",
+      "type": "shell",
+      "command": "npm run codegen",
+      "problemMatcher": []
+    },
+  ]
+}

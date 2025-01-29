@@ -31,16 +31,13 @@ function getBody({ size, _source, sort, ...rest }: ElServiceProps): QueryType {
 }
 
 function getMusts(props: GetMustProps): QueryStringType[] {
-  return Object.entries(props).reduce(
-    (acc: QueryStringType[], cur) => {
-      const [k, value] = cur;
-      const key = k as keyof GetMustProps;
-      if (key === 'skuString') return getSkuTerms(acc, value as NonNullable<ElServiceProps['skuString']>);
-      if (key === 'ids') return getIds(acc, value as NonNullable<ElServiceProps['ids']>);
-      return getQueryString(acc, value as string | string[], key);
-    },
-    [{ range: { price: { gt: 0 } } }],
-  );
+  return Object.entries(props).reduce((acc: QueryStringType[], cur) => {
+    const [k, value] = cur;
+    const key = k as keyof GetMustProps;
+    if (key === 'skuString') return getSkuTerms(acc, value as NonNullable<ElServiceProps['skuString']>);
+    if (key === 'ids') return getIds(acc, value as NonNullable<ElServiceProps['ids']>);
+    return getQueryString(acc, value as string | string[], key);
+  }, []);
 }
 
 function getSkuTerms(acc: QueryStringType[], value: ElServiceProps['skuString']): QueryStringType[] {

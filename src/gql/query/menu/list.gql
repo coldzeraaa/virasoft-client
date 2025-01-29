@@ -5,15 +5,18 @@ query allMenus($filter: MenuFilter) {
       title
       link
       images
+      icon
       children {
         id
         title
         link
         images
+        icon
         children {
           images
           title
           link
+          icon
         }
       }
     }

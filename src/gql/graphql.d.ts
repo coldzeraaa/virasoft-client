@@ -1047,13 +1047,14 @@ export type Page = BaseModelInterface & {
   __typename?: 'Page';
   createdAt: Scalars['ISO8601DateTime']['output'];
   id: Scalars['ID']['output'];
-  items?: Maybe<Array<Scalars['JSON']['output']>>;
+  items?: Maybe<Scalars['JSON']['output']>;
   metaData: Scalars['JSON']['output'];
   preferences: Scalars['JSON']['output'];
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
   updatedAt: Scalars['ISO8601DateTime']['output'];
   website: Website;
+  websiteId: Scalars['ID']['output'];
 };
 
 /** The connection type for Page. */
@@ -1080,6 +1081,8 @@ export type PageFilter = {
   createdAt?: InputMaybe<DateFilter>;
   id?: InputMaybe<IdFilter>;
   updatedAt?: InputMaybe<DateFilter>;
+  website?: InputMaybe<WebsiteFilter>;
+  websiteId?: InputMaybe<IdFilter>;
 };
 
 /** Information about pagination in a connection. */
@@ -1244,6 +1247,7 @@ export type Query = {
   brand?: Maybe<Brand>;
   brands: BrandConnection;
   currentOrder?: Maybe<Order>;
+  currentPage?: Maybe<Page>;
   currentWebsite?: Maybe<Website>;
   listing?: Maybe<Listing>;
   listings: ListingConnection;
@@ -1337,6 +1341,11 @@ export type QueryBrandsArgs = {
 export type QueryCurrentOrderArgs = {
   number?: InputMaybe<Scalars['String']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryCurrentPageArgs = {
+  slug: Scalars['String']['input'];
 };
 
 
