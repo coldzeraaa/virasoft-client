@@ -14,44 +14,35 @@ import { HitType } from '@/types/hit-type';
 export function ProductDetail() {
   const [products, setProducts] = useState<HitType[]>([]);
   const { selectedProducts, selectProduct } = useBuild();
-  const searchparams = useSearchParams();
-  const coatId = searchparams.get('coat');
-  const buttonId = searchparams.get('button');
-  const liningId = searchparams.get('lining');
+  const searchParams = useSearchParams();
+
+  const productIds = {
+    coat: searchParams.get('coat'),
+    button: searchParams.get('button'),
+    lining: searchParams.get('lining'),
+    cuff: searchParams.get('cuff'),
+  };
 
   useEffect(() => {
-    if (coatId) {
-      selectProduct('coat', coatId);
-    }
-    if (buttonId) {
-      selectProduct('button', buttonId);
-    }
-    if (liningId) {
-      selectProduct('lining', liningId);
-    }
+    Object.entries(productIds).forEach(([type, id]) => {
+      if (id) selectProduct(type, id);
+    });
   }, []);
 
   useEffect(() => {
-    if (Object.keys(selectedProducts).length > 0) {
-      elService({ ids: Object.values(selectedProducts) })
-        .then(setProducts)
-        .catch(catchHelper);
+    const selectedIds = Object.values(selectedProducts);
+    if (selectedIds.length > 0) {
+      elService({ ids: selectedIds }).then(setProducts).catch(catchHelper);
     }
   }, [selectedProducts]);
 
   return (
-    <div className="relative h-full w-full ">
+    <div className="relative h-full w-full">
       <div className="relative flex h-full w-full flex-col items-center justify-center">
         {products.map(
           (product, index) =>
             product.images[0] && (
-              <div
-                key={product.id}
-                className="absolute h-full w-full lg:h-4/6"
-                style={{
-                  zIndex: index + 1,
-                }}
-              >
+              <div key={product.id} className="absolute h-full w-full lg:h-4/6" style={{ zIndex: 1 + index }}>
                 <Image
                   src={imageUrlHelper(product.images[0])}
                   alt={product.name}

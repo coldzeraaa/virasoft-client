@@ -36,7 +36,10 @@ const client = Client(
     },
     connection: {
       host: HOST_CONFIG.elastic.host,
-      auth: { username: HOST_CONFIG.elastic.username, password: HOST_CONFIG.elastic.password },
+      auth: {
+        username: HOST_CONFIG.elastic.username,
+        password: HOST_CONFIG.elastic.password,
+      },
     },
   },
   { debug: false },
@@ -63,5 +66,6 @@ export async function POST(request: NextRequest) {
       },
     ],
   });
+
   return NextResponse.json(results);
 }

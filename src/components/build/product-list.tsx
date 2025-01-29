@@ -5,17 +5,14 @@ import { useState } from 'react';
 import { BaseHits } from './base-hits';
 import CategoryCard from './category-card';
 
-import { type MenusQuery, useMenusQuery } from '@/gql/query/menu/list.generated';
+import { useAllMenusQuery } from '@/gql/query/menu/list.generated';
 import { BuildProvider } from '@/lib/provider/build-provider';
 
 export function ProductList({ origin, type }: { origin: string; type?: string | string[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const { data, loading } = useAllMenusQuery({ variables: { filter: { parentId: { eq: '9' } } } });
 
-  const { data, loading } = useMenusQuery({
-    variables: { filter: { parentId: { eq: '9' } } },
-  });
-
-  const selectedMenu = getMenuByType(data, type);
+  const normalizedType = Array.isArray(type) ? type[0] : type;
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden">
@@ -28,22 +25,22 @@ export function ProductList({ origin, type }: { origin: string; type?: string | 
           </div>
         ) : !selectedCategory ? (
           <div className="flex h-full w-full flex-row gap-4 lg:flex-col">
-            {selectedMenu?.children?.map((menuItem, index) => (
-              <button type="button" key={`${menuItem.title}-${index}`} onClick={() => setSelectedCategory(menuItem.title)}>
-                <CategoryCard href="#" text={menuItem.title} imageSrc={menuItem.images?.[0] || ''} />
-              </button>
-            ))}
+            {data?.allMenus.nodes
+              .find((menu) => menu.icon === normalizedType)
+              ?.children?.map((menuItem, index) => (
+                <button type="button" key={`${menuItem.title}-${index}`} onClick={() => setSelectedCategory(menuItem.icon ?? null)}>
+                  <CategoryCard href={menuItem.link} text={menuItem.title} imageSrc={menuItem.images?.[0] || ''} />
+                </button>
+              ))}
           </div>
         ) : (
           <div className="flex flex-col gap-4">
-            <div className="sticky left-0 top-0 z-10 ">
-              <button onClick={() => setSelectedCategory(null)} type="button" className="flex items-center gap-2 text-sm text-neutral">
-                Буцах
-              </button>
-            </div>
+            <button onClick={() => setSelectedCategory(null)} type="button" className="btn">
+              Буцах
+            </button>
             <div className="w-full">
-              <BuildProvider origin={origin} type={getProductType(selectedCategory)}>
-                <BaseHits type={getProductType(selectedCategory)} />
+              <BuildProvider origin={origin} type={selectedCategory}>
+                <BaseHits type={selectedCategory} />
               </BuildProvider>
             </div>
           </div>
@@ -51,37 +48,4 @@ export function ProductList({ origin, type }: { origin: string; type?: string | 
       </div>
     </div>
   );
-}
-
-function getMenuByType(data: MenusQuery | undefined, menuType: string | string[] | undefined) {
-  if (!data?.menus.nodes) return null;
-
-  const type = Array.isArray(menuType) ? menuType[0] : menuType;
-  switch (type) {
-    case 'coat':
-      return data.menus.nodes.find((menu) => menu.title === 'палто');
-    case 'uniform':
-      return data.menus.nodes.find((menu) => menu.title === 'ажлын хувцас');
-    case 'shirt':
-      return data.menus.nodes.find((menu) => menu.title === 'Цамц');
-    default:
-      return null;
-  }
-}
-
-function getProductType(title: string): string {
-  switch (title) {
-    case 'доторлогоо':
-      return 'lining';
-    case 'товч':
-      return 'button';
-    case 'хүрэм':
-      return 'coat';
-    case 'Цамц':
-      return 'shirt';
-    case 'Ханцуй':
-      return 'cuff';
-    default:
-      return '';
-  }
 }

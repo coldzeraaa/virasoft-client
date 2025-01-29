@@ -21,10 +21,7 @@ export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
             <button
               onClick={() => selectProduct(type, hit.id)}
               type="button"
-              className={`relative flex w-full
-                  cursor-pointer flex-col items-center gap-1 rounded-sm border transition-all duration-150
-                   ease-linear hover:border-base-content md:gap-2 lg:flex-row lg:gap-3 lg:p-1
-                  ${selectedProducts[type] === `${hit.id}` ? 'border-base-content' : 'border-base-300 dark:border-neutral-content'}`}
+              className={`relative flex w-full cursor-pointer flex-col items-center gap-1 rounded-lg border transition-all duration-150 ease-linear hover:border-primary-content md:gap-2 lg:flex-row lg:gap-3 lg:p-1 ${selectedProducts[type] === `${hit.id}` ? 'border-neutral-content' : 'border-base-300'}`}
             >
               <div
                 className={`relative aspect-square h-20
