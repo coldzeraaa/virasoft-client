@@ -8,12 +8,12 @@ export type HeaderFooterQueryVariables = Types.Exact<{
 }>;
 
 
-export type HeaderFooterQuery = { __typename?: 'Query', menus: { __typename?: 'MenuConnection', nodes: Array<{ __typename?: 'Menu', children?: Array<{ __typename?: 'Menu', title: string, link: string, children?: Array<{ __typename?: 'Menu', title: string, link: string }> | null }> | null }> } };
+export type HeaderFooterQuery = { __typename?: 'Query', allMenus: { __typename?: 'MenuConnection', nodes: Array<{ __typename?: 'Menu', children?: Array<{ __typename?: 'Menu', title: string, link: string, children?: Array<{ __typename?: 'Menu', title: string, link: string, images?: Array<string> | null }> | null }> | null }> } };
 
 
 export const HeaderFooterDocument = gql`
     query headerFooter($filter: MenuFilter) {
-  menus(filter: $filter) {
+  allMenus(filter: $filter) {
     nodes {
       children {
         title
@@ -21,6 +21,7 @@ export const HeaderFooterDocument = gql`
         children {
           title
           link
+          images
         }
       }
     }

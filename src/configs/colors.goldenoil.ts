@@ -1,12 +1,12 @@
 export const LIGHT_COLORS = {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   ...require('daisyui/src/theming/themes')['light'],
-  primary: '#6B8E23', // darker golden color
+  primary: '#CA9740', // darker golden color
   'primary-content': '#a9a9ac', // grey with pinkish hue
   secondary: '#DAA520', // olive green
   'secondary-content': '#EDF2F8', // neutral light grey
-  accent: '#FF4500', // orange red
-  'accent-content': '#222529', // black
+  accent: '#011C2A', // orange red
+  'accent-content': '#F5F5F5', // gray
   neutral: '#000', // black
   'neutral-content': '#6C707D', // muted grey with blue undertone
   'base-100': '#FFFFFF', // off-white
@@ -32,7 +32,7 @@ export const DARK_COLORS = {
   'secondary-content': '#EDF2F8', // neutral light grey
   accent: '#FF4500', // orange red
   'accent-content': '#222529', // black
-  neutral: '#2F4F4F', // dark slate grey
+  neutral: '#FFFFFF', // dark slate grey
   'neutral-content': '#6C707D', // muted grey with blue undertone
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   'base-100': require('daisyui/src/theming/themes')['dark']['base-100'],

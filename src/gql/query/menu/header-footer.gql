@@ -1,5 +1,5 @@
 query headerFooter($filter: MenuFilter) {
-  menus(filter: $filter) {
+  allMenus(filter: $filter) {
     nodes {
       children {
         title
@@ -7,6 +7,7 @@ query headerFooter($filter: MenuFilter) {
         children {
           title
           link
+          images
         }
       }
     }
