@@ -40,4 +40,4 @@ next-env.d.ts
 /src/tmp
 
 #vs code settings
-/.vscode/
+/.vscode
