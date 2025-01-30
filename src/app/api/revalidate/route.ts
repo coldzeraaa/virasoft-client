@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
     revalidatePath(path);
 
     return NextResponse.json(
-      { revalidated: true, message: `Path ${path} revalidated successfully`, timestamp: new Date().toISOString() },
+      { revalidated: true, message: `Path "${path}" revalidated successfully`, timestamp: new Date().toISOString() },
       { status: 200 },
     );
   } catch (error) {
