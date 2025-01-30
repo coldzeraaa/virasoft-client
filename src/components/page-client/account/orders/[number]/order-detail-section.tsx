@@ -1,21 +1,40 @@
+import Image from 'next/image';
+
 import { MyOrderType } from './order-info';
 
 import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
+import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 
 export function OrderDetailSection({ myOrder }: MyOrderType) {
   return (
-    <div className="flex flex-col gap-6 rounded-2xl px-6 py-4 shadow-lg">
+    <div className="mx-auto w-full  rounded-3xl bg-gradient-to-br from-gray-50 to-white px-6 py-6 shadow-lg transition-shadow duration-300 hover:shadow-xl sm:px-8">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl">Барааны мэдээлэл</h2>
+        <h2 className="text-xl font-bold text-gray-800 sm:text-2xl">Барааны мэдээлэл</h2>
       </div>
-      <hr />
-      <div>
+
+      <hr className="my-4 border-t border-dashed border-gray-300" />
+
+      <div className="space-y-4">
         {myOrder?.items?.map((element, idx) => (
-          <div className="flex justify-between" key={idx}>
-            <p className="text-lg"> Барааны нэр : {element.variant.product.name}</p>
-            <p className="text-lg">
-              {moneyFormatHelper(element.variant.price)} x {element.quantity} = {moneyFormatHelper(element.total)}
-            </p>
+          <div
+            key={idx}
+            className="flex flex-col items-center justify-between rounded-xl bg-gray-50 p-4 shadow-sm transition-colors duration-300 hover:bg-gray-100 sm:flex-row"
+          >
+            {/* Product Name and Price */}
+            <div className="flex w-full flex-col sm:w-2/3">
+              <p className="text-base font-medium text-gray-700 sm:text-lg">Барааны нэр: {element.variant.product.name}</p>
+              <p className="text-sm text-gray-500 sm:text-base">Үнэ: {moneyFormatHelper(element.variant.price)}₮</p>
+            </div>
+            <div className="flex h-20 w-20 items-center  rounded-full border border-solid border-gray-400 p-1">
+              <Image width={500} height={500} className="rounded-full" src={imageUrlHelper(element?.variant?.images[0])} alt="" />
+            </div>
+            {/* Quantity and Total */}
+            <div className="mt-2 flex w-full flex-col items-end sm:mt-0 sm:w-1/3">
+              <p className="text-base font-semibold text-gray-900 sm:text-lg">
+                {moneyFormatHelper(element.variant.price)} x {element.quantity}
+              </p>
+              <p className="text-sm font-bold text-primary sm:text-base">{moneyFormatHelper(element.total)}₮</p>
+            </div>
           </div>
         ))}
       </div>

@@ -10,7 +10,7 @@ import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
 export function SideBar() {
   const router = useRouter();
   return (
-    <div className="ml-4 hidden h-full w-1/5 flex-col justify-between rounded-lg bg-base-100 shadow-lg md:flex">
+    <div className="ml-4 hidden h-full w-1/5 flex-col justify-between rounded-lg bg-base-100 py-3 shadow-lg md:flex">
       <div className="flex h-full w-full flex-col gap-4 px-6 py-4">
         {sidebarItems.map((element, index) => (
           <SideBarItem key={index} link={element.link} icon={element.icon} text={element.name} />
