@@ -19,7 +19,11 @@ export async function DynamicComponent({ slug }: { slug: string }) {
     }),
   );
 
-  return Array.isArray(items) && resolvedItems.map((item: Item, idx) => <section key={idx}>{item.component}</section>);
+  return (
+    <main className="container">
+      {Array.isArray(items) && resolvedItems.map((item: Item, idx) => <section key={idx}>{item.component}</section>)}
+    </main>
+  );
 }
 
 export async function Switcher({ component, ...rest }: Item) {
