@@ -9,8 +9,7 @@ export async function SectionSwitcher({ component, ...rest }: Item) {
     case 'text':
       return <TextComponent {...(rest as TextComponentProps)} />;
     case 'product':
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
+      // @ts-expect-error Server Component
       return <ProductComponent {...(rest as ProductComponentProps)} />;
     default:
       return null;
