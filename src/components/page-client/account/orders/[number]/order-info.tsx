@@ -1,11 +1,24 @@
+import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
 
 import { MyOrderQuery } from '@/gql/query/user/my-order.generated';
 
 export function OrderInfo({ myOrder }: MyOrderType) {
+  const [paymentStatus, setPaymentStatus] = useState<string>();
+  useEffect(() => {
+    if (myOrder?.paymentStatus === 'paid') {
+      setPaymentStatus('Төлөгдсөн');
+    } else if (myOrder?.paymentStatus === 'credit_owed') {
+      setPaymentStatus('Илүү төлөлттэй');
+    } else if (myOrder?.paymentStatus === 'balance_due') {
+      setPaymentStatus('Дутуу төлөлттэй');
+    } else {
+      setPaymentStatus('Төлөгдөөгүй');
+    }
+  }, []);
   return (
     <div className="flex flex-col gap-6 rounded-3xl bg-gradient-to-br from-gray-50 to-white px-8 py-6 shadow-lg transition-shadow duration-300 hover:shadow-xl">
-      {/* Header Section */}
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-gray-800">Төлбөрийн мэдээлэл</h2>
         <div className="text-right">
@@ -13,11 +26,7 @@ export function OrderInfo({ myOrder }: MyOrderType) {
           <p className="text-base font-semibold text-primary">Дуусах хугацаа: 24 цаг</p>
         </div>
       </div>
-
-      {/* Divider */}
       <hr className="border-t border-dashed border-gray-300" />
-
-      {/* Order Details */}
       <div className="space-y-4">
         <p className="text-lg font-medium text-gray-700">
           Захиалан барааны тоо : <span className="font-bold text-gray-900">{myOrder?.itemCount} бараа</span>
@@ -33,7 +42,7 @@ export function OrderInfo({ myOrder }: MyOrderType) {
                   : 'text-red-600'
             }`}
           >
-            {myOrder?.paymentStatus || 'Мэдээлэл байхгүй'}
+            {paymentStatus ? paymentStatus : 'Мэдээлэл байхгүй'}
           </span>
         </p>
       </div>

@@ -25,8 +25,8 @@ export function OrderDetailSection({ myOrder }: MyOrderType) {
               <p className="text-base font-medium text-gray-700 sm:text-lg">Барааны нэр: {element.variant.product.name}</p>
               <p className="text-sm text-gray-500 sm:text-base">Үнэ: {moneyFormatHelper(element.variant.price)}₮</p>
             </div>
-            <div className="flex h-[60px] w-[60px] items-center justify-center rounded-md border border-solid border-gray-400 p-1">
-              <Image width={500} height={500} src={imageUrlHelper(element?.variant?.images[0])} alt="" />
+            <div className="flex h-20 w-20 items-center  rounded-full border border-solid border-gray-400 p-1">
+              <Image width={500} height={500} className="rounded-full" src={imageUrlHelper(element?.variant?.images[0])} alt="" />
             </div>
             {/* Quantity and Total */}
             <div className="mt-2 flex w-full flex-col items-end sm:mt-0 sm:w-1/3">
