@@ -18,7 +18,7 @@ export function Header() {
   if (loading) return <Loader />;
 
   return (
-    <header className="z-40 w-full bg-base-100 shadow-md">
+    <header className="sticky top-0 z-40 w-full bg-base-100 shadow-md">
       <div className="container max-w-7xl">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="mr-3 flex flex-shrink-0 items-center">
