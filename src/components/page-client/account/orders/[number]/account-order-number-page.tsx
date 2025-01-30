@@ -18,7 +18,7 @@ export default function AccountOrdersNumberPage({ params }: ParamsType) {
   if (error || !data?.myOrder) return <ErrorResult message={error?.message || 'Order is not found'} />;
 
   return (
-    <div className="w-full">
+    <div className="w-full  space-y-6">
       <OrderInfo myOrder={data?.myOrder} />
       <OrderDetailSection myOrder={data?.myOrder} />
       <ProductPaymentSec myOrder={data?.myOrder} />
