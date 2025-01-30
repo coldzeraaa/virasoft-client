@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { CircleUserRound, House, TextSearch } from 'lucide-react';
+import { CircleUserRound, House, Package, TextSearch } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -52,9 +52,9 @@ export function Footer() {
         </div>
       </footer>
       {/* Mobile Footer - Hidden on desktop */}
-      <div className="w-full border-t bg-base-100 md:hidden">
+      <div className="fixed bottom-0 w-full border-t bg-base-100 md:hidden">
         <nav className="sm:px-4">
-          <div className="grid grid-cols-6 gap-1">
+          <div className="grid grid-cols-4 gap-1">
             {mobileFooter.map((tab) => (
               <Link
                 href={tab.link === '/profile' ? (userData?.me ? '/profile' : '/auth/login') : tab.link}
@@ -108,5 +108,6 @@ function Loader() {
 const mobileFooter = [
   { key: 'home', label: 'Нүүр', icon: House, link: '/' },
   { key: 'categories', label: 'Ангилал', icon: TextSearch, link: '/s' },
+  { key: 'orders', label: 'Захиалгууд', icon: Package, link: '/account/orders' },
   { key: 'profile', label: 'Профайл', icon: CircleUserRound, link: '/account' },
 ];

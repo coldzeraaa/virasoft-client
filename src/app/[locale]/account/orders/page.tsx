@@ -3,6 +3,7 @@ import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { LastOrderCard } from '@/components/pages/account/last-order-card';
 import { EmptyResult } from '@/components/result/empty-result';
 import { ErrorResult } from '@/components/result/error-result';
 import { LoadingResult } from '@/components/result/loading-result';
@@ -17,7 +18,7 @@ export default function Orders() {
   if (data.me.orders.nodes.length === 0) return <EmptyResult message="Захиалга байхгүй байна." />;
   return (
     <>
-      <div className="w-full max-w-7xl overflow-x-auto rounded-2xl border">
+      <div className="hidden w-full max-w-7xl overflow-x-auto rounded-2xl border md:block">
         <table className="table bg-base-100 shadow-2xl">
           <thead>
             <tr>
@@ -67,6 +68,9 @@ export default function Orders() {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="flex flex-col gap-4 md:hidden">
+        {data?.me?.orders?.nodes.map((order, idx) => <LastOrderCard key={idx} order={order} />)}
       </div>
     </>
   );
