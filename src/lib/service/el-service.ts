@@ -1,4 +1,5 @@
 import { APP_CONFIG } from '@/configs/APP_CONFIG';
+import { ELASTIC_CONFIG } from '@/configs/ELASTIC_CONFIG';
 import { HOST_CONFIG } from '@/configs/HOST_CONFIG';
 import { getTrimmedArrayHelper } from '@/lib/helper/get-trimmed-array-helper';
 import type { QueryStringType, QueryType } from '@/types/elastic-type';
@@ -25,7 +26,7 @@ function getBody({ size, _source, sort, ...rest }: ElServiceProps): QueryType {
   return {
     query: { bool: { must: getMusts(rest) } },
     size: size || 12,
-    _source: _source || [],
+    _source: _source || ELASTIC_CONFIG.result_attributes,
     sort: sort || [{ _score: 'desc' }],
   };
 }
@@ -36,12 +37,17 @@ function getMusts(props: GetMustProps): QueryStringType[] {
     const key = k as keyof GetMustProps;
     if (key === 'skuString') return getSkuTerms(acc, value as NonNullable<ElServiceProps['skuString']>);
     if (key === 'ids') return getIds(acc, value as NonNullable<ElServiceProps['ids']>);
+    if (key === 'slugs') return getSlugs(acc, value as NonNullable<ElServiceProps['slugs']>);
     return getQueryString(acc, value as string | string[], key);
   }, []);
 }
 
 function getSkuTerms(acc: QueryStringType[], value: ElServiceProps['skuString']): QueryStringType[] {
   return [...acc, { terms: { SKU: getTrimmedArrayHelper(value) } }];
+}
+function getSlugs(acc: QueryStringType[], value: ElServiceProps['ids']): QueryStringType[] {
+  if (!value) return [];
+  return [...acc, { terms: { slug: value } }];
 }
 function getIds(acc: QueryStringType[], value: ElServiceProps['ids']): QueryStringType[] {
   if (!value) return [];
@@ -54,7 +60,8 @@ function getQueryString(acc: QueryStringType[], value: string | string[], key: s
 
 interface ElServiceProps {
   ids?: string[];
-  skuString?: string;
+  slugs?: string[];
+  skuString?: string[];
   'brand.id'?: string[] | string;
   'taxons.slug'?: string[] | string;
   size?: number;

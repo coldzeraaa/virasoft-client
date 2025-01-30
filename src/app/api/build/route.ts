@@ -1,6 +1,7 @@
 import Client from '@searchkit/api';
 import { NextRequest, NextResponse } from 'next/server';
 
+import { ELASTIC_CONFIG } from '@/configs/ELASTIC_CONFIG';
 import { HOST_CONFIG } from '@/configs/HOST_CONFIG';
 
 const client = Client(
@@ -22,7 +23,7 @@ const client = Client(
         expensive: { field: 'price', order: 'desc' },
         sale: { field: 'sale_percent', order: 'desc' },
       },
-      result_attributes: ['id', 'name', 'options', 'images', 'title'],
+      result_attributes: ELASTIC_CONFIG.result_attributes,
       facet_attributes: [
         { attribute: 'brand', field: 'brand.name.keyword', type: 'string' },
         { attribute: 'vendor', field: 'vendor.name.keyword', type: 'string' },

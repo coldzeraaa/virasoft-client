@@ -13,12 +13,12 @@ export default async function Home({ params }: { params: { locale: string } }) {
 
   const { items } = data.currentPage;
 
-  return (
-    Array.isArray(items) &&
-    items.map((item: Item, idx) => (
-      <section key={idx}>
-        <SectionSwitcher {...item} />
-      </section>
-    ))
+  const resolvedItems = await Promise.all(
+    items.map(async (item: Item) => {
+      const component = await SectionSwitcher(item);
+      return { ...item, component };
+    }),
   );
+
+  return Array.isArray(items) && resolvedItems.map((item: Item, idx) => <section key={idx}>{item.component}</section>);
 }
