@@ -4,16 +4,13 @@ import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
 
 export function OrderDetailSection({ myOrder }: MyOrderType) {
   return (
-    <div className="mx-auto w-full max-w-7xl rounded-3xl bg-gradient-to-br from-gray-50 to-white px-6 py-6 shadow-lg transition-shadow duration-300 hover:shadow-xl sm:px-8">
-      {/* Header Section */}
+    <div className="mx-auto w-full  rounded-3xl bg-gradient-to-br from-gray-50 to-white px-6 py-6 shadow-lg transition-shadow duration-300 hover:shadow-xl sm:px-8">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-gray-800 sm:text-2xl">Барааны мэдээлэл</h2>
       </div>
 
-      {/* Divider */}
       <hr className="my-4 border-t border-dashed border-gray-300" />
 
-      {/* Product Details */}
       <div className="space-y-4">
         {myOrder?.items?.map((element, idx) => (
           <div
