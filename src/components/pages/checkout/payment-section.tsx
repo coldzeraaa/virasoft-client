@@ -5,6 +5,7 @@ import cookies from 'js-cookie';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
+import { ErrorResult } from '@/components/result/error-result';
 import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
 import { PaymentMethodEnum } from '@/gql/graphql.d';
 import { useUpdateCheckoutAddressMutation } from '@/gql/mutation/address/update-checkout-address.generated';
@@ -17,7 +18,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
   const { loading, order } = useCurrentOrder();
   const pathName = usePathname();
   const router = useRouter();
-  const [updateCheckoutAddress, { loading: checkoutAddressLoading }] = useUpdateCheckoutAddressMutation({
+  const [updateCheckoutAddress, { loading: checkoutAddressLoading, error }] = useUpdateCheckoutAddressMutation({
     onError: catchHelper,
     onCompleted() {
       toast.success('Хүргэлтийн хаягийг амжилттай сонголоо');
@@ -34,8 +35,9 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
     },
   });
 
-  if (loading || paymentCheckoutLoading || checkoutAddressLoading) return <div className="skeleton h-60 w-full" />;
+  if (loading || paymentCheckoutLoading || checkoutAddressLoading) return <div className="skeleton h-20 w-full" />;
   if (!order) return <div className="h-60 w-full">Танд захиалга байхгүй байна</div>;
+  if (error) <ErrorResult message={error.message} />;
 
   return (
     <>
