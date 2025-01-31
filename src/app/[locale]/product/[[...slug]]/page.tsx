@@ -1,7 +1,6 @@
 'use client';
 
 import { ImageSectionProduct } from '@/components/images/image-section-product';
-import { BaseInfoSection } from '@/components/pages/slug/base-info-section';
 import { BuySection } from '@/components/pages/slug/buy-section';
 import { ErrorResult } from '@/components/result/error-result';
 import { useProductQuery } from '@/gql/query/product/id.generated';
@@ -30,8 +29,8 @@ export default function ProductSlugPage({ params }: ProductSlugPageProps) {
                 )}
               </div>
               <div aria-label="title, price, and buy sections" className="md:col-span-4">
-                <BaseInfoSection />
-                <div className="sticky top-28 grid gap-6 rounded-lg border p-2 lg:p-4">
+                {/* <BaseInfoSection /> */}
+                <div className="sticky top-28 grid gap-6 rounded-lg  p-2 lg:p-4">
                   {/*  <VariantsSection />*/}
                   <BuySection />
                 </div>
