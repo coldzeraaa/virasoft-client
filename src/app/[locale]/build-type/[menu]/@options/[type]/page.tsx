@@ -4,7 +4,7 @@ import { ButtonPersistSearchParams } from '@/components/build/btn-persist-search
 import { BuildBaseHits } from '@/components/build/build-base-hits';
 import { BuildProvider } from '@/lib/provider/build-provider';
 
-export default function Page({ params }: PageProps) {
+export default function BuildTypeMenuOptionTypePage({ params }: PageProps) {
   const headersList = headers();
   const origin = `${headersList.get('x-forwarded-proto') || 'http'}://${headersList.get('host')}`;
 
@@ -14,7 +14,7 @@ export default function Page({ params }: PageProps) {
         Back
       </ButtonPersistSearchParams>
       <BuildProvider origin={origin} type={params.type}>
-        <BuildBaseHits />
+        <BuildBaseHits type={params.type} />
       </BuildProvider>
     </>
   );

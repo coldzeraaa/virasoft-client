@@ -21,37 +21,30 @@ async function Menu({ type }: { type: string }) {
   if (!data?.allMenus || error) return <ErrorResult message={error?.message || 'No menu'} />;
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden">
-      <div className="h-full w-full overflow-y-auto p-4 lg:px-4">
-        <div className="flex h-full w-full flex-row gap-4 lg:flex-col">
-          {data.allMenus.nodes.map((menu, idx) => (
+    <>
+      <ButtonPersistSearchParams className="btn btn-primary btn-block mb-4 mt-2" href="/build-type">
+        Back
+      </ButtonPersistSearchParams>
+      <ul>
+        {data.allMenus.nodes.map((menu, idx) => (
+          <li key={idx}>
             <ButtonPersistSearchParams
-              key={`${menu.title}-${idx}`}
-              className="rounded border-2 border-transparent p-0.5 hover:border-primary"
+              className="flex items-center gap-4 rounded p-2 transition hover:shadow-2xl"
               href={`/build-type/${type}/${menu.icon}`}
             >
-              <div className="group relative flex h-full flex-col items-center lg:flex-row">
-                <div className="aspect-square h-20 w-20 overflow-hidden rounded-md md:h-28 md:w-28 lg:h-full">
-                  <Image
-                    src={imageUrlHelper(menu.images?.[0])}
-                    alt={menu.title}
-                    width={116}
-                    height={116}
-                    className="h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="flex-grow px-4 pt-3">
-                  <div className="text-sm font-light text-base-content group-hover:text-base-content lg:text-lg lg:font-semibold">
-                    {menu.title}
-                  </div>
-                </div>
-              </div>
+              <Image
+                src={imageUrlHelper(menu.images?.[0])}
+                alt={menu.title}
+                width={0}
+                height={0}
+                className="aspect-square w-20 rounded-lg bg-base-300 object-contain md:w-28"
+              />
+              <p className="text-xl font-semibold">{menu.title}</p>
             </ButtonPersistSearchParams>
-          ))}
-        </div>
-      </div>
-    </div>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 

@@ -1,34 +1,38 @@
-import Image from 'next/image';
+'use client';
 
+import { useEffect, useState } from 'react';
+
+import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
+
+import { catchHelper } from '@/lib/helper/catch-helper';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 import { elService } from '@/lib/service/el-service';
+import type { HitType } from '@/types/hit-type';
 
-export default async function BuildTypeType({ searchParams }: PageType) {
-  const hits = await elService({ ids: Object.values(searchParams) });
+export default function BuildTypeType() {
+  const searchParams = useSearchParams();
+  const searchParamsObject = Object.fromEntries(searchParams.entries());
+  const dependencies = Object.values(searchParamsObject);
+  const [hits, setHits] = useState<HitType[]>([]);
+
+  useEffect(() => {
+    elService({ ids: dependencies }).then(setHits).catch(catchHelper);
+  }, dependencies);
+
   return (
-    <div className="relative h-full w-full">
-      <div className="relative flex h-full w-full flex-col items-center justify-center">
-        {hits.map((product) => (
-          <div
-            key={product.id}
-            className="absolute h-full w-full lg:h-4/6"
-            style={{ zIndex: typeof product.position === 'number' ? product.position : 1 }}
-          >
-            <Image
-              src={imageUrlHelper(product.images[0])}
-              alt={product.name}
-              height={500}
-              width={400}
-              className="pointer-events-none h-full w-full object-contain"
-            />
-          </div>
-        ))}
-      </div>
+    <div className="relative aspect-square w-full p-2">
+      {hits.map((product) => (
+        <Image
+          key={product.id}
+          src={imageUrlHelper(product.images[0])}
+          style={{ zIndex: typeof product.position === 'number' ? product.position : 1 }}
+          alt={product.name}
+          height={500}
+          width={400}
+          className="pointer-events-none absolute h-full w-full bg-transparent object-contain"
+        />
+      ))}
     </div>
   );
-}
-
-interface PageType {
-  params: { type: string };
-  searchParams: Record<string, string>;
 }

@@ -12,10 +12,9 @@ export function BuildProvider({ children, origin, type }: { children: ReactNode;
     <InstantSearchNext
       future={{ preserveSharedStateOnUnmount: true }}
       indexName={APP_CONFIG.appIndex}
-      searchClient={Client({ url: `${origin}/api/build?type=${type}` })}
-      // searchClient={
-      //   typeof window === 'undefined' ? Client({ url: `${origin}/api/build` }) : Client({ url: '/api/build' })
-      // }
+      searchClient={
+        typeof window === 'undefined' ? Client({ url: `${origin}/api/build?type=${type}` }) : Client({ url: `/api/build?type=${type}` })
+      }
       initialUiState={{ [APP_CONFIG.appIndex]: { query: '', page: 1, sortBy: undefined } }}
     >
       {children}

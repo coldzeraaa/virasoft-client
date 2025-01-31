@@ -1,58 +1,73 @@
 'use client';
 
-import React from 'react';
-
+import { times } from 'lodash';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useInstantSearch } from 'react-instantsearch';
 import { useHits } from 'react-instantsearch-core';
 
+import { EmptyResult } from '@/components/result/empty-result';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 import { BuildItemType } from '@/types/build-item-type';
 
 // export function BuildBaseHits(props: BaseHitsProps) {
-export function BuildBaseHits() {
-  const { hits } = useHits<BuildItemType>();
+export function BuildBaseHits({ type }: { type: string }) {
+  const { hits, results } = useHits<BuildItemType>();
   // const { selectedProducts, selectProduct } = useBuild();
 
   return (
-    <div className="h-full w-full">
-      <div className="flex flex-nowrap gap-2 overflow-x-auto lg:flex-col lg:space-y-2 lg:overflow-x-visible">
-        {hits.map((hit) => (
-          <div key={hit.id} className="relative flex-shrink-0">
-            <button
-              // onClick={() => selectProduct(type, hit.id)}
-              type="button"
-              // ${selectedProducts[type] === `${hit.id}` ? 'border-neutral-content' : 'border-base-300'}
-              className="relative flex w-full cursor-pointer flex-col items-center gap-1 rounded-lg border transition-all duration-150 ease-linear hover:border-primary-content md:gap-2 lg:flex-row lg:gap-3 lg:p-1"
-            >
-              <div
-                className={`relative aspect-square h-20
-                    w-20 overflow-hidden rounded-md md:h-28 md:w-28`}
-              >
-                <div className="h-full w-full lg:p-0">
-                  <div className="relative flex h-full w-full items-center justify-center md:h-28">
-                    <Image
-                      src={hit.images[1] ? imageUrlHelper(hit.images[1]) : imageUrlHelper(hit.images[0])}
-                      alt={hit.name}
-                      className="h-4/5 w-4/5 rounded-md object-cover"
-                      width={116}
-                      height={116}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex w-full justify-center overflow-hidden lg:w-2/3">
-                <div className="max-w-20 truncate text-base text-base-content md:max-w-28 lg:max-w-full lg:text-start lg:text-lg lg:font-semibold">
-                  {hit.title}
-                </div>
-              </div>
-            </button>
-          </div>
-        ))}
-      </div>
-    </div>
+    <ul className="">
+      <Loader hits={hits} dfl={results?.disjunctiveFacets?.length || 0} type={type} />
+    </ul>
   );
 }
 
-// interface BaseHitsProps {
-//   type: string;
-// }
+function Loader({ hits, dfl, type }: { hits: Array<BuildItemType>; dfl: number; type: string }) {
+  const { status } = useInstantSearch();
+
+  if (status === 'stalled' || (dfl === 0 && hits.length === 0))
+    return times(4, (n) => (
+      <li key={n}>
+        <div className="flex items-center gap-4 rounded-md border border-transparent p-2 transition hover:shadow-xl">
+          <div className="skeleton aspect-square h-20 min-h-20" />
+          <div className="skeleton h-10 w-full" />
+        </div>
+      </li>
+    ));
+
+  if (hits.length === 0)
+    return (
+      <li className="col-span-12">
+        <EmptyResult />
+      </li>
+    );
+
+  return hits.map((hit, idx) => (
+    <li key={idx}>
+      <SingleProduct type={type} {...hit} />
+    </li>
+  ));
+}
+
+function SingleProduct({ images, name, title, id, type }: BuildItemType & { type: string }) {
+  const searchParams = useSearchParams();
+  const searchParamsAsObj = Object.fromEntries(searchParams.entries());
+  const isSelected = searchParamsAsObj[type] === `${id}`;
+
+  return (
+    <Link
+      href={{ query: { ...searchParamsAsObj, [type]: id } }}
+      className={`flex items-center gap-4 rounded-md border p-2 transition hover:shadow-xl ${isSelected ? 'border-primary' : 'border-transparent'}`}
+    >
+      <Image
+        src={images[1] ? imageUrlHelper(images[1]) : imageUrlHelper(images[0])}
+        alt={name}
+        className="aspect-square w-20 rounded-md bg-base-300 object-contain "
+        width={0}
+        height={0}
+      />
+      <p className="text-xl font-semibold">{title}</p>
+    </Link>
+  );
+}
