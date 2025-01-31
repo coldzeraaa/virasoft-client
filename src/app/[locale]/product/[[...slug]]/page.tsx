@@ -19,7 +19,7 @@ export default function ProductSlugPage({ params }: ProductSlugPageProps) {
           <meta itemProp="productID" content={data.product.id} />
           <meta itemProp="mpn" content={data.product.id} />
           <main className="container py-10">
-            <div aria-label="base info section" className="mb-6 grid gap-14 md:grid-cols-12">
+            <div aria-label="base info section" className="container mb-6 grid max-w-7xl gap-14 md:grid-cols-12">
               <div aria-label="images, descriptions sections" className="grid gap-6 md:col-span-8">
                 <ImageSectionProduct images={data.product.master.images} alt={data.product.name} />
                 {data.product.description && (
