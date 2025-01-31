@@ -51,7 +51,7 @@ export default function AuthRegisterClient() {
   return (
     <div className="container flex  items-center justify-center bg-base-100 py-10">
       <Form
-        className="w-full max-w-md rounded-3xl bg-white p-8 shadow-lg"
+        className="w-full max-w-md rounded-3xl bg-base-100 p-8 shadow-lg"
         onFinish={(values) => {
           try {
             if (!verified && step === 0) {
@@ -76,7 +76,7 @@ export default function AuthRegisterClient() {
               <CustomInput
                 {...field}
                 placeholder="Утасны дугаар"
-                className="input-bordered mb-4 w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
               />
             )}
           </Field>
@@ -89,7 +89,7 @@ export default function AuthRegisterClient() {
               <CustomInput
                 {...field}
                 placeholder="OTP код"
-                className="input-bordered mb-4 w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
               />
             )}
           </Field>
@@ -102,7 +102,7 @@ export default function AuthRegisterClient() {
               <CustomInput
                 {...field}
                 placeholder="Нэр"
-                className="input-bordered w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
               />
             )}
           </Field>
@@ -111,7 +111,7 @@ export default function AuthRegisterClient() {
               <CustomInput
                 {...field}
                 placeholder="Овог"
-                className="input-bordered w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
               />
             )}
           </Field>
@@ -121,7 +121,7 @@ export default function AuthRegisterClient() {
                 {...field}
                 type="password"
                 placeholder="Нууц үг"
-                className="input-bordered w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
               />
             )}
           </Field>
@@ -130,7 +130,7 @@ export default function AuthRegisterClient() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="hover:bg-primary-dark btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 disabled:bg-gray-300"
+          className="hover:bg-primary-dark disabled:base-200 btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-base-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
           disabled={loadingAuthRegister || loadingAuthCheckLogin || checkOtpLoading}
         >
           {loadingAuthRegister || loadingAuthCheckLogin || checkOtpLoading ? <span className="loading loading-spinner"></span> : 'Илгээх'}
@@ -143,7 +143,7 @@ export default function AuthRegisterClient() {
 // Custom Input Component
 const CustomInput: React.FC<CustomInputProps> = ({ value = '', onChange, ...props }: CustomInputProps) => (
   <input
-    className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+    className="w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
     value={value}
     onChange={onChange}
     {...props}

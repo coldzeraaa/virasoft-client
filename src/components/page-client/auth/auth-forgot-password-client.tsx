@@ -37,7 +37,7 @@ const ForgotPasswordClient = () => {
   return (
     <div className="container flex  items-center justify-center bg-base-100 py-10">
       <Form
-        className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg"
+        className="w-full max-w-md rounded-2xl bg-base-100 p-8 shadow-lg"
         onFinish={(values) => {
           try {
             if (step === 0) {
@@ -63,7 +63,7 @@ const ForgotPasswordClient = () => {
               <CustomInput
                 {...field}
                 placeholder="Утасны дугаар"
-                className="input-bordered w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
               />
             )}
           </Field>
@@ -76,7 +76,7 @@ const ForgotPasswordClient = () => {
               <CustomInput
                 {...field}
                 placeholder="OTP код"
-                className="input-bordered w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
               />
             )}
           </Field>
@@ -90,7 +90,7 @@ const ForgotPasswordClient = () => {
                 {...field}
                 type="password"
                 placeholder="Шинэ нууц үг"
-                className="input-bordered mb-4 w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+                className="input-bordered mb-4 w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
               />
             )}
           </Field>
@@ -100,7 +100,7 @@ const ForgotPasswordClient = () => {
                 {...field}
                 type="password"
                 placeholder="Шинэ нууц үг давтах"
-                className="input-bordered w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
               />
             )}
           </Field>
@@ -109,7 +109,7 @@ const ForgotPasswordClient = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="hover:bg-primary-dark btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 disabled:bg-gray-300"
+          className="hover:bg-primary-dark disabled:base-200 btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-base-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
           disabled={sentOtpLoading || resetPasswordLoading}
         >
           {sentOtpLoading || resetPasswordLoading ? <span className="loading loading-spinner"></span> : 'Илгээх'}
@@ -122,7 +122,7 @@ const ForgotPasswordClient = () => {
 // Custom Input Component
 const CustomInput: React.FC<CustomInputProps> = ({ value = '', onChange, ...props }: CustomInputProps) => (
   <input
-    className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring-primary"
+    className="w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
     value={value}
     onChange={onChange}
     {...props}
