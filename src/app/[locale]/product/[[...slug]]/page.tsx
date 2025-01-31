@@ -29,9 +29,7 @@ export default function ProductSlugPage({ params }: ProductSlugPageProps) {
                 )}
               </div>
               <div aria-label="title, price, and buy sections" className="md:col-span-4">
-                {/* <BaseInfoSection /> */}
                 <div className="sticky top-28 grid gap-6 rounded-lg  p-2 lg:p-4">
-                  {/*  <VariantsSection />*/}
                   <BuySection />
                 </div>
               </div>
