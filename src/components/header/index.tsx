@@ -24,7 +24,6 @@ export function Header() {
           <Link href="/" className="mr-3 flex flex-shrink-0 items-center">
             <Image className="h-8 w-auto" src={logo} alt="Company Logo" width={32} height={42} priority />
           </Link>
-
           <div className="flex flex-1 items-center justify-end gap-4 md:justify-between">
             <div className="relative hidden max-w-xs flex-1 md:block">
               <input

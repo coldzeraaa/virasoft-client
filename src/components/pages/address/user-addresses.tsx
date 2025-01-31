@@ -61,17 +61,18 @@ function SingleAddress({ node, setSelectedAddress }: SingleAddressProps) {
       <button className="btn" type="button" onClick={() => modalRef.current?.showModal()}>
         Устгах
       </button>
-      <dialog ref={modalRef} className="modal">
+      <dialog ref={modalRef} className="modal" onClick={() => modalRef.current?.close()}>
         <div className="modal-box w-11/12 max-w-5xl">
           <p className="py-4">Та хаяг устгахдаа итгэлтэй байна уу?</p>
           <div className="modal-action">
-            <form method="dialog">
-              <button className="btn" type="button">
-                Болих
-              </button>
-              <button type="button" className="btn btn-error" onClick={() => destroyAddress({ variables: { input: { id: node.id } } })}>
-                Устгах
-              </button>
+            <button type="button" className="btn btn-error" onClick={() => destroyAddress({ variables: { input: { id: node.id } } })}>
+              Устгах
+            </button>
+            <button className="btn mr-2" type="button" onClick={() => modalRef.current?.close()}>
+              Болих
+            </button>
+            <form method="dialog" className="modal-backdrop">
+              <button></button>
             </form>
           </div>
         </div>
