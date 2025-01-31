@@ -14,7 +14,7 @@ export function Footer() {
   const contactMenu = data?.allMenus?.nodes[1]?.children?.find((menu) => menu.title === 'Бидэнтэй холбогдох');
   return (
     <>
-      <footer className="h-full w-full border-t bg-accent-content text-neutral">
+      <footer className="w-full border-t bg-accent-content text-neutral">
         <div className="grid w-full grid-cols-1 lg:grid-cols-[0.6fr_0.4fr_0.3fr]">
           <div className="flex h-full w-full bg-primary px-20 py-20 lg:justify-end xl:pl-48">
             <div className="space-y-4 rounded-l-xl bg-primary">
