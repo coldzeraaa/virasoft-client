@@ -33,7 +33,6 @@ export async function Switcher({ component, ...rest }: Item) {
     case 'text':
       return <TextComponent {...(rest as TextComponentProps)} />;
     case 'product':
-      // @ts-expect-error Server Component
       return <ProductComponent {...(rest as ProductComponentProps)} />;
     default:
       return null;

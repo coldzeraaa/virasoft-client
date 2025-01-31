@@ -425,6 +425,7 @@ export type MenuEdge = {
 
 export type MenuFilter = {
   createdAt?: InputMaybe<DateFilter>;
+  icon?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
   parent?: InputMaybe<MenuFilter>;
   parentId?: InputMaybe<IdFilter>;
@@ -1795,6 +1796,7 @@ export type VariantFilter = {
   createdAt?: InputMaybe<DateFilter>;
   id?: InputMaybe<IdFilter>;
   product?: InputMaybe<ProductFilter>;
+  sku?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateFilter>;
 };
 
