@@ -14,14 +14,19 @@ export default function BuildTypeType() {
   const searchParams = useSearchParams();
   const searchParamsObject = Object.fromEntries(searchParams.entries());
   const dependencies = Object.values(searchParamsObject);
+  const [loading, setLoading] = useState<boolean>(false);
   const [hits, setHits] = useState<HitType[]>([]);
 
   useEffect(() => {
-    elService({ ids: dependencies }).then(setHits).catch(catchHelper);
+    setLoading(true);
+    elService({ ids: dependencies })
+      .then(setHits)
+      .catch(catchHelper)
+      .finally(() => setLoading(false));
   }, dependencies);
 
   return (
-    <div className="relative aspect-square w-full p-2">
+    <div className={`relative aspect-square w-full p-2 ${loading ? 'skeleton bg-base-300' : ''}`}>
       {hits.map((product) => (
         <Image
           key={product.id}
