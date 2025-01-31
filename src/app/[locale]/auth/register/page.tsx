@@ -2,7 +2,7 @@ import AuthRegisterClient from '@/components/page-client/auth/auth-register-clie
 
 export default function AuthRegister() {
   return (
-    <div className="container flex items-center justify-center py-10">
+    <div className="container">
       <AuthRegisterClient />
     </div>
   );

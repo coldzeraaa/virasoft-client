@@ -27,6 +27,7 @@ export const AuthProvider: FC<PropsWithChildren<{ user?: boolean }>> = ({ childr
   const router = useRouter();
 
   const logout = useCallback(() => {
+    localStorage.removeItem(STORE_KEY_CONFIG.NEXT_USER_TOKEN);
     cookies.remove(STORE_KEY_CONFIG.NEXT_USER_TOKEN);
     setAuth(false);
     client

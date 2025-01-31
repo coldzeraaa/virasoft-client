@@ -2,7 +2,7 @@ export const LIGHT_COLORS = {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   ...require('daisyui/src/theming/themes')['light'],
   primary: '#CA9740', // darker golden color
-  'primary-content': '#a9a9ac', // grey with pinkish hue
+  'primary-content': '#ffffff', // grey with pinkish hue
   secondary: '#DAA520', // olive green
   'secondary-content': '#EDF2F8', // neutral light grey
   accent: '#011C2A', // orange red
