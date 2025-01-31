@@ -8,4 +8,5 @@ export interface HitType {
   images: string[];
   is_sale?: boolean;
   selling_price?: number;
+  position?: number;
 }

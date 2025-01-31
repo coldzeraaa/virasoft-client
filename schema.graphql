@@ -1523,6 +1523,7 @@ input MenuChildrenInput {
 input MenuFilter {
     createdAt: DateFilter
     id: IDFilter
+    parent: MenuFilter
     parentId: IDFilter
     title: StringFilter
     type: StringFilter
@@ -2378,6 +2379,7 @@ input updateWebsiteInput {
     "A unique identifier for the client performing the mutation."
     clientMutationId: String
     code: String
+    domain: String
     id: ID!
     name: String
 }

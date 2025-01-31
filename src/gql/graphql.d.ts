@@ -426,6 +426,7 @@ export type MenuEdge = {
 export type MenuFilter = {
   createdAt?: InputMaybe<DateFilter>;
   id?: InputMaybe<IdFilter>;
+  parent?: InputMaybe<MenuFilter>;
   parentId?: InputMaybe<IdFilter>;
   title?: InputMaybe<StringFilter>;
   type?: InputMaybe<StringFilter>;
@@ -2649,6 +2650,7 @@ export type UpdateWebsiteInput = {
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   code?: InputMaybe<Scalars['String']['input']>;
+  domain?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
   name?: InputMaybe<Scalars['String']['input']>;
 };
