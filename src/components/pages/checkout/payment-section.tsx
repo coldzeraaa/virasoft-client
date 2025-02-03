@@ -35,7 +35,6 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
       router.push(`/account/orders/${order?.number}/pay`);
     },
   });
-  console.log(error);
 
   if (loading || paymentCheckoutLoading || checkoutAddressLoading) return <div className="skeleton h-20 w-full" />;
   if (!order) return <div className="h-60 w-full">Танд захиалга байхгүй байна</div>;
