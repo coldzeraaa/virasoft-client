@@ -15,8 +15,10 @@ import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { catchHelper } from '@/lib/helper/catch-helper';
 import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
+import { mutationOptionHelper } from '@/lib/helper/mutation-option-helper';
 export function LineItemsSection() {
   const { order, loading } = useCurrentOrder();
+
   if (loading) return <div className="skeleton h-52 w-full" />;
   if (!order) return <ErrorResult message="Order not found" />;
 
@@ -29,7 +31,7 @@ export function LineItemsSection() {
 
 function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQuery['currentOrder']>['items'][0]) {
   return (
-    <li className="flex gap-6 py-4">
+    <li className="mb-4 flex gap-6">
       <div className="aspect-square h-fit w-24 rounded-lg border bg-base-300">
         <Image
           src={variant.images[0] ? imageUrlHelper(variant.images[0]) : `https://via.placeholder.com/80?text=-`}
@@ -62,12 +64,7 @@ function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQu
 
 function UpdateQuantity({ quantity, id }: { quantity: number; id: string }) {
   const [qty, setQty] = useState(quantity);
-  const [updateItem, { loading }] = useUpdateItemMutation({
-    onError: catchHelper,
-    onCompleted: () => {
-      toast.success('Item updated successfully');
-    },
-  });
+  const [updateItem, { loading }] = useUpdateItemMutation(mutationOptionHelper);
 
   const onUpdate = useCallback(
     debounce((q: number) => updateItem({ variables: { input: { id, quantity: q } } }), 800),

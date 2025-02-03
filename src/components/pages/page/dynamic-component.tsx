@@ -6,11 +6,11 @@ import type { GridContainerProps, Item } from './dynamic-component.d';
 
 import { ErrorResult } from '@/components/result/error-result';
 import { CurrentPageDocument, CurrentPageQuery } from '@/gql/query/page/current-page.generated';
-import { getClient } from '@/lib/service/apollo-client-service';
+import { query } from '@/lib/service/apollo-client-service';
 
 export async function DynamicComponent({ slug }: { slug: string }) {
   try {
-    const { data, error } = await getClient().query<CurrentPageQuery>({ query: CurrentPageDocument, variables: { slug } });
+    const { data, error } = await query<CurrentPageQuery>({ query: CurrentPageDocument, variables: { slug } });
 
     if (error || !data?.currentPage) return <ErrorResult message={error?.message || 'Page not found'} />;
 

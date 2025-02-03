@@ -37,7 +37,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
 
   if (loading || paymentCheckoutLoading || checkoutAddressLoading) return <div className="skeleton h-20 w-full" />;
   if (!order) return <div className="h-60 w-full">Танд захиалга байхгүй байна</div>;
-  if (error) <ErrorResult message={error.message} />;
+  if (error) return <ErrorResult message={error.message} />;
 
   return (
     <>
