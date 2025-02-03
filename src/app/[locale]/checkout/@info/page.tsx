@@ -97,6 +97,8 @@ function ContinueAddress() {
                   input: {
                     shipAddressAttributes: {
                       address1: values.shipAddressAttributes.address1,
+                      firstName: values.shipAddressAttributes.firstName,
+                      mobile: values.shipAddressAttributes.mobile,
                       latitude: values.shipAddressAttributes.location.lat.toString(),
                       longitude: values.shipAddressAttributes.location.lng.toString(),
                     },
@@ -130,6 +132,8 @@ interface UpdateCheckoutValues {
   shipAddressId?: string;
   shipAddressAttributes?: {
     address1: string;
+    firstName: string;
+    mobile: string;
     location: {
       lat: number;
       lng: number;
