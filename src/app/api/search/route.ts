@@ -33,6 +33,7 @@ const client = Client(
         { attribute: 't2', field: 'taxons_lvl.lvl2', type: 'string' },
         { attribute: 't3', field: 'taxons_lvl.lvl3', type: 'string' },
         { attribute: 't4', field: 'taxons_lvl.lvl4', type: 'string' },
+        { attribute: 'options', field: 'options.keyword', type: 'string' },
       ],
     },
     connection: {
@@ -45,6 +46,7 @@ const client = Client(
 
 export async function POST(request: NextRequest) {
   const json = await request.json();
+
   const results = await client.handleRequest(json, {
     getBaseFilters: () => [
       // {
