@@ -18,7 +18,7 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
   const { loading, order } = useCurrentOrder();
   const pathName = usePathname();
   const router = useRouter();
-  const [updateCheckoutAddress, { loading: checkoutAddressLoading, error }] = useUpdateCheckoutAddressMutation({
+  const [updateCheckoutAddress, { loading: checkoutAddressLoading }] = useUpdateCheckoutAddressMutation({
     onError: catchHelper,
     onCompleted() {
       toast.success('Хүргэлтийн хаягийг амжилттай сонголоо');
@@ -26,14 +26,16 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
     },
   });
 
-  const [paymentCheckout, { loading: paymentCheckoutLoading }] = usePaymentCheckoutMutation({
+  const [paymentCheckout, { loading: paymentCheckoutLoading, error }] = usePaymentCheckoutMutation({
     onError: catchHelper,
     update: (cache) => cache.evict({ fieldName: 'currentOrder' }),
+
     onCompleted() {
       toast.success('Захиалга амжилттай үүслээ');
       router.push(`/account/orders/${order?.number}/pay`);
     },
   });
+  console.log(error);
 
   if (loading || paymentCheckoutLoading || checkoutAddressLoading) return <div className="skeleton h-20 w-full" />;
   if (!order) return <div className="h-60 w-full">Танд захиалга байхгүй байна</div>;

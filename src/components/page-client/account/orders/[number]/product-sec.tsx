@@ -30,9 +30,6 @@ export function ProductPaymentSec({ myOrder }: MyOrderType) {
         <p className="text-lg font-bold tracking-wide text-gray-800">Нийт төлөх дүн</p>
         <div className="relative inline-flex">
           <p className="text-2xl font-extrabold text-primary">{myOrder?.total?.toLocaleString() ?? 0}₮</p>
-          <span className="absolute -right-3 -top-2 flex h-6 w-6 animate-pulse items-center justify-center rounded-full bg-primary text-xs text-white">
-            ₮
-          </span>
         </div>
       </div>
     </div>
