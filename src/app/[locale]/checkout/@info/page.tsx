@@ -125,7 +125,14 @@ function ContinueAddress() {
   );
 }
 
-const VALIDATES = ['shipAddressId', 'shipAddressTab', ['shipAddressAttributes', 'address1'], ['shipAddressAttributes', 'location']];
+const VALIDATES = [
+  'shipAddressId',
+  'shipAddressTab',
+  ['shipAddressAttributes', 'address1'],
+  ['shipAddressAttributes', 'location'],
+  ['shipAddressAttributes', 'firstName'],
+  ['shipAddressAttributes', 'mobile'],
+];
 
 interface UpdateCheckoutValues {
   shipAddressTab: 'choose' | 'new';
