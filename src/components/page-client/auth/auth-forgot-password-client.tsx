@@ -12,6 +12,7 @@ import { catchHelper } from '@/lib/helper/catch-helper';
 const ForgotPasswordClient = () => {
   const [step, setStep] = useState(0);
   const router = useRouter();
+
   const [resetPassword, { loading: resetPasswordLoading }] = useResetPasswordMutation({
     onCompleted(TData) {
       if (TData?.resetPassword?.id && !resetPasswordLoading) {
@@ -20,68 +21,116 @@ const ForgotPasswordClient = () => {
       }
     },
   });
+
   const [sendOtp, { loading: sentOtpLoading }] = useSendOtpMutation({
     onError: catchHelper,
     onCompleted(TData) {
       if (TData.sendOtp?.id) {
-        toast.success('Token sent');
+        toast.success('OTP sent successfully');
         setStep(1);
-      } else toast.error('User not found');
+      } else {
+        toast.error('User not found');
+      }
     },
   });
 
   return (
-    <div className="container flex  items-center justify-center py-10">
+    <div className="container flex  items-center justify-center bg-base-100 py-10">
       <Form
-        className=" flex flex-col gap-4"
+        className="w-full max-w-md rounded-2xl bg-base-100 p-8 shadow-lg"
         onFinish={(values) => {
           try {
             if (step === 0) {
               sendOtp({ variables: { input: { login: values.login } } });
             } else if (step === 1) {
-              sendOtp({ variables: { input: { login: values.login } } });
+              setStep(2); // Move to the next step after OTP verification
             } else if (step === 2 && values.password === values.repassword) {
-              resetPassword({ variables: { input: { login: values.login, password: values.password, token: values.token } } });
-              toast.success('Password reset successful');
+              resetPassword({
+                variables: { input: { login: values.login, password: values.password, token: values.token } },
+              });
             } else if (values.password !== values.repassword) {
-              toast.error(' password not match');
+              toast.error('Passwords do not match');
             }
           } catch (error) {
             catchHelper(error);
           }
         }}
       >
-        <div className={`${step === 0 ? 'flex' : 'hidden'} `}>
+        {/* Step 1: Enter Phone Number */}
+        <div className={`${step === 0 ? 'block' : 'hidden'}`}>
           <Field name="login">
-            <CustomInput value="" placeholder="Phone number" />
-          </Field>
-        </div>
-        <div className={`${step === 1 ? 'flex' : 'hidden'} `}>
-          <Field name="token">
-            <CustomInput value="" placeholder="OTP code " />
-          </Field>
-        </div>
-        <div className={`${step === 2 ? 'flex' : 'hidden'} `}>
-          <Field name="password">
-            <CustomInput value="" placeholder="password" type="password" />
-          </Field>
-          <Field name="repassword">
-            <CustomInput value="" placeholder="password" type="password" />
+            {({ field }) => (
+              <CustomInput
+                {...field}
+                placeholder="Утасны дугаар"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              />
+            )}
           </Field>
         </div>
 
-        <button className="btn btn-primary" disabled={sentOtpLoading || resetPasswordLoading} type="submit">
-          Submit
+        {/* Step 2: Enter OTP Code */}
+        <div className={`${step === 1 ? 'block' : 'hidden'}`}>
+          <Field name="token">
+            {({ field }) => (
+              <CustomInput
+                {...field}
+                placeholder="OTP код"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              />
+            )}
+          </Field>
+        </div>
+
+        {/* Step 3: Enter New Password */}
+        <div className={`${step === 2 ? 'block' : 'hidden'}`}>
+          <Field name="password">
+            {({ field }) => (
+              <CustomInput
+                {...field}
+                type="password"
+                placeholder="Шинэ нууц үг"
+                className="input-bordered mb-4 w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              />
+            )}
+          </Field>
+          <Field name="repassword">
+            {({ field }) => (
+              <CustomInput
+                {...field}
+                type="password"
+                placeholder="Шинэ нууц үг давтах"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              />
+            )}
+          </Field>
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="hover:bg-primary-dark disabled:base-200 btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-base-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+          disabled={sentOtpLoading || resetPasswordLoading}
+        >
+          {sentOtpLoading || resetPasswordLoading ? <span className="loading loading-spinner"></span> : 'Илгээх'}
         </button>
       </Form>
     </div>
   );
 };
 
+// Custom Input Component
 const CustomInput: React.FC<CustomInputProps> = ({ value = '', onChange, ...props }: CustomInputProps) => (
-  <input className="input flex  shadow-md" value={value} onChange={onChange} {...props} />
+  <input
+    className="w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+    value={value}
+    onChange={onChange}
+    {...props}
+  />
 );
+
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string;
 }
+
 export default ForgotPasswordClient;

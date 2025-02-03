@@ -73,7 +73,7 @@ export function AuthLoginPageClient() {
             />
           </AnimateHeight>
         </div>
-        <button disabled={loading || loadingAuth} type="submit" className="btn btn-primary btn-block">
+        <button disabled={loading || loadingAuth} type="submit" className="btn btn-primary btn-block text-base-100">
           <span>Үргэлжлүүлэх</span>
           <BtnLoader loading={loading || loadingAuth} icon={ChevronRightIcon} />
         </button>

@@ -14,6 +14,7 @@ export default function AuthRegisterClient() {
   const [verified, setVerified] = useState(false);
   const [step, setStep] = useState(0);
   const router = useRouter();
+
   const [CheckOTP, { loading: checkOtpLoading }] = useCheckOtpMutation({
     onCompleted(TData) {
       if (TData.checkOtp) {
@@ -24,16 +25,19 @@ export default function AuthRegisterClient() {
       }
     },
   });
+
   const [authCheckLogin, { loading: loadingAuthCheckLogin }] = useAuthCheckLoginMutation({
     onCompleted(TData) {
-      if (TData.authCheckLogin?.exists) toast.error('User already exists');
-      else {
+      if (TData.authCheckLogin?.exists) {
+        toast.error('User already exists');
+      } else {
         setVerified(true);
         toast.success('Token sent');
         setStep(1);
       }
     },
   });
+
   const [authRegister, { loading: loadingAuthRegister }] = useAuthRegisterMutation({
     onError: catchHelper,
     onCompleted() {
@@ -43,59 +47,107 @@ export default function AuthRegisterClient() {
       }
     },
   });
-  return (
-    <Form
-      className="flex flex-col items-center justify-center gap-[12px] "
-      onFinish={(values) => {
-        try {
-          if (!verified && step === 0) {
-            authCheckLogin({ variables: { input: { login: values.login, sendToken: true } } });
-          } else if (step === 1) {
-            CheckOTP({
-              variables: { input: { login: values.login, token: values.token, unconfirmedMobile: true } },
-            });
-          } else if (step === 2) {
-            authRegister({ variables: { input: values } });
-          }
-        } catch (error) {
-          catchHelper(error);
-        }
-      }}
-      onFinishFailed={catchHelper}
-    >
-      <div className={`${step === 0 ? 'flex' : 'hidden'}`}>
-        <Field name="login" rules={[{ required: true, message: 'Утасны дугаар оруулна уу ' }]}>
-          <CustomInput value="" placeholder="Phone number" />
-        </Field>
-      </div>
-      <div className={`${step === 1 ? 'flex' : 'hidden'}`}>
-        <Field name="token" rules={[{ required: verified, message: 'OTP code үруулна уу ' }]}>
-          <CustomInput value="" placeholder="OTP code" />
-        </Field>
-      </div>
-      <div className={`${step === 2 ? 'flex' : 'hidden'} flex-col gap-[20px]`}>
-        <Field name="firstName" rules={[{ message: 'Нэр оруулна уу  ' }]}>
-          <CustomInput value="" placeholder="firstname" />
-        </Field>
-        <Field name="lastName" rules={[{ message: 'Нууц үг ' }]}>
-          <CustomInput value="" placeholder="lastname" />
-        </Field>
-        <Field name="password" rules={[{ message: 'Нууц үг ' }]}>
-          <CustomInput value="" type="password" placeholder="Password" />
-        </Field>
-      </div>
 
-      <div className="">
-        <button className="btn btn-primary " disabled={loadingAuthRegister || loadingAuthCheckLogin || checkOtpLoading} type="submit">
-          Submit
+  return (
+    <div className="container flex  items-center justify-center bg-base-100 py-10">
+      <Form
+        className="w-full max-w-md rounded-3xl bg-base-100 p-8 shadow-lg"
+        onFinish={(values) => {
+          try {
+            if (!verified && step === 0) {
+              authCheckLogin({ variables: { input: { login: values.login, sendToken: true } } });
+            } else if (step === 1) {
+              CheckOTP({
+                variables: { input: { login: values.login, token: values.token, unconfirmedMobile: true } },
+              });
+            } else if (step === 2) {
+              authRegister({ variables: { input: values } });
+            }
+          } catch (error) {
+            catchHelper(error);
+          }
+        }}
+        onFinishFailed={catchHelper}
+      >
+        {/* Step 1: Enter Phone Number */}
+        <div className={`${step === 0 ? 'block' : 'hidden'}`}>
+          <Field name="login" rules={[{ required: true, message: 'Утасны дугаар оруулна уу' }]}>
+            {({ field }) => (
+              <CustomInput
+                {...field}
+                placeholder="Утасны дугаар"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              />
+            )}
+          </Field>
+        </div>
+
+        {/* Step 2: Enter OTP Code */}
+        <div className={`${step === 1 ? 'block' : 'hidden'}`}>
+          <Field name="token" rules={[{ required: verified, message: 'OTP код оруулна уу' }]}>
+            {({ field }) => (
+              <CustomInput
+                {...field}
+                placeholder="OTP код"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              />
+            )}
+          </Field>
+        </div>
+
+        {/* Step 3: Enter User Details */}
+        <div className={`${step === 2 ? 'block' : 'hidden'} space-y-4`}>
+          <Field name="firstName" rules={[{ required: true, message: 'Нэр оруулна уу' }]}>
+            {({ field }) => (
+              <CustomInput
+                {...field}
+                placeholder="Нэр"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              />
+            )}
+          </Field>
+          <Field name="lastName" rules={[{ required: true, message: 'Овог оруулна уу' }]}>
+            {({ field }) => (
+              <CustomInput
+                {...field}
+                placeholder="Овог"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              />
+            )}
+          </Field>
+          <Field name="password" rules={[{ required: true, message: 'Нууц үг оруулна уу' }]}>
+            {({ field }) => (
+              <CustomInput
+                {...field}
+                type="password"
+                placeholder="Нууц үг"
+                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              />
+            )}
+          </Field>
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="hover:bg-primary-dark disabled:base-200 btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-base-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+          disabled={loadingAuthRegister || loadingAuthCheckLogin || checkOtpLoading}
+        >
+          {loadingAuthRegister || loadingAuthCheckLogin || checkOtpLoading ? <span className="loading loading-spinner"></span> : 'Илгээх'}
         </button>
-      </div>
-    </Form>
+      </Form>
+    </div>
   );
 }
 
+// Custom Input Component
 const CustomInput: React.FC<CustomInputProps> = ({ value = '', onChange, ...props }: CustomInputProps) => (
-  <input className="input shadow-md " value={value} onChange={onChange} {...props} />
+  <input
+    className="w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+    value={value}
+    onChange={onChange}
+    {...props}
+  />
 );
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
