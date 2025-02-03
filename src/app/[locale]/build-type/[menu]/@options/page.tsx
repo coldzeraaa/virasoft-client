@@ -9,6 +9,8 @@ import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 import { getClient } from '@/lib/service/apollo-client-service';
 
 export default function BuildTypeOptionsPage({ params }: BuildTypeOptionsPageProps) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   return <Menu type={params.menu} />;
 }
 

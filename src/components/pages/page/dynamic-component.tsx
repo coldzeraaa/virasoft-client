@@ -29,11 +29,16 @@ export async function DynamicComponent({ slug }: { slug: string }) {
       </main>
     );
   } catch (error) {
+    console.warn({ error });
     notFound();
   }
 }
 
 export async function Switcher({ component, ...rest }: Item) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   if (component.endsWith('container')) return <GridContainer {...(rest as GridContainerProps)} />;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   return <ComponentSwitcher component={component} {...rest} />;
 }
