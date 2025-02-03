@@ -5,7 +5,9 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { ErrorResult } from '@/components/result/error-result';
+import { PaymentMethodEnum } from '@/gql/graphql.d';
 import { useUpdateCheckoutAddressMutation } from '@/gql/mutation/address/update-checkout-address.generated';
+import { usePaymentCheckoutMutation } from '@/gql/mutation/checkout/payment-checkout.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { useForm } from '@/lib/context/form-context';
 import { catchHelper } from '@/lib/helper/catch-helper';
@@ -46,18 +48,33 @@ export default function Page() {
       </p>
       {pathName === '/checkout' && <Continue />}
       {pathName === '/checkout/address' && <ContinueAddress />}
-      {pathName === '/checkout/review' && <ContinueReview />}
+      {pathName === '/checkout/review' && <ContinueReview number={order.number} />}
     </>
   );
 }
 
-function ContinueReview() {
+function ContinueReview({ number }: { number: string }) {
+  const [paymentCheckout, { loading }] = usePaymentCheckoutMutation(mutationOptionHelper);
+  const router = useRouter();
+
   return (
     <>
-      <Link href="/checkout/address" className="btn btn-primary btn-block">
+      <button
+        onClick={async () => {
+          try {
+            await paymentCheckout({ variables: { input: { action: PaymentMethodEnum.VirasoftPay } } });
+            router.push(`/account/orders/${number}/pay`);
+          } catch (e) {
+            catchHelper(e);
+          }
+        }}
+        disabled={loading}
+        type="button"
+        className="btn btn-primary btn-block"
+      >
         Төлбөр төлөх
         <ChevronRightIcon />
-      </Link>
+      </button>
       <Link href="/checkout/address" className="btn btn-block">
         Буцах
         <ChevronLeftIcon />
