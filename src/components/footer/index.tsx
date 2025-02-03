@@ -19,7 +19,7 @@ export function Footer() {
   if (loading) <Loader />;
   return (
     <>
-      <footer className="sticky top-[100vh] hidden w-full bg-base-300 text-neutral md:block">
+      <footer className="fixed bottom-0 top-[100vh] hidden w-full bg-base-300 text-neutral md:block">
         <div className="mx-auto w-full max-w-7xl p-6 lg:py-6">
           <div className="grid grid-cols-3 gap-8">
             {data?.allMenus.nodes[2]?.children?.map((item, idx) => (

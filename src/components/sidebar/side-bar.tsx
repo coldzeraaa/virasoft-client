@@ -3,12 +3,12 @@ import { ReactElement } from 'react';
 
 import { IdCard, ListOrdered, User } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
-import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
+import { useAuth } from '@/lib/context/auth-context';
 
 export function SideBar() {
-  const router = useRouter();
+  const { logout } = useAuth();
+
   return (
     <div className="ml-4 hidden h-full w-1/5 flex-col justify-between rounded-lg bg-base-100 py-3 shadow-lg md:flex">
       <div className="flex h-full w-full flex-col gap-4 px-6 py-4">
@@ -18,14 +18,7 @@ export function SideBar() {
       </div>
       <div className="flex flex-col items-center justify-center gap-3">
         <User className="h-8 w-8" />
-        <button
-          onClick={() => {
-            localStorage.removeItem(STORE_KEY_CONFIG.NEXT_USER_TOKEN);
-            router.push('/api/auth/logout');
-          }}
-          type="button"
-          className="btn w-[70%] "
-        >
+        <button onClick={logout} type="button" className="btn w-[70%] ">
           Гарах
         </button>
       </div>
