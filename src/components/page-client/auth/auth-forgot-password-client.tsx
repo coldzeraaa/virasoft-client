@@ -59,50 +59,36 @@ const ForgotPasswordClient = () => {
         {/* Step 1: Enter Phone Number */}
         <div className={`${step === 0 ? 'block' : 'hidden'}`}>
           <Field name="login">
-            {({ field }) => (
-              <CustomInput
-                {...field}
-                placeholder="Утасны дугаар"
-                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
-              />
-            )}
+            <CustomInput
+              placeholder="Утас"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+            />
           </Field>
         </div>
 
         {/* Step 2: Enter OTP Code */}
         <div className={`${step === 1 ? 'block' : 'hidden'}`}>
           <Field name="token">
-            {({ field }) => (
-              <CustomInput
-                {...field}
-                placeholder="OTP код"
-                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
-              />
-            )}
+            <CustomInput
+              placeholder="OTP код"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+            />
           </Field>
         </div>
 
         {/* Step 3: Enter New Password */}
         <div className={`${step === 2 ? 'block' : 'hidden'}`}>
           <Field name="password">
-            {({ field }) => (
-              <CustomInput
-                {...field}
-                type="password"
-                placeholder="Шинэ нууц үг"
-                className="input-bordered mb-4 w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
-              />
-            )}
+            <CustomInput
+              placeholder="OTP код"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+            />
           </Field>
           <Field name="repassword">
-            {({ field }) => (
-              <CustomInput
-                {...field}
-                type="password"
-                placeholder="Шинэ нууц үг давтах"
-                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
-              />
-            )}
+            <CustomInput
+              placeholder="OTP код"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+            />
           </Field>
         </div>
 
