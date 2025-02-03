@@ -77,16 +77,16 @@ const ForgotPasswordClient = () => {
         </div>
 
         {/* Step 3: Enter New Password */}
-        <div className={`${step === 2 ? 'block' : 'hidden'}`}>
+        <div className={`${step === 2 ? 'block' : 'hidden'} flex flex-col gap-4`}>
           <Field name="password">
             <CustomInput
-              placeholder="OTP код"
+              placeholder="Password"
               className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
             />
           </Field>
           <Field name="repassword">
             <CustomInput
-              placeholder="OTP код"
+              placeholder="Re-password"
               className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
             />
           </Field>
