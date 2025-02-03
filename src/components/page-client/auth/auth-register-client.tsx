@@ -69,65 +69,42 @@ export default function AuthRegisterClient() {
         }}
         onFinishFailed={catchHelper}
       >
-        {/* Step 1: Enter Phone Number */}
         <div className={`${step === 0 ? 'block' : 'hidden'}`}>
           <Field name="login" rules={[{ required: true, message: 'Утасны дугаар оруулна уу' }]}>
-            {({ field }) => (
-              <CustomInput
-                {...field}
-                placeholder="Утасны дугаар"
-                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
-              />
-            )}
+            <CustomInput
+              placeholder="Утасны дугаар"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+            />
           </Field>
         </div>
-
-        {/* Step 2: Enter OTP Code */}
         <div className={`${step === 1 ? 'block' : 'hidden'}`}>
           <Field name="token" rules={[{ required: verified, message: 'OTP код оруулна уу' }]}>
-            {({ field }) => (
-              <CustomInput
-                {...field}
-                placeholder="OTP код"
-                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
-              />
-            )}
+            <CustomInput
+              placeholder="OTP код"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+            />
           </Field>
         </div>
-
-        {/* Step 3: Enter User Details */}
         <div className={`${step === 2 ? 'block' : 'hidden'} space-y-4`}>
-          <Field name="firstName" rules={[{ required: true, message: 'Нэр оруулна уу' }]}>
-            {({ field }) => (
-              <CustomInput
-                {...field}
-                placeholder="Нэр"
-                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
-              />
-            )}
+          <Field name="firstName" rules={[{ required: step === 2, message: 'Нэр оруулна уу' }]}>
+            <CustomInput
+              placeholder="OTP код"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+            />
           </Field>
-          <Field name="lastName" rules={[{ required: true, message: 'Овог оруулна уу' }]}>
-            {({ field }) => (
-              <CustomInput
-                {...field}
-                placeholder="Овог"
-                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
-              />
-            )}
+          <Field name="lastName" rules={[{ required: step === 2, message: 'Овог оруулна уу' }]}>
+            <CustomInput
+              placeholder="OTP код"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+            />
           </Field>
-          <Field name="password" rules={[{ required: true, message: 'Нууц үг оруулна уу' }]}>
-            {({ field }) => (
-              <CustomInput
-                {...field}
-                type="password"
-                placeholder="Нууц үг"
-                className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
-              />
-            )}
+          <Field name="password" rules={[{ required: step === 2, message: 'Нууц үг оруулна уу' }]}>
+            <CustomInput
+              placeholder="OTP код"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+            />
           </Field>
         </div>
-
-        {/* Submit Button */}
         <button
           type="submit"
           className="hover:bg-primary-dark disabled:base-200 btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-base-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
