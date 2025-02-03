@@ -24,14 +24,18 @@ export function LineItemsSection() {
 
   return (
     <ul aria-label="line items" className="divide divide-y divide-dashed">
-      {order?.items.map((item) => <SingleItem {...item} key={item.id} />)}
+      {order?.items.map((item, idx) => (
+        <li className={`flex gap-6 pb-3 ${idx === 0 ? '' : 'pt-3'}`} key={item.id}>
+          <SingleItem {...item} />
+        </li>
+      ))}
     </ul>
   );
 }
 
 function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQuery['currentOrder']>['items'][0]) {
   return (
-    <li className="mb-4 flex gap-6">
+    <>
       <div className="aspect-square h-fit w-24 rounded-lg border bg-base-300">
         <Image
           src={variant.images[0] ? imageUrlHelper(variant.images[0]) : `https://via.placeholder.com/80?text=-`}
@@ -58,7 +62,7 @@ function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQu
           </div>
         </div>
       </div>
-    </li>
+    </>
   );
 }
 

@@ -3,7 +3,7 @@ mutation destroyUserAddress($input: destroyUserAddressInput!) {
     id
     user {
       id
-      userAddresses {
+      userAddresses(sort: {field: "updatedAt", direction: desc}) {
         nodes {
           ...UserAddressFields
         }

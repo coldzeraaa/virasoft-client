@@ -1,8 +1,9 @@
 import { headers } from 'next/headers';
 
 import { BaseHits } from '@/components/algolia/base-hits';
-import { Filters } from '@/components/algolia/options-filter';
+import { Filters } from '@/components/algolia/filters';
 import { SearchProvider } from '@/lib/provider/search-provider';
+
 export default async function Page({
   params,
   searchParams,
