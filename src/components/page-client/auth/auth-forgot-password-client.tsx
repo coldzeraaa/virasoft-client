@@ -54,7 +54,7 @@ const ForgotPasswordClient = () => {
             if (step === 0) {
               sendOtp({ variables: { input: { login: values.login } } });
             } else if (step === 1) {
-              checkOtp({ variables: { input: { token: values.token, login: values.login, unconfirmedMobile: true } } });
+              checkOtp({ variables: { input: { token: values.token, login: values.login } } });
             } else if (step === 2 && values.password === values.repassword) {
               resetPassword({
                 variables: { input: { login: values.login, password: values.password, token: values.token } },
