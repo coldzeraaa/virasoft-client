@@ -3,7 +3,7 @@ import { AuthLoginPageClient } from '@/components/page-client/auth/auth-login-pa
 export default function AuthLoginPage() {
   return (
     <main>
-      <h1 className="mb-4 text-center text-2xl">Login</h1>
+      <h1 className="mb-4 text-center text-2xl">Нэвтрэх</h1>
       <AuthLoginPageClient />
     </main>
   );
