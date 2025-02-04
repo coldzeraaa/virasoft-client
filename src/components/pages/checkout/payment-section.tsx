@@ -1,12 +1,10 @@
 'use client';
 
 import { ChevronRightIcon } from '@heroicons/react/16/solid';
-import cookies from 'js-cookie';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 import { ErrorResult } from '@/components/result/error-result';
-import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
 import { PaymentMethodEnum } from '@/gql/graphql.d';
 import { useUpdateCheckoutAddressMutation } from '@/gql/mutation/address/update-checkout-address.generated';
 import { usePaymentCheckoutMutation } from '@/gql/mutation/checkout/payment-checkout.generated';
@@ -73,7 +71,6 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
             return updateCheckoutAddress({ variables: { input: { shipAddressId: selectedAddress } } });
           }
           if (pathName === '/checkout/review') return paymentCheckout({ variables: { input: { action: PaymentMethodEnum.VirasoftPay } } });
-          cookies.set(STORE_KEY_CONFIG.NEXT_FROM, '/checkout/address');
           router.push('/checkout/address');
         }}
       >

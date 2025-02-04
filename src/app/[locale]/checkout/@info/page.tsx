@@ -75,7 +75,7 @@ function ContinueReview({ number }: { number: string }) {
         Төлбөр төлөх
         <ChevronRightIcon />
       </button>
-      <Link href="/checkout/address" className="btn btn-block">
+      <Link href="/checkout/address" className="btn btn-block mt-4">
         Буцах
         <ChevronLeftIcon />
       </Link>
@@ -135,7 +135,7 @@ function ContinueAddress() {
         Үргэлжлүүлэх
         {loading ? <div className="loading" /> : <ChevronRightIcon />}
       </button>
-      <Link href="/checkout" className="btn btn-sm btn-block mt-2">
+      <Link href="/checkout" className="btn btn-block mt-4">
         Буцах
         <ChevronLeftIcon />
       </Link>

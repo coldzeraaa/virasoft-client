@@ -38,7 +38,7 @@ function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQu
     <>
       <div className="aspect-square h-fit w-24 rounded-lg border bg-base-300">
         <Image
-          src={variant.images[0] ? imageUrlHelper(variant.images[0]) : `https://via.placeholder.com/80?text=-`}
+          src={imageUrlHelper(variant.images[0])}
           alt={variant.product.name || 'product'}
           width={96}
           height={96}

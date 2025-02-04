@@ -10,7 +10,7 @@ export function ProductSingle({ name, price, slug, title, images, is_sale, selli
     <div className="w-full max-w-sm rounded-2xl shadow-lg transition-shadow duration-300 hover:shadow-xl">
       <Link href={`/product/${slug}`} className="relative block">
         <Image
-          src={images['0'] ? imageUrlHelper(images['0']) : `https://via.placeholder.com/300`}
+          src={imageUrlHelper(images['0'])}
           alt={name}
           width={300}
           height={300}
