@@ -1,0 +1,5 @@
+mutation emptyItem($input: emptyItemInput!) {
+  emptyItem(input: $input) {
+    ...CurrentOrderFields
+  }
+}

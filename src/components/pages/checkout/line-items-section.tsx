@@ -2,15 +2,16 @@
 
 import { useCallback, useState } from 'react';
 
-import { MinusIcon, PlusIcon, TrashIcon } from '@heroicons/react/16/solid';
 import { debounce } from 'lodash';
+import { MinusIcon, PlusIcon, TrashIcon } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 
 import { EmptyResult } from '@/components/result/empty-result';
+import { useEmptyItemMutation } from '@/gql/mutation/checkout/empty-item.generated';
 import { useRemoveItemMutation } from '@/gql/mutation/checkout/remove-item.generated';
 import { useUpdateItemMutation } from '@/gql/mutation/checkout/update-item.generated';
-import { CurrentOrderQuery } from '@/gql/query/order/current-order.generated';
+import { CurrentOrderDocument, CurrentOrderQuery } from '@/gql/query/order/current-order.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { catchHelper } from '@/lib/helper/catch-helper';
 import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
@@ -23,13 +24,16 @@ export function LineItemsSection() {
   if (!order || order.items.length === 0) return <EmptyResult message="Хоосон байна" />;
 
   return (
-    <ul aria-label="line items" className="divide divide-y divide-dashed">
-      {order?.items.map((item, idx) => (
-        <li className={`flex gap-6 pb-3 ${idx === 0 ? '' : 'pt-3'}`} key={item.id}>
-          <SingleItem {...item} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul aria-label="line items" className="divide divide-y divide-dashed">
+        {order?.items.map((item, idx) => (
+          <li className={`flex gap-6 pb-3 ${idx === 0 ? '' : 'pt-3'}`} key={item.id}>
+            <SingleItem {...item} />
+          </li>
+        ))}
+      </ul>
+      <EmptyItems number={order.number} />
+    </>
   );
 }
 
@@ -105,8 +109,9 @@ function UpdateQuantity({ quantity, id }: { quantity: number; id: string }) {
     </div>
   );
 }
+
 function RemoveItem({ id }: { id: string }) {
-  const [updateItem, { loading }] = useRemoveItemMutation({
+  const [updateRemove, { loading }] = useRemoveItemMutation({
     variables: { input: { id } },
     onError: catchHelper,
     onCompleted() {
@@ -115,8 +120,24 @@ function RemoveItem({ id }: { id: string }) {
   });
 
   return (
-    <button onClick={() => updateItem()} disabled={loading} type="button" className="btn btn-sm w-fit">
+    <button onClick={() => updateRemove()} disabled={loading} type="button" className="btn btn-sm w-fit">
       {loading ? <div className="loading" /> : <TrashIcon className="w-4" />}
+    </button>
+  );
+}
+
+function EmptyItems({ number }: { number: string }) {
+  const [emptyItem, { loading }] = useEmptyItemMutation({ ...mutationOptionHelper, refetchQueries: [{ query: CurrentOrderDocument }] });
+
+  return (
+    <button
+      disabled={loading}
+      type="button"
+      className="btn btn-error btn-sm float-end mt-4"
+      onClick={() => emptyItem({ variables: { input: { number } } })}
+    >
+      {loading ? <div className="loading" /> : <TrashIcon className="w-4" />}
+      Сагс хоослох
     </button>
   );
 }

@@ -1002,7 +1002,7 @@ export type Order = BaseModelInterface & {
   currency: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   itemCount?: Maybe<Scalars['Int']['output']>;
-  itemTotal?: Maybe<Scalars['Int']['output']>;
+  itemTotal?: Maybe<Scalars['Float']['output']>;
   items: Array<Item>;
   number: Scalars['String']['output'];
   outstandingBalance: Scalars['Float']['output'];

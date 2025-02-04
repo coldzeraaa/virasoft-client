@@ -19,7 +19,11 @@ export function ApolloProvider({ children }: { children: ReactNode }) {
 
 function makeClient() {
   return new ApolloClient({
-    cache: new InMemoryCache({ typePolicies: { Query: { fields: { vendors: relayStylePagination(['filter', 'sort']) } } } }),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: { fields: { vendors: relayStylePagination(['filter', 'sort']) } },
+      },
+    }),
     link: authLink.concat(getLink()),
   });
 }
