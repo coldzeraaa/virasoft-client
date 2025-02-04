@@ -1,8 +1,8 @@
-// import { NextMiddlewareClient } from 'nextjs-middleware-client';
+import { NextMiddlewareClient } from 'nextjs-middleware-client';
+
 import { APP_CONFIG } from '@/configs/APP_CONFIG';
 import { HOST_CONFIG } from '@/configs/HOST_CONFIG';
 import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
-import { NextMiddlewareClient } from '@/tmp/nextjs-middleware-client';
 
 export const middlewareClient = new NextMiddlewareClient({
   userTokenKey: STORE_KEY_CONFIG.NEXT_USER_TOKEN,

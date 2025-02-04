@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import { BtnContinueAddress } from '@/components/pages/checkout/btn-continue-address';
 import { BtnContinueCart } from '@/components/pages/checkout/btn-continue-cart';
 import { BtnContinueReview } from '@/components/pages/checkout/btn-continue-review';
-import { ErrorResult } from '@/components/result/error-result';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
 
@@ -14,13 +13,12 @@ export default function Page() {
   const pathName = usePathname();
 
   if (loading) return <div className="skeleton h-40" />;
-  if (!order) return <ErrorResult message="Order is undefined" />;
 
   return (
     <>
       <p className="mb-2 flex justify-between font-semibold">
         <span>Бүтээгдэхүүний тоо ширхэг</span>
-        <span>{order?.items.length}ш</span>
+        <span>{order?.items.length || 0}ш</span>
       </p>
       <p className="mb-1 flex justify-between font-semibold">
         <span>Бүтээгдэхүүн</span>
@@ -30,8 +28,8 @@ export default function Page() {
         {order?.items.map((item) => (
           <li key={item.id}>
             <p className="grid grid-cols-[1fr,auto,auto] items-center gap-2">
-              <span className="t-text-xs line-clamp-2 truncate">{item.variant.product.name}</span>
-              <span className="t-text-xs h-fit rounded bg-base-300 p-1 px-2">{item.quantity}ш</span>
+              <span className="t-text-xs line-clamp-2 truncate">{item.variant.product.name || '-'}</span>
+              <span className="t-text-xs h-fit rounded bg-base-300 p-1 px-2">{item.quantity || 0}ш</span>
               <span className="t-text-xs min-w-20 text-right">{moneyFormatHelper(item.price)}</span>
             </p>
           </li>
@@ -41,9 +39,9 @@ export default function Page() {
         <span className="">Нийт</span>
         <span className="heading-4">{moneyFormatHelper(order?.total || 0)}</span>
       </p>
-      {pathName === '/checkout' && <BtnContinueCart />}
-      {pathName === '/checkout/address' && <BtnContinueAddress />}
-      {pathName === '/checkout/review' && <BtnContinueReview number={order.number} />}
+      {order && pathName === '/checkout' && <BtnContinueCart />}
+      {order && pathName === '/checkout/address' && <BtnContinueAddress />}
+      {order?.number && pathName === '/checkout/review' && <BtnContinueReview number={order.number} />}
     </>
   );
 }

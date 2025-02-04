@@ -7,7 +7,7 @@ import { debounce } from 'lodash';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 
-import { ErrorResult } from '@/components/result/error-result';
+import { EmptyResult } from '@/components/result/empty-result';
 import { useRemoveItemMutation } from '@/gql/mutation/checkout/remove-item.generated';
 import { useUpdateItemMutation } from '@/gql/mutation/checkout/update-item.generated';
 import { CurrentOrderQuery } from '@/gql/query/order/current-order.generated';
@@ -20,7 +20,7 @@ export function LineItemsSection() {
   const { order, loading } = useCurrentOrder();
 
   if (loading) return <div className="skeleton h-52 w-full" />;
-  if (!order) return <ErrorResult message="Order not found" />;
+  if (!order || order.items.length === 0) return <EmptyResult message="Хоосон байна" />;
 
   return (
     <ul aria-label="line items" className="divide divide-y divide-dashed">
