@@ -1,19 +1,16 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { debounce } from 'lodash';
 import { MinusIcon, PlusIcon, TrashIcon } from 'lucide-react';
 import Image from 'next/image';
-import { toast } from 'react-toastify';
 
 import { EmptyResult } from '@/components/result/empty-result';
-import { useEmptyItemMutation } from '@/gql/mutation/checkout/empty-item.generated';
 import { useRemoveItemMutation } from '@/gql/mutation/checkout/remove-item.generated';
 import { useUpdateItemMutation } from '@/gql/mutation/checkout/update-item.generated';
-import { CurrentOrderDocument, CurrentOrderQuery } from '@/gql/query/order/current-order.generated';
+import { CurrentOrderQuery } from '@/gql/query/order/current-order.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
-import { catchHelper } from '@/lib/helper/catch-helper';
 import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 import { mutationOptionHelper } from '@/lib/helper/mutation-option-helper';
@@ -32,7 +29,7 @@ export function LineItemsSection() {
           </li>
         ))}
       </ul>
-      <EmptyItems number={order.number} />
+      {/*<EmptyItems number={order.number} />*/}
     </>
   );
 }
@@ -72,7 +69,11 @@ function SingleItem({ variant, price, quantity, id }: NonNullable<CurrentOrderQu
 
 function UpdateQuantity({ quantity, id }: { quantity: number; id: string }) {
   const [qty, setQty] = useState(quantity);
-  const [updateItem, { loading }] = useUpdateItemMutation(mutationOptionHelper);
+  const [updateItem, { loading }] = useUpdateItemMutation();
+
+  useEffect(() => {
+    if (!loading) setQty(quantity);
+  }, [loading]);
 
   const onUpdate = useCallback(
     debounce((q: number) => updateItem({ variables: { input: { id, quantity: q } } }), 800),
@@ -111,13 +112,7 @@ function UpdateQuantity({ quantity, id }: { quantity: number; id: string }) {
 }
 
 function RemoveItem({ id }: { id: string }) {
-  const [updateRemove, { loading }] = useRemoveItemMutation({
-    variables: { input: { id } },
-    onError: catchHelper,
-    onCompleted() {
-      toast.success(`Item removed from cart`);
-    },
-  });
+  const [updateRemove, { loading }] = useRemoveItemMutation({ ...mutationOptionHelper, variables: { input: { id } } });
 
   return (
     <button onClick={() => updateRemove()} disabled={loading} type="button" className="btn btn-sm w-fit">
@@ -126,18 +121,18 @@ function RemoveItem({ id }: { id: string }) {
   );
 }
 
-function EmptyItems({ number }: { number: string }) {
-  const [emptyItem, { loading }] = useEmptyItemMutation({ ...mutationOptionHelper, refetchQueries: [{ query: CurrentOrderDocument }] });
-
-  return (
-    <button
-      disabled={loading}
-      type="button"
-      className="btn btn-error btn-sm float-end mt-4"
-      onClick={() => emptyItem({ variables: { input: { number } } })}
-    >
-      {loading ? <div className="loading" /> : <TrashIcon className="w-4" />}
-      Сагс хоослох
-    </button>
-  );
-}
+// function EmptyItems({ number }: { number: string }) {
+//   const [emptyItem, { loading }] = useEmptyItemMutation({ ...mutationOptionHelper, refetchQueries: [{ query: CurrentOrderDocument }] });
+//
+//   return (
+//     <button
+//       disabled={loading}
+//       type="button"
+//       className="btn btn-error btn-sm float-end mt-4"
+//       onClick={() => emptyItem({ variables: { input: { number } } })}
+//     >
+//       {loading ? <div className="loading" /> : <TrashIcon className="w-4" />}
+//       Сагс хоослох
+//     </button>
+//   );
+// }
