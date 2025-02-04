@@ -40,7 +40,8 @@ export function AuthLoginPageClient() {
                 cookies.set(STORE_KEY_CONFIG.NEXT_USER_TOKEN, JSON.stringify(data));
                 await client.resetStore();
                 toast.success('Амжилттай нэвтэрлээ');
-                window.location.href = '/checkout';
+                const from = searchParams.get('from');
+                window.location.href = from ? `/${from}` : '/';
               } else toast.error(data.message);
               setLoading(false);
             } else {
