@@ -31,7 +31,7 @@
     "@searchkit/api": "^4.13.0",
     "@searchkit/instantsearch-client": "^4.14.1",
     "apollo-upload-client": "^18.0.1",
-    "field-form": "^1.2.10",
+    "field-form": "^1.4.0",
     "holy-loader": "^2.3.11",
     "js-cookie": "^3.0.5",
     "ks-instantsearch-routing": "^1.0.2",
