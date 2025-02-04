@@ -1,9 +1,10 @@
 @import url("~react-toastify/dist/ReactToastify.min.css");
+@import url("~field-form/dist/index.css");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    transition: background-color 0.3s, color 0.3s;
+input::placeholder, textarea::placeholder {
+    opacity: 0.2;
 }

@@ -109,7 +109,7 @@ function MyAddresses({ value, onChange, userAddresses }: MyAddressProps) {
               className={`flex w-full flex-1 gap-2 rounded-lg border border-transparent py-2 hover:text-primary ${value === ua.id.toString() ? 'text-primary' : ''}`}
             >
               {value === ua.id.toString() ? <CheckCircle /> : <Circle />}
-              <div>
+              <div className="text-left">
                 <p>{ua.address.firstName || '-'}</p>
                 <p>{ua.address.mobile || '-'}</p>
                 <p>{ua.address.address1}</p>
