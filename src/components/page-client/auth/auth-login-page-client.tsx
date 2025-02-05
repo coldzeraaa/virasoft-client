@@ -82,13 +82,13 @@ export function AuthLoginPageClient() {
           <BtnLoader loading={loading || loadingAuth} icon={ChevronRightIcon} />
         </button>
       </FieldForm>
-      <div className="flex justify-end gap-4">
-        <div className="flex  items-center py-4  text-base-content">
-          <Link href="/auth/forgot-password">forgot password</Link>
-        </div>
-        <div className="flex  items-center py-4  text-base-content">
-          <Link href="/auth/register">register</Link>
-        </div>
+      <div className="mt-4 flex justify-between gap-2">
+        <Link href="/auth/forgot-password" className="btn btn-link">
+          Нууц үг мартсан?
+        </Link>
+        <Link href="/auth/register" className="btn btn-link">
+          Бүртгүүлэх?
+        </Link>
       </div>
     </>
   );

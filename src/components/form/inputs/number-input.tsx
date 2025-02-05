@@ -11,7 +11,7 @@ export function NumberInput({ length = 4, value, onChange = () => true, disabled
           <input
             ref={refs[index]}
             disabled={disabled}
-            value={values[index]}
+            value={values[index] || ''}
             placeholder="*"
             onKeyDownCapture={(event) => {
               if (event.key === 'Backspace' && !values[index] && index - 1 >= 0) {
