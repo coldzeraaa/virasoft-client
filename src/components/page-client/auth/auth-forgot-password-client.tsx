@@ -93,7 +93,7 @@ const ForgotPasswordClient = () => {
             <CustomInput
               type="password"
               placeholder="Password"
-              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-content shadow-sm focus:border-primary focus:ring-primary"
             />
           </Field>
           <Field name="repassword">
@@ -108,7 +108,7 @@ const ForgotPasswordClient = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="hover:bg-primary-dark disabled:base-200 btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-base-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+          className="hover:bg-primary-dark disabled:base-200 btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-base-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
           disabled={sentOtpLoading || resetPasswordLoading}
         >
           {sentOtpLoading || resetPasswordLoading ? <span className="loading loading-spinner"></span> : 'Илгээх'}
