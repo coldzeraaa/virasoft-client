@@ -7,7 +7,7 @@ fragment MeUserAddressFields on User {
   nickName
   createdAt
   updatedAt
-  userAddresses {
+  userAddresses(sort: {field: "updatedAt", direction: desc}) {
     nodes {
       ...UserAddressFields
     }

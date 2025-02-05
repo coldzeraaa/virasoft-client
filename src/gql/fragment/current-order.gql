@@ -6,8 +6,13 @@ fragment CurrentOrderFields on Order {
   total
   itemTotal
   itemCount
+
   shipAddress {
+    id
     address {
+      id
+      firstName
+      mobile
       address1
       address2
       addressAlias

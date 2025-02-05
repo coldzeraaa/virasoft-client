@@ -6,11 +6,11 @@ import type { GridContainerProps, Item } from './dynamic-component.d';
 
 import { ErrorResult } from '@/components/result/error-result';
 import { CurrentPageDocument, CurrentPageQuery } from '@/gql/query/page/current-page.generated';
-import { getClient } from '@/lib/service/apollo-client-service';
+import { query } from '@/lib/service/apollo-client-service';
 
 export async function DynamicComponent({ slug }: { slug: string }) {
   try {
-    const { data, error } = await getClient().query<CurrentPageQuery>({ query: CurrentPageDocument, variables: { slug } });
+    const { data, error } = await query<CurrentPageQuery>({ query: CurrentPageDocument, variables: { slug } });
 
     if (error || !data?.currentPage) return <ErrorResult message={error?.message || 'Page not found'} />;
 
@@ -29,11 +29,16 @@ export async function DynamicComponent({ slug }: { slug: string }) {
       </main>
     );
   } catch (error) {
+    console.warn({ error });
     notFound();
   }
 }
 
 export async function Switcher({ component, ...rest }: Item) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   if (component.endsWith('container')) return <GridContainer {...(rest as GridContainerProps)} />;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   return <ComponentSwitcher component={component} {...rest} />;
 }

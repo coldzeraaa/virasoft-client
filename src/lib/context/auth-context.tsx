@@ -15,7 +15,7 @@ export const AuthContext = createContext<AuthContextProps>({
   isAuth: false,
   logout: () => {},
   login: () => new Promise((resolve) => resolve()),
-  loginWithRouter: () => Promise<void>,
+  loginWithRouter: () => new Promise((resolve) => resolve()),
   setAuth: () => {},
 });
 
@@ -69,5 +69,5 @@ export interface AuthContextProps {
   setAuth(val: boolean): void;
   logout(): void;
   login(): Promise<void>;
-  loginWithRouter(val: OauthTokenType): void;
+  loginWithRouter(val: OauthTokenType): Promise<void>;
 }

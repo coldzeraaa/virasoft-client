@@ -2,12 +2,14 @@
 
 import { ApolloLink, HttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { onError } from '@apollo/client/link/error';
 import { relayStylePagination } from '@apollo/client/utilities';
 import { ApolloClient, ApolloNextAppProvider, InMemoryCache, SSRMultipartLink } from '@apollo/experimental-nextjs-app-support';
 import createUploadLink from 'apollo-upload-client/createUploadLink.mjs';
 import { OauthFlow } from 'doorkeeper-oauth-flow';
 import cookies from 'js-cookie';
 import type { ReactNode } from 'react';
+import { toast } from 'react-toastify';
 
 import { APP_CONFIG } from '@/configs/APP_CONFIG';
 import { HOST_CONFIG } from '@/configs/HOST_CONFIG';
@@ -19,8 +21,13 @@ export function ApolloProvider({ children }: { children: ReactNode }) {
 
 function makeClient() {
   return new ApolloClient({
-    cache: new InMemoryCache({ typePolicies: { Query: { fields: { vendors: relayStylePagination(['filter', 'sort']) } } } }),
-    link: authLink.concat(getLink()),
+    cache: new InMemoryCache({
+      resultCaching: true,
+      typePolicies: {
+        Query: { fields: { vendors: relayStylePagination(['filter', 'sort']) } },
+      },
+    }),
+    link: getLink(),
   });
 }
 
@@ -41,7 +48,12 @@ export function getLink() {
     new HttpLink({ uri: `${HOST_CONFIG.host}/graphql`, fetchOptions: { cache: 'no-store' } }),
   );
 
-  if (typeof window === 'undefined') return ApolloLink.from([new SSRMultipartLink({ stripDefer: true }), httpLink]);
+  if (typeof window === 'undefined') return ApolloLink.from([new SSRMultipartLink({ stripDefer: true }), authLink.concat(httpLink)]);
 
-  return httpLink;
+  return ApolloLink.from([errorLink, authLink.concat(httpLink)]);
 }
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) graphQLErrors.forEach(({ message }) => toast.error(message));
+  if (networkError) console.error(`[Network error]: ${networkError}`);
+});

@@ -1,6 +1,7 @@
 import { headers } from 'next/headers';
 
 import { BaseHits } from '@/components/algolia/base-hits';
+import { Filters } from '@/components/algolia/filters';
 import { SearchProvider } from '@/lib/provider/search-provider';
 
 export default async function Page({
@@ -22,8 +23,8 @@ export default async function Page({
       >
         <div className="container max-w-7xl py-3">
           <div className="grid md:grid-cols-12 md:gap-8">
-            <aside className="broder-base-concent hidden h-fit divide-y overflow-hidden rounded-lg border md:col-span-3 md:block">
-              Filters
+            <aside className="hidden h-fit divide-y overflow-hidden rounded-lg md:col-span-3 md:block">
+              <Filters />
             </aside>
             <div className="space-y-6 md:col-span-9">
               <div className="flex flex-col items-center justify-between lg:flex-row">

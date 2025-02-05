@@ -9,7 +9,7 @@ export type DestroyUserAddressMutationVariables = Types.Exact<{
 }>;
 
 
-export type DestroyUserAddressMutation = { __typename?: 'Mutation', destroyUserAddress?: { __typename?: 'UserAddress', id: string, user: { __typename?: 'User', id: string, userAddresses: { __typename?: 'UserAddressConnection', nodes: Array<{ __typename?: 'UserAddress', id: string, user: { __typename?: 'User', id: string }, address: { __typename?: 'Address', id: string, address1: string, address2: string, addressAlias?: string | null, longitude?: string | null, latitude?: string | null } }> } } } | null };
+export type DestroyUserAddressMutation = { __typename?: 'Mutation', destroyUserAddress?: { __typename?: 'UserAddress', id: string, user: { __typename?: 'User', id: string, userAddresses: { __typename?: 'UserAddressConnection', nodes: Array<{ __typename?: 'UserAddress', id: string, user: { __typename?: 'User', id: string }, address: { __typename?: 'Address', id: string, address1: string, address2: string, addressAlias?: string | null, longitude?: string | null, latitude?: string | null, mobile?: string | null, firstName?: string | null } }> } } } | null };
 
 
 export const DestroyUserAddressDocument = gql`
@@ -18,7 +18,7 @@ export const DestroyUserAddressDocument = gql`
     id
     user {
       id
-      userAddresses {
+      userAddresses(sort: {field: "updatedAt", direction: desc}) {
         nodes {
           ...UserAddressFields
         }

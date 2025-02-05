@@ -11,6 +11,8 @@ export async function ComponentSwitcher({ component, ...rest }: Item) {
     case 'text':
       return <TextComponent {...(rest as TextComponentProps)} />;
     case 'product':
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       return <ProductComponent {...(rest as ProductComponentProps)} />;
     default:
       return null;

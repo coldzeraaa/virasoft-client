@@ -13,7 +13,8 @@ export const useCurrentOrder = () => useContext<CurrentOrderContextProps>(Curren
 
 export const CurrentOrderProvider: FC<PropsWithChildren> = ({ children }) => {
   const [number, token] = typeof window !== 'undefined' ? localStorage.getItem('order')?.split(':') || [] : [];
-  const { data, loading } = useCurrentOrderQuery({ variables: { number, token } });
+  const variables = number ? { number, token } : undefined;
+  const { data, loading } = useCurrentOrderQuery({ variables, skip: typeof window === 'undefined' });
 
   useEffect(() => {
     if (data?.currentOrder?.userId) localStorage.removeItem('order');
