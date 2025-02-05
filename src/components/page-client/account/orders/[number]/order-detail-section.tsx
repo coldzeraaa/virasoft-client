@@ -23,7 +23,7 @@ export function OrderDetailSection({ myOrder }: MyOrderType) {
             {/* Product Name and Price */}
             <div className="flex w-full flex-col sm:w-2/3">
               <p className="test-base-300 text-base font-medium sm:text-lg">Барааны нэр: {element.variant.product.name}</p>
-              <p className="text-sm text-base-200 sm:text-base">Үнэ: {moneyFormatHelper(element.variant.price)}</p>
+              <p className="text-sm text-base-300 ">Үнэ: {moneyFormatHelper(element.variant.price)}</p>
             </div>
             <div className="flex h-20 w-20 items-center  rounded-full border border-solid border-base-200 p-1">
               <Image width={500} height={500} className="rounded-full" src={imageUrlHelper(element?.variant?.images[0])} alt="" />
