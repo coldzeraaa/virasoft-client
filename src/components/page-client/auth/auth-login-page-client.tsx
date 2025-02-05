@@ -82,10 +82,10 @@ export function AuthLoginPageClient() {
         </button>
       </FieldForm>
       <div className="flex justify-end gap-4">
-        <div className="flex  items-center  py-4">
+        <div className="flex  items-center py-4  text-base-content">
           <Link href="/auth/forgot-password">forgot password</Link>
         </div>
-        <div className="flex  items-center  py-4">
+        <div className="flex  items-center py-4  text-base-content">
           <Link href="/auth/register">register</Link>
         </div>
       </div>

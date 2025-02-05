@@ -1,7 +1,7 @@
 'use client';
 import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { LastOrderCard } from '@/components/pages/account/last-order-card';
 import { EmptyResult } from '@/components/result/empty-result';
@@ -12,7 +12,7 @@ import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 
 export default function Orders() {
   const { data, loading, error } = useMeOrdersQuery();
-
+  const router = useRouter();
   if (loading) return <LoadingResult />;
   if (error || !data?.me) return <ErrorResult message={error?.message || 'Result empty'} />;
   if (data.me.orders.nodes.length === 0) return <EmptyResult message="Захиалга байхгүй байна." />;
@@ -32,7 +32,13 @@ export default function Orders() {
           </thead>
           <tbody>
             {data.me.orders.nodes.map((order, idx) => (
-              <tr key={order.number || order.id} className="px-2 py-4">
+              <tr
+                onClick={() => {
+                  router.push(`orders/${order?.number}`);
+                }}
+                key={order.number || order.id}
+                className="px-2 py-4"
+              >
                 <td>
                   <p>{idx + 1}</p>
                 </td>
@@ -60,9 +66,9 @@ export default function Orders() {
                   <p>{order.total ?? 0}₮</p>
                 </td>
                 <td>
-                  <Link href={`orders/${order?.number}`} className="flex items-center justify-center gap-1  ">
+                  <div className="flex items-center justify-center gap-1  ">
                     <ChevronRight className="stroke-1" />
-                  </Link>
+                  </div>
                 </td>
               </tr>
             ))}
