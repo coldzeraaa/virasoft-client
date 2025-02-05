@@ -12,6 +12,7 @@ import AnimateHeight from 'react-animate-height';
 import { toast } from 'react-toastify';
 import { catchHelper } from 'simple-helper-fns';
 
+import { PhoneInput } from '@/components/form/inputs/phone-input';
 import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
 import { useAuthCheckLoginMutation } from '@/gql/mutation/user/auth-check-login.generated';
 
@@ -23,7 +24,7 @@ export function AuthLoginPageClient() {
   const client = useApolloClient();
 
   return (
-    <div className="container max-w-96">
+    <>
       <FieldForm
         initialValues={{ login: searchParams.get('login') }}
         onFinish={async (values: { login: string; password: string }) => {
@@ -65,7 +66,7 @@ export function AuthLoginPageClient() {
             label="Утасны дугаар"
             name="login"
             rules={[{ required: true, message: 'Утасны дугаар оруулна уу' }]}
-            input={{ placeholder: '990011**' }}
+            input={{ type: 'custom', component: PhoneInput }}
           />
           <AnimateHeight height={verified ? 'auto' : 0}>
             <FormInput
@@ -89,6 +90,6 @@ export function AuthLoginPageClient() {
           <Link href="/auth/register">register</Link>
         </div>
       </div>
-    </div>
+    </>
   );
 }

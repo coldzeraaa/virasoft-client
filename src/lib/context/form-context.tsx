@@ -1,8 +1,8 @@
 'use client';
 
-import { createContext, FC, PropsWithChildren, useContext } from 'react';
+import { createContext, FC, useContext } from 'react';
 
-import Form, { type FormInstance } from 'rc-field-form';
+import Form, { type FormInstance, FormProps } from 'rc-field-form';
 
 export const FormContext = createContext<FormContextProps>({
   form: {
@@ -26,12 +26,14 @@ export const FormContext = createContext<FormContextProps>({
 
 export const useForm = () => useContext<FormContextProps>(FormContext);
 
-export const FormProvider: FC<PropsWithChildren> = ({ children }) => {
+export const FormProvider: FC<FormProps> = ({ children, ...rest }) => {
   const [form] = Form.useForm();
 
   return (
     <FormContext.Provider value={{ form }}>
-      <Form form={form}>{children}</Form>
+      <Form form={form} {...rest}>
+        {children}
+      </Form>
     </FormContext.Provider>
   );
 };
