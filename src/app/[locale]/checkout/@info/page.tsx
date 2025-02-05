@@ -42,6 +42,10 @@ export default function Page() {
       {order && pathName === '/checkout' && <BtnContinueCart />}
       {order && pathName === '/checkout/address' && <BtnContinueAddress />}
       {order?.number && pathName === '/checkout/review' && <BtnContinueReview number={order.number} />}
+      <p className="mt-4 flex justify-between text-sm">
+        <span className="">Захиалгын дугаар</span>
+        <span className="heading-4">{order?.number || '-'}</span>
+      </p>
     </>
   );
 }
