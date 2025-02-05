@@ -6,10 +6,12 @@ import { useRouter } from 'next/navigation';
 
 import { PaymentMethodEnum } from '@/gql/graphql.d';
 import { usePaymentCheckoutMutation } from '@/gql/mutation/checkout/payment-checkout.generated';
+import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { catchHelper } from '@/lib/helper/catch-helper';
 import { mutationOptionHelper } from '@/lib/helper/mutation-option-helper';
 
 export function BtnContinueReview({ number }: { number: string }) {
+  const { order } = useCurrentOrder();
   const [paymentCheckout, { loading }] = usePaymentCheckoutMutation(mutationOptionHelper);
   const router = useRouter();
 
@@ -18,7 +20,7 @@ export function BtnContinueReview({ number }: { number: string }) {
       <button
         onClick={async () => {
           try {
-            await paymentCheckout({ variables: { input: { action: PaymentMethodEnum.VirasoftPay } } });
+            await paymentCheckout({ variables: { input: { action: PaymentMethodEnum.VirasoftPay, number: order?.number || '-' } } });
             router.push(`/account/orders/${number}/pay`);
           } catch (e) {
             catchHelper(e);

@@ -68,9 +68,10 @@ export function PaymentSection({ selectedAddress }: { selectedAddress?: string |
         onClick={() => {
           if (pathName === '/checkout/address') {
             if (!selectedAddress) return toast.error('Хүргэлтийн хаягаа оруулна уу');
-            return updateCheckoutAddress({ variables: { input: { shipAddressId: selectedAddress } } });
+            return updateCheckoutAddress({ variables: { input: { shipAddressId: selectedAddress, number: '-' } } });
           }
-          if (pathName === '/checkout/review') return paymentCheckout({ variables: { input: { action: PaymentMethodEnum.VirasoftPay } } });
+          if (pathName === '/checkout/review')
+            return paymentCheckout({ variables: { input: { action: PaymentMethodEnum.VirasoftPay, number: '-' } } });
           router.push('/checkout/address');
         }}
       >

@@ -5,11 +5,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { useUpdateCheckoutAddressMutation } from '@/gql/mutation/address/update-checkout-address.generated';
+import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { useForm } from '@/lib/context/form-context';
 import { catchHelper } from '@/lib/helper/catch-helper';
 import { mutationOptionHelper } from '@/lib/helper/mutation-option-helper';
 
 export function BtnContinueAddress() {
+  const { order } = useCurrentOrder();
   const [updateCheckoutAddress, { loading }] = useUpdateCheckoutAddressMutation(mutationOptionHelper);
   const router = useRouter();
   const { form } = useForm();
@@ -25,11 +27,12 @@ export function BtnContinueAddress() {
             if (!values.shipAddressId && !values.shipAddressAttributes) return catchHelper('Address is undefined');
 
             if (values.shipAddressTab === 'choose' && values.shipAddressId)
-              await updateCheckoutAddress({ variables: { input: { shipAddressId: values.shipAddressId } } });
+              await updateCheckoutAddress({ variables: { input: { shipAddressId: values.shipAddressId, number: order?.number || '-' } } });
             if (values.shipAddressTab === 'new' && values.shipAddressAttributes)
               await updateCheckoutAddress({
                 variables: {
                   input: {
+                    number: order?.number || '-',
                     shipAddressAttributes: {
                       address1: values.shipAddressAttributes.address1,
                       firstName: values.shipAddressAttributes.firstName,
