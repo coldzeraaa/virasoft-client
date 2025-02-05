@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import './globals.css';
 
 import { bodyClassName } from '@/components/class-names/body-class-names';
-import { Footer } from '@/components/footer';
+import { lightTheme } from '@/components/class-names/data-theme-name';
 import { Header } from '@/components/header';
 import { APP_CONFIG } from '@/configs/APP_CONFIG';
 import { AuthProvider } from '@/lib/context/auth-context';
@@ -15,7 +15,7 @@ import { ApolloProvider } from '@/lib/provider/apollo-provider';
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme={lightTheme}>
       <body className={bodyClassName}>
         <ApolloProvider>
           <AuthProvider>
@@ -23,7 +23,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
               <HolyLoader />
               <Header />
               <>{children}</>
-              <Footer />
               <ToastContainer />
             </CurrentOrderProvider>
           </AuthProvider>
