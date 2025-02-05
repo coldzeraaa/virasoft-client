@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Form, { Field } from 'rc-field-form';
 import { toast } from 'react-toastify';
 
+import { useCheckOtpMutation } from '@/gql/mutation/user/auth-check-otp.generated';
 import { useResetPasswordMutation } from '@/gql/mutation/user/auth-reset-password.generated';
 import { useSendOtpMutation } from '@/gql/mutation/user/auth-sendOtp.generated';
 import { catchHelper } from '@/lib/helper/catch-helper';
@@ -15,13 +16,23 @@ const ForgotPasswordClient = () => {
 
   const [resetPassword, { loading: resetPasswordLoading }] = useResetPasswordMutation({
     onCompleted(TData) {
-      if (TData?.resetPassword?.id && !resetPasswordLoading) {
+      if (TData?.resetPassword?.id) {
         toast.success('Password reset successful');
         router.push('/auth/login');
       }
     },
   });
-
+  const [checkOtp] = useCheckOtpMutation({
+    onError: catchHelper,
+    onCompleted(TData) {
+      if (TData.checkOtp) {
+        setStep(2);
+        toast.success('OTP verified');
+      } else {
+        toast.error('Invalid OTP');
+      }
+    },
+  });
   const [sendOtp, { loading: sentOtpLoading }] = useSendOtpMutation({
     onError: catchHelper,
     onCompleted(TData) {
@@ -43,7 +54,7 @@ const ForgotPasswordClient = () => {
             if (step === 0) {
               sendOtp({ variables: { input: { login: values.login } } });
             } else if (step === 1) {
-              setStep(2); // Move to the next step after OTP verification
+              checkOtp({ variables: { input: { token: values.token, login: values.login } } });
             } else if (step === 2 && values.password === values.repassword) {
               resetPassword({
                 variables: { input: { login: values.login, password: values.password, token: values.token } },
@@ -80,12 +91,14 @@ const ForgotPasswordClient = () => {
         <div className={`${step === 2 ? 'block' : 'hidden'} flex flex-col gap-4`}>
           <Field name="password">
             <CustomInput
+              type="password"
               placeholder="Password"
-              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
+              className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-content shadow-sm focus:border-primary focus:ring-primary"
             />
           </Field>
           <Field name="repassword">
             <CustomInput
+              type="password"
               placeholder="Re-password"
               className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
             />
@@ -95,7 +108,7 @@ const ForgotPasswordClient = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="hover:bg-primary-dark disabled:base-200 btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-base-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+          className="hover:bg-primary-dark disabled:base-200 btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-base-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
           disabled={sentOtpLoading || resetPasswordLoading}
         >
           {sentOtpLoading || resetPasswordLoading ? <span className="loading loading-spinner"></span> : 'Илгээх'}
