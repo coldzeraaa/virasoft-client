@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { useRange, useRefinementList } from 'react-instantsearch';
 
@@ -41,12 +41,16 @@ export const Filters = () => {
   const { items } = useRefinementList({ attribute: 'options' });
   const { range, refine } = useRange({ attribute: 'price' });
   const { min, max } = range;
-
   const [price, setPrice] = useState(min);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(Number(e.target.value));
-    refine([Number(e.target.value), max]);
-  };
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      refine([price, max]);
+    }, 1000);
+
+    return () => clearTimeout(handler);
+  }, [price, max, refine]);
+
   const optionTypes = useMemo(() => {
     const uniqueKeys = new Set(items.map((item) => item.label.split('||')[0]));
 
@@ -75,7 +79,7 @@ export const Filters = () => {
         min={min}
         max={max}
         value={price}
-        onChange={(e) => handleChange(e)}
+        onChange={(e) => setPrice(Number(e.target.value))}
       />
       <div className="mt-2 flex w-full justify-between text-xs">
         <span>{min}₮</span>
