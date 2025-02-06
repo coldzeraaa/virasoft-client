@@ -88,19 +88,20 @@ export default function AuthRegisterClient() {
         <div className={`${step === 2 ? 'block' : 'hidden'} space-y-4`}>
           <Field name="firstName" rules={[{ required: step === 2, message: 'Нэр оруулна уу' }]}>
             <CustomInput
-              placeholder="OTP код"
+              placeholder="first name"
               className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
             />
           </Field>
           <Field name="lastName" rules={[{ required: step === 2, message: 'Овог оруулна уу' }]}>
             <CustomInput
-              placeholder="OTP код"
+              placeholder="last name"
               className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
             />
           </Field>
           <Field name="password" rules={[{ required: step === 2, message: 'Нууц үг оруулна уу' }]}>
             <CustomInput
-              placeholder="OTP код"
+              type="password"
+              placeholder="password"
               className="input-bordered w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
             />
           </Field>

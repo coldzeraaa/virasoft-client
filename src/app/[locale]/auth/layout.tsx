@@ -1,5 +1,11 @@
 import type { ReactNode } from 'react';
 
 export default function Layout({ children }: { children: ReactNode }) {
-  return <div className=" h-4/5">{children}</div>;
+  return (
+    <main className="mx-auto max-w-md">
+      <div className="relative top-20">
+        <>{children}</>
+      </div>
+    </main>
+  );
 }

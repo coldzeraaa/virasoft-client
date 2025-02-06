@@ -4,7 +4,10 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { useUpdateCheckoutAddressMutation } from '@/gql/mutation/address/update-checkout-address.generated';
+import {
+  type UpdateCheckoutAddressMutationVariables,
+  useUpdateCheckoutAddressMutation,
+} from '@/gql/mutation/address/update-checkout-address.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
 import { useForm } from '@/lib/context/form-context';
 import { catchHelper } from '@/lib/helper/catch-helper';
@@ -25,25 +28,9 @@ export function BtnContinueAddress() {
             if (values.shipAddressTab === 'choose' && !values.shipAddressId) return catchHelper('Хаяг сонгоно уу');
             if (values.shipAddressTab === 'new' && !values.shipAddressAttributes) return catchHelper('Шинэ хаяг оруулна уу');
             if (!values.shipAddressId && !values.shipAddressAttributes) return catchHelper('Address is undefined');
-
-            if (values.shipAddressTab === 'choose' && values.shipAddressId)
-              await updateCheckoutAddress({ variables: { input: { shipAddressId: values.shipAddressId, number: order?.number || '-' } } });
-            if (values.shipAddressTab === 'new' && values.shipAddressAttributes)
-              await updateCheckoutAddress({
-                variables: {
-                  input: {
-                    number: order?.number || '-',
-                    shipAddressAttributes: {
-                      address1: values.shipAddressAttributes.address1,
-                      firstName: values.shipAddressAttributes.firstName,
-                      mobile: values.shipAddressAttributes.mobile,
-                      latitude: values.shipAddressAttributes.location.lat.toString(),
-                      longitude: values.shipAddressAttributes.location.lng.toString(),
-                    },
-                  },
-                },
-              });
-            router.push('/checkout/review');
+            const response = await updateCheckoutAddress({ variables: getVariables({ values, number: order?.number || '-' }) });
+            if (response.data?.updateCheckoutAddress?.id) router.push('/checkout/review');
+            else catchHelper(response.errors);
           } catch (error) {
             catchHelper(error);
           }
@@ -61,6 +48,29 @@ export function BtnContinueAddress() {
       </Link>
     </>
   );
+}
+
+function getVariables({ values, number }: GetVariablesProps): UpdateCheckoutAddressMutationVariables | undefined {
+  if (values.shipAddressTab === 'choose' && values.shipAddressId) return { input: { shipAddressId: values.shipAddressId, number } };
+  if (values.shipAddressTab === 'new' && values.shipAddressAttributes)
+    return {
+      input: {
+        number,
+        shipAddressAttributes: {
+          address1: values.shipAddressAttributes.address1,
+          firstName: values.shipAddressAttributes.firstName,
+          mobile: values.shipAddressAttributes.mobile,
+          latitude: values.shipAddressAttributes.location.lat.toString(),
+          longitude: values.shipAddressAttributes.location.lng.toString(),
+        },
+      },
+    };
+  return undefined;
+}
+
+interface GetVariablesProps {
+  values: UpdateCheckoutValues;
+  number: string;
 }
 
 const VALIDATES = [

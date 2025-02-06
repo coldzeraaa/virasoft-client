@@ -12,7 +12,10 @@ import { mutationOptionHelper } from '@/lib/helper/mutation-option-helper';
 
 export function BtnContinueReview({ number }: { number: string }) {
   const { order } = useCurrentOrder();
-  const [paymentCheckout, { loading }] = usePaymentCheckoutMutation(mutationOptionHelper);
+  const [paymentCheckout, { loading }] = usePaymentCheckoutMutation({
+    ...mutationOptionHelper,
+    update: (cache) => cache.modify({ fields: { currentOrder: (_, { DELETE }) => DELETE } }),
+  });
   const router = useRouter();
 
   return (
@@ -20,8 +23,11 @@ export function BtnContinueReview({ number }: { number: string }) {
       <button
         onClick={async () => {
           try {
-            await paymentCheckout({ variables: { input: { action: PaymentMethodEnum.VirasoftPay, number: order?.number || '-' } } });
-            router.push(`/account/orders/${number}/pay`);
+            const response = await paymentCheckout({
+              variables: { input: { action: PaymentMethodEnum.VirasoftPay, number: order?.number || '-' } },
+            });
+            if (response.data?.paymentCheckout?.id) router.push(`/account/orders/${number}/pay`);
+            else catchHelper(response.errors);
           } catch (e) {
             catchHelper(e);
           }

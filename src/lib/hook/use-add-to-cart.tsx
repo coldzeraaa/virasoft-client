@@ -27,7 +27,8 @@ export function useAddToCart(): AddToCartMutationHookResult {
             if (data?.addToCart) {
               const { number, token } = data.addToCart;
               if (!dataMe?.me?.id) localStorage.setItem('order', `${number || ''}:${token || ''}`);
-              return { ...previous, ...data.addToCart };
+              if (previous) return { ...previous, ...data.addToCart };
+              return { __ref: `Order:${data.addToCart.id}` };
             }
             if (!previous) return DELETE;
             return previous;

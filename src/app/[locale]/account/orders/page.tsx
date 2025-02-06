@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { LastOrderCard } from '@/components/pages/account/last-order-card';
 import { EmptyResult } from '@/components/result/empty-result';
@@ -63,7 +63,13 @@ export default function Orders() {
           </thead>
           <tbody>
             {data.me.orders.nodes.map((order, idx) => (
-              <tr key={order.number || order.id} className="px-2 py-4">
+              <tr
+                onClick={() => {
+                  router.push(`orders/${order?.number}`);
+                }}
+                key={order.number || order.id}
+                className="px-2 py-4"
+              >
                 <td>
                   <p>{currentPage * 10 + (idx + 1)}</p>
                 </td>
@@ -91,9 +97,9 @@ export default function Orders() {
                   <p>{order.total ?? 0}₮</p>
                 </td>
                 <td>
-                  <Link href={`orders/${order?.number}`} className="flex items-center justify-center gap-1  ">
+                  <div className="flex items-center justify-center gap-1  ">
                     <ChevronRight className="stroke-1" />
-                  </Link>
+                  </div>
                 </td>
               </tr>
             ))}
