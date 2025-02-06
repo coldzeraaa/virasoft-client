@@ -5,8 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { ThemeToggle } from './theme-toggle-button';
-
 import logo from '@/components/icons/logo.svg';
 import { type MeQuery, useMeQuery } from '@/gql/query/user/me.generated';
 import { useCurrentOrder } from '@/lib/context/current-order-context';
@@ -28,7 +26,7 @@ export function Header() {
             <div className="relative hidden max-w-xs flex-1 md:block">
               <input
                 type="text"
-                className="w-full rounded-lg border px-4 py-1 text-neutral focus:outline-none"
+                className="w-full rounded-lg border px-4 py-1 text-neutral placeholder-base-content focus:outline-none"
                 placeholder="Бүтээгдэхүүн хайх..."
                 onKeyDown={(event) => {
                   if (event.key === 'Enter') router.push('/s');
@@ -38,8 +36,6 @@ export function Header() {
             </div>
 
             <nav className="flex items-center gap-2 text-xs">
-              <ThemeToggle />
-
               <ul className="flex">
                 {menuItems(userData).map((item, index) => (
                   <Link
@@ -74,10 +70,10 @@ function Loader() {
     <header className="z-40 w-full bg-base-100 shadow-md">
       <div className="container mx-auto max-w-7xl">
         <div className="flex h-16 items-center justify-between">
-          <div className="skeleton h-8 w-8 rounded-full bg-base-content" />
+          <div className="skeleton h-8 w-8 rounded-full bg-base-300" />
           <div className="flex gap-4">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="skeleton h-8 w-8 rounded bg-base-content" />
+              <div key={i} className="skeleton h-8 w-8 rounded bg-base-300" />
             ))}
           </div>
         </div>

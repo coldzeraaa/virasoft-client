@@ -11,8 +11,8 @@ export function ImageSectionProduct({ images, alt }: { images: string[]; alt: st
   const [selected, setSelected] = useState<number>(0);
 
   return (
-    <section aria-label="images section" className="grid gap-3 md:grid-cols-[auto,1fr]">
-      <ul aria-label="images" className="flex h-20 gap-2 lg:block lg:h-auto lg:w-20 lg:space-y-4">
+    <section aria-label="images section" className="grid grid-rows-[1fr_auto] gap-3 md:grid-cols-[auto,1fr] md:grid-rows-1">
+      <ul aria-label="images" className="row-start-2 flex h-20 gap-2 lg:row-start-1 lg:block lg:h-auto lg:w-20 lg:space-y-4">
         {images.map((img, idx) => (
           <li key={idx} className="flex aspect-square">
             <button

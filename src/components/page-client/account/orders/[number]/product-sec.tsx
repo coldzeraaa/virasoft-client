@@ -2,7 +2,7 @@ import { MyOrderType } from './order-info';
 
 export function ProductPaymentSec({ myOrder }: MyOrderType) {
   return (
-    <div className="w-full overflow-hidden rounded-3xl bg-gradient-to-br from-base-100 to-white shadow-xl transition-shadow duration-300 hover:shadow-2xl">
+    <div className="w-full overflow-hidden rounded-xl bg-base-100 shadow-sm transition-shadow duration-300 hover:shadow-2xl">
       {/* Header Section */}
       <div className="flex flex-col justify-between gap-4 border-b border-dashed border-base-200 px-6 py-8 sm:flex-row sm:gap-0">
         <div className="flex flex-col space-y-1">

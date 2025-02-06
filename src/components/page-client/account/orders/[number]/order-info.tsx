@@ -18,7 +18,7 @@ export function OrderInfo({ myOrder }: MyOrderType) {
     }
   }, []);
   return (
-    <div className="flex flex-col gap-6 rounded-3xl bg-gradient-to-br from-gray-50 to-white px-8 py-6 shadow-lg transition-shadow duration-300 hover:shadow-xl">
+    <div className="shadow-dm flex flex-col gap-6 rounded-xl bg-base-100 px-8 py-6 transition-shadow duration-300 hover:shadow-xl">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-gray-800">Төлбөрийн мэдээлэл</h2>
         <div className="text-right">
