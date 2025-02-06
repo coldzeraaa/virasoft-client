@@ -1,6 +1,7 @@
 'use client';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
+import { debounce } from 'lodash';
 import { useRange, useRefinementList } from 'react-instantsearch';
 
 const OptionFilter = ({ attribute, title, optionKey }: { attribute: string; title: string; optionKey: string }) => {
@@ -43,13 +44,12 @@ export const Filters = () => {
   const { min, max } = range;
   const [price, setPrice] = useState(min);
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      refine([price, max]);
-    }, 1000);
-
-    return () => clearTimeout(handler);
-  }, [price, max, refine]);
+  const debouncedRange = useCallback(
+    debounce((value: number) => {
+      refine([value, max]);
+    }, 800),
+    [refine, max],
+  );
 
   const optionTypes = useMemo(() => {
     const uniqueKeys = new Set(items.map((item) => item.label.split('||')[0]));
@@ -79,7 +79,11 @@ export const Filters = () => {
         min={min}
         max={max}
         value={price}
-        onChange={(e) => setPrice(Number(e.target.value))}
+        onChange={(e) => {
+          const newValue = Number(e.target.value);
+          setPrice(newValue);
+          debouncedRange(newValue);
+        }}
       />
       <div className="mt-2 flex w-full justify-between text-xs">
         <span>{min}₮</span>
