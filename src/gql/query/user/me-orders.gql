@@ -1,6 +1,6 @@
-query meOrders($filter: OrderFilter) {
+query meOrders($filter: OrderFilter, $first: Int, $last: Int, $before: String, $after: String, $sort: SortFilter) {
   me {
-    orders(filter: $filter) {
+    orders(filter: $filter, first: $first, last: $last, after: $after, before: $before, sort: $sort) {
       nodes {
         id
         total
@@ -30,6 +30,12 @@ query meOrders($filter: OrderFilter) {
           id
           source
         }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
       }
     }
   }

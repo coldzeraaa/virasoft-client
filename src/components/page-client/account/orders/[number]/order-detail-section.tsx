@@ -7,7 +7,7 @@ import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 
 export function OrderDetailSection({ myOrder }: MyOrderType) {
   return (
-    <div className="mx-auto w-full  rounded-3xl bg-gradient-to-br from-base-100 to-base-100 px-6 py-6 shadow-lg transition-shadow duration-300 hover:shadow-xl sm:px-8">
+    <div className="mx-auto w-full rounded-xl bg-base-100 px-6 py-6 shadow-sm transition-shadow duration-300 hover:shadow-xl sm:px-8">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-base-content sm:text-2xl">Барааны мэдээлэл</h2>
       </div>

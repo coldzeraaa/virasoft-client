@@ -12,6 +12,7 @@ import AnimateHeight from 'react-animate-height';
 import { toast } from 'react-toastify';
 import { catchHelper } from 'simple-helper-fns';
 
+import { PhoneInput } from '@/components/form/inputs/phone-input';
 import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
 import { useAuthCheckLoginMutation } from '@/gql/mutation/user/auth-check-login.generated';
 
@@ -23,7 +24,7 @@ export function AuthLoginPageClient() {
   const client = useApolloClient();
 
   return (
-    <div className="container max-w-96">
+    <>
       <FieldForm
         initialValues={{ login: searchParams.get('login') }}
         onFinish={async (values: { login: string; password: string }) => {
@@ -65,7 +66,7 @@ export function AuthLoginPageClient() {
             label="Утасны дугаар"
             name="login"
             rules={[{ required: true, message: 'Утасны дугаар оруулна уу' }]}
-            input={{ placeholder: '990011**' }}
+            input={{ type: 'custom', component: PhoneInput }}
           />
           <AnimateHeight height={verified ? 'auto' : 0}>
             <FormInput
@@ -81,14 +82,14 @@ export function AuthLoginPageClient() {
           <BtnLoader loading={loading || loadingAuth} icon={ChevronRightIcon} />
         </button>
       </FieldForm>
-      <div className="flex justify-end gap-4">
-        <div className="flex  items-center py-4  text-base-content">
-          <Link href="/auth/forgot-password">forgot password</Link>
-        </div>
-        <div className="flex  items-center py-4  text-base-content">
-          <Link href="/auth/register">register</Link>
-        </div>
+      <div className="mt-4 flex justify-between gap-2">
+        <Link href="/auth/forgot-password" className="btn btn-link">
+          Нууц үг мартсан?
+        </Link>
+        <Link href="/auth/register" className="btn btn-link">
+          Бүртгүүлэх?
+        </Link>
       </div>
-    </div>
+    </>
   );
 }

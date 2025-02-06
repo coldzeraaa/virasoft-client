@@ -1,7 +1,8 @@
 'use client';
-import { useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
-import { useRefinementList } from 'react-instantsearch';
+import { debounce } from 'lodash';
+import { useRange, useRefinementList } from 'react-instantsearch';
 
 const OptionFilter = ({ attribute, title, optionKey }: { attribute: string; title: string; optionKey: string }) => {
   const { items, refine } = useRefinementList({ attribute });
@@ -39,6 +40,16 @@ const OptionFilter = ({ attribute, title, optionKey }: { attribute: string; titl
 
 export const Filters = () => {
   const { items } = useRefinementList({ attribute: 'options' });
+  const { range, refine } = useRange({ attribute: 'price' });
+  const { min, max } = range;
+  const [price, setPrice] = useState(min);
+
+  const debouncedRange = useCallback(
+    debounce((value: number) => {
+      refine([value, max]);
+    }, 800),
+    [refine, max],
+  );
 
   const optionTypes = useMemo(() => {
     const uniqueKeys = new Set(items.map((item) => item.label.split('||')[0]));
@@ -60,6 +71,23 @@ export const Filters = () => {
         {optionTypes.map(({ key, title }) => (
           <OptionFilter key={key} attribute="options" title={title} optionKey={key} />
         ))}
+      </div>
+      <label className="mb-2 text-sm font-medium">Үнэ: {price}₮</label>
+      <input
+        type="range"
+        className="range range-primary range-xs w-full"
+        min={min}
+        max={max}
+        value={price}
+        onChange={(e) => {
+          const newValue = Number(e.target.value);
+          setPrice(newValue);
+          debouncedRange(newValue);
+        }}
+      />
+      <div className="mt-2 flex w-full justify-between text-xs">
+        <span>{min}₮</span>
+        <span>{max}₮</span>
       </div>
     </div>
   );

@@ -5,16 +5,28 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type MeOrdersQueryVariables = Types.Exact<{
   filter?: Types.InputMaybe<Types.OrderFilter>;
+  first?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+  last?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+  before?: Types.InputMaybe<Types.Scalars['String']['input']>;
+  after?: Types.InputMaybe<Types.Scalars['String']['input']>;
+  sort?: Types.InputMaybe<Types.SortFilter>;
 }>;
 
 
-export type MeOrdersQuery = { __typename?: 'Query', me?: { __typename?: 'User', orders: { __typename?: 'OrderConnection', nodes: Array<{ __typename?: 'Order', id: string, total?: number | null, number: string, createdAt: any, itemTotal?: number | null, itemCount?: number | null, websiteId: string, items: Array<{ __typename?: 'Item', price: number, total: number, quantity: number, order?: { __typename?: 'Order', total?: number | null } | null, variant: { __typename?: 'Variant', id: string, price: number, sku: string, images: Array<string>, product: { __typename?: 'Product', name: string } } }>, payments: Array<{ __typename?: 'Payment', id: string, source: any }> }> } } | null };
+export type MeOrdersQuery = { __typename?: 'Query', me?: { __typename?: 'User', orders: { __typename?: 'OrderConnection', nodes: Array<{ __typename?: 'Order', id: string, total?: number | null, number: string, createdAt: any, itemTotal?: number | null, itemCount?: number | null, websiteId: string, items: Array<{ __typename?: 'Item', price: number, total: number, quantity: number, order?: { __typename?: 'Order', total?: number | null } | null, variant: { __typename?: 'Variant', id: string, price: number, sku: string, images: Array<string>, product: { __typename?: 'Product', name: string } } }>, payments: Array<{ __typename?: 'Payment', id: string, source: any }> }>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null } } } | null };
 
 
 export const MeOrdersDocument = gql`
-    query meOrders($filter: OrderFilter) {
+    query meOrders($filter: OrderFilter, $first: Int, $last: Int, $before: String, $after: String, $sort: SortFilter) {
   me {
-    orders(filter: $filter) {
+    orders(
+      filter: $filter
+      first: $first
+      last: $last
+      after: $after
+      before: $before
+      sort: $sort
+    ) {
       nodes {
         id
         total
@@ -45,6 +57,12 @@ export const MeOrdersDocument = gql`
           source
         }
       }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
     }
   }
 }
@@ -63,6 +81,11 @@ export const MeOrdersDocument = gql`
  * const { data, loading, error } = useMeOrdersQuery({
  *   variables: {
  *      filter: // value for 'filter'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *      before: // value for 'before'
+ *      after: // value for 'after'
+ *      sort: // value for 'sort'
  *   },
  * });
  */
