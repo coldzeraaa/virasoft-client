@@ -6,7 +6,7 @@ export default async function Home({ params: { locale } }: { params: { locale: s
     <>
       {/*eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
       {/*@ts-expect-error */}
-      <DynamicComponent slug={`/${locale}`} />;
+      <DynamicComponent slug={`/${locale}`} />
       <Footer />
     </>
   );
