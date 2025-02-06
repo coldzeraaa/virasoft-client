@@ -1,4 +1,4 @@
-import type { AppConfigType } from './APP_CONFIG_TYPE';
+import type { AppConfigType } from './APP_CONFIG_TYPE.bsent';
 
 export const APP_CONFIG: AppConfigType = {
   locale: 'mn',

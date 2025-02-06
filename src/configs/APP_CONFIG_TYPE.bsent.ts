@@ -19,6 +19,9 @@ export interface AppConfigType {
       locale: string;
       siteName: string;
     };
+    googleFonts: {
+      families: string[];
+    };
   };
   map: {
     defaultCenter: { lat: number; lng: number };
