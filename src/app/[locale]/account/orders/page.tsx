@@ -12,6 +12,7 @@ import { ErrorResult } from '@/components/result/error-result';
 import { LoadingResult } from '@/components/result/loading-result';
 import { SortDirection } from '@/gql/graphql.d';
 import { useMeOrdersQuery } from '@/gql/query/user/me-orders.generated';
+import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 export default function Orders() {
   const router = useRouter();
@@ -88,14 +89,14 @@ export default function Orders() {
                 </td>
                 <td>
                   <div className="flex h-[50px] w-[50px] items-center justify-center rounded-md border border-solid border-gray-400 p-1">
-                    <Image width={500} height={500} src={imageUrlHelper(order?.items[0]?.variant?.images[0])} alt="" />
+                    <Image width={500} height={500} src={imageUrlHelper(order?.items[0]?.variant?.images[1])} alt="" />
                   </div>
                 </td>
                 <td>
                   <p>{order.createdAt ? new Date(order.createdAt).toLocaleString() : 'Мэдээлэл байхгүй байна.'}</p>
                 </td>
                 <td>
-                  <p>{order.total ?? 0}₮</p>
+                  <p>{moneyFormatHelper(order.total ?? 0)}</p>
                 </td>
                 <td>
                   <div className="flex items-center justify-center gap-1  ">
