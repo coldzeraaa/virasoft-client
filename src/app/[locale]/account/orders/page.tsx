@@ -14,6 +14,7 @@ import { SortDirection } from '@/gql/graphql.d';
 import { useMeOrdersQuery } from '@/gql/query/user/me-orders.generated';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 export default function Orders() {
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState(0);
   const { data, loading, error, fetchMore } = useMeOrdersQuery({
     variables: { first: 10, after: null, sort: { direction: SortDirection.Desc, field: 'createdAt' } },
