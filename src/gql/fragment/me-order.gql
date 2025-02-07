@@ -1,0 +1,20 @@
+fragment MeOrderFields on Order {
+  id
+  number
+  createdAt
+  total
+  itemCount
+  paymentStatus
+  items {
+    id
+    variant {
+      id
+      images
+      product {
+        id
+        name
+        slug
+      }
+    }
+  }
+}

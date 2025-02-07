@@ -24,7 +24,12 @@ function makeClient() {
     cache: new InMemoryCache({
       resultCaching: true,
       typePolicies: {
-        Query: { fields: { vendors: relayStylePagination(['filter', 'sort']) } },
+        Query: {
+          fields: {
+            vendors: relayStylePagination(['filter', 'sort']),
+            orders: relayStylePagination(['filter', 'sort']),
+          },
+        },
       },
     }),
     link: getLink(),

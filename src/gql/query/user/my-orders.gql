@@ -1,0 +1,18 @@
+query myOrders($after: String) {
+  me {
+    id
+    orders(first: 20, after: $after, sort: { field: "createdAt", direction: desc }) {
+      edges {
+        node {
+          ...MeOrderFields
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+    }
+  }
+}

@@ -1,17 +1,17 @@
 import Link from 'next/link';
 
-import { LastOrders } from '@/components/pages/account/last-orders';
+import { AccountPageClient } from '@/components/page-client/account/account-page-client';
 
-export default function Dashboard() {
+export default async function Dashboard() {
   return (
-    <div className="h-full w-full max-w-7xl">
-      <div className="flex justify-between">
-        <h1 className="text-xl font-bold md:text-3xl">Миний самбар</h1>
-        <Link href="/account/orders" className="btn bg-base-100 hover:border-base-300 hover:bg-base-300">
+    <>
+      <div className="mb-4 flex w-full items-center justify-between">
+        <h1 className="text-xl font-bold md:text-2xl">Миний самбар</h1>
+        <Link href="/account/orders" className="btn btn-link btn-sm hover:bg-base-300">
           Бүгдийг харах
         </Link>
       </div>
-      <LastOrders />
-    </div>
+      <AccountPageClient />
+    </>
   );
 }

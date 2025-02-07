@@ -485,7 +485,7 @@ export type Mutation = {
   authRegister?: Maybe<User>;
   buildAssetRole?: Maybe<AssetRole>;
   checkOrder?: Maybe<Order>;
-  checkOtp?: Maybe<Scalars['Boolean']['output']>;
+  checkOtp?: Maybe<Scalars['JSON']['output']>;
   createApplication?: Maybe<Application>;
   createAssetRole?: Maybe<AssetRole>;
   createBrand?: Maybe<Brand>;

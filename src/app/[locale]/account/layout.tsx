@@ -1,14 +1,14 @@
 import { ReactNode } from 'react';
 
-import { SideBar } from '@/components/sidebar/side-bar';
+import { AccountSideMenu } from '@/components/pages/account/account-side-menu';
 
-export default function DashboardLayout({ children }: ChildrenType) {
+export default async function DashboardLayout({ children }: ChildrenType) {
   return (
-    <div className="h-[calc(100%-64px)] w-full bg-base-200">
-      <div className="container grid h-full max-w-7xl grid-cols-12 gap-5 py-6">
-        <SideBar />
-        <div className="col-span-12 h-full w-full md:col-span-8 lg:col-span-9">{children}</div>
-      </div>
+    <div className="container grid h-[calc(100vh-64px)] grid-cols-12 gap-4 overflow-hidden py-4 md:gap-8 md:py-8">
+      <aside className="col-span-4 flex h-full flex-col overflow-auto rounded-lg bg-base-200 p-2 shadow">
+        <AccountSideMenu />
+      </aside>
+      <main className="col-span-8 h-full overflow-auto">{children}</main>
     </div>
   );
 }

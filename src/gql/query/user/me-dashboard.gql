@@ -1,0 +1,10 @@
+query meDashboard {
+  me {
+    id
+    orders(sort: { field: "createdAt", direction: desc }, first: 2) {
+      nodes {
+        ...MeOrderFields
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ export type CheckOtpMutationVariables = Types.Exact<{
 }>;
 
 
-export type CheckOtpMutation = { __typename?: 'Mutation', checkOtp?: boolean | null };
+export type CheckOtpMutation = { __typename?: 'Mutation', checkOtp?: any | null };
 
 
 export const CheckOtpDocument = gql`
