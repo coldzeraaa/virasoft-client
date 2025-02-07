@@ -20,7 +20,7 @@ export const APP_CONFIG: AppConfigType = {
     title: 'Bsent - Тав тухыг мэдрүүлнэ',
     description: 'Bsent - тав тухыг мэдрүүлэх үндэсний брэнд',
     metadataBase: new URL('https://virasoft.mn'),
-    icons: { icon: { url: `/public/virasoft/bsent-logo.ico` } },
+    icons: { icon: { url: `/public/virasoft/favicon.ico` } },
     openGraph: {
       images: `/public/bsent/share.webp`,
       type: 'website',

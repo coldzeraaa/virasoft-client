@@ -6,13 +6,7 @@ export function ImageComponent({ images = [], description = '' }: ImageComponent
   const [image] = images;
   if (!image) return null;
   return (
-    <Image
-      width={0}
-      height={0}
-      src={imageUrlHelper(image.url)}
-      alt={description}
-      className="aspect-video w-full bg-base-300 object-cover"
-    />
+    <Image width={0} height={0} src={imageUrlHelper(image.url)} alt={description} className="h-fit w-full bg-base-300 object-contain" />
   );
 }
 
