@@ -19,6 +19,13 @@
     "build:goldenoil": "APP_INDEX=goldenoil next build",
     "build:goldenoil:windows": "cross-env APP_INDEX=goldenoil next build",
 
+    "dev:bsent:prod": "npm run clean:cache &&  APP_INDEX=bsent next dev -p 3222",
+    "dev:bsent:windows:prod": "npm run clean:cache && cross-env APP_INDEX=bsent next dev -p 3222",
+    "dev:bsent:local": "npm run clean:cache && STAGE=local APP_INDEX=bsent next dev -p 3223",
+    "dev:bsent:docker": "npm run clean:cache && STAGE=docker APP_INDEX=bsent next dev -p 3224",
+    "build:bsent": "APP_INDEX=bsent next build",
+    "build:bsent:windows": "cross-env APP_INDEX=bsent next build",
+
     "start": "next start",
     "codegen": "graphql-codegen --config codegen.yml",
     "codegen:docker": "graphql-codegen --config codegen.docker.yml",
