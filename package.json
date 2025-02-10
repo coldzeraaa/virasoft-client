@@ -26,7 +26,7 @@
     "build:bsent": "APP_INDEX=bsent next build",
     "build:bsent:windows": "cross-env APP_INDEX=bsent next build",
 
-    "start": "next start",
+    "start": "next start -p 3099",
     "codegen": "graphql-codegen --config codegen.yml",
     "codegen:docker": "graphql-codegen --config codegen.docker.yml",
     "codegen:local": "graphql-codegen --config codegen.local.yml"
