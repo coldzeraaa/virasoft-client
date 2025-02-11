@@ -286,6 +286,7 @@ export type ImageObject = {
   __typename?: 'ImageObject';
   fileName: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  metadata?: Maybe<Metadata>;
   recordId: Scalars['Int']['output'];
   recordType: Scalars['String']['output'];
   url: Scalars['String']['output'];
@@ -474,6 +475,12 @@ export type MerchantFilter = {
   createdAt?: InputMaybe<DateFilter>;
   id?: InputMaybe<IdFilter>;
   updatedAt?: InputMaybe<DateFilter>;
+};
+
+export type Metadata = {
+  __typename?: 'Metadata';
+  height?: Maybe<Scalars['Int']['output']>;
+  width?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Mutation = {
@@ -1010,6 +1017,7 @@ export type Order = BaseModelInterface & {
   paymentTotal: Scalars['Float']['output'];
   payments: Array<Payment>;
   shipAddress?: Maybe<UserAddress>;
+  status: Scalars['String']['output'];
   token: Scalars['String']['output'];
   total?: Maybe<Scalars['Float']['output']>;
   updatedAt: Scalars['ISO8601DateTime']['output'];
@@ -1042,7 +1050,11 @@ export type OrderEdge = {
 export type OrderFilter = {
   createdAt?: InputMaybe<DateFilter>;
   id?: InputMaybe<IdFilter>;
+  incomplete?: InputMaybe<BoolFilter>;
+  number?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateFilter>;
+  website?: InputMaybe<WebsiteFilter>;
+  websiteId?: InputMaybe<IdFilter>;
 };
 
 export type Page = BaseModelInterface & {
@@ -1265,7 +1277,8 @@ export type Query = {
   optionTypes: OptionTypeConnection;
   optionValue?: Maybe<OptionValue>;
   optionValues: OptionValueConnection;
-  orders?: Maybe<OrderConnection>;
+  order?: Maybe<Order>;
+  orders: OrderConnection;
   page?: Maybe<Page>;
   pages: PageConnection;
   paymentMethod?: Maybe<PaymentMethod>;
@@ -1439,6 +1452,11 @@ export type QueryOptionValuesArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<SortFilter>;
+};
+
+
+export type QueryOrderArgs = {
+  number: Scalars['String']['input'];
 };
 
 
