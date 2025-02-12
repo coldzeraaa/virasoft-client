@@ -23,7 +23,7 @@ export default function BuildTypeType() {
       .then(setHits)
       .catch(catchHelper)
       .finally(() => setLoading(false));
-  }, dependencies);
+  }, [JSON.stringify(dependencies)]);
 
   return (
     <div className={`relative aspect-square w-full p-2 ${loading ? 'skeleton bg-base-300' : ''}`}>

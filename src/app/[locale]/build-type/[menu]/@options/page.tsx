@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import Image from 'next/image';
 
 import { ButtonPersistSearchParams } from '@/components/build/btn-persist-search-params';
@@ -24,9 +25,16 @@ async function Menu({ type }: { type: string }) {
 
   return (
     <>
-      <ButtonPersistSearchParams className="btn btn-primary btn-block mb-4 mt-2" href="/build-type">
-        Back
-      </ButtonPersistSearchParams>
+      <div className="mb-4 mt-2 flex gap-4">
+        <ButtonPersistSearchParams className="btn flex flex-nowrap gap-1" href="/build-type">
+          <ChevronLeftIcon />
+          Буцах
+        </ButtonPersistSearchParams>
+        <ButtonPersistSearchParams className="btn btn-primary flex flex-1 flex-nowrap justify-between" href="/build-type/checkout">
+          Худалдан авах
+          <ChevronRightIcon />
+        </ButtonPersistSearchParams>
+      </div>
       <ul>
         {data.allMenus.nodes.map((menu, idx) => (
           <li key={idx}>

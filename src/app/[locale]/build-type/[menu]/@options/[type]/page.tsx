@@ -1,3 +1,4 @@
+import { ChevronLeftIcon } from 'lucide-react';
 import { headers } from 'next/headers';
 
 import { ButtonPersistSearchParams } from '@/components/build/btn-persist-search-params';
@@ -10,10 +11,11 @@ export default function BuildTypeMenuOptionTypePage({ params }: PageProps) {
 
   return (
     <>
-      <ButtonPersistSearchParams className="btn btn-primary btn-block mb-4" href={`/build-type/${params.menu}`}>
-        Back
+      <ButtonPersistSearchParams className="btn mb-4 mt-2" href={`/build-type/${params.menu}`}>
+        <ChevronLeftIcon />
+        Буцах
       </ButtonPersistSearchParams>
-      <BuildProvider origin={origin} type={params.type}>
+      <BuildProvider origin={origin} type={params.type} key={params.type}>
         <BuildBaseHits type={params.type} />
       </BuildProvider>
     </>

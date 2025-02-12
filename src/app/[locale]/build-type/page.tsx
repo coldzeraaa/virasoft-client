@@ -13,6 +13,7 @@ export default async function BuildTypePage() {
   });
 
   if (error || !data?.allMenus) return <ErrorResult message={error?.message || 'No menu'} />;
+  if (data.allMenus.nodes.length === 0) return <ErrorResult message="No data" />;
 
   return (
     <div className="mx-auto flex h-full flex-wrap items-center justify-center gap-4">
