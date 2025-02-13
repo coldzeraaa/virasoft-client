@@ -14,7 +14,7 @@ export function ProductSingle({ name, price, slug, title, images, is_sale, selli
           alt={name}
           width={300}
           height={300}
-          className="aspect-square w-full rounded-t-2xl bg-base-100 bg-contain "
+          className="aspect-square w-full rounded-t-2xl bg-base-200 bg-contain object-contain"
         />
         {is_sale && (
           <div className="absolute left-2 top-2 rounded-lg bg-primary px-2 py-1 text-xs font-bold text-white">

@@ -9,7 +9,7 @@ export function ImageBuild({ hits, loading }: { hits: HitType[]; loading?: boole
       {hits.map((product) => (
         <Image
           key={product.id}
-          src={imageUrlHelper(product.images[0])}
+          src={imageUrlHelper(product.images[(product.images.length || 1) - 1])}
           style={{ zIndex: typeof product.position === 'number' ? product.position : 1 }}
           alt={product.name}
           height={500}

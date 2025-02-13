@@ -40,7 +40,7 @@ async function Menu({ type }: { type: string }) {
           <li key={idx}>
             <ButtonPersistSearchParams
               className="flex items-center gap-4 rounded p-2 transition hover:shadow-2xl"
-              href={`/build-type/${type}/${menu.icon}`}
+              href={`/build-type/${type}/${menu.link}`}
             >
               <Image
                 src={imageUrlHelper(menu.images?.[0])}

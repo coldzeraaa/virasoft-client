@@ -61,9 +61,9 @@ function SingleProduct({ images, name, title, id, type }: BuildItemType & { type
       className={`flex items-center gap-4 rounded-md border p-2 transition hover:shadow-xl ${isSelected ? 'border-primary' : 'border-transparent'}`}
     >
       <Image
-        src={images[1] ? imageUrlHelper(images[1]) : imageUrlHelper(images[0])}
+        src={imageUrlHelper(images[0])}
         alt={name}
-        className="aspect-square w-20 rounded-md bg-base-300 object-contain "
+        className="aspect-square w-20 min-w-20 rounded-md bg-base-300 object-contain"
         width={0}
         height={0}
       />

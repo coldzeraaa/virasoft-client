@@ -16,7 +16,7 @@ export default function BuildTypeMenuOptionTypePage({ params }: PageProps) {
         Буцах
       </ButtonPersistSearchParams>
       <BuildProvider origin={origin} type={params.type} key={params.type}>
-        <BuildBaseHits type={params.type} />
+        <BuildBaseHits type={params.type} key={params.type} />
       </BuildProvider>
     </>
   );
