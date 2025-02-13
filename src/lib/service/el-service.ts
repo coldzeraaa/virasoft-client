@@ -38,6 +38,7 @@ function getMusts(props: GetMustProps): QueryStringType[] {
     if (key === 'skuString') return getSkuTerms(acc, value as NonNullable<ElServiceProps['skuString']>);
     if (key === 'ids') return getIds(acc, value as NonNullable<ElServiceProps['ids']>);
     if (key === 'slugs') return getSlugs(acc, value as NonNullable<ElServiceProps['slugs']>);
+
     return getQueryString(acc, value as string | string[], key);
   }, []);
 }
@@ -45,7 +46,7 @@ function getMusts(props: GetMustProps): QueryStringType[] {
 function getSkuTerms(acc: QueryStringType[], value: ElServiceProps['skuString']): QueryStringType[] {
   return [...acc, { terms: { SKU: getTrimmedArrayHelper(value) } }];
 }
-function getSlugs(acc: QueryStringType[], value: ElServiceProps['ids']): QueryStringType[] {
+function getSlugs(acc: QueryStringType[], value: ElServiceProps['slugs']): QueryStringType[] {
   if (!value) return [];
   return [...acc, { terms: { slug: value } }];
 }

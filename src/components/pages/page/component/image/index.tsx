@@ -7,15 +7,7 @@ export function ImageComponent({ images = [], description = '' }: ImageComponent
   const [image] = images;
   if (!image) return null;
 
-  return (
-    <Image
-      width={image.metadata?.width || 0}
-      height={image.metadata?.height || 0}
-      src={imageUrlHelper(image.url)}
-      alt={description}
-      className="h-fit w-full bg-base-300 object-contain"
-    />
-  );
+  return <Image width={0} height={0} src={imageUrlHelper(image.url)} alt={description} className="h-fit w-full object-contain" />;
 }
 
 export interface ImageComponentProps {
