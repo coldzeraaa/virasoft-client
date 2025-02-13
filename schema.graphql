@@ -1,1368 +1,1167 @@
 # This file was generated. Do not edit manually.
 
 schema {
-    query: Query
-    mutation: Mutation
+  query: Query
+  mutation: Mutation
 }
 
 "Requires that exactly one field must be supplied and that field must not be `null`."
 directive @oneOf on INPUT_OBJECT
 
 interface BaseModelInterface {
-    createdAt: ISO8601DateTime!
-    id: ID!
-    updatedAt: ISO8601DateTime!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  updatedAt: ISO8601DateTime!
 }
 
 union Image = Menu | Page
 
 type Address implements BaseModelInterface {
-    address1: String!
-    address2: String!
-    addressAlias: String
-    alternativeEmail: String
-    alternativeMobile: String
-    company: String
-    createdAt: ISO8601DateTime!
-    email: String
-    firstName: String
-    id: ID!
-    isCompany: Boolean
-    lastName: String
-    latitude: String
-    longitude: String
-    mobile: String
-    phone: String
-    preferences: JSON!
-    updatedAt: ISO8601DateTime!
-    zipcode: String
+  address1: String!
+  address2: String!
+  addressAlias: String
+  alternativeEmail: String
+  alternativeMobile: String
+  company: String
+  createdAt: ISO8601DateTime!
+  email: String
+  firstName: String
+  id: ID!
+  isCompany: Boolean
+  lastName: String
+  latitude: String
+  longitude: String
+  mobile: String
+  phone: String
+  preferences: JSON!
+  updatedAt: ISO8601DateTime!
+  zipcode: String
 }
 
 type Application implements BaseModelInterface {
-    confidential: Boolean!
-    createdAt: ISO8601DateTime!
-    id: ID!
-    name: String!
-    redirectUri: String!
-    scopes: String!
-    secret: String!
-    uid: String!
-    updatedAt: ISO8601DateTime!
-    website: Website
-    websiteId: ID
+  confidential: Boolean!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  name: String!
+  redirectUri: String!
+  scopes: String!
+  secret: String!
+  uid: String!
+  updatedAt: ISO8601DateTime!
+  website: Website
+  websiteId: ID
 }
 
 "The connection type for Application."
 type ApplicationConnection {
-    "A list of edges."
-    edges: [ApplicationEdge!]!
-    "A list of nodes."
-    nodes: [Application!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ApplicationEdge!]!
+  "A list of nodes."
+  nodes: [Application!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type ApplicationEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Application!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Application!
 }
 
 type AssetRole implements BaseModelInterface {
-    assetId: ID!
-    assetType: String!
-    createdAt: ISO8601DateTime!
-    id: ID!
-    roles: [String!]!
-    updatedAt: ISO8601DateTime!
-    user: User!
-    userId: ID!
-    vendor: Vendor!
-    vendorId: ID!
-    vendorUser: VendorUser!
-    vendorUserId: ID!
+  assetId: ID!
+  assetType: String!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  roles: [String!]!
+  updatedAt: ISO8601DateTime!
+  user: User!
+  userId: ID!
+  vendor: Vendor!
+  vendorId: ID!
+  vendorUser: VendorUser!
+  vendorUserId: ID!
 }
 
 "The connection type for AssetRole."
 type AssetRoleConnection {
-    "A list of edges."
-    edges: [AssetRoleEdge!]!
-    "A list of nodes."
-    nodes: [AssetRole!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [AssetRoleEdge!]!
+  "A list of nodes."
+  nodes: [AssetRole!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type AssetRoleEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: AssetRole!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: AssetRole!
 }
 
 type AuthCheckLogin {
-    exists: Boolean!
-    mobileConfirmationSentAt: String
+  exists: Boolean!
+  mobileConfirmationSentAt: String
 }
 
 type Brand implements BaseModelInterface {
-    code: String!
-    createdAt: ISO8601DateTime!
-    description: String
-    id: ID!
-    name: String!
-    updatedAt: ISO8601DateTime!
-    verified: Boolean!
+  code: String!
+  createdAt: ISO8601DateTime!
+  description: String
+  id: ID!
+  name: String!
+  updatedAt: ISO8601DateTime!
+  verified: Boolean!
 }
 
 "The connection type for Brand."
 type BrandConnection {
-    "A list of edges."
-    edges: [BrandEdge!]!
-    "A list of nodes."
-    nodes: [Brand!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [BrandEdge!]!
+  "A list of nodes."
+  nodes: [Brand!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type BrandEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Brand!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Brand!
 }
 
 type Event implements BaseModelInterface {
-    createdAt: ISO8601DateTime!
-    id: ID!
-    params: JSON!
-    recordId: ID!
-    recordType: String!
-    type: String!
-    updatedAt: ISO8601DateTime!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  params: JSON!
+  recordId: ID!
+  recordType: String!
+  type: String!
+  updatedAt: ISO8601DateTime!
 }
 
 type ImageObject {
-    fileName: String!
-    id: ID!
-    metadata: Metadata
-    recordId: Int!
-    recordType: String!
-    url: String!
+  fileName: String!
+  id: ID!
+  metadata: Metadata
+  recordId: Int!
+  recordType: String!
+  url: String!
 }
 
 type Item implements BaseModelInterface {
-    createdAt: ISO8601DateTime!
-    id: ID!
-    order: Order
-    orderId: ID
-    price: Float!
-    quantity: Int!
-    status: String!
-    total: Float!
-    updatedAt: ISO8601DateTime!
-    variant: Variant!
-    variantId: ID!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  order: Order
+  orderId: ID
+  price: Float!
+  quantity: Int!
+  status: String!
+  total: Float!
+  updatedAt: ISO8601DateTime!
+  variant: Variant!
+  variantId: ID!
 }
 
 type Listing implements BaseModelInterface {
-    approved: Boolean!
-    createdAt: ISO8601DateTime!
-    id: ID!
-    product: Product!
-    productId: ID!
-    published: Boolean!
-    slug: String!
-    updatedAt: ISO8601DateTime!
-    website: Website!
-    websiteId: ID!
+  approved: Boolean!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  product: Product!
+  productId: ID!
+  published: Boolean!
+  slug: String!
+  updatedAt: ISO8601DateTime!
+  website: Website!
+  websiteId: ID!
 }
 
 "The connection type for Listing."
 type ListingConnection {
-    "A list of edges."
-    edges: [ListingEdge!]!
-    "A list of nodes."
-    nodes: [Listing!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ListingEdge!]!
+  "A list of nodes."
+  nodes: [Listing!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type ListingEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Listing!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Listing!
 }
 
 type Menu implements BaseModelInterface {
-    children: [Menu!]
-    createdAt: ISO8601DateTime!
-    hasChildren: Boolean
-    icon: String
-    id: ID!
-    imageObjects: [ImageObject!]!
-    images: [String!]
-    link: String!
-    parent: Menu
-    parentId: ID
-    preferences: JSON
-    title: String!
-    type: String
-    updatedAt: ISO8601DateTime!
-    website: Website
+  children: [Menu!]
+  createdAt: ISO8601DateTime!
+  hasChildren: Boolean
+  icon: String
+  id: ID!
+  imageObjects: [ImageObject!]!
+  images: [String!]
+  link: String!
+  parent: Menu
+  parentId: ID
+  preferences: JSON
+  title: String!
+  type: String
+  updatedAt: ISO8601DateTime!
+  website: Website
 }
 
 "The connection type for Menu."
 type MenuConnection {
-    "A list of edges."
-    edges: [MenuEdge!]!
-    "A list of nodes."
-    nodes: [Menu!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [MenuEdge!]!
+  "A list of nodes."
+  nodes: [Menu!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type MenuEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Menu!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Menu!
 }
 
 type Merchant implements BaseModelInterface {
-    approvedAt: ISO8601DateTime
-    cancelledAt: ISO8601DateTime
-    createdAt: ISO8601DateTime!
-    id: ID!
-    listingsCount: Int
-    requestedAt: ISO8601DateTime
-    status: String!
-    updatedAt: ISO8601DateTime!
-    vendor: Vendor!
-    website: Website!
+  approvedAt: ISO8601DateTime
+  cancelledAt: ISO8601DateTime
+  createdAt: ISO8601DateTime!
+  id: ID!
+  listingsCount: Int
+  requestedAt: ISO8601DateTime
+  status: String!
+  updatedAt: ISO8601DateTime!
+  vendor: Vendor!
+  website: Website!
 }
 
 "The connection type for Merchant."
 type MerchantConnection {
-    "A list of edges."
-    edges: [MerchantEdge!]!
-    "A list of nodes."
-    nodes: [Merchant!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [MerchantEdge!]!
+  "A list of nodes."
+  nodes: [Merchant!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type MerchantEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Merchant!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Merchant!
 }
 
 type Metadata {
-    height: Int
-    width: Int
+  height: Int
+  width: Int
 }
 
 type Mutation {
-    addImageVariant(
-        "Parameters for addImageVariant"
-        input: addImageVariantInput!
-    ): Variant
-    addToCart(
-        "Parameters for addToCart"
-        input: addToCartInput!
-    ): Order
-    "Checks if email or mobile registered"
-    authCheckLogin(
-        "Parameters for authCheckLogin"
-        input: authCheckLoginInput!
-    ): AuthCheckLogin
-    authRegister(
-        "Parameters for authRegister"
-        input: authRegisterInput!
-    ): User
-    buildAssetRole(
-        "Parameters for buildAssetRole"
-        input: buildAssetRoleInput!
-    ): AssetRole
-    checkOrder(
-        "Parameters for checkOrder"
-        input: checkOrderInput!
-    ): Order
-    checkOtp(
-        "Parameters for checkOtp"
-        input: checkOtpInput!
-    ): JSON
-    createApplication(
-        "Parameters for createApplication"
-        input: createApplicationInput!
-    ): Application
-    createAssetRole(
-        "Parameters for createAssetRole"
-        input: createAssetRoleInput!
-    ): AssetRole
-    createBrand(
-        "Parameters for createBrand"
-        input: createBrandInput!
-    ): Brand
-    createImage(
-        "Parameters for createImage"
-        input: createImageInput!
-    ): Image
-    createListing(
-        "Parameters for createListing"
-        input: createListingInput!
-    ): Listing
-    createMenu(
-        "Parameters for createMenu"
-        input: createMenuInput!
-    ): Menu
-    createMerchant(
-        "Parameters for createMerchant"
-        input: createMerchantInput!
-    ): Merchant
-    createOptionType(
-        "Parameters for createOptionType"
-        input: createOptionTypeInput!
-    ): OptionType
-    createOptionValue(
-        "Parameters for createOptionValue"
-        input: createOptionValueInput!
-    ): OptionValue
-    createPage(
-        "Parameters for createPage"
-        input: createPageInput!
-    ): Page
-    createPaymentMethod(
-        "Parameters for createPaymentMethod"
-        input: createPaymentMethodInput!
-    ): PaymentMethod
-    createProduct(
-        "Parameters for createProduct"
-        input: createProductInput!
-    ): Product
-    createUser(
-        "Parameters for createUser"
-        input: createUserInput!
-    ): User
-    createUserAddress(
-        "Parameters for createUserAddress"
-        input: createUserAddressInput!
-    ): UserAddress
-    createVariant(
-        "Parameters for createVariant"
-        input: createVariantInput!
-    ): Variant
-    createVendor(
-        "Parameters for createVendor"
-        input: createVendorInput!
-    ): Vendor
-    createVendorUser(
-        "Parameters for createVendorUser"
-        input: createVendorUserInput!
-    ): VendorUser
-    createWebsite(
-        "Parameters for createWebsite"
-        input: createWebsiteInput!
-    ): Website
-    destroyApplication(
-        "Parameters for destroyApplication"
-        input: destroyApplicationInput!
-    ): Application
-    destroyAssetRole(
-        "Parameters for destroyAssetRole"
-        input: destroyAssetRoleInput!
-    ): AssetRole
-    destroyBrand(
-        "Parameters for destroyBrand"
-        input: destroyBrandInput!
-    ): Brand
-    destroyImage(
-        "Parameters for destroyImage"
-        input: destroyImageInput!
-    ): Image
-    destroyListing(
-        "Parameters for destroyListing"
-        input: destroyListingInput!
-    ): Listing
-    destroyMenu(
-        "Parameters for destroyMenu"
-        input: destroyMenuInput!
-    ): Menu
-    destroyMerchant(
-        "Parameters for destroyMerchant"
-        input: destroyMerchantInput!
-    ): Merchant
-    destroyOptionType(
-        "Parameters for destroyOptionType"
-        input: destroyOptionTypeInput!
-    ): OptionType
-    destroyOptionValue(
-        "Parameters for destroyOptionValue"
-        input: destroyOptionValueInput!
-    ): OptionValue
-    destroyPage(
-        "Parameters for destroyPage"
-        input: destroyPageInput!
-    ): Page
-    destroyPaymentMethod(
-        "Parameters for destroyPaymentMethod"
-        input: destroyPaymentMethodInput!
-    ): PaymentMethod
-    destroyProduct(
-        "Parameters for destroyProduct"
-        input: destroyProductInput!
-    ): Product
-    destroyUserAddress(
-        "Parameters for destroyUserAddress"
-        input: destroyUserAddressInput!
-    ): UserAddress
-    destroyVariant(
-        "Parameters for destroyVariant"
-        input: destroyVariantInput!
-    ): Variant
-    destroyVendor(
-        "Parameters for destroyVendor"
-        input: destroyVendorInput!
-    ): Vendor
-    destroyVendorUser(
-        "Parameters for destroyVendorUser"
-        input: destroyVendorUserInput!
-    ): VendorUser
-    destroyWebsite(
-        "Parameters for destroyWebsite"
-        input: destroyWebsiteInput!
-    ): Website
-    emptyItem(
-        "Parameters for emptyItem"
-        input: emptyItemInput!
-    ): Order
-    paymentCheckout(
-        "Parameters for paymentCheckout"
-        input: paymentCheckoutInput!
-    ): Order
-    quickBuy(
-        "Parameters for quickBuy"
-        input: quickBuyInput!
-    ): Order
-    removeImageVariant(
-        "Parameters for removeImageVariant"
-        input: removeImageVariantInput!
-    ): Variant
-    removeItem(
-        "Parameters for removeItem"
-        input: removeItemInput!
-    ): Order
-    resetPassword(
-        "Parameters for resetPassword"
-        input: resetPasswordInput!
-    ): User
-    "Returns boolean whether sms is sent or not"
-    sendOtp(
-        "Parameters for sendOtp"
-        input: sendOtpInput!
-    ): User
-    updateApplication(
-        "Parameters for updateApplication"
-        input: updateApplicationInput!
-    ): Application
-    updateAssetRole(
-        "Parameters for updateAssetRole"
-        input: updateAssetRoleInput!
-    ): AssetRole
-    updateBrand(
-        "Parameters for updateBrand"
-        input: updateBrandInput!
-    ): Brand
-    updateCheckoutAddress(
-        "Parameters for updateCheckoutAddress"
-        input: updateCheckoutAddressInput!
-    ): Order
-    updateItem(
-        "Parameters for updateItem"
-        input: updateItemInput!
-    ): Order
-    updateListing(
-        "Parameters for updateListing"
-        input: updateListingInput!
-    ): Listing
-    updateMenu(
-        "Parameters for updateMenu"
-        input: updateMenuInput!
-    ): Menu
-    updateMerchant(
-        "Parameters for updateMerchant"
-        input: updateMerchantInput!
-    ): Merchant
-    updateOptionType(
-        "Parameters for updateOptionType"
-        input: updateOptionTypeInput!
-    ): OptionType
-    updateOptionValue(
-        "Parameters for updateOptionValue"
-        input: updateOptionValueInput!
-    ): OptionValue
-    updatePage(
-        "Parameters for updatePage"
-        input: updatePageInput!
-    ): Page
-    updatePaymentMethod(
-        "Parameters for updatePaymentMethod"
-        input: updatePaymentMethodInput!
-    ): PaymentMethod
-    updateProduct(
-        "Parameters for updateProduct"
-        input: updateProductInput!
-    ): Product
-    updateUserAddress(
-        "Parameters for updateUserAddress"
-        input: updateUserAddressInput!
-    ): UserAddress
-    updateVariant(
-        "Parameters for updateVariant"
-        input: updateVariantInput!
-    ): Variant
-    updateVendor(
-        "Parameters for updateVendor"
-        input: updateVendorInput!
-    ): Vendor
-    updateVendorUser(
-        "Parameters for updateVendorUser"
-        input: updateVendorUserInput!
-    ): VendorUser
-    updateWebsite(
-        "Parameters for updateWebsite"
-        input: updateWebsiteInput!
-    ): Website
+  addImageVariant("Parameters for addImageVariant" input: addImageVariantInput!): Variant
+  addToCart("Parameters for addToCart" input: addToCartInput!): Order
+  "Checks if email or mobile registered"
+  authCheckLogin("Parameters for authCheckLogin" input: authCheckLoginInput!): AuthCheckLogin
+  authRegister("Parameters for authRegister" input: authRegisterInput!): User
+  buildAssetRole("Parameters for buildAssetRole" input: buildAssetRoleInput!): AssetRole
+  checkOrder("Parameters for checkOrder" input: checkOrderInput!): Order
+  checkOtp("Parameters for checkOtp" input: checkOtpInput!): JSON
+  createApplication("Parameters for createApplication" input: createApplicationInput!): Application
+  createAssetRole("Parameters for createAssetRole" input: createAssetRoleInput!): AssetRole
+  createBrand("Parameters for createBrand" input: createBrandInput!): Brand
+  createImage("Parameters for createImage" input: createImageInput!): Image
+  createListing("Parameters for createListing" input: createListingInput!): Listing
+  createMenu("Parameters for createMenu" input: createMenuInput!): Menu
+  createMerchant("Parameters for createMerchant" input: createMerchantInput!): Merchant
+  createOptionType("Parameters for createOptionType" input: createOptionTypeInput!): OptionType
+  createOptionValue("Parameters for createOptionValue" input: createOptionValueInput!): OptionValue
+  createPage("Parameters for createPage" input: createPageInput!): Page
+  createPaymentMethod("Parameters for createPaymentMethod" input: createPaymentMethodInput!): PaymentMethod
+  createProduct("Parameters for createProduct" input: createProductInput!): Product
+  createUser("Parameters for createUser" input: createUserInput!): User
+  createUserAddress("Parameters for createUserAddress" input: createUserAddressInput!): UserAddress
+  createVariant("Parameters for createVariant" input: createVariantInput!): Variant
+  createVendor("Parameters for createVendor" input: createVendorInput!): Vendor
+  createVendorUser("Parameters for createVendorUser" input: createVendorUserInput!): VendorUser
+  createWebsite("Parameters for createWebsite" input: createWebsiteInput!): Website
+  destroyApplication("Parameters for destroyApplication" input: destroyApplicationInput!): Application
+  destroyAssetRole("Parameters for destroyAssetRole" input: destroyAssetRoleInput!): AssetRole
+  destroyBrand("Parameters for destroyBrand" input: destroyBrandInput!): Brand
+  destroyImage("Parameters for destroyImage" input: destroyImageInput!): Image
+  destroyListing("Parameters for destroyListing" input: destroyListingInput!): Listing
+  destroyMenu("Parameters for destroyMenu" input: destroyMenuInput!): Menu
+  destroyMerchant("Parameters for destroyMerchant" input: destroyMerchantInput!): Merchant
+  destroyOptionType("Parameters for destroyOptionType" input: destroyOptionTypeInput!): OptionType
+  destroyOptionValue("Parameters for destroyOptionValue" input: destroyOptionValueInput!): OptionValue
+  destroyPage("Parameters for destroyPage" input: destroyPageInput!): Page
+  destroyPaymentMethod("Parameters for destroyPaymentMethod" input: destroyPaymentMethodInput!): PaymentMethod
+  destroyProduct("Parameters for destroyProduct" input: destroyProductInput!): Product
+  destroyUserAddress("Parameters for destroyUserAddress" input: destroyUserAddressInput!): UserAddress
+  destroyVariant("Parameters for destroyVariant" input: destroyVariantInput!): Variant
+  destroyVendor("Parameters for destroyVendor" input: destroyVendorInput!): Vendor
+  destroyVendorUser("Parameters for destroyVendorUser" input: destroyVendorUserInput!): VendorUser
+  destroyWebsite("Parameters for destroyWebsite" input: destroyWebsiteInput!): Website
+  emptyItem("Parameters for emptyItem" input: emptyItemInput!): Order
+  paymentCheckout("Parameters for paymentCheckout" input: paymentCheckoutInput!): Order
+  quickBuy("Parameters for quickBuy" input: quickBuyInput!): Order
+  removeImageVariant("Parameters for removeImageVariant" input: removeImageVariantInput!): Variant
+  removeItem("Parameters for removeItem" input: removeItemInput!): Order
+  resetPassword("Parameters for resetPassword" input: resetPasswordInput!): User
+  "Returns boolean whether sms is sent or not"
+  sendOtp("Parameters for sendOtp" input: sendOtpInput!): User
+  updateApplication("Parameters for updateApplication" input: updateApplicationInput!): Application
+  updateAssetRole("Parameters for updateAssetRole" input: updateAssetRoleInput!): AssetRole
+  updateBrand("Parameters for updateBrand" input: updateBrandInput!): Brand
+  updateCheckoutAddress("Parameters for updateCheckoutAddress" input: updateCheckoutAddressInput!): Order
+  updateItem("Parameters for updateItem" input: updateItemInput!): Order
+  updateListing("Parameters for updateListing" input: updateListingInput!): Listing
+  updateMenu("Parameters for updateMenu" input: updateMenuInput!): Menu
+  updateMerchant("Parameters for updateMerchant" input: updateMerchantInput!): Merchant
+  updateOptionType("Parameters for updateOptionType" input: updateOptionTypeInput!): OptionType
+  updateOptionValue("Parameters for updateOptionValue" input: updateOptionValueInput!): OptionValue
+  updatePage("Parameters for updatePage" input: updatePageInput!): Page
+  updatePaymentMethod("Parameters for updatePaymentMethod" input: updatePaymentMethodInput!): PaymentMethod
+  updateProduct("Parameters for updateProduct" input: updateProductInput!): Product
+  updateUserAddress("Parameters for updateUserAddress" input: updateUserAddressInput!): UserAddress
+  updateVariant("Parameters for updateVariant" input: updateVariantInput!): Variant
+  updateVendor("Parameters for updateVendor" input: updateVendorInput!): Vendor
+  updateVendorUser("Parameters for updateVendorUser" input: updateVendorUserInput!): VendorUser
+  updateWebsite("Parameters for updateWebsite" input: updateWebsiteInput!): Website
 }
 
 type Notification implements BaseModelInterface {
-    createdAt: ISO8601DateTime!
-    event: Event!
-    eventId: ID!
-    id: ID!
-    recipient: User!
-    recipientId: ID!
-    recipientType: String!
-    type: String!
-    updatedAt: ISO8601DateTime!
+  createdAt: ISO8601DateTime!
+  event: Event!
+  eventId: ID!
+  id: ID!
+  recipient: User!
+  recipientId: ID!
+  recipientType: String!
+  type: String!
+  updatedAt: ISO8601DateTime!
 }
 
 "The connection type for Notification."
 type NotificationConnection {
-    "A list of edges."
-    edges: [NotificationEdge!]!
-    "A list of nodes."
-    nodes: [Notification!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [NotificationEdge!]!
+  "A list of nodes."
+  nodes: [Notification!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type NotificationEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Notification!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Notification!
 }
 
 type OptionType implements BaseModelInterface {
-    createdAt: ISO8601DateTime!
-    id: ID!
-    name: String!
-    position: Int
-    presentation: String!
-    updatedAt: ISO8601DateTime!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  name: String!
+  position: Int
+  presentation: String!
+  updatedAt: ISO8601DateTime!
 }
 
 "The connection type for OptionType."
 type OptionTypeConnection {
-    "A list of edges."
-    edges: [OptionTypeEdge!]!
-    "A list of nodes."
-    nodes: [OptionType!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [OptionTypeEdge!]!
+  "A list of nodes."
+  nodes: [OptionType!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type OptionTypeEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: OptionType!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: OptionType!
 }
 
 type OptionValue implements BaseModelInterface {
-    code: String
-    createdAt: ISO8601DateTime!
-    id: ID!
-    name: String!
-    optionType: OptionType!
-    optionTypeId: ID!
-    position: Int
-    presentation: String!
-    updatedAt: ISO8601DateTime!
+  code: String
+  createdAt: ISO8601DateTime!
+  id: ID!
+  name: String!
+  optionType: OptionType!
+  optionTypeId: ID!
+  position: Int
+  presentation: String!
+  updatedAt: ISO8601DateTime!
 }
 
 "The connection type for OptionValue."
 type OptionValueConnection {
-    "A list of edges."
-    edges: [OptionValueEdge!]!
-    "A list of nodes."
-    nodes: [OptionValue!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [OptionValueEdge!]!
+  "A list of nodes."
+  nodes: [OptionValue!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type OptionValueEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: OptionValue!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: OptionValue!
 }
 
 type Order implements BaseModelInterface {
-    createdAt: ISO8601DateTime!
-    currency: String!
-    id: ID!
-    itemCount: Int
-    itemTotal: Float
-    items: [Item!]!
-    number: String!
-    outstandingBalance: Float!
-    paymentStatus: PaymentStatus!
-    paymentTotal: Float!
-    payments: [Payment!]!
-    shipAddress: UserAddress
-    status: String!
-    token: String!
-    total: Float
-    updatedAt: ISO8601DateTime!
-    user: User
-    userId: ID
-    website: Website!
-    websiteId: ID!
+  createdAt: ISO8601DateTime!
+  currency: String!
+  id: ID!
+  itemCount: Int
+  itemTotal: Float
+  items: [Item!]!
+  number: String!
+  outstandingBalance: Float!
+  paymentStatus: PaymentStatus!
+  paymentTotal: Float!
+  payments: [Payment!]!
+  shipAddress: UserAddress
+  status: String!
+  token: String!
+  total: Float
+  updatedAt: ISO8601DateTime!
+  user: User
+  userId: ID
+  website: Website!
+  websiteId: ID!
 }
 
 "The connection type for Order."
 type OrderConnection {
-    "A list of edges."
-    edges: [OrderEdge!]!
-    "A list of nodes."
-    nodes: [Order!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [OrderEdge!]!
+  "A list of nodes."
+  nodes: [Order!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type OrderEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Order!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Order!
 }
 
 type Page implements BaseModelInterface {
-    createdAt: ISO8601DateTime!
-    id: ID!
-    imageObjects: [ImageObject!]!
-    items: JSON
-    metaData: JSON!
-    preferences: JSON!
-    slug: String!
-    title: String!
-    updatedAt: ISO8601DateTime!
-    website: Website!
-    websiteId: ID!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  imageObjects: [ImageObject!]!
+  items: JSON
+  metaData: JSON!
+  preferences: JSON!
+  slug: String!
+  title: String!
+  updatedAt: ISO8601DateTime!
+  website: Website!
+  websiteId: ID!
 }
 
 "The connection type for Page."
 type PageConnection {
-    "A list of edges."
-    edges: [PageEdge!]!
-    "A list of nodes."
-    nodes: [Page!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [PageEdge!]!
+  "A list of nodes."
+  nodes: [Page!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type PageEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Page!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Page!
 }
 
 "Information about pagination in a connection."
 type PageInfo {
-    "When paginating forwards, the cursor to continue."
-    endCursor: String
-    "When paginating forwards, are there more items?"
-    hasNextPage: Boolean!
-    "When paginating backwards, are there more items?"
-    hasPreviousPage: Boolean!
-    "When paginating backwards, the cursor to continue."
-    startCursor: String
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+  "When paginating forwards, are there more items?"
+  hasNextPage: Boolean!
+  "When paginating backwards, are there more items?"
+  hasPreviousPage: Boolean!
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
 }
 
 type Payment implements BaseModelInterface {
-    createdAt: ISO8601DateTime!
-    id: ID!
-    number: String!
-    paymentMethod: PaymentMethod!
-    source: JSON!
-    updatedAt: ISO8601DateTime!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  number: String!
+  paymentMethod: PaymentMethod!
+  source: JSON!
+  updatedAt: ISO8601DateTime!
 }
 
 type PaymentMethod implements BaseModelInterface {
-    active: Boolean!
-    createdAt: ISO8601DateTime!
-    description: String
-    id: ID!
-    name: String!
-    preferences: JSON
-    testMode: Boolean!
-    type: String!
-    updatedAt: ISO8601DateTime!
-    website: Website!
+  active: Boolean!
+  createdAt: ISO8601DateTime!
+  description: String
+  id: ID!
+  name: String!
+  preferences: JSON
+  testMode: Boolean!
+  type: String!
+  updatedAt: ISO8601DateTime!
+  website: Website!
 }
 
 "The connection type for PaymentMethod."
 type PaymentMethodConnection {
-    "A list of edges."
-    edges: [PaymentMethodEdge!]!
-    "A list of nodes."
-    nodes: [PaymentMethod!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [PaymentMethodEdge!]!
+  "A list of nodes."
+  nodes: [PaymentMethod!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type PaymentMethodEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: PaymentMethod!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: PaymentMethod!
 }
 
 type Product implements BaseModelInterface {
-    approved: Boolean!
-    approvedAt: ISO8601DateTime
-    brand: Brand
-    condition: String!
-    createdAt: ISO8601DateTime!
-    data: JSON
-    description: String
-    id: ID!
-    images: [String!]!
-    info: JSON
-    master: Variant!
-    name: String!
-    productCat: String
-    published: Boolean!
-    slug: String!
-    title: String!
-    updatedAt: ISO8601DateTime!
-    variants(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int
-    ): VariantConnection!
-    vendor: Vendor!
+  approved: Boolean!
+  approvedAt: ISO8601DateTime
+  brand: Brand
+  condition: String!
+  createdAt: ISO8601DateTime!
+  data: JSON
+  description: String
+  id: ID!
+  images: [String!]!
+  info: JSON
+  master: Variant!
+  name: String!
+  productCat: String
+  published: Boolean!
+  slug: String!
+  title: String!
+  updatedAt: ISO8601DateTime!
+  variants(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+  ): VariantConnection!
+  vendor: Vendor!
 }
 
 "The connection type for Product."
 type ProductConnection {
-    "A list of edges."
-    edges: [ProductEdge!]!
-    "A list of nodes."
-    nodes: [Product!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ProductEdge!]!
+  "A list of nodes."
+  nodes: [Product!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type ProductEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Product!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Product!
 }
 
 type Query {
-    allMenus(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: MenuFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): MenuConnection!
-    application(id: ID!): Application
-    applications(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: ApplicationFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): ApplicationConnection!
-    assetRole(id: ID!): AssetRole
-    assetRoles(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: AssetRoleFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): AssetRoleConnection!
-    brand(id: ID!): Brand
-    brands(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: BrandFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): BrandConnection!
-    currentOrder(number: String, token: String): Order
-    currentPage(slug: String!): Page
-    currentWebsite: Website
-    listing(id: ID!): Listing
-    listings(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: ListingFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): ListingConnection!
-    me: User
-    menu(id: ID!): Menu
-    menus(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: MenuFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): MenuConnection!
-    merchant(id: ID!): Merchant
-    merchants(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: MerchantFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): MerchantConnection!
-    myOrder(number: String!): Order
-    noticedNotifications(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: NotificationFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): NotificationConnection!
-    optionType(id: ID!): OptionType
-    optionTypes(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: OptionTypeFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): OptionTypeConnection!
-    optionValue(id: ID!): OptionValue
-    optionValues(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: OptionValueFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): OptionValueConnection!
-    order(number: String!): Order
-    orders(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: OrderFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): OrderConnection!
-    page(id: ID!): Page
-    pages(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: PageFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): PageConnection!
-    paymentMethod(id: ID!): PaymentMethod
-    paymentMethods(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: PaymentMethodFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): PaymentMethodConnection!
-    product(id: ID, slug: String): Product
-    products(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: ProductFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): ProductConnection!
-    user(id: ID!): User
-    userAddresses(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: UserAddressFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): UserAddressConnection!
-    users(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: UserFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): UserConnection!
-    variant(id: ID!): Variant
-    variants(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: VariantFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): VariantConnection!
-    vendor(id: ID!): Vendor
-    vendorUser(id: ID!, vendorId: ID): VendorUser
-    vendorUsers(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: VendorUserFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): VendorUserConnection!
-    vendors(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: VendorFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): VendorConnection!
-    website(id: ID!): Website
-    websites(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: WebsiteFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): WebsiteConnection!
+  allMenus(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: MenuFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): MenuConnection!
+  application(id: ID!): Application
+  applications(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: ApplicationFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): ApplicationConnection!
+  assetRole(id: ID!): AssetRole
+  assetRoles(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: AssetRoleFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): AssetRoleConnection!
+  brand(id: ID!): Brand
+  brands(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: BrandFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): BrandConnection!
+  currentOrder(number: String, token: String): Order
+  currentPage(slug: String!): Page
+  currentWebsite: Website
+  listing(id: ID!): Listing
+  listings(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: ListingFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): ListingConnection!
+  me: User
+  menu(id: ID!): Menu
+  menus(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: MenuFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): MenuConnection!
+  merchant(id: ID!): Merchant
+  merchants(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: MerchantFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): MerchantConnection!
+  myOrder(number: String!): Order
+  noticedNotifications(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: NotificationFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): NotificationConnection!
+  optionType(id: ID!): OptionType
+  optionTypes(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: OptionTypeFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): OptionTypeConnection!
+  optionValue(id: ID!): OptionValue
+  optionValues(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: OptionValueFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): OptionValueConnection!
+  order(number: String!): Order
+  orders(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: OrderFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): OrderConnection!
+  page(id: ID!): Page
+  pages(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: PageFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): PageConnection!
+  paymentMethod(id: ID!): PaymentMethod
+  paymentMethods(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: PaymentMethodFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): PaymentMethodConnection!
+  product(id: ID, slug: String): Product
+  products(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: ProductFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): ProductConnection!
+  user(id: ID!): User
+  userAddresses(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: UserAddressFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): UserAddressConnection!
+  users(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: UserFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): UserConnection!
+  variant(id: ID!): Variant
+  variants(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: VariantFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): VariantConnection!
+  vendor(id: ID!): Vendor
+  vendorUser(id: ID!, vendorId: ID): VendorUser
+  vendorUsers(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: VendorUserFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): VendorUserConnection!
+  vendors(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: VendorFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): VendorConnection!
+  website(id: ID!): Website
+  websites(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: WebsiteFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): WebsiteConnection!
 }
 
 type User implements BaseModelInterface {
-    assetRoles: [AssetRole!]
-    createdAt: ISO8601DateTime!
-    email: String
-    firstName: String
-    gender: String
-    id: ID!
-    lastName: String
-    mobile: String
-    nickName: String
-    orders(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: OrderFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): OrderConnection!
-    registerNum: String
-    role: Int
-    roleMatrix: JSON
-    roles: [String!]
-    updatedAt: ISO8601DateTime!
-    userAddresses(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: UserAddressFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): UserAddressConnection!
-    vendorUsers(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: VendorUserFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): VendorUserConnection!
+  assetRoles: [AssetRole!]
+  createdAt: ISO8601DateTime!
+  email: String
+  firstName: String
+  gender: String
+  id: ID!
+  lastName: String
+  mobile: String
+  nickName: String
+  orders(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: OrderFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): OrderConnection!
+  registerNum: String
+  role: Int
+  roleMatrix: JSON
+  roles: [String!]
+  updatedAt: ISO8601DateTime!
+  userAddresses(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: UserAddressFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): UserAddressConnection!
+  vendorUsers(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: VendorUserFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): VendorUserConnection!
 }
 
 type UserAddress implements BaseModelInterface {
-    address: Address!
-    createdAt: ISO8601DateTime!
-    id: ID!
-    name: String
-    preferences: JSON
-    updatedAt: ISO8601DateTime!
-    user: User!
+  address: Address!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  name: String
+  preferences: JSON
+  updatedAt: ISO8601DateTime!
+  user: User!
 }
 
 "The connection type for UserAddress."
 type UserAddressConnection {
-    "A list of edges."
-    edges: [UserAddressEdge!]!
-    "A list of nodes."
-    nodes: [UserAddress!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [UserAddressEdge!]!
+  "A list of nodes."
+  nodes: [UserAddress!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type UserAddressEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: UserAddress!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: UserAddress!
 }
 
 "The connection type for User."
 type UserConnection {
-    "A list of edges."
-    edges: [UserEdge!]!
-    "A list of nodes."
-    nodes: [User!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [UserEdge!]!
+  "A list of nodes."
+  nodes: [User!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type UserEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: User!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: User!
 }
 
 type Variant implements BaseModelInterface {
-    barcode: String
-    createdAt: ISO8601DateTime!
-    depth: Float
-    description: String
-    height: Float
-    id: ID!
-    imageObjects: [ImageObject!]!
-    images: [String!]!
-    isMaster: Boolean!
-    merchantSku: String
-    netWeight: Float
-    optionsText: String
-    position: Int
-    price: Float!
-    product: Product!
-    salePrice: Float
-    sku: String!
-    updatedAt: ISO8601DateTime!
-    variantOptionValues: [ID!]
-    weight: Float
-    width: Float
+  barcode: String
+  createdAt: ISO8601DateTime!
+  depth: Float
+  description: String
+  height: Float
+  id: ID!
+  imageObjects: [ImageObject!]!
+  images: [String!]!
+  isMaster: Boolean!
+  merchantSku: String
+  netWeight: Float
+  optionsText: String
+  position: Int
+  price: Float!
+  product: Product!
+  salePrice: Float
+  sku: String!
+  updatedAt: ISO8601DateTime!
+  variantOptionValues: [ID!]
+  weight: Float
+  width: Float
 }
 
 "The connection type for Variant."
 type VariantConnection {
-    "A list of edges."
-    edges: [VariantEdge!]!
-    "A list of nodes."
-    nodes: [Variant!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [VariantEdge!]!
+  "A list of nodes."
+  nodes: [Variant!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type VariantEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Variant!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Variant!
 }
 
 type Vendor implements BaseModelInterface {
-    address: String
-    code: String
-    createdAt: ISO8601DateTime!
-    email: String
-    id: ID!
-    name: String
-    phone: String
-    productsCount: Int
-    registerNum: String
-    updatedAt: ISO8601DateTime!
-    website: String
+  address: String
+  code: String
+  createdAt: ISO8601DateTime!
+  email: String
+  id: ID!
+  name: String
+  phone: String
+  productsCount: Int
+  registerNum: String
+  updatedAt: ISO8601DateTime!
+  website: String
 }
 
 "The connection type for Vendor."
 type VendorConnection {
-    "A list of edges."
-    edges: [VendorEdge!]!
-    "A list of nodes."
-    nodes: [Vendor!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [VendorEdge!]!
+  "A list of nodes."
+  nodes: [Vendor!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type VendorEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Vendor!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Vendor!
 }
 
 type VendorUser implements BaseModelInterface {
-    addedBy: User!
-    assetRoles(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: AssetRoleFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): AssetRoleConnection!
-    createdAt: ISO8601DateTime!
-    email: String
-    firstName: String
-    id: ID!
-    lastName: String
-    mobile: String
-    role: String!
-    status: String!
-    updatedAt: ISO8601DateTime!
-    user: User!
-    vendor: Vendor!
+  addedBy: User!
+  assetRoles(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: AssetRoleFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): AssetRoleConnection!
+  createdAt: ISO8601DateTime!
+  email: String
+  firstName: String
+  id: ID!
+  lastName: String
+  mobile: String
+  role: String!
+  status: String!
+  updatedAt: ISO8601DateTime!
+  user: User!
+  vendor: Vendor!
 }
 
 "The connection type for VendorUser."
 type VendorUserConnection {
-    "A list of edges."
-    edges: [VendorUserEdge!]!
-    "A list of nodes."
-    nodes: [VendorUser!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [VendorUserEdge!]!
+  "A list of nodes."
+  nodes: [VendorUser!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type VendorUserEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: VendorUser!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: VendorUser!
 }
 
 type Website implements BaseModelInterface {
-    createdAt: ISO8601DateTime!
-    domain: String!
-    id: ID!
-    index: String!
-    menus(
-        "Returns the elements in the list that come after the specified cursor."
-        after: String,
-        "Returns the elements in the list that come before the specified cursor."
-        before: String,
-        filter: MenuFilter,
-        "Returns the first _n_ elements from the list."
-        first: Int,
-        "Returns the last _n_ elements from the list."
-        last: Int,
-        sort: SortFilter
-    ): MenuConnection!
-    merchants: [Merchant!]!
-    name: String!
-    updatedAt: ISO8601DateTime!
+  createdAt: ISO8601DateTime!
+  domain: String!
+  id: ID!
+  index: String!
+  menus(
+    "Returns the elements in the list that come after the specified cursor."
+    after: String
+    "Returns the elements in the list that come before the specified cursor."
+    before: String
+    filter: MenuFilter
+    "Returns the first _n_ elements from the list."
+    first: Int
+    "Returns the last _n_ elements from the list."
+    last: Int
+    sort: SortFilter
+  ): MenuConnection!
+  merchants: [Merchant!]!
+  name: String!
+  updatedAt: ISO8601DateTime!
 }
 
 "The connection type for Website."
 type WebsiteConnection {
-    "A list of edges."
-    edges: [WebsiteEdge!]!
-    "A list of nodes."
-    nodes: [Website!]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
+  "A list of edges."
+  edges: [WebsiteEdge!]!
+  "A list of nodes."
+  nodes: [Website!]!
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
 }
 
 "An edge in a connection."
 type WebsiteEdge {
-    "A cursor for use in pagination."
-    cursor: String!
-    "The item at the end of the edge."
-    node: Website!
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Website!
 }
 
 "Payment Method"
 enum PaymentMethodEnum {
-    "VirasoftPay"
-    virasoft_pay
+  "VirasoftPay"
+  virasoft_pay
 }
 
 "Payment status"
 enum PaymentStatus {
-    "balance_due"
-    balance_due
-    "credit_owed"
-    credit_owed
-    "failed"
-    failed
-    "paid"
-    paid
-    "void"
-    void
+  "balance_due"
+  balance_due
+  "credit_owed"
+  credit_owed
+  "failed"
+  failed
+  "paid"
+  paid
+  "void"
+  void
 }
 
 "Sort Direction"
 enum SortDirection {
-    "Ascending"
-    asc
-    "Descending"
-    desc
+  "Ascending"
+  asc
+  "Descending"
+  desc
 }
 
 "Role"
 enum VendorUserRole {
-    "An admin user"
-    admin
-    "A regular member user"
-    member
+  "An admin user"
+  admin
+  "A regular member user"
+  member
 }
 
 "An ISO 8601-encoded datetime"
@@ -1374,1042 +1173,1042 @@ scalar JSON
 scalar Upload
 
 input AddressFilter {
-    address1: StringFilter
-    address2: StringFilter
-    createdAt: DateFilter
-    email: StringFilter
-    firstName: StringFilter
-    id: IDFilter
-    isCompany: BoolFilter
-    lastName: StringFilter
-    mobile: StringFilter
-    updatedAt: DateFilter
+  address1: StringFilter
+  address2: StringFilter
+  createdAt: DateFilter
+  email: StringFilter
+  firstName: StringFilter
+  id: IDFilter
+  isCompany: BoolFilter
+  lastName: StringFilter
+  mobile: StringFilter
+  updatedAt: DateFilter
 }
 
 input AddressInput {
-    address1: String
-    address2: String
-    addressAlias: String
-    alternativeEmail: String
-    alternativeMobile: String
-    company: String
-    email: String
-    firstName: String
-    isCompany: Boolean
-    lastName: String
-    latitude: String
-    longitude: String
-    mobile: String
-    phone: String
-    preferences: JSON
-    zipcode: String
+  address1: String
+  address2: String
+  addressAlias: String
+  alternativeEmail: String
+  alternativeMobile: String
+  company: String
+  email: String
+  firstName: String
+  isCompany: Boolean
+  lastName: String
+  latitude: String
+  longitude: String
+  mobile: String
+  phone: String
+  preferences: JSON
+  zipcode: String
 }
 
 input ApplicationFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  id: IDFilter
+  updatedAt: DateFilter
 }
 
 input AssetRoleFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    updatedAt: DateFilter
-    vendorId: IDFilter
+  createdAt: DateFilter
+  id: IDFilter
+  updatedAt: DateFilter
+  vendorId: IDFilter
 }
 
 input BoolFilter {
-    "equals to"
-    eq: Boolean
-    "not equals to"
-    notEq: Boolean
-    "is null ?"
-    notNull: Boolean
-    "is null ?"
-    null: Boolean
+  "equals to"
+  eq: Boolean
+  "not equals to"
+  notEq: Boolean
+  "is null ?"
+  notNull: Boolean
+  "is null ?"
+  null: Boolean
 }
 
 input BrandFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  id: IDFilter
+  updatedAt: DateFilter
 }
 
 input CartItemInput {
-    "Options"
-    options: JSON
-    "Quantity"
-    quantity: Int
-    "SKU"
-    sku: String
-    "Variant ID"
-    variantId: ID
+  "Options"
+  options: JSON
+  "Quantity"
+  quantity: Int
+  "SKU"
+  sku: String
+  "Variant ID"
+  variantId: ID
 }
 
 input DateFilter {
-    "equals to"
-    eq: String
-    "Greater than"
-    gt: String
-    "Greater than or equals"
-    gteq: String
-    "Less than"
-    lt: String
-    "Less than or equals"
-    lteq: String
-    "not equals to"
-    notEq: String
-    "is null ?"
-    notNull: Boolean
-    "is null ?"
-    null: Boolean
+  "equals to"
+  eq: String
+  "Greater than"
+  gt: String
+  "Greater than or equals"
+  gteq: String
+  "Less than"
+  lt: String
+  "Less than or equals"
+  lteq: String
+  "not equals to"
+  notEq: String
+  "is null ?"
+  notNull: Boolean
+  "is null ?"
+  null: Boolean
 }
 
 input IDFilter {
-    "is null ?"
-    blank: Boolean
-    "equals to"
-    eq: ID
-    "Greater than"
-    gt: Int
-    "Greater than or equals"
-    gteq: Int
-    "in: Matches any values in giver array"
-    in: [ID!]
-    "Less than"
-    lt: Int
-    "Less than or equals"
-    lteq: Int
-    "not equals to"
-    notEq: ID
-    "in: Matches none of values in giver array"
-    notIn: [ID!]
-    "Starts with"
-    start: Int
+  "is null ?"
+  blank: Boolean
+  "equals to"
+  eq: ID
+  "Greater than"
+  gt: Int
+  "Greater than or equals"
+  gteq: Int
+  "in: Matches any values in giver array"
+  in: [ID!]
+  "Less than"
+  lt: Int
+  "Less than or equals"
+  lteq: Int
+  "not equals to"
+  notEq: ID
+  "in: Matches none of values in giver array"
+  notIn: [ID!]
+  "Starts with"
+  start: Int
 }
 
 input IntFilter {
-    "is blank ?"
-    blank: Boolean
-    "equals to"
-    eq: Float
-    "Greater than"
-    gt: Float
-    "Greater than or equals"
-    gteq: Float
-    "in: Matches none of values in giver array"
-    in: [Float!]
-    "Less than"
-    lt: Float
-    "Less than or equals"
-    lteq: Float
-    "not equals to"
-    notEq: Float
-    "in: Matches none of values in giver array"
-    notIn: [Float!]
-    "is null ?"
-    null: Boolean
+  "is blank ?"
+  blank: Boolean
+  "equals to"
+  eq: Float
+  "Greater than"
+  gt: Float
+  "Greater than or equals"
+  gteq: Float
+  "in: Matches none of values in giver array"
+  in: [Float!]
+  "Less than"
+  lt: Float
+  "Less than or equals"
+  lteq: Float
+  "not equals to"
+  notEq: Float
+  "in: Matches none of values in giver array"
+  notIn: [Float!]
+  "is null ?"
+  null: Boolean
 }
 
 input ListingFilter {
-    approved: BoolFilter
-    createdAt: DateFilter
-    id: IDFilter
-    product: ProductFilter
-    productId: IDFilter
-    published: BoolFilter
-    slug: StringFilter
-    updatedAt: DateFilter
-    website: WebsiteFilter
-    websiteId: IDFilter
+  approved: BoolFilter
+  createdAt: DateFilter
+  id: IDFilter
+  product: ProductFilter
+  productId: IDFilter
+  published: BoolFilter
+  slug: StringFilter
+  updatedAt: DateFilter
+  website: WebsiteFilter
+  websiteId: IDFilter
 }
 
 input MenuChildrenInput {
-    icon: String
-    link: String
-    preferences: JSON
-    title: String
-    type: String
+  icon: String
+  link: String
+  preferences: JSON
+  title: String
+  type: String
 }
 
 input MenuFilter {
-    createdAt: DateFilter
-    icon: StringFilter
-    id: IDFilter
-    parent: MenuFilter
-    parentId: IDFilter
-    title: StringFilter
-    type: StringFilter
-    updatedAt: DateFilter
-    website: WebsiteFilter
-    websiteId: IDFilter
+  createdAt: DateFilter
+  icon: StringFilter
+  id: IDFilter
+  parent: MenuFilter
+  parentId: IDFilter
+  title: StringFilter
+  type: StringFilter
+  updatedAt: DateFilter
+  website: WebsiteFilter
+  websiteId: IDFilter
 }
 
 input MerchantFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  id: IDFilter
+  updatedAt: DateFilter
 }
 
 input NotificationFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  id: IDFilter
+  updatedAt: DateFilter
 }
 
 input OptionTypeFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    name: StringFilter
-    presentation: StringFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  id: IDFilter
+  name: StringFilter
+  presentation: StringFilter
+  updatedAt: DateFilter
 }
 
 input OptionValueFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    name: StringFilter
-    presentation: StringFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  id: IDFilter
+  name: StringFilter
+  presentation: StringFilter
+  updatedAt: DateFilter
 }
 
 input OrderFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    incomplete: BoolFilter
-    number: StringFilter
-    updatedAt: DateFilter
-    website: WebsiteFilter
-    websiteId: IDFilter
+  createdAt: DateFilter
+  id: IDFilter
+  incomplete: BoolFilter
+  number: StringFilter
+  updatedAt: DateFilter
+  website: WebsiteFilter
+  websiteId: IDFilter
 }
 
 input PageFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    updatedAt: DateFilter
-    website: WebsiteFilter
-    websiteId: IDFilter
+  createdAt: DateFilter
+  id: IDFilter
+  updatedAt: DateFilter
+  website: WebsiteFilter
+  websiteId: IDFilter
 }
 
 input PaymentMethodFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    name: StringFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  id: IDFilter
+  name: StringFilter
+  updatedAt: DateFilter
 }
 
 input ProductFilter {
-    approved: BoolFilter
-    brandId: IDFilter
-    condition: StringFilter
-    createdAt: DateFilter
-    description: StringFilter
-    id: IDFilter
-    name: StringFilter
-    productCat: StringFilter
-    published: BoolFilter
-    slug: StringFilter
-    title: StringFilter
-    updatedAt: DateFilter
-    vendor: VendorFilter
-    vendorId: IDFilter
+  approved: BoolFilter
+  brandId: IDFilter
+  condition: StringFilter
+  createdAt: DateFilter
+  description: StringFilter
+  id: IDFilter
+  name: StringFilter
+  productCat: StringFilter
+  published: BoolFilter
+  slug: StringFilter
+  title: StringFilter
+  updatedAt: DateFilter
+  vendor: VendorFilter
+  vendorId: IDFilter
 }
 
 input SortFilter {
-    direction: SortDirection
-    field: String!
+  direction: SortDirection
+  field: String!
 }
 
 input StringFilter {
-    "is blank ?"
-    blank: Boolean
-    "contains"
-    cont: String
-    "ends with"
-    end: String
-    "equals to"
-    eq: String
-    "in: Matches any values in giver array"
-    in: [String!]
-    "not equals to"
-    notEq: String
-    "in: Matches none of values in giver array"
-    notIn: [String!]
-    "is null ?"
-    notNull: Boolean
-    "is null ?"
-    null: Boolean
-    "starts with"
-    start: String
+  "is blank ?"
+  blank: Boolean
+  "contains"
+  cont: String
+  "ends with"
+  end: String
+  "equals to"
+  eq: String
+  "in: Matches any values in giver array"
+  in: [String!]
+  "not equals to"
+  notEq: String
+  "in: Matches none of values in giver array"
+  notIn: [String!]
+  "is null ?"
+  notNull: Boolean
+  "is null ?"
+  null: Boolean
+  "starts with"
+  start: String
 }
 
 input UserAddressFilter {
-    address: AddressFilter
-    addressId: IDFilter
-    createdAt: DateFilter
-    id: IDFilter
-    updatedAt: DateFilter
-    user: UserFilter
-    userId: IDFilter
+  address: AddressFilter
+  addressId: IDFilter
+  createdAt: DateFilter
+  id: IDFilter
+  updatedAt: DateFilter
+  user: UserFilter
+  userId: IDFilter
 }
 
 input UserFilter {
-    createdAt: DateFilter
-    email: StringFilter
-    firstName: StringFilter
-    gender: StringFilter
-    id: IDFilter
-    lastName: StringFilter
-    mobile: StringFilter
-    nickName: StringFilter
-    registerNum: StringFilter
-    role: IntFilter
-    unconfirmedEmail: StringFilter
-    unconfirmedMobile: StringFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  email: StringFilter
+  firstName: StringFilter
+  gender: StringFilter
+  id: IDFilter
+  lastName: StringFilter
+  mobile: StringFilter
+  nickName: StringFilter
+  registerNum: StringFilter
+  role: IntFilter
+  unconfirmedEmail: StringFilter
+  unconfirmedMobile: StringFilter
+  updatedAt: DateFilter
 }
 
 input VariantFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    product: ProductFilter
-    sku: StringFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  id: IDFilter
+  product: ProductFilter
+  sku: StringFilter
+  updatedAt: DateFilter
 }
 
 input VendorFilter {
-    createdAt: DateFilter
-    id: IDFilter
-    name: StringFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  id: IDFilter
+  name: StringFilter
+  updatedAt: DateFilter
 }
 
 input VendorUserFilter {
-    createdAt: DateFilter
-    firstName: StringFilter
-    id: IDFilter
-    updatedAt: DateFilter
-    vendorId: IDFilter
+  createdAt: DateFilter
+  firstName: StringFilter
+  id: IDFilter
+  updatedAt: DateFilter
+  vendorId: IDFilter
 }
 
 input WebsiteFilter {
-    createdAt: DateFilter
-    domain: StringFilter
-    id: IDFilter
-    index: StringFilter
-    name: StringFilter
-    updatedAt: DateFilter
+  createdAt: DateFilter
+  domain: StringFilter
+  id: IDFilter
+  index: StringFilter
+  name: StringFilter
+  updatedAt: DateFilter
 }
 
 "Autogenerated input type of addImageVariant"
 input addImageVariantInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    images: [Upload!]!
-    variantId: ID
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  images: [Upload!]!
+  variantId: ID
 }
 
 "Autogenerated input type of addToCart"
 input addToCartInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    items: [CartItemInput!]!
-    number: String
-    token: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  items: [CartItemInput!]!
+  number: String
+  token: String
 }
 
 "Autogenerated input type of authCheckLogin"
 input authCheckLoginInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    "Login email or mobile"
-    login: String!
-    sendToken: Boolean
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  "Login email or mobile"
+  login: String!
+  sendToken: Boolean
 }
 
 "Autogenerated input type of authRegister"
 input authRegisterInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    firstName: String!
-    lastName: String!
-    login: String!
-    password: String!
-    token: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  firstName: String!
+  lastName: String!
+  login: String!
+  password: String!
+  token: String!
 }
 
 "Autogenerated input type of buildAssetRole"
 input buildAssetRoleInput {
-    "Asset id of vendor, or website"
-    assetId: ID!
-    "Asset type. Supp::Vendor, Supp::Website, Supp::Merchant"
-    assetType: String!
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    "roles"
-    roles: [String!]!
-    "First name"
-    vendorId: ID!
-    "Employee id. supp_vendor_users"
-    vendorUserId: ID!
+  "Asset id of vendor, or website"
+  assetId: ID!
+  "Asset type. Supp::Vendor, Supp::Website, Supp::Merchant"
+  assetType: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  "roles"
+  roles: [String!]!
+  "First name"
+  vendorId: ID!
+  "Employee id. supp_vendor_users"
+  vendorUserId: ID!
 }
 
 "Autogenerated input type of checkOrder"
 input checkOrderInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    invoiceId: String!
-    orderNumber: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  invoiceId: String!
+  orderNumber: String!
 }
 
 "Autogenerated input type of checkOtp"
 input checkOtpInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    "mobile"
-    login: String!
-    "confirmation token"
-    token: String!
-    unconfirmedMobile: Boolean
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  "mobile"
+  login: String!
+  "confirmation token"
+  token: String!
+  unconfirmedMobile: Boolean
 }
 
 "Autogenerated input type of createApplication"
 input createApplicationInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    confidential: Boolean!
-    name: String!
-    redirectUri: String!
-    scopes: String!
-    secret: String!
-    uid: String!
-    websiteId: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  confidential: Boolean!
+  name: String!
+  redirectUri: String!
+  scopes: String!
+  secret: String!
+  uid: String!
+  websiteId: String!
 }
 
 "Autogenerated input type of createAssetRole"
 input createAssetRoleInput {
-    "Asset id of vendor, or website"
-    assetId: ID!
-    "Asset type. Supp::Vendor, Supp::Website, Supp::Merchant"
-    assetType: String!
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    "roles"
-    roles: [String!]!
-    "First name"
-    vendorId: ID!
-    "Employee id. supp_vendor_users"
-    vendorUserId: ID!
+  "Asset id of vendor, or website"
+  assetId: ID!
+  "Asset type. Supp::Vendor, Supp::Website, Supp::Merchant"
+  assetType: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  "roles"
+  roles: [String!]!
+  "First name"
+  vendorId: ID!
+  "Employee id. supp_vendor_users"
+  vendorUserId: ID!
 }
 
 "Autogenerated input type of createBrand"
 input createBrandInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    code: String!
-    description: String
-    name: String!
-    verified: Boolean
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  code: String!
+  description: String
+  name: String!
+  verified: Boolean
 }
 
 "Autogenerated input type of createImage"
 input createImageInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    "Class ID"
-    id: ID!
-    "Image ID"
-    images: [Upload!]!
-    "Supp::Menu or Supp::Page"
-    type: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  "Class ID"
+  id: ID!
+  "Image ID"
+  images: [Upload!]!
+  "Supp::Menu or Supp::Page"
+  type: String!
 }
 
 "Autogenerated input type of createListing"
 input createListingInput {
-    approved: Boolean
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    productId: ID!
-    published: Boolean
-    slug: String
-    websiteId: ID!
+  approved: Boolean
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  productId: ID!
+  published: Boolean
+  slug: String
+  websiteId: ID!
 }
 
 "Autogenerated input type of createMenu"
 input createMenuInput {
-    childrenAttributes: [MenuChildrenInput!]
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    icon: String
-    link: String
-    parentId: ID
-    preferences: JSON
-    title: String
-    type: String
-    websiteId: ID!
+  childrenAttributes: [MenuChildrenInput!]
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  icon: String
+  link: String
+  parentId: ID
+  preferences: JSON
+  title: String
+  type: String
+  websiteId: ID!
 }
 
 "Autogenerated input type of createMerchant"
 input createMerchantInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    vendorId: ID!
-    websiteId: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  vendorId: ID!
+  websiteId: ID!
 }
 
 "Autogenerated input type of createOptionType"
 input createOptionTypeInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    name: String!
-    position: Int
-    presentation: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  name: String!
+  position: Int
+  presentation: String!
 }
 
 "Autogenerated input type of createOptionValue"
 input createOptionValueInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    code: String
-    name: String!
-    optionTypeId: ID!
-    position: Int
-    presentation: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  code: String
+  name: String!
+  optionTypeId: ID!
+  position: Int
+  presentation: String!
 }
 
 "Autogenerated input type of createPage"
 input createPageInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    items: [JSON!]
-    metaData: JSON
-    preferences: JSON
-    slug: String
-    title: String
-    websiteId: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  items: [JSON!]
+  metaData: JSON
+  preferences: JSON
+  slug: String
+  title: String
+  websiteId: ID!
 }
 
 "Autogenerated input type of createPaymentMethod"
 input createPaymentMethodInput {
-    active: Boolean
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    description: String
-    name: String!
-    preferences: JSON
-    testMode: Boolean
-    "Supp::PaymentMethod::QPay::VirasoftPay"
-    type: String!
-    websiteId: ID!
+  active: Boolean
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  description: String
+  name: String!
+  preferences: JSON
+  testMode: Boolean
+  "Supp::PaymentMethod::QPay::VirasoftPay"
+  type: String!
+  websiteId: ID!
 }
 
 "Autogenerated input type of createProduct"
 input createProductInput {
-    approved: Boolean
-    brandId: ID
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    condition: String!
-    data: JSON
-    description: String
-    info: JSON
-    name: String!
-    price: Float!
-    productCat: String
-    published: Boolean
-    sku: String!
-    slug: String!
-    title: String!
-    vendorId: ID!
+  approved: Boolean
+  brandId: ID
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  condition: String!
+  data: JSON
+  description: String
+  info: JSON
+  name: String!
+  price: Float!
+  productCat: String
+  published: Boolean
+  sku: String!
+  slug: String!
+  title: String!
+  vendorId: ID!
 }
 
 "Autogenerated input type of createUserAddress"
 input createUserAddressInput {
-    addressAttributes: AddressInput!
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    userId: ID
+  addressAttributes: AddressInput!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  userId: ID
 }
 
 "Autogenerated input type of createUser"
 input createUserInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    email: String
-    firstName: String!
-    gender: String
-    lastName: String
-    mobile: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  email: String
+  firstName: String!
+  gender: String
+  lastName: String
+  mobile: String!
 }
 
 "Autogenerated input type of createVariant"
 input createVariantInput {
-    barcode: String
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    depth: Float
-    description: String
-    height: Float
-    images: [Upload!]
-    isMaster: Boolean
-    merchantSku: String
-    netWeight: Float
-    optionValues: [ID!]!
-    position: Int
-    price: Float!
-    productId: ID!
-    sku: String!
-    weight: Float
-    width: Float
+  barcode: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  depth: Float
+  description: String
+  height: Float
+  images: [Upload!]
+  isMaster: Boolean
+  merchantSku: String
+  netWeight: Float
+  optionValues: [ID!]!
+  position: Int
+  price: Float!
+  productId: ID!
+  sku: String!
+  weight: Float
+  width: Float
 }
 
 "Autogenerated input type of createVendor"
 input createVendorInput {
-    address: String
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    code: String!
-    email: String
-    name: String!
-    phone: String
-    registerNum: String
-    website: String
+  address: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  code: String!
+  email: String
+  name: String!
+  phone: String
+  registerNum: String
+  website: String
 }
 
 "Autogenerated input type of createVendorUser"
 input createVendorUserInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    email: String
-    firstName: String
-    lastName: String
-    mobile: String
-    role: VendorUserRole!
-    status: Int
-    userId: ID!
-    vendorId: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  email: String
+  firstName: String
+  lastName: String
+  mobile: String
+  role: VendorUserRole!
+  status: Int
+  userId: ID!
+  vendorId: ID!
 }
 
 "Autogenerated input type of createWebsite"
 input createWebsiteInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    domain: String!
-    index: String!
-    name: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  domain: String!
+  index: String!
+  name: String!
 }
 
 "Autogenerated input type of destroyApplication"
 input destroyApplicationInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyAssetRole"
 input destroyAssetRoleInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyBrand"
 input destroyBrandInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyImage"
 input destroyImageInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    "Menu ID"
-    id: ID!
-    "Image ID"
-    imageId: ID!
-    "Supp::Menu or Supp::Page"
-    type: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  "Menu ID"
+  id: ID!
+  "Image ID"
+  imageId: ID!
+  "Supp::Menu or Supp::Page"
+  type: String!
 }
 
 "Autogenerated input type of destroyListing"
 input destroyListingInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyMenu"
 input destroyMenuInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyMerchant"
 input destroyMerchantInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyOptionType"
 input destroyOptionTypeInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyOptionValue"
 input destroyOptionValueInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyPage"
 input destroyPageInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyPaymentMethod"
 input destroyPaymentMethodInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyProduct"
 input destroyProductInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyUserAddress"
 input destroyUserAddressInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyVariant"
 input destroyVariantInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyVendor"
 input destroyVendorInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyVendorUser"
 input destroyVendorUserInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of destroyWebsite"
 input destroyWebsiteInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of emptyItem"
 input emptyItemInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    number: String
-    token: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  number: String
+  token: String
 }
 
 "Autogenerated input type of paymentCheckout"
 input paymentCheckoutInput {
-    action: PaymentMethodEnum!
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    number: String!
+  action: PaymentMethodEnum!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  number: String!
 }
 
 "Autogenerated input type of quickBuy"
 input quickBuyInput {
-    action: PaymentMethodEnum!
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    items: [CartItemInput!]!
-    shipAddressAttributes: AddressInput
-    shipAddressId: ID
+  action: PaymentMethodEnum!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  items: [CartItemInput!]!
+  shipAddressAttributes: AddressInput
+  shipAddressId: ID
 }
 
 "Autogenerated input type of removeImageVariant"
 input removeImageVariantInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
-    variantId: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
+  variantId: ID!
 }
 
 "Autogenerated input type of removeItem"
 input removeItemInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
 }
 
 "Autogenerated input type of resetPassword"
 input resetPasswordInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    login: ID!
-    password: String!
-    token: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  login: ID!
+  password: String!
+  token: String!
 }
 
 "Autogenerated input type of sendOtp"
 input sendOtpInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    "User ID"
-    id: ID
-    "Mobile or email"
-    login: String!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  "User ID"
+  id: ID
+  "Mobile or email"
+  login: String!
 }
 
 "Autogenerated input type of updateApplication"
 input updateApplicationInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    confidential: Boolean
-    id: ID!
-    name: String
-    redirectUri: String
-    scopes: String
-    secret: String
-    uid: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  confidential: Boolean
+  id: ID!
+  name: String
+  redirectUri: String
+  scopes: String
+  secret: String
+  uid: String
 }
 
 "Autogenerated input type of updateAssetRole"
 input updateAssetRoleInput {
-    "Asset id"
-    assetId: ID
-    "Asset type. Supp::Vendor, Supp::Website, Supp::Merchant"
-    assetType: String
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
-    "roles"
-    roles: [String!]
-    "First name"
-    vendorId: ID
-    "Employee id. supp_vendor_users"
-    vendorUserId: ID
+  "Asset id"
+  assetId: ID
+  "Asset type. Supp::Vendor, Supp::Website, Supp::Merchant"
+  assetType: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
+  "roles"
+  roles: [String!]
+  "First name"
+  vendorId: ID
+  "Employee id. supp_vendor_users"
+  vendorUserId: ID
 }
 
 "Autogenerated input type of updateBrand"
 input updateBrandInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    code: String
-    description: String
-    id: ID!
-    name: String
-    verified: Boolean
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  code: String
+  description: String
+  id: ID!
+  name: String
+  verified: Boolean
 }
 
 "Autogenerated input type of updateCheckoutAddress"
 input updateCheckoutAddressInput {
-    billAddressAttributes: AddressInput
-    billAddressId: ID
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    number: String!
-    shipAddressAttributes: AddressInput
-    shipAddressId: ID
+  billAddressAttributes: AddressInput
+  billAddressId: ID
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  number: String!
+  shipAddressAttributes: AddressInput
+  shipAddressId: ID
 }
 
 "Autogenerated input type of updateItem"
 input updateItemInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
-    quantity: Int!
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
+  quantity: Int!
 }
 
 "Autogenerated input type of updateListing"
 input updateListingInput {
-    approved: Boolean
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
-    productId: ID
-    published: Boolean
-    slug: String
-    websiteId: ID
+  approved: Boolean
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
+  productId: ID
+  published: Boolean
+  slug: String
+  websiteId: ID
 }
 
 "Autogenerated input type of updateMenu"
 input updateMenuInput {
-    childrenAttributes: [MenuChildrenInput!]
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    icon: String
-    id: ID!
-    link: String
-    parentId: ID
-    preferences: JSON
-    title: String
-    type: String
+  childrenAttributes: [MenuChildrenInput!]
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  icon: String
+  id: ID!
+  link: String
+  parentId: ID
+  preferences: JSON
+  title: String
+  type: String
 }
 
 "Autogenerated input type of updateMerchant"
 input updateMerchantInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
-    vendorId: ID
-    websiteId: ID
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
+  vendorId: ID
+  websiteId: ID
 }
 
 "Autogenerated input type of updateOptionType"
 input updateOptionTypeInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
-    name: String
-    position: Int
-    presentation: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
+  name: String
+  position: Int
+  presentation: String
 }
 
 "Autogenerated input type of updateOptionValue"
 input updateOptionValueInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    code: String
-    id: ID!
-    name: String
-    optionTypeId: ID
-    position: Int
-    presentation: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  code: String
+  id: ID!
+  name: String
+  optionTypeId: ID
+  position: Int
+  presentation: String
 }
 
 "Autogenerated input type of updatePage"
 input updatePageInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
-    items: [JSON!]
-    metaData: JSON
-    preferences: JSON
-    slug: String
-    title: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
+  items: [JSON!]
+  metaData: JSON
+  preferences: JSON
+  slug: String
+  title: String
 }
 
 "Autogenerated input type of updatePaymentMethod"
 input updatePaymentMethodInput {
-    active: Boolean
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    description: String
-    id: ID!
-    name: String
-    preferences: JSON
-    testMode: Boolean
-    "Supp::PaymentMethod::QPay::VirasoftPay"
-    type: String
+  active: Boolean
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  description: String
+  id: ID!
+  name: String
+  preferences: JSON
+  testMode: Boolean
+  "Supp::PaymentMethod::QPay::VirasoftPay"
+  type: String
 }
 
 "Autogenerated input type of updateProduct"
 input updateProductInput {
-    approved: Boolean
-    brandId: ID
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    condition: String
-    data: JSON
-    description: String
-    id: ID!
-    info: JSON
-    name: String
-    productCat: String
-    published: Boolean
-    slug: String
-    title: String
-    vendorId: ID
+  approved: Boolean
+  brandId: ID
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  condition: String
+  data: JSON
+  description: String
+  id: ID!
+  info: JSON
+  name: String
+  productCat: String
+  published: Boolean
+  slug: String
+  title: String
+  vendorId: ID
 }
 
 "Autogenerated input type of updateUserAddress"
 input updateUserAddressInput {
-    addressAttributes: AddressInput
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    id: ID!
-    name: String
+  addressAttributes: AddressInput
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  id: ID!
+  name: String
 }
 
 "Autogenerated input type of updateVariant"
 input updateVariantInput {
-    barcode: String
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    depth: Float
-    description: String
-    height: Float
-    id: ID!
-    isMaster: Boolean
-    merchantSku: String
-    netWeight: Float
-    optionValues: [ID!]
-    position: Int
-    price: Float
-    productId: ID
-    sku: String
-    weight: Float
-    width: Float
+  barcode: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  depth: Float
+  description: String
+  height: Float
+  id: ID!
+  isMaster: Boolean
+  merchantSku: String
+  netWeight: Float
+  optionValues: [ID!]
+  position: Int
+  price: Float
+  productId: ID
+  sku: String
+  weight: Float
+  width: Float
 }
 
 "Autogenerated input type of updateVendor"
 input updateVendorInput {
-    address: String
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    code: String
-    email: String
-    id: ID!
-    name: String
-    phone: String
-    registerNum: String
-    website: String
+  address: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  code: String
+  email: String
+  id: ID!
+  name: String
+  phone: String
+  registerNum: String
+  website: String
 }
 
 "Autogenerated input type of updateVendorUser"
 input updateVendorUserInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    email: String
-    firstName: String
-    id: ID!
-    lastName: String
-    mobile: String
-    role: VendorUserRole
-    status: Int
-    userId: ID
-    vendorId: ID
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  email: String
+  firstName: String
+  id: ID!
+  lastName: String
+  mobile: String
+  role: VendorUserRole
+  status: Int
+  userId: ID
+  vendorId: ID
 }
 
 "Autogenerated input type of updateWebsite"
 input updateWebsiteInput {
-    "A unique identifier for the client performing the mutation."
-    clientMutationId: String
-    code: String
-    domain: String
-    id: ID!
-    name: String
+  "A unique identifier for the client performing the mutation."
+  clientMutationId: String
+  code: String
+  domain: String
+  id: ID!
+  name: String
 }

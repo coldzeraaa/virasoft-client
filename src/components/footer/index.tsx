@@ -17,6 +17,7 @@ export function Footer() {
   const { data: userData } = useMeQuery();
 
   if (loading) <Loader />;
+
   return (
     <>
       <footer className="fixed bottom-0 top-[100vh] hidden w-full bg-base-300 text-neutral md:block">

@@ -6,7 +6,7 @@ export const LIGHT_COLORS = {
   secondary: '#C09049', // golden
   'secondary-content': '#FFFFFF',
   accent: '#D88100', // bright orange
-  'accent-content': '#FFFFFF',
+  'accent-content': '#000000',
   neutral: '#272727', // muted dark grey
   'neutral-content': '#FFFFFF',
   'base-100': '#FBFAEE', // off-white beige
