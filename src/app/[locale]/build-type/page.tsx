@@ -12,12 +12,12 @@ export default async function BuildTypePage() {
     variables: { filter: { parent: { title: { eq: 'build' } } } },
   });
 
-  if (error || !data?.allMenus) return <ErrorResult message={error?.message || 'No menu'} />;
-  if (data.allMenus.nodes.length === 0) return <ErrorResult message="No data" />;
+  if (error || !data?.currentWebsite?.menus) return <ErrorResult message={error?.message || 'No menu'} />;
+  if (data.currentWebsite.menus.nodes.length === 0) return <ErrorResult message="No data" />;
 
   return (
     <div className="mx-auto flex h-full flex-wrap items-center justify-center gap-4">
-      {data.allMenus.nodes.map((menu, idx) => (
+      {data.currentWebsite.menus.nodes.map((menu, idx) => (
         <ImageCard
           key={idx}
           imageUrl={imageUrlHelper(menu.images?.[0])}

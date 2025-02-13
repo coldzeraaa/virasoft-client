@@ -21,7 +21,7 @@ async function Menu({ type }: { type: string }) {
     variables: { filter: { parent: { icon: { eq: type } } } },
   });
 
-  if (!data?.allMenus || error) return <ErrorResult message={error?.message || 'No menu'} />;
+  if (!data?.currentWebsite?.menus || error) return <ErrorResult message={error?.message || 'No menu'} />;
 
   return (
     <>
@@ -36,7 +36,7 @@ async function Menu({ type }: { type: string }) {
         </ButtonPersistSearchParams>
       </div>
       <ul>
-        {data.allMenus.nodes.map((menu, idx) => (
+        {data.currentWebsite.menus.nodes.map((menu, idx) => (
           <li key={idx}>
             <ButtonPersistSearchParams
               className="flex items-center gap-4 rounded p-2 transition hover:shadow-2xl"

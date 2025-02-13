@@ -1,22 +1,25 @@
 query allMenus($filter: MenuFilter) {
-  allMenus(filter: $filter) {
-    nodes {
-      id
-      title
-      link
-      images
-      icon
-      children {
+  currentWebsite {
+    id
+    menus(filter: $filter) {
+      nodes {
         id
         title
         link
         images
         icon
         children {
-          images
+          id
           title
           link
+          images
           icon
+          children {
+            images
+            title
+            link
+            icon
+          }
         }
       }
     }

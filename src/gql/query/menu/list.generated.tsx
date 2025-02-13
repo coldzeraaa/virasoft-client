@@ -8,29 +8,32 @@ export type AllMenusQueryVariables = Types.Exact<{
 }>;
 
 
-export type AllMenusQuery = { __typename?: 'Query', allMenus: { __typename?: 'MenuConnection', nodes: Array<{ __typename?: 'Menu', id: string, title: string, link: string, images?: Array<string> | null, icon?: string | null, children?: Array<{ __typename?: 'Menu', id: string, title: string, link: string, images?: Array<string> | null, icon?: string | null, children?: Array<{ __typename?: 'Menu', images?: Array<string> | null, title: string, link: string, icon?: string | null }> | null }> | null }> } };
+export type AllMenusQuery = { __typename?: 'Query', currentWebsite?: { __typename?: 'Website', id: string, menus: { __typename?: 'MenuConnection', nodes: Array<{ __typename?: 'Menu', id: string, title: string, link: string, images?: Array<string> | null, icon?: string | null, children?: Array<{ __typename?: 'Menu', id: string, title: string, link: string, images?: Array<string> | null, icon?: string | null, children?: Array<{ __typename?: 'Menu', images?: Array<string> | null, title: string, link: string, icon?: string | null }> | null }> | null }> } } | null };
 
 
 export const AllMenusDocument = gql`
     query allMenus($filter: MenuFilter) {
-  allMenus(filter: $filter) {
-    nodes {
-      id
-      title
-      link
-      images
-      icon
-      children {
+  currentWebsite {
+    id
+    menus(filter: $filter) {
+      nodes {
         id
         title
         link
         images
         icon
         children {
-          images
+          id
           title
           link
+          images
           icon
+          children {
+            images
+            title
+            link
+            icon
+          }
         }
       }
     }
