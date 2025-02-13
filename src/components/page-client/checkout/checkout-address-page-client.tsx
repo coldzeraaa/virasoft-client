@@ -37,7 +37,7 @@ export function CheckoutAddressPageClient() {
   }, [data?.me?.userAddresses.nodes.length]);
 
   if (loading) return <div className="skeleton min-h-96 bg-base-300" />;
-  if (error || !data?.me) return <ErrorResult message={error?.message || 'User is undefined'} />;
+  if (error || !data?.me) return <ErrorResult message={error?.message || 'Нэвтэрнэ үү'} />;
 
   return (
     <>

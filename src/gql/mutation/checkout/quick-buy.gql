@@ -1,0 +1,5 @@
+mutation quickBuy($input: quickBuyInput!) {
+  quickBuy(input: $input) {
+    ...CurrentOrderFields
+  }
+}
