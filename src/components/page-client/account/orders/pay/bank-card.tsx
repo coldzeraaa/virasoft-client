@@ -4,7 +4,6 @@ import { useRef } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 export function PaymentCard({
   bankList,
@@ -16,7 +15,6 @@ export function PaymentCard({
   qrCode: string;
 }) {
   const modalRef = useRef<HTMLDialogElement>(null);
-  const router = useRouter();
 
   return (
     <button
@@ -53,14 +51,7 @@ export function PaymentCard({
           </Link>
           <div className="modal-action">
             <form method="dialog">
-              <button
-                onClick={() => {
-                  router.push(`/account/orders/${orderNumber}`);
-                }}
-                className="btn"
-              >
-                Close
-              </button>
+              <Link href={`/account/orders/${orderNumber}`}>Close</Link>
             </form>
           </div>
         </div>
