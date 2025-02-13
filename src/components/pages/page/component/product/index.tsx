@@ -5,7 +5,7 @@ export async function ProductComponent({ list }: ProductComponentProps) {
   const hits = await elService({
     slugs: list.split(',').reduce((acc: string[], cur) => {
       const trimmed = cur.trim();
-      if (trimmed.length > 0) return [...acc, trimmed.startsWith('/') ? trimmed : `/${trimmed}`];
+      if (trimmed.length > 0) return [...acc, trimmed];
       return acc;
     }, []),
   });
