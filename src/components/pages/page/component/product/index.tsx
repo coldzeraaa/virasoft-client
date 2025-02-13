@@ -9,8 +9,6 @@ export async function ProductComponent({ list }: ProductComponentProps) {
       return acc;
     }, []),
   });
-  console.log({ hits });
-  console.log({ list });
 
   return (
     <ul className="grid grid-cols-4 gap-4">
