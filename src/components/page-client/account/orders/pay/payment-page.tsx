@@ -1,9 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-import { CloseIcon } from 'next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon';
-import { useRouter } from 'next/navigation';
-
 import { BankListType, PaymentCard } from './bank-card';
 
 import { ErrorResult } from '@/components/result/error-result';
@@ -16,7 +13,7 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
   const { data, loading, error } = useMyOrderQuery({ variables: { number: params.number } });
   const payments = data?.myOrder?.payments || [];
   const [payment] = payments;
-  const router = useRouter();
+  // const router = useRouter();
 
   useEffect(() => {
     if (payment?.source?.qr_code) generateQCodeHelper(payment.source.qr_code).then(setQrCode);
@@ -26,17 +23,13 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
   if (error) return <ErrorResult message={error.message} />;
 
   return (
-    <div>
+    <>
       <h2 className="mb-4 text-2xl font-bold text-gray-800">Төлбөрийн төрөл</h2>
       <div className="flex flex-wrap gap-6">
         {data?.myOrder?.payments[0]?.source?.bank_list?.map((element: BankListType, idx: number) => (
           <PaymentCard key={idx} qrCode={qrCode} orderNumber={data.myOrder?.number} bankList={element} />
         ))}
       </div>
-      <button type="button" onClick={router.back} className="btn btn-primary btn-lg float-end mt-4">
-        Хаах
-        <CloseIcon />
-      </button>
-    </div>
+    </>
   );
 }
