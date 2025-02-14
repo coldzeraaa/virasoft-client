@@ -24,9 +24,9 @@ export function ProductSingle({ vendor, name, price, slug, images, is_sale, sell
         )}
 
         <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <button className="rounded-full bg-white/90 px-6 py-2 text-sm font-medium text-primary shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white">
-            сагслах
-          </button>
+          <div className="rounded-sm bg-white/90 px-6 py-2 text-sm font-medium text-primary shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white">
+            Дэлгэрэнгүй
+          </div>
         </div>
       </div>
       <div className="mt-2 h-1/6">
