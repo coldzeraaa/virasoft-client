@@ -13,7 +13,7 @@ export function Footer() {
   if (loading) <p>test</p>;
 
   return (
-    <footer className="mt-16 w-full border-t bg-primary-content p-6 text-accent-content/80 lg:pb-6 lg:pt-16">
+    <footer className="sticky bottom-0 top-[100vh] mt-16 w-full border-t bg-primary-content p-6 text-accent-content/80 lg:pb-6 lg:pt-16">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-20">
         <div className="flex items-center justify-center">
           <Image
@@ -24,7 +24,7 @@ export function Footer() {
           ></Image>
         </div>
         <div className="grid flex-grow grid-cols-[0.3fr_0.3fr_0.4fr]">
-          {data?.currentWebsite?.menus?.nodes[1]?.children?.map((menuTitle, idx) => (
+          {data?.currentWebsite?.menus?.nodes[0]?.children?.map((menuTitle, idx) => (
             <div key={idx} className="flex flex-col gap-4">
               <h5 className="text-base font-medium text-primary">{menuTitle.title}</h5>
               {menuTitle.title === 'Мэдээлэл авах' ? (
@@ -49,9 +49,9 @@ export function Footer() {
               ) : (
                 <div className="flex flex-col gap-4">
                   {menuTitle.children?.map((item, itemIdx) => (
-                    <p className="text-xs font-medium" key={itemIdx}>
+                    <Link href={item.link} className="text-xs font-medium hover:cursor-pointer" key={itemIdx}>
                       {item.title}
-                    </p>
+                    </Link>
                   ))}
                 </div>
               )}
