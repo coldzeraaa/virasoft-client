@@ -4,9 +4,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+  
 input::placeholder, textarea::placeholder {
-    opacity: 0.2;
+    opacity: 0.7;
 }
 
 /* Hide number input spinners */
@@ -20,6 +20,6 @@ input[type="number"] {
     -moz-appearance: textfield; /* Hide spinner in Firefox */
 }
 
-.inter {
-    font-family: var(--font-inter);
-  }
+.montserrat {
+    font-family: var(--font-montserrat) !important;
+}
