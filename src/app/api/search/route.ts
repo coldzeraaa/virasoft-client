@@ -23,7 +23,7 @@ const client = Client(
         expensive: { field: 'price', order: 'desc' },
         sale: { field: 'sale_percent', order: 'desc' },
       },
-      result_attributes: ['id', 'name', 'title', 'slug', 'price', 'images', 'pid'],
+      result_attributes: ['id', 'name', 'title', 'slug', 'price', 'images', 'pid', 'vendor'],
       facet_attributes: [
         { attribute: 'brand', field: 'brand.name.keyword', type: 'string' },
         { attribute: 'vendor', field: 'vendor.name.keyword', type: 'string' },

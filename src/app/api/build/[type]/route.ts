@@ -47,8 +47,7 @@ const client = Client(
 );
 
 export async function POST(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const type = searchParams.get('type');
+  const type = request.url.split('/').pop();
   const json = await request.json();
 
   const results = await client.handleRequest(json, {

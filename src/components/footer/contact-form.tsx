@@ -30,10 +30,11 @@ export function ContactForm() {
           className="input input-bordered h-full w-full resize-none border-l-0 border-r-0 border-t-0 bg-transparent placeholder-base-content focus:outline-0"
         />
       </Field>
-      <button type="submit" className="btn btn-primary w-fit text-info-content">
-        {' '}
-        ИЛГЭЭХ
-      </button>
+      <div className="flex items-center justify-end">
+        <button type="submit" className="btn btn-primary  w-fit text-info-content">
+          ИЛГЭЭХ
+        </button>
+      </div>
     </Form>
   );
 }
