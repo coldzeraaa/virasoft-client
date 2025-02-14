@@ -1,10 +1,13 @@
 'use client';
 
+import { useState } from 'react';
+
 import { ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
+import { BtnUpdateQuantity } from '@/components/pages/slug/btn-update-quantity';
 import { PaymentMethodEnum } from '@/gql/graphql.d';
 import { useQuickBuyMutation } from '@/gql/mutation/checkout/quick-buy.generated';
 import { useMeQuery } from '@/gql/query/user/me.generated';
@@ -33,7 +36,7 @@ export function PaymentInfo() {
   return <Payment />;
 }
 
-function BtnPurchase() {
+function BtnPurchase({ quantity }: { quantity: number }) {
   const { hits } = useBuildType();
   const router = useRouter();
   const [quickBuy, { loading }] = useQuickBuyMutation({
@@ -55,7 +58,7 @@ function BtnPurchase() {
           variables: {
             input: {
               action: PaymentMethodEnum.VirasoftPay,
-              items: hits.map(({ sku }) => ({ sku, quantity: 1 })),
+              items: hits.map(({ sku }) => ({ sku, quantity: quantity || 1 })),
             },
           },
         })
@@ -69,6 +72,7 @@ function BtnPurchase() {
 
 function Payment() {
   const { hits, loading } = useBuildType();
+  const [quantity, setQuantity] = useState(1);
 
   if (loading) return <div className="skeleton h-20 w-full rounded-lg" />;
 
@@ -83,14 +87,17 @@ function Payment() {
             </p>
           </li>
         ))}
+        <li className="mb-4 mt-2 border-t pt-2 font-semibold">
+          <BtnUpdateQuantity quantity={quantity} setQuantity={setQuantity} />
+        </li>
         <li>
-          <p className="mt-2 flex justify-between border-t pt-2 font-semibold">
+          <p className="flex justify-between font-semibold">
             <span>НИЙТ</span>
-            <span>{moneyFormatHelper(hits.reduce((acc: number, cur) => acc + (cur.price || 0), 0))}</span>
+            <span>{moneyFormatHelper((quantity || 1) * hits.reduce((acc: number, cur) => acc + (cur.price || 0), 0))}</span>
           </p>
         </li>
       </ul>
-      <BtnPurchase />
+      <BtnPurchase quantity={quantity} />
     </>
   );
 }
