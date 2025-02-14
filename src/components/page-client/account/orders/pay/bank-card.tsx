@@ -4,34 +4,24 @@ import { useRef } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-export function PaymentCard({
-  bankList,
-  orderNumber,
-  qrCode,
-}: {
-  bankList: BankListType;
-  orderNumber: string | undefined;
-  qrCode: string;
-}) {
+export function PaymentCard({ bankList, qrCode }: { bankList: BankListType; orderNumber: string | undefined; qrCode: string }) {
+  const router = useRouter();
   const modalRef = useRef<HTMLDialogElement>(null);
 
   return (
-    <button
-      type="button"
-      onClick={() => {
-        modalRef.current?.showModal();
-      }}
-      className="flex  w-full items-center justify-between  gap-3  rounded-xl border border-solid border-gray-200 px-2 py-2 hover:shadow-lg"
-    >
-      <div className="flex items-center gap-2">
-        <div className="flex h-10 w-10 items-center justify-center">
-          <Image priority width={800} height={800} src={`${bankList.logo}`} alt="" />
-        </div>
-        <div className="flex flex-col">
-          <div>{bankList?.name ?? <p className=" text-ls font-medium">{bankList?.name}</p>}</div>
-          <div>{bankList?.description ?? <p className="text-sm text-gray-400">{bankList?.description}</p>}</div>
-        </div>
+    <button type="button" onClick={() => modalRef.current?.showModal()} className="min-w-20 flex-1">
+      <div className="">
+        <Image
+          className="mx-auto mb-2 aspect-square w-20 rounded-lg object-contain"
+          priority
+          width={800}
+          height={800}
+          src={`${bankList.logo}`}
+          alt=""
+        />
+        <p className="text-sm font-medium">{bankList?.name}</p>
       </div>
 
       <dialog ref={modalRef} className="modal">
@@ -50,9 +40,9 @@ export function PaymentCard({
             Апп нээх
           </Link>
           <div className="modal-action">
-            <form method="dialog">
-              <Link href={`/account/orders/${orderNumber}`}>Close</Link>
-            </form>
+            <button type="button" onClick={router.back}>
+              Close
+            </button>
           </div>
         </div>
       </dialog>
