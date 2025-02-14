@@ -9,7 +9,7 @@ import { ProductSingle } from '@/components/single/product-single';
 import type { HitType } from '@/types/hit-type';
 
 export function BaseHits() {
-  const { hits, results } = useHits<HitType & Record<string, unknown>>();
+  const { hits, results } = useHits<HitType>();
 
   return (
     <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
@@ -18,7 +18,7 @@ export function BaseHits() {
   );
 }
 
-function Loader({ hits, dfl }: { hits: Array<HitType & Record<string, unknown>>; dfl: number }) {
+function Loader({ hits, dfl }: { hits: Array<HitType>; dfl: number }) {
   const { status } = useInstantSearch();
 
   if (status === 'stalled' || (dfl === 0 && hits.length === 0))
