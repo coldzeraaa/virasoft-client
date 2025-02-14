@@ -11,10 +11,13 @@ import phone from '../icons/phone.png';
 import bsent from '@/components/icons/bsent-logo-white.png';
 import { useAllMenusQuery } from '@/gql/query/menu/list.generated';
 import { useMeQuery } from '@/gql/query/user/me.generated';
+import { useAuth } from '@/lib/context/auth-context';
+import { useCurrentOrder } from '@/lib/context/current-order-context';
 export function Header() {
   const { data } = useAllMenusQuery({ variables: { filter: { title: { in: ['header', 'footer'] } } } });
+  const { order, loading: orderLoading } = useCurrentOrder();
   const { data: meData } = useMeQuery();
-
+  const { logout } = useAuth();
   return (
     <header className="mb-20 w-full shadow-md">
       <div className="h-12 bg-primary-content">
@@ -23,7 +26,7 @@ export function Header() {
             <Image src={phone} alt="Утсаар залгах" />
             +976 7000 0000
           </Link>
-          <Link href="/mailto://info@bsent.mn" className="flex gap-2 hover:cursor-pointer">
+          <Link href="mailto://info@bsent.mn" className="flex gap-2 hover:cursor-pointer">
             <Image src={mail} alt="И-мэйл хаяг" />
             info@bsent.mn
           </Link>
@@ -47,9 +50,15 @@ export function Header() {
                 ))}
             </ul>
             <div className="flex justify-end gap-2">
-              <div className="h-fit w-fit rounded-full bg-primary-content p-2">
+              <Link href="/checkout" className="relative h-fit w-fit rounded-full bg-primary-content p-2">
+                {order?.itemCount !== undefined && order?.itemCount !== 0 && (
+                  <div className="badge badge-secondary badge-xs absolute right-0 top-0 py-2">
+                    {order?.itemCount}
+                    {orderLoading && <div className="loading loading-ring w-3"></div>}
+                  </div>
+                )}
                 <ShoppingBasket className="h-5 w-5 stroke-primary stroke-2" />
-              </div>
+              </Link>
               <div className="dropdown dropdown-end dropdown-hover">
                 <div tabIndex={0} role="button" className="h-fit w-fit rounded-full bg-primary-content p-2">
                   {meData?.me?.id ? (
@@ -66,37 +75,29 @@ export function Header() {
                         {menuItem.children
                           ?.filter((subMenu) => (meData?.me?.id ? true : !['Миний самбар', 'Гарах'].includes(subMenu.title)))
                           .map((subMenu, subMenuIdx) => (
-                            <Link
-                              key={subMenuIdx}
-                              href={subMenu.title === 'Нэвтрэх' ? (meData?.me?.id ? '/account' : 'auth/login') : subMenu.link}
-                            >
-                              {subMenu.title === 'Нэвтрэх' ? (meData?.me?.id ? 'Миний самбар' : 'Нэвтрэх') : subMenu.title}
+                            <Link key={subMenuIdx} href={subMenu.link}>
+                              {subMenu.title}
                             </Link>
                           ))}
+                        {!meData?.me?.id ? (
+                          <Link key="login" href="/auth/login">
+                            Нэвтрэх
+                          </Link>
+                        ) : (
+                          <>
+                            <Link key="dashboard" href="/account">
+                              Миний самбар
+                            </Link>
+                            <button key="logout" type="button" onClick={logout}>
+                              Гарах
+                            </button>
+                          </>
+                        )}
                       </li>
                     ))}
                 </ul>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </header>
-  );
-}
-function Loader() {
-  return (
-    <header className="sticky z-40 w-full bg-primary shadow-md">
-      <div className="container mx-auto max-w-7xl">
-        <div className="grid h-16 grid-cols-[1fr_auto] items-center sm:grid-cols-[0.3fr_1.4fr_0.3fr]">
-          <div className="skeleton h-1/2 w-1/5 sm:w-3/5"></div>
-          <div className="hidden h-full w-full grid-cols-3 place-items-center sm:grid">
-            {Array.from({ length: 3 }).map((_, idx) => (
-              <div key={idx} className="skeleton h-1/2 w-3/5"></div>
-            ))}
-          </div>
-          <div className="flex w-full justify-end">
-            <div className="skeleton h-8 w-8" />
           </div>
         </div>
       </div>

@@ -6,14 +6,12 @@ import Link from 'next/link';
 import { useAllMenusQuery } from '@/gql/query/menu/list.generated';
 
 export function Footer() {
-  // const [activeTab, setActiveTab] = useState('home');
   const { data, loading } = useAllMenusQuery({ variables: { filter: { title: { in: ['header', 'footer'] } } } });
-  // const { data: userData } = useMeQuery();
 
   if (loading) <p>test</p>;
 
   return (
-    <footer className="sticky bottom-0 top-[100vh] mt-16 w-full border-t bg-primary-content p-6 text-accent-content/80 lg:pb-6 lg:pt-16">
+    <footer className="sticky bottom-0 top-[100vh] mt-20 w-full border-t bg-primary-content p-6 text-accent-content/80 lg:pb-6 lg:pt-16">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-20">
         <div className="flex items-center justify-center">
           <Image

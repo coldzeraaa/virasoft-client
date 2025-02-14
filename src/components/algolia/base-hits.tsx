@@ -12,7 +12,7 @@ export function BaseHits() {
   const { hits, results } = useHits<HitType>();
 
   return (
-    <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+    <ul className="grid grid-cols-2 gap-2 lg:grid-cols-3">
       <Loader hits={hits} dfl={results?.disjunctiveFacets?.length || 0} />
     </ul>
   );
@@ -38,7 +38,7 @@ function Loader({ hits, dfl }: { hits: Array<HitType>; dfl: number }) {
     );
 
   return hits.map((hit, idx) => (
-    <li key={idx}>
+    <li key={idx} className="h-full w-full">
       <ProductSingle {...hit} />
     </li>
   ));
