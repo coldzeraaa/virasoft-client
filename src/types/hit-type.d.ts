@@ -9,4 +9,8 @@ export interface HitType {
   is_sale?: boolean;
   selling_price?: number;
   position?: number;
+  vendor?: {
+    name?: string;
+    images?: string[];
+  };
 }
