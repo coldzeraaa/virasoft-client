@@ -21,7 +21,7 @@ export function Footer() {
   return (
     <>
       <footer className="fixed bottom-0 top-[100vh] hidden w-full bg-base-300 text-neutral md:block">
-        <div className="mx-auto w-full max-w-7xl p-6 lg:py-6">
+        <div className="mx-auto w-full p-6 lg:py-6">
           <div className="grid grid-cols-3 gap-8">
             {data?.allMenus.nodes[2]?.children?.map((item, idx) => (
               <div key={idx}>
@@ -80,7 +80,7 @@ function Loader() {
   return (
     <>
       <footer className="hidden w-full bg-base-100 md:block">
-        <div className="mx-auto max-w-7xl p-8">
+        <div className="mx-auto  p-8">
           <div className="grid grid-cols-3 gap-8">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i}>

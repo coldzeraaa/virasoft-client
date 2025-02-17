@@ -66,7 +66,7 @@ export function Header() {
 function Loader() {
   return (
     <header className="z-40 w-full bg-base-100 shadow-md">
-      <div className="container mx-auto max-w-7xl">
+      <div className="container mx-auto">
         <div className="flex h-16 items-center justify-between">
           <div className="skeleton h-8 w-8 rounded-full bg-base-300" />
           <div className="flex gap-4">

@@ -4,7 +4,7 @@ import { Droplet, Lightbulb, MapPin, ShieldCheck } from 'lucide-react';
 
 export function HomePageOurServiceSection() {
   return (
-    <div className="container mx-auto max-w-7xl space-y-4">
+    <div className="container mx-auto space-y-4">
       <h1 className="text-2xl">Манай үйлчилгээ</h1>
       <p>
         Бид үйлчлүүлэгчдийнхээ түлшний хангамжийг цаг алдалгүй тогтвортой хангах мөн өрсөлдөхүйц үнийн саналийг санал болгож түргэн шуурхай
