@@ -25,7 +25,7 @@ export function PaymentInfo() {
         <p className="mb-4">Худалдан авалт үргэлжлүүлэхийн тулд нэвтэрнэ үү</p>
         <Link
           className="btn btn-primary btn-block"
-          href={`/auth/login?from=${window.location.pathname.replace('/', '')}${window.location.search}`}
+          href={`/auth/login?from=${window.location.pathname.replace('/', '')}${encodeURIComponent(window.location.search)}`}
         >
           Нэвтрэх
           <ChevronRightIcon />

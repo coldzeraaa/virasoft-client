@@ -42,7 +42,7 @@ export function AuthLoginPageClient() {
                 await client.resetStore();
                 toast.success('Амжилттай нэвтэрлээ');
                 const from = searchParams.get('from');
-                window.location.href = from ? `/${from}` : '/';
+                window.location.href = from ? `/${decodeURIComponent(from)}` : '/';
               } else toast.error(data.message);
               setLoading(false);
             } else {
