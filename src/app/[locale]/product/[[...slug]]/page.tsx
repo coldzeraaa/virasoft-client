@@ -11,7 +11,7 @@ export default function ProductSlugPage({ params }: ProductSlugPageProps) {
 
   if (loading)
     return (
-      <div className="container my-6 grid h-full w-full max-w-7xl grid-cols-12 gap-14 xl:h-4/6">
+      <div className="container my-6 grid h-full w-full grid-cols-12 gap-14 xl:h-4/6">
         <div className="skeleton col-span-12 h-full md:col-span-8" />
         <div className="skeleton col-span-12 h-full md:col-span-4" />
       </div>
@@ -25,7 +25,7 @@ export default function ProductSlugPage({ params }: ProductSlugPageProps) {
           <meta itemProp="productID" content={data.product.id} />
           <meta itemProp="mpn" content={data.product.id} />
           <main className="container py-10">
-            <div aria-label="base info section" className="container mb-6 grid max-w-7xl gap-4 md:grid-cols-12 md:gap-8 xl:gap-14">
+            <div aria-label="base info section" className="container mb-6 grid gap-4 md:grid-cols-12 md:gap-8 xl:gap-14">
               <div aria-label="images, descriptions sections" className="grid gap-6 md:col-span-6 lg:col-span-7 xl:col-span-8">
                 <ImageSectionProduct images={data.product.master.images} alt={data.product.name} />
                 {data.product.description && (

@@ -13,7 +13,7 @@ export default function OrderReviewPageClient() {
   if (loading) return <div className="skeleton h-96 w-full" />;
 
   return (
-    <div className="container mx-auto max-w-7xl p-4">
+    <div className="container mx-auto p-4">
       <h1 className="mb-8 text-3xl font-bold">Захиалгын дэлгэрэнгүй мэдээлэл</h1>
 
       <div className="grid gap-8 lg:grid-cols-[2fr,1fr]">

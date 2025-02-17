@@ -16,7 +16,7 @@ export function HomePageProductSection() {
   }, []);
   //   return <ProductSingle />;
   return (
-    <div className="container flex max-w-7xl flex-wrap gap-4 py-3">
+    <div className="container flex flex-wrap gap-4 py-3">
       {data &&
         data?.map((product, idx) => (
           <div className="w-72" key={idx}>

@@ -18,10 +18,11 @@ export function Header() {
   const { order, loading: orderLoading } = useCurrentOrder();
   const { data: meData } = useMeQuery();
   const { logout } = useAuth();
+
   return (
     <header className="mb-20 w-full shadow-md">
       <div className="h-12 bg-primary-content">
-        <div className="container flex h-full w-full max-w-7xl items-center justify-end gap-4 bg-primary-content text-xs text-primary">
+        <div className="container flex h-full w-full items-center justify-end gap-4 bg-primary-content text-xs text-primary">
           <Link href="/tel:+97680234-566" className="flex gap-2 hover:cursor-pointer">
             <Image src={phone} alt="Утсаар залгах" />
             +976 7000 0000
@@ -36,12 +37,12 @@ export function Header() {
           </Link>
         </div>
         <div className="bg-primary">
-          <div className="container flex h-16 w-full max-w-7xl items-center justify-between gap-24">
+          <div className="container flex h-16 w-full items-center justify-between gap-24">
             <Link href="/" className="mr-3 flex flex-shrink-0 items-center">
               <Image className="h-8 w-auto" src={bsent} alt="Company Logo" width={32} height={42} priority />
             </Link>
             <ul className="flex w-full items-center justify-between text-sm text-primary-content">
-              {data?.currentWebsite?.menus.nodes[1].children
+              {data?.currentWebsite?.menus.nodes[1]?.children
                 ?.filter((menu) => menu.title != 'Дэлгэрэнгүй')
                 .map((menuTitle, idx) => (
                   <li key={idx}>
@@ -68,7 +69,7 @@ export function Header() {
                   )}
                 </div>
                 <ul tabIndex={0} className="menu dropdown-content z-[1] w-64 rounded-box bg-primary-content p-2 shadow">
-                  {data?.currentWebsite?.menus?.nodes[1].children
+                  {data?.currentWebsite?.menus?.nodes[1]?.children
                     ?.filter((menuTitle) => menuTitle.title === 'Дэлгэрэнгүй')
                     .map((menuItem, idx) => (
                       <li key={idx}>

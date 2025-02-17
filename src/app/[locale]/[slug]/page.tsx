@@ -1,4 +1,3 @@
-import { Footer } from '@/components/footer';
 import { DynamicComponent } from '@/components/pages/page/dynamic-component';
 
 export default async function SlugPage({ params: { slug, locale } }: SlugPageProps) {
@@ -7,7 +6,6 @@ export default async function SlugPage({ params: { slug, locale } }: SlugPagePro
       {/*eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
       {/*@ts-expect-error */}
       <DynamicComponent slug={`/${locale}/${slug}`} />
-      <Footer />
     </>
   );
 }

@@ -21,7 +21,7 @@ export default async function Page({
         slug={params.slug}
         referer={`${origin}/s${params.slug ? `/${params.slug.join('/')}` : ''}${searchParams ? `?${new URLSearchParams(searchParams)}` : ''}`}
       >
-        <div className="container max-w-7xl py-3">
+        <div className="container py-3">
           <div className="grid md:grid-cols-12 md:gap-8">
             <aside className="hidden h-fit divide-y overflow-hidden rounded-lg md:col-span-3 md:block">
               <Filters />

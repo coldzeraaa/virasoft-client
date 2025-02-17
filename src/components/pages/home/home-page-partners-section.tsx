@@ -3,7 +3,7 @@ import Image from 'next/image';
 export function HomePageParthnerSection() {
   return (
     <div className=" flex justify-center bg-base-200 py-4">
-      <div className="container mx-auto flex max-w-7xl  flex-col justify-start">
+      <div className="container mx-auto flex flex-col justify-start">
         <h2 className="text-base">
           <b>Хамтрагч байгуулга</b>
         </h2>
