@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { GridContainer } from './container/grid-container';
@@ -25,7 +26,16 @@ export async function DynamicComponent({ slug }: { slug: string }) {
 
     return (
       <main className="container space-y-4">
-        {Array.isArray(items) && resolvedItems.map((item: Item, idx) => <section key={idx}>{item.component}</section>)}
+        {Array.isArray(items) &&
+          resolvedItems.map((item: Item, idx) =>
+            item.link ? (
+              <Link key={idx} href={item.link}>
+                <section key={idx}>{item.component}</section>
+              </Link>
+            ) : (
+              <section key={idx}>{item.component}</section>
+            ),
+          )}
       </main>
     );
   } catch (error) {

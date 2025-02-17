@@ -9,7 +9,7 @@ export function AddressPageClient() {
   const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
 
   return (
-    <div className="container grid h-full max-w-7xl grid-cols-1 gap-14 px-0 py-8 lg:grid-cols-2">
+    <div className="container grid h-full grid-cols-1 gap-14 px-0 py-8 lg:grid-cols-2">
       <main className="col-span-1 h-full">
         <section aria-label="items">
           <UserAddresses setSelectedAddress={setSelectedAddress} />
