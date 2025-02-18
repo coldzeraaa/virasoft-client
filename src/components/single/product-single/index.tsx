@@ -14,7 +14,7 @@ export function ProductSingle({ vendor, name, price, slug, images, is_sale, sell
           alt={name}
           width={300}
           height={300}
-          className="h-full w-full object-cover transition-all duration-300 group-hover:scale-110"
+          className="h-full w-full object-contain transition-all duration-300 group-hover:scale-110"
         />
 
         {is_sale && (
