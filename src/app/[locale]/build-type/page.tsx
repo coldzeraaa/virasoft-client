@@ -16,7 +16,7 @@ export default async function BuildTypePage() {
   if (data.currentWebsite.menus.nodes.length === 0) return <ErrorResult message="No data" />;
 
   return (
-    <div className="mx-auto flex h-full flex-wrap items-center justify-center gap-4">
+    <div className="mx-auto flex h-2/3 flex-wrap items-center justify-center gap-4">
       {data.currentWebsite.menus.nodes.map((menu, idx) => (
         <ImageCard
           key={idx}

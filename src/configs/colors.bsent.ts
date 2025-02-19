@@ -5,11 +5,11 @@ export const LIGHT_COLORS = {
   'primary-content': '#FFFFFF',
   secondary: '#C09049', // golden
   'secondary-content': '#FFFFFF',
-  accent: '#D88100', // bright orange
+  accent: '#FBFAEE', // bright orange
   'accent-content': '#000000',
   neutral: '#272727', // muted dark grey
   'neutral-content': '#FFFFFF',
-  'base-100': '#FBFAEE', // off-white beige
+  'base-100': '#ffffff', // off-white beige
   'base-200': '#F6F7F9',
   'base-300': '#E7EAEF',
   'base-content': '#000C38',

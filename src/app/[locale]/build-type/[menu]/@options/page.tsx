@@ -37,21 +37,33 @@ async function Menu({ type }: { type: string }) {
       </div>
       <ul>
         {data.currentWebsite.menus.nodes.map((menu, idx) => (
-          <li key={idx}>
-            <ButtonPersistSearchParams
-              className="flex items-center gap-4 rounded p-2 transition hover:shadow-2xl"
-              href={`/build-type/${type}/${menu.link}`}
-            >
-              <Image
-                src={imageUrlHelper(menu.images?.[0])}
-                alt={menu.title}
-                width={0}
-                height={0}
-                className="aspect-square w-20 rounded-lg bg-base-300 object-contain md:w-28"
-              />
-              <p className="text-xl font-semibold">{menu.title}</p>
-            </ButtonPersistSearchParams>
-          </li>
+          <li key={idx} className="relative group overflow-hidden rounded-lg">
+          <ButtonPersistSearchParams
+            className="relative flex items-center gap-4 rounded-lg p-2 transition-all duration-300 ease-out
+                       border border-transparent hover:border-[#102F31]/20 hover:shadow-xl hover:shadow-[#102F31]/20"
+            href={`/build-type/${type}/${menu.link}`}
+          >
+            <div className="absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <div className="absolute -left-[100%] -top-[200%] h-[500%] w-[150%] animate-glow bg-[conic-gradient(from_90deg_at_50%_50%,#e2e8f0_0%,#102F31_25%,#e2e8f0_50%)] blur-2xl opacity-40" />
+            </div>
+            <Image
+              src={imageUrlHelper(menu.images?.[0])}
+              alt={menu.title}
+              width={0}
+              height={0}
+              className="aspect-square w-20 rounded-lg bg-base-300 object-contain md:w-28 
+                         transition-transform duration-300 ease-in-out group-hover:scale-105"
+            />
+            <p className="text-xl font-semibold transition-transform duration-300 ease-in-out group-hover:translate-x-2">
+              {menu.title}
+            </p>
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100">
+            <div className="absolute -top-1/2 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent
+                            translate-x-[-100%] animate-shimmer" />
+          </div>
+                            </ButtonPersistSearchParams>
+        </li>
+        
         ))}
       </ul>
     </>
