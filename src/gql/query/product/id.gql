@@ -10,6 +10,8 @@ query product($slug: String!) {
       price
       sku
       images
+      height
+      width
     }
     variants {
       nodes {

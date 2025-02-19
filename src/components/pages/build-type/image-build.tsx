@@ -5,7 +5,7 @@ import { HitType } from '@/types/hit-type';
 
 export function ImageBuild({ hits, loading }: { hits: HitType[]; loading?: boolean }) {
   return (
-    <div className={`relative aspect-square w-full p-2 ${loading ? 'skeleton bg-base-300' : ''}`}>
+    <div className={`relative aspect-square h-full max-h-[550px] w-full p-2 ${loading ? 'skeleton bg-base-300' : ''}`}>
       {hits.map((product) => (
         <Image
           key={product.id}

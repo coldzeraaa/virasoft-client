@@ -8,7 +8,7 @@ export type ProductQueryVariables = Types.Exact<{
 }>;
 
 
-export type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, title: string, description?: string | null, images: Array<string>, master: { __typename?: 'Variant', id: string, price: number, sku: string, images: Array<string> }, variants: { __typename?: 'VariantConnection', nodes: Array<{ __typename?: 'Variant', id: string, price: number, sku: string }> } } | null };
+export type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, title: string, description?: string | null, images: Array<string>, master: { __typename?: 'Variant', id: string, price: number, sku: string, images: Array<string>, height?: number | null, width?: number | null }, variants: { __typename?: 'VariantConnection', nodes: Array<{ __typename?: 'Variant', id: string, price: number, sku: string }> } } | null };
 
 
 export const ProductDocument = gql`
@@ -24,6 +24,8 @@ export const ProductDocument = gql`
       price
       sku
       images
+      height
+      width
     }
     variants {
       nodes {

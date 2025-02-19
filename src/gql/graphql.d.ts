@@ -280,7 +280,7 @@ export type IdFilter = {
   start?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type Image = Menu | Page;
+export type Image = Menu | Page | Vendor;
 
 export type ImageObject = {
   __typename?: 'ImageObject';
