@@ -1,0 +1,10 @@
+query orderPay($number: String!) {
+  order(number: $number) {
+    id
+    payments {
+      source
+
+      id
+    }
+  }
+}

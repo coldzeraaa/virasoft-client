@@ -4,14 +4,14 @@ import { ReactNode, useState } from 'react';
 import Image from 'next/image';
 
 import { ErrorResult } from '@/components/result/error-result';
-import { useMyOrderQuery } from '@/gql/query/user/my-order.generated';
+import { useOrderPayQuery } from '@/gql/query/order/order-pay.generated';
 import { generateQCodeHelper } from '@/lib/helper/generate-qrcode-helper';
 import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 
 export default function PaymentPage({ params }: { params: { number: string } }) {
   const [qrCode, setQrCode] = useState<string | null>(null);
-  const { data, loading, error } = useMyOrderQuery({ variables: { number: params.number } });
-  const payments = data?.myOrder?.payments || [];
+  const { data, loading, error } = useOrderPayQuery({ variables: { number: params.number } });
+  const payments = data?.order?.payments || [];
   const [payment] = payments;
 
   if (loading)
@@ -45,7 +45,7 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
   return (
     <Container>
       <ul className="flex flex-wrap gap-6">
-        {data?.myOrder?.payments[0]?.source?.bank_list?.map((element: { logo: string; name?: string }, idx: number) => (
+        {data?.order?.payments[0]?.source?.bank_list?.map((element: { logo: string; name?: string }, idx: number) => (
           <li key={idx} className="min-w-20 flex-1">
             <button
               type="button"

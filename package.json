@@ -12,7 +12,7 @@
     "build:virasoft": "APP_INDEX=virasoft next build",
     "build:virasoft:windows": "cross-env APP_INDEX=virasoft next build",
 
-    "dev:goldenoil:prod": "npm run clean:cache &&  APP_INDEX=goldenoil next dev -p 3212",
+    "dev:goldenoil:prod": "npm run clean:cache && APP_INDEX=goldenoil next dev -p 3212",
     "dev:goldenoil:windows:prod": "npm run clean:cache && cross-env APP_INDEX=goldenoil next dev -p 3212",
     "dev:goldenoil:local": "npm run clean:cache && STAGE=local APP_INDEX=goldenoil next dev -p 3213",
     "dev:goldenoil:docker": "npm run clean:cache && STAGE=docker APP_INDEX=goldenoil next dev -p 3214",
