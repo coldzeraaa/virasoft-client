@@ -23,7 +23,7 @@ export function BtnUpdateQuantity({
       </button>
       <input
         type="number"
-        className="input input-sm w-fit bg-base-200 text-center"
+        className="input input-sm w-full bg-base-200 text-center md:w-fit"
         value={quantity}
         onChange={(event) => {
           const value = parseInt(event.target.value, 10);

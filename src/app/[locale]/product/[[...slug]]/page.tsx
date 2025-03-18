@@ -30,7 +30,7 @@ export default function ProductSlugPage({ params }: ProductSlugPageProps) {
                 <ImageSectionProduct images={data.product.master.images} alt={data.product.name} />
                 {data.product.description && (
                   <section className="w-full overflow-auto" aria-label="description">
-                    <div className="pl-4" dangerouslySetInnerHTML={{ __html: data.product.description }} />
+                    <div className="md:pl-4" dangerouslySetInnerHTML={{ __html: data.product.description }} />
                   </section>
                 )}
               </div>

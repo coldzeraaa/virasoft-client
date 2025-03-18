@@ -13,7 +13,7 @@ export function Footer() {
   return (
     <footer className="sticky bottom-0 top-[100vh] mt-20 w-full border-t bg-primary-content p-6 text-accent-content/80 lg:pb-6 lg:pt-16">
       <div className="container mx-auto flex w-full items-center justify-between gap-20">
-        <div className="flex items-center justify-center">
+        <div className="hidden items-center justify-center md:flex">
           <Image
             src="https://api.virasoft.mn/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MjI2LCJwdXIiOiJibG9iX2lkIn19--0ffe818c9da467f1f9b50abf282b38989b21402a/image_2025-02-05_171626256.png"
             alt="bsent компанийн лого"
@@ -21,7 +21,7 @@ export function Footer() {
             height={150}
           ></Image>
         </div>
-        <div className="grid flex-grow grid-cols-[0.3fr_0.3fr_0.4fr]">
+        <div className="grid flex-grow gap-8 md:grid-cols-[0.3fr_0.3fr_0.4fr]">
           {data?.currentWebsite?.menus?.nodes[0]?.children?.map((menuTitle, idx) => (
             <div key={idx} className="flex flex-col gap-4">
               <h5 className="text-base font-medium text-primary">{menuTitle.title}</h5>

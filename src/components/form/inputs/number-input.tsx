@@ -32,7 +32,7 @@ export function NumberInput({ length = 4, value, onChange = () => true, disabled
             onChange(paste.slice(0, length));
             refs[paste.length > length ? length - 1 : paste.length]?.current?.focus();
           }}
-          className="input input-bordered aspect-square w-full appearance-none text-center"
+          className="input input-bordered aspect-square w-full appearance-none px-0 text-center"
           maxLength={1}
         />
       ))}

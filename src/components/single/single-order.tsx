@@ -11,11 +11,11 @@ export function SingleOrder({ number, createdAt, itemCount, total, items }: Sing
     <div className="grid grid-cols-12">
       <Link className="col-span-8 grid grid-cols-2" href={`/account/orders/${number}`}>
         <div>
-          <p className="text-lg font-semibold">{number}</p>
+          <p className="font-semibold md:text-lg">{number}</p>
           <p className="text-sm opacity-80">{dateFormatHelper(createdAt)}</p>
         </div>
         <div>
-          <p className="font-semibold">Дүн</p>
+          <p className="text-sm font-semibold md:text-base">Дүн</p>
           <p>
             <span className="mr-1 rounded bg-base-300 px-1 py-0.5 text-xs font-semibold">{numberFormatHelper(itemCount || 0)}ш</span>
             <span>{moneyFormatHelper(total || 0)}</span>

@@ -23,9 +23,9 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="mb-20 w-full shadow-md">
+    <header className="sticky top-0 z-40 mb-4 w-full shadow-md md:mb-20">
       <div className="h-12 bg-base-100">
-        <div className="container flex h-full w-full items-center justify-end gap-4 text-xs text-primary">
+        <div className="container hidden h-full w-full items-center justify-end gap-4 text-xs text-primary md:flex">
           <Link href="/tel:+97680234-566" className="flex gap-2 hover:cursor-pointer">
             <Image src={phone} alt="Утсаар залгах" />
             +976 7000 0000
@@ -44,7 +44,7 @@ export function Header() {
             <Link href="/" className="mr-3 flex flex-shrink-0 items-center">
               <Image className="h-8 w-auto" src={bsent} alt="Company Logo" width={32} height={42} priority />
             </Link>
-            <ul className="flex w-full items-center justify-center text-sm text-base-100 sm:gap-4 md:gap-7 lg:gap-10 xl:gap-20">
+            <ul className="hidden w-full items-center justify-center text-sm text-base-100 sm:gap-4 md:flex md:gap-7 lg:gap-10 xl:gap-20">
               {data?.currentWebsite?.menus.nodes[1]?.children
                 ?.filter((menu) => menu.title != 'Дэлгэрэнгүй')
                 .map((menuTitle, idx) => (

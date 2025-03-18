@@ -2,6 +2,7 @@
 import { ReactNode, useState } from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { ErrorResult } from '@/components/result/error-result';
 import { useOrderPayQuery } from '@/gql/query/order/order-pay.generated';
@@ -45,15 +46,26 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
   return (
     <Container>
       <ul className="flex flex-wrap gap-6">
-        {data?.order?.payments[0]?.source?.bank_list?.map((element: { logo: string; name?: string }, idx: number) => (
-          <li key={idx} className="min-w-20 flex-1">
+        {data?.order?.payments[0]?.source?.bank_list?.map((element: { logo: string; name?: string; link: string }, idx: number) => (
+          <li key={idx} className="min-w-12 flex-1 md:min-w-20">
+            <Link className="block w-full overflow-hidden md:hidden" href={element.link}>
+              <Image
+                className="mx-auto mb-2 aspect-square w-12 rounded-lg object-contain md:w-20"
+                priority
+                width={800}
+                height={800}
+                src={imageUrlHelper(element.logo || '')}
+                alt={element?.name || 'bank name'}
+              />
+              <p className="text-center text-xs font-medium">{element?.name}</p>
+            </Link>
             <button
               type="button"
-              className="w-full"
+              className="hidden w-full md:block"
               onClick={() => generateQCodeHelper(payment.source.qr_code).then(imageUrlHelper).then(setQrCode).catch(console.error)}
             >
               <Image
-                className="mx-auto mb-2 aspect-square w-20 rounded-lg object-contain"
+                className="mx-auto mb-2 aspect-square w-12 rounded-lg object-contain md:w-20"
                 priority
                 width={800}
                 height={800}
