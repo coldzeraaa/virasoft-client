@@ -20,7 +20,7 @@ export function Footer() {
 
   return (
     <>
-      <footer className="fixed bottom-0 top-[100vh] hidden w-full bg-base-300 text-neutral md:block">
+      <footer className="hidden w-full bg-base-300 text-neutral md:block">
         <div className="mx-auto w-full p-6 lg:py-6">
           <div className="grid grid-cols-3 gap-8">
             {data?.allMenus.nodes[2]?.children?.map((item, idx) => (

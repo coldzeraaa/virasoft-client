@@ -11,7 +11,7 @@ export function Footer() {
   if (loading) return <p>test</p>;
 
   return (
-    <footer className="sticky bottom-0 top-[100vh] mt-20 w-full border-t bg-primary-content p-6 text-accent-content/80 lg:pb-6 lg:pt-16">
+    <footer className="mt-20 w-full border-t bg-primary-content p-6 text-accent-content/80 lg:pb-6 lg:pt-16">
       <div className="container mx-auto flex w-full items-center justify-between gap-20">
         <div className="hidden items-center justify-center md:flex">
           <Image

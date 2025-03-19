@@ -12,7 +12,7 @@ import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 
 function FooterSkeleton() {
   return (
-    <footer className="fixed bottom-0 top-[100vh] w-full border-t bg-accent-content text-neutral">
+    <footer className="w-full border-t bg-accent-content text-neutral">
       <div className="grid w-full grid-cols-1 lg:grid-cols-[0.6fr_0.4fr_0.3fr]">
         <div className="flex h-full w-full bg-primary px-20 py-20 xl:pl-48">
           <div className="w-full space-y-4 rounded-l-xl bg-primary">
