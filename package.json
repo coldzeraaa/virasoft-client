@@ -26,6 +26,13 @@
     "build:bsent": "APP_INDEX=bsent next build",
     "build:bsent:windows": "cross-env APP_INDEX=bsent next build",
 
+    "dev:genrui:prod": "npm run clean:cache &&  APP_INDEX=genrui next dev -p 3232",
+    "dev:genrui:windows:prod": "npm run clean:cache && cross-env APP_INDEX=genrui next dev -p 3232",
+    "dev:genrui:local": "npm run clean:cache && STAGE=local APP_INDEX=genrui next dev -p 3233",
+    "dev:genrui:docker": "npm run clean:cache && STAGE=docker APP_INDEX=genrui next dev -p 3234",
+    "build:genrui": "APP_INDEX=genrui next build",
+    "build:genrui:windows": "cross-env APP_INDEX=genrui next build",
+
     "start": "next start -p 3099",
     "codegen": "graphql-codegen --config codegen.yml",
     "codegen:docker": "graphql-codegen --config codegen.docker.yml",
