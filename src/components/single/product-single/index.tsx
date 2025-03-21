@@ -34,7 +34,7 @@ export function ProductSingle({ vendor, name, price, slug, images, is_sale, sell
           <span className="font-medium">{vendor?.name}</span> {name}
         </p>
         <div className="flex items-center space-x-2">
-          <p className={`text-lg font-medium ${is_sale ? 'text-accent' : 'text-primary'}`}>
+          <p className={`font-medium md:text-lg ${is_sale ? 'text-accent' : 'text-primary'}`}>
             {moneyFormatHelper(selling_price || price || 0)}
           </p>
           {is_sale && <p className="text-base text-gray-500 line-through">{moneyFormatHelper(price || 0)}</p>}
