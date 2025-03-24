@@ -51,7 +51,7 @@ export function AuthLoginPageClient() {
                 if (document) document.getElementById('login-password')?.focus();
                 setVerified(true);
               } else {
-                toast.error(`${values.login} is not registered`);
+                toast.error(`"${values.login}" дугаар бүртгэлтэй байна`);
               }
             }
           } catch (e) {
