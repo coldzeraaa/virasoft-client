@@ -40,8 +40,9 @@ export function Header() {
             <Image className="h-8 w-auto" src={logo} alt="Company Logo" width={32} height={42} priority />
           </Link>
         </div>
-        <div className="flex flex-1 items-center justify-end gap-4 md:justify-between">
-          <div className="relative hidden max-w-xs flex-1 md:block">
+        <div className="flex w-full items-center justify-between">
+          {/* 🔍 Хайлтын input (Зүүн талд тулгах) */}
+          <div className="relative max-w-xs flex-1">
             <input
               type="text"
               className="w-full rounded-lg border bg-white px-4 text-neutral placeholder-gray-400 focus:outline-none"
@@ -50,18 +51,17 @@ export function Header() {
                 if (event.key === 'Enter') router.push('/s');
               }}
             />
-            <Search className="strokeblack-400 absolute right-3 top-1.5 h-5 w-5" />
+            <Search className="absolute right-3 top-1.5 h-5 w-5 stroke-1 text-gray-400" />
           </div>
 
-          <nav className="flex items-center gap-2 text-xs">
-            <ul className="flex">
+          {/* 🛒 Сагс ба Нэвтрэх (Баруун талд тулгах) */}
+          <nav className="ml-auto flex items-center gap-4">
+            <ul className="flex gap-2">
               {menuItems(userData).map((item, index) => (
                 <Link
                   key={index}
                   href={item.link}
-                  className={`group relative flex flex-col items-center rounded-lg p-1 text-base-content transition-colors 
-                      ${item.title === 'Хадгалсан' || item.title === 'Профайл' ? 'hidden md:flex' : 'md:flex'} 
-                      lg:p-2`}
+                  className="group relative flex flex-col items-center rounded-lg p-1 text-base-content transition-colors"
                 >
                   {item.title === 'Сагс' && order?.itemCount !== undefined && (
                     <div className="badge badge-secondary badge-xs absolute right-0 top-0 py-2">
@@ -70,7 +70,7 @@ export function Header() {
                     </div>
                   )}
                   {item.icon}
-                  <li className="group hidden hover:shadow-lg group-hover:scale-110 group-hover:text-green-500 md:block">
+                  <li className="hidden group-hover:text-green-500 md:block">
                     {item.title === 'Профайл' ? (userData?.me ? userData?.me.firstName : 'Нэвтрэх') : item.title}
                   </li>
                 </Link>
