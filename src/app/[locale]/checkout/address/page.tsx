@@ -1,8 +1,8 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import Loading from './loading';
+import Loading from "./loading";
 
-import { CheckoutAddressPageClient } from '@/components/page-client/checkout/checkout-address-page-client';
+import { CheckoutAddressPageClient } from "@/components/page-client/checkout/checkout-address-page-client";
 
 export default function CheckoutAddressPage() {
   return (

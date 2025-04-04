@@ -273,75 +273,204 @@ type Metadata {
 }
 
 type Mutation {
-  addImageVariant("Parameters for addImageVariant" input: addImageVariantInput!): Variant
+  addImageVariant(
+    "Parameters for addImageVariant"
+    input: addImageVariantInput!
+  ): Variant
   addToCart("Parameters for addToCart" input: addToCartInput!): Order
   "Checks if email or mobile registered"
-  authCheckLogin("Parameters for authCheckLogin" input: authCheckLoginInput!): AuthCheckLogin
+  authCheckLogin(
+    "Parameters for authCheckLogin"
+    input: authCheckLoginInput!
+  ): AuthCheckLogin
   authRegister("Parameters for authRegister" input: authRegisterInput!): User
-  buildAssetRole("Parameters for buildAssetRole" input: buildAssetRoleInput!): AssetRole
+  buildAssetRole(
+    "Parameters for buildAssetRole"
+    input: buildAssetRoleInput!
+  ): AssetRole
   checkOrder("Parameters for checkOrder" input: checkOrderInput!): Order
   checkOtp("Parameters for checkOtp" input: checkOtpInput!): JSON
-  createApplication("Parameters for createApplication" input: createApplicationInput!): Application
-  createAssetRole("Parameters for createAssetRole" input: createAssetRoleInput!): AssetRole
+  createApplication(
+    "Parameters for createApplication"
+    input: createApplicationInput!
+  ): Application
+  createAssetRole(
+    "Parameters for createAssetRole"
+    input: createAssetRoleInput!
+  ): AssetRole
   createBrand("Parameters for createBrand" input: createBrandInput!): Brand
   createImage("Parameters for createImage" input: createImageInput!): Image
-  createListing("Parameters for createListing" input: createListingInput!): Listing
+  createListing(
+    "Parameters for createListing"
+    input: createListingInput!
+  ): Listing
   createMenu("Parameters for createMenu" input: createMenuInput!): Menu
-  createMerchant("Parameters for createMerchant" input: createMerchantInput!): Merchant
-  createOptionType("Parameters for createOptionType" input: createOptionTypeInput!): OptionType
-  createOptionValue("Parameters for createOptionValue" input: createOptionValueInput!): OptionValue
+  createMerchant(
+    "Parameters for createMerchant"
+    input: createMerchantInput!
+  ): Merchant
+  createOptionType(
+    "Parameters for createOptionType"
+    input: createOptionTypeInput!
+  ): OptionType
+  createOptionValue(
+    "Parameters for createOptionValue"
+    input: createOptionValueInput!
+  ): OptionValue
   createPage("Parameters for createPage" input: createPageInput!): Page
-  createPaymentMethod("Parameters for createPaymentMethod" input: createPaymentMethodInput!): PaymentMethod
-  createProduct("Parameters for createProduct" input: createProductInput!): Product
+  createPaymentMethod(
+    "Parameters for createPaymentMethod"
+    input: createPaymentMethodInput!
+  ): PaymentMethod
+  createProduct(
+    "Parameters for createProduct"
+    input: createProductInput!
+  ): Product
   createUser("Parameters for createUser" input: createUserInput!): User
-  createUserAddress("Parameters for createUserAddress" input: createUserAddressInput!): UserAddress
-  createVariant("Parameters for createVariant" input: createVariantInput!): Variant
+  createUserAddress(
+    "Parameters for createUserAddress"
+    input: createUserAddressInput!
+  ): UserAddress
+  createVariant(
+    "Parameters for createVariant"
+    input: createVariantInput!
+  ): Variant
   createVendor("Parameters for createVendor" input: createVendorInput!): Vendor
-  createVendorUser("Parameters for createVendorUser" input: createVendorUserInput!): VendorUser
-  createWebsite("Parameters for createWebsite" input: createWebsiteInput!): Website
-  destroyApplication("Parameters for destroyApplication" input: destroyApplicationInput!): Application
-  destroyAssetRole("Parameters for destroyAssetRole" input: destroyAssetRoleInput!): AssetRole
+  createVendorUser(
+    "Parameters for createVendorUser"
+    input: createVendorUserInput!
+  ): VendorUser
+  createWebsite(
+    "Parameters for createWebsite"
+    input: createWebsiteInput!
+  ): Website
+  destroyApplication(
+    "Parameters for destroyApplication"
+    input: destroyApplicationInput!
+  ): Application
+  destroyAssetRole(
+    "Parameters for destroyAssetRole"
+    input: destroyAssetRoleInput!
+  ): AssetRole
   destroyBrand("Parameters for destroyBrand" input: destroyBrandInput!): Brand
   destroyImage("Parameters for destroyImage" input: destroyImageInput!): Image
-  destroyListing("Parameters for destroyListing" input: destroyListingInput!): Listing
+  destroyListing(
+    "Parameters for destroyListing"
+    input: destroyListingInput!
+  ): Listing
   destroyMenu("Parameters for destroyMenu" input: destroyMenuInput!): Menu
-  destroyMerchant("Parameters for destroyMerchant" input: destroyMerchantInput!): Merchant
-  destroyOptionType("Parameters for destroyOptionType" input: destroyOptionTypeInput!): OptionType
-  destroyOptionValue("Parameters for destroyOptionValue" input: destroyOptionValueInput!): OptionValue
+  destroyMerchant(
+    "Parameters for destroyMerchant"
+    input: destroyMerchantInput!
+  ): Merchant
+  destroyOptionType(
+    "Parameters for destroyOptionType"
+    input: destroyOptionTypeInput!
+  ): OptionType
+  destroyOptionValue(
+    "Parameters for destroyOptionValue"
+    input: destroyOptionValueInput!
+  ): OptionValue
   destroyPage("Parameters for destroyPage" input: destroyPageInput!): Page
-  destroyPaymentMethod("Parameters for destroyPaymentMethod" input: destroyPaymentMethodInput!): PaymentMethod
-  destroyProduct("Parameters for destroyProduct" input: destroyProductInput!): Product
-  destroyUserAddress("Parameters for destroyUserAddress" input: destroyUserAddressInput!): UserAddress
-  destroyVariant("Parameters for destroyVariant" input: destroyVariantInput!): Variant
-  destroyVendor("Parameters for destroyVendor" input: destroyVendorInput!): Vendor
-  destroyVendorUser("Parameters for destroyVendorUser" input: destroyVendorUserInput!): VendorUser
-  destroyWebsite("Parameters for destroyWebsite" input: destroyWebsiteInput!): Website
+  destroyPaymentMethod(
+    "Parameters for destroyPaymentMethod"
+    input: destroyPaymentMethodInput!
+  ): PaymentMethod
+  destroyProduct(
+    "Parameters for destroyProduct"
+    input: destroyProductInput!
+  ): Product
+  destroyUserAddress(
+    "Parameters for destroyUserAddress"
+    input: destroyUserAddressInput!
+  ): UserAddress
+  destroyVariant(
+    "Parameters for destroyVariant"
+    input: destroyVariantInput!
+  ): Variant
+  destroyVendor(
+    "Parameters for destroyVendor"
+    input: destroyVendorInput!
+  ): Vendor
+  destroyVendorUser(
+    "Parameters for destroyVendorUser"
+    input: destroyVendorUserInput!
+  ): VendorUser
+  destroyWebsite(
+    "Parameters for destroyWebsite"
+    input: destroyWebsiteInput!
+  ): Website
   emptyItem("Parameters for emptyItem" input: emptyItemInput!): Order
-  paymentCheckout("Parameters for paymentCheckout" input: paymentCheckoutInput!): Order
+  paymentCheckout(
+    "Parameters for paymentCheckout"
+    input: paymentCheckoutInput!
+  ): Order
   quickBuy("Parameters for quickBuy" input: quickBuyInput!): Order
-  removeImageVariant("Parameters for removeImageVariant" input: removeImageVariantInput!): Variant
+  removeImageVariant(
+    "Parameters for removeImageVariant"
+    input: removeImageVariantInput!
+  ): Variant
   removeItem("Parameters for removeItem" input: removeItemInput!): Order
   resetPassword("Parameters for resetPassword" input: resetPasswordInput!): User
   "Returns boolean whether sms is sent or not"
   sendOtp("Parameters for sendOtp" input: sendOtpInput!): User
-  updateApplication("Parameters for updateApplication" input: updateApplicationInput!): Application
-  updateAssetRole("Parameters for updateAssetRole" input: updateAssetRoleInput!): AssetRole
+  updateApplication(
+    "Parameters for updateApplication"
+    input: updateApplicationInput!
+  ): Application
+  updateAssetRole(
+    "Parameters for updateAssetRole"
+    input: updateAssetRoleInput!
+  ): AssetRole
   updateBrand("Parameters for updateBrand" input: updateBrandInput!): Brand
-  updateCheckoutAddress("Parameters for updateCheckoutAddress" input: updateCheckoutAddressInput!): Order
+  updateCheckoutAddress(
+    "Parameters for updateCheckoutAddress"
+    input: updateCheckoutAddressInput!
+  ): Order
   updateItem("Parameters for updateItem" input: updateItemInput!): Order
-  updateListing("Parameters for updateListing" input: updateListingInput!): Listing
+  updateListing(
+    "Parameters for updateListing"
+    input: updateListingInput!
+  ): Listing
   updateMenu("Parameters for updateMenu" input: updateMenuInput!): Menu
-  updateMerchant("Parameters for updateMerchant" input: updateMerchantInput!): Merchant
-  updateOptionType("Parameters for updateOptionType" input: updateOptionTypeInput!): OptionType
-  updateOptionValue("Parameters for updateOptionValue" input: updateOptionValueInput!): OptionValue
+  updateMerchant(
+    "Parameters for updateMerchant"
+    input: updateMerchantInput!
+  ): Merchant
+  updateOptionType(
+    "Parameters for updateOptionType"
+    input: updateOptionTypeInput!
+  ): OptionType
+  updateOptionValue(
+    "Parameters for updateOptionValue"
+    input: updateOptionValueInput!
+  ): OptionValue
   updatePage("Parameters for updatePage" input: updatePageInput!): Page
-  updatePaymentMethod("Parameters for updatePaymentMethod" input: updatePaymentMethodInput!): PaymentMethod
-  updateProduct("Parameters for updateProduct" input: updateProductInput!): Product
-  updateUserAddress("Parameters for updateUserAddress" input: updateUserAddressInput!): UserAddress
-  updateVariant("Parameters for updateVariant" input: updateVariantInput!): Variant
+  updatePaymentMethod(
+    "Parameters for updatePaymentMethod"
+    input: updatePaymentMethodInput!
+  ): PaymentMethod
+  updateProduct(
+    "Parameters for updateProduct"
+    input: updateProductInput!
+  ): Product
+  updateUserAddress(
+    "Parameters for updateUserAddress"
+    input: updateUserAddressInput!
+  ): UserAddress
+  updateVariant(
+    "Parameters for updateVariant"
+    input: updateVariantInput!
+  ): Variant
   updateVendor("Parameters for updateVendor" input: updateVendorInput!): Vendor
-  updateVendorUser("Parameters for updateVendorUser" input: updateVendorUserInput!): VendorUser
-  updateWebsite("Parameters for updateWebsite" input: updateWebsiteInput!): Website
+  updateVendorUser(
+    "Parameters for updateVendorUser"
+    input: updateVendorUserInput!
+  ): VendorUser
+  updateWebsite(
+    "Parameters for updateWebsite"
+    input: updateWebsiteInput!
+  ): Website
 }
 
 type Notification implements BaseModelInterface {

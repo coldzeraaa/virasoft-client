@@ -1,80 +1,111 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import { ChevronRightIcon } from '@heroicons/react/16/solid';
-import { BtnLoader, FormInput } from 'field-form';
-import { ChevronLeftIcon } from 'lucide-react';
-import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { toast } from 'react-toastify';
+import { ChevronRightIcon } from "@heroicons/react/16/solid";
+import { BtnLoader, FormInput } from "field-form";
+import { ChevronLeftIcon } from "lucide-react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "react-toastify";
 
-import { PhoneInput } from '@/components/form/inputs/phone-input';
-import { TokenInput } from '@/components/form/inputs/token-input';
-import { useAuthCheckLoginMutation } from '@/gql/mutation/user/auth-check-login.generated';
-import { useCheckOtpMutation } from '@/gql/mutation/user/auth-check-otp.generated';
-import { useAuthRegisterMutation } from '@/gql/mutation/user/auth-register.generated';
-import { FormProvider, useForm } from '@/lib/context/form-context';
-import { catchHelper } from '@/lib/helper/catch-helper';
-import { mutationOptionHelper } from '@/lib/helper/mutation-option-helper';
+import { PhoneInput } from "@/components/form/inputs/phone-input";
+import { TokenInput } from "@/components/form/inputs/token-input";
+import { useAuthCheckLoginMutation } from "@/gql/mutation/user/auth-check-login.generated";
+import { useCheckOtpMutation } from "@/gql/mutation/user/auth-check-otp.generated";
+import { useAuthRegisterMutation } from "@/gql/mutation/user/auth-register.generated";
+import { FormProvider, useForm } from "@/lib/context/form-context";
+import { catchHelper } from "@/lib/helper/catch-helper";
+import { mutationOptionHelper } from "@/lib/helper/mutation-option-helper";
 
 export function AuthRegisterPageClient() {
-  const [step, setStep] = useState<Step>('check');
+  const [step, setStep] = useState<Step>("check");
   const searchParams = useSearchParams();
-  const login = searchParams.get('login');
+  const login = searchParams.get("login");
   const router = useRouter();
 
   return (
-    <FormProvider initialValues={{ login }} onFinish={() => document.getElementById(step)?.click()}>
+    <FormProvider
+      initialValues={{ login }}
+      onFinish={() => document.getElementById(step)?.click()}
+    >
       <div className="mb-4">
         <FormInput
           label="Утасны дугаар"
           name="login"
-          className={step === 'check' ? '' : 'hidden'}
-          rules={[{ required: step === 'check', message: 'Утасны дугаар оруулна уу' }]}
-          input={{ type: 'custom', component: PhoneInput }}
+          className={step === "check" ? "" : "hidden"}
+          rules={[
+            { required: step === "check", message: "Утасны дугаар оруулна уу" },
+          ]}
+          input={{ type: "custom", component: PhoneInput }}
         />
         <FormInput
           label="Утсанд ирсэн код"
           name="token"
-          className={step === 'otp' ? '' : 'hidden'}
-          rules={[{ required: step === 'otp', message: 'Утсанд ирсэн код оруулна уу' }]}
-          input={{ type: 'custom', component: TokenInput }}
+          className={step === "otp" ? "" : "hidden"}
+          rules={[
+            {
+              required: step === "otp",
+              message: "Утсанд ирсэн код оруулна уу",
+            },
+          ]}
+          input={{ type: "custom", component: TokenInput }}
         />
         <FormInput
           label="Овог"
           name="lastName"
-          className={step === 'reset' ? '' : 'hidden'}
-          rules={[{ required: step === 'reset', message: 'Овог оруулна уу' }]}
-          input={{ placeholder: 'Жавхлан' }}
+          className={step === "reset" ? "" : "hidden"}
+          rules={[{ required: step === "reset", message: "Овог оруулна уу" }]}
+          input={{ placeholder: "Жавхлан" }}
         />
         <FormInput
           label="Нэр"
           name="firstName"
-          className={step === 'reset' ? '' : 'hidden'}
-          rules={[{ required: step === 'reset', message: 'Нэр оруулна уу' }]}
-          input={{ placeholder: 'Хэрлэн' }}
+          className={step === "reset" ? "" : "hidden"}
+          rules={[{ required: step === "reset", message: "Нэр оруулна уу" }]}
+          input={{ placeholder: "Хэрлэн" }}
         />
         <FormInput
           label="Нууц үг"
           name="password"
-          className={step === 'reset' ? '' : 'hidden'}
-          rules={[{ required: step === 'reset', message: 'Нууц үг оруулна уу' }]}
-          input={{ type: 'password', placeholder: '******' }}
+          className={step === "reset" ? "" : "hidden"}
+          rules={[
+            { required: step === "reset", message: "Нууц үг оруулна уу" },
+          ]}
+          input={{ type: "password", placeholder: "******" }}
         />
       </div>
-      {step === 'check' && <BtnCheck onSuccess={() => setStep('otp')} />}
-      {step === 'otp' && <BtnOtp onSuccess={() => setStep('reset')} onBack={() => setStep('check')} />}
-      {step === 'reset' && <BtnPassword onSuccess={() => router.replace('/auth/login')} onBack={() => setStep('check')} />}
+      {step === "check" && <BtnCheck onSuccess={() => setStep("otp")} />}
+      {step === "otp" && (
+        <BtnOtp
+          onSuccess={() => setStep("reset")}
+          onBack={() => setStep("check")}
+        />
+      )}
+      {step === "reset" && (
+        <BtnPassword
+          onSuccess={() => router.replace("/auth/login")}
+          onBack={() => setStep("check")}
+        />
+      )}
       <button className="hidden" />
       <ul className="steps mx-auto mt-8 w-full pb-8">
-        <li data-content={step === 'check' ? '?' : '✓'} className="step step-primary">
+        <li
+          data-content={step === "check" ? "?" : "✓"}
+          className="step step-primary"
+        >
           Код илгээх
         </li>
-        <li data-content={step === 'otp' ? '?' : step === 'reset' ? '✓' : '●'} className={`step ${step !== 'check' ? 'step-primary' : ''}`}>
+        <li
+          data-content={step === "otp" ? "?" : step === "reset" ? "✓" : "●"}
+          className={`step ${step !== "check" ? "step-primary" : ""}`}
+        >
           Шалгах
         </li>
-        <li data-content={step === 'reset' ? '?' : '●'} className={`step ${step === 'reset' ? 'step-primary' : ''}`}>
+        <li
+          data-content={step === "reset" ? "?" : "●"}
+          className={`step ${step === "reset" ? "step-primary" : ""}`}
+        >
           Бүртгүүлэх
         </li>
       </ul>
@@ -99,14 +130,16 @@ function BtnCheck({ onSuccess }: { onSuccess(): void }) {
         className="btn btn-primary flex-1 text-base-100"
         onClick={async () => {
           try {
-            const values = await form.validateFields(['login']);
-            const response = await authCheckLogin({ variables: { input: { login: values.login, sendToken: true } } });
+            const values = await form.validateFields(["login"]);
+            const response = await authCheckLogin({
+              variables: { input: { login: values.login, sendToken: true } },
+            });
             if (response.data?.authCheckLogin?.exists) {
-              toast.error('Бүртгэлтэй байна');
+              toast.error("Бүртгэлтэй байна");
             } else if (response.data?.authCheckLogin?.exists === false) {
               onSuccess();
-              toast.success('Таны утасны дугаар руу код илгээгдлээ');
-            } else toast.success('Error');
+              toast.success("Таны утасны дугаар руу код илгээгдлээ");
+            } else toast.success("Error");
           } catch (error) {
             catchHelper(error);
           }
@@ -121,7 +154,10 @@ function BtnCheck({ onSuccess }: { onSuccess(): void }) {
 
 function BtnOtp({ onSuccess, onBack }: { onSuccess(): void; onBack(): void }) {
   const { form } = useForm();
-  const [checkOtp, { loading }] = useCheckOtpMutation({ ...mutationOptionHelper, onCompleted: () => true });
+  const [checkOtp, { loading }] = useCheckOtpMutation({
+    ...mutationOptionHelper,
+    onCompleted: () => true,
+  });
 
   return (
     <div className="flex gap-2">
@@ -136,12 +172,18 @@ function BtnOtp({ onSuccess, onBack }: { onSuccess(): void; onBack(): void }) {
         className="btn btn-primary btn-block flex-1 text-base-100"
         onClick={async () => {
           try {
-            const values = await form.validateFields(['login', 'token']);
+            const values = await form.validateFields(["login", "token"]);
             const response = await checkOtp({
-              variables: { input: { login: values.login, token: values.token, unconfirmedMobile: true } },
+              variables: {
+                input: {
+                  login: values.login,
+                  token: values.token,
+                  unconfirmedMobile: true,
+                },
+              },
             });
             if (response.data?.checkOtp) onSuccess();
-            else toast.error('Токен буруу байна');
+            else toast.error("Токен буруу байна");
           } catch (error) {
             catchHelper(error);
           }
@@ -154,9 +196,18 @@ function BtnOtp({ onSuccess, onBack }: { onSuccess(): void; onBack(): void }) {
   );
 }
 
-function BtnPassword({ onSuccess, onBack }: { onSuccess(): void; onBack(): void }) {
+function BtnPassword({
+  onSuccess,
+  onBack,
+}: {
+  onSuccess(): void;
+  onBack(): void;
+}) {
   const { form } = useForm();
-  const [authRegister, { loading }] = useAuthRegisterMutation({ ...mutationOptionHelper, onCompleted: () => true });
+  const [authRegister, { loading }] = useAuthRegisterMutation({
+    ...mutationOptionHelper,
+    onCompleted: () => true,
+  });
 
   return (
     <div className="flex gap-2">
@@ -171,12 +222,18 @@ function BtnPassword({ onSuccess, onBack }: { onSuccess(): void; onBack(): void 
         className="btn btn-primary btn-block flex-1 text-base-100"
         onClick={async () => {
           try {
-            const input = await form.validateFields(['firstName', 'lastName', 'login', 'password', 'token']);
+            const input = await form.validateFields([
+              "firstName",
+              "lastName",
+              "login",
+              "password",
+              "token",
+            ]);
             const response = await authRegister({ variables: { input } });
             if (response.data?.authRegister?.id) {
-              toast.success('Амжилттай бүртгэл үүслээ');
+              toast.success("Амжилттай бүртгэл үүслээ");
               onSuccess();
-            } else toast.error('Алдаа гарлаа');
+            } else toast.error("Алдаа гарлаа");
           } catch (error) {
             catchHelper(error);
           }
@@ -189,4 +246,4 @@ function BtnPassword({ onSuccess, onBack }: { onSuccess(): void; onBack(): void 
   );
 }
 
-type Step = 'check' | 'otp' | 'reset';
+type Step = "check" | "otp" | "reset";

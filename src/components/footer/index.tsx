@@ -13,7 +13,9 @@ import { useMeQuery } from '@/gql/query/user/me.generated';
 
 export function Footer() {
   const [activeTab, setActiveTab] = useState('home');
-  const { data, loading } = useHeaderFooterQuery({ variables: { filter: { title: { in: ['header', 'footer'] } } } });
+  const { data, loading } = useHeaderFooterQuery({
+    variables: { filter: { title: { in: ['header', 'footer'] } } },
+  });
   const { data: userData } = useMeQuery();
 
   if (loading) <Loader />;
@@ -109,6 +111,11 @@ function Loader() {
 const mobileFooter = [
   { key: 'home', label: 'Нүүр', icon: House, link: '/' },
   { key: 'categories', label: 'Ангилал', icon: TextSearch, link: '/s' },
-  { key: 'orders', label: 'Захиалгууд', icon: Package, link: '/account/orders' },
+  {
+    key: 'orders',
+    label: 'Захиалгууд',
+    icon: Package,
+    link: '/account/orders',
+  },
   { key: 'profile', label: 'Профайл', icon: CircleUserRound, link: '/account' },
 ];

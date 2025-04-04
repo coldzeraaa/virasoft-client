@@ -1,25 +1,66 @@
-import * as Types from '../../graphql.d';
+import * as Types from "../../graphql.d";
 
-import { gql } from '@apollo/client';
-import { CurrentOrderFieldsFragmentDoc } from '../../fragment/current-order.generated';
-import * as Apollo from '@apollo/client';
+import { gql } from "@apollo/client";
+import { CurrentOrderFieldsFragmentDoc } from "../../fragment/current-order.generated";
+import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
 export type EmptyItemMutationVariables = Types.Exact<{
   input: Types.EmptyItemInput;
 }>;
 
-
-export type EmptyItemMutation = { __typename?: 'Mutation', emptyItem?: { __typename?: 'Order', id: string, number: string, token: string, userId?: string | null, total?: number | null, itemTotal?: number | null, itemCount?: number | null, shipAddress?: { __typename?: 'UserAddress', id: string, address: { __typename?: 'Address', id: string, firstName?: string | null, mobile?: string | null, address1: string, address2: string, addressAlias?: string | null } } | null, items: Array<{ __typename?: 'Item', id: string, price: number, quantity: number, variant: { __typename?: 'Variant', id: string, images: Array<string>, price: number, sku: string, product: { __typename?: 'Product', id: string, name: string } } }> } | null };
-
+export type EmptyItemMutation = {
+  __typename?: "Mutation";
+  emptyItem?: {
+    __typename?: "Order";
+    id: string;
+    number: string;
+    token: string;
+    userId?: string | null;
+    total?: number | null;
+    itemTotal?: number | null;
+    itemCount?: number | null;
+    shipAddress?: {
+      __typename?: "UserAddress";
+      id: string;
+      address: {
+        __typename?: "Address";
+        id: string;
+        firstName?: string | null;
+        mobile?: string | null;
+        address1: string;
+        address2: string;
+        addressAlias?: string | null;
+      };
+    } | null;
+    items: Array<{
+      __typename?: "Item";
+      id: string;
+      price: number;
+      quantity: number;
+      variant: {
+        __typename?: "Variant";
+        id: string;
+        images: Array<string>;
+        price: number;
+        sku: string;
+        product: { __typename?: "Product"; id: string; name: string };
+      };
+    }>;
+  } | null;
+};
 
 export const EmptyItemDocument = gql`
-    mutation emptyItem($input: emptyItemInput!) {
-  emptyItem(input: $input) {
-    ...CurrentOrderFields
+  mutation emptyItem($input: emptyItemInput!) {
+    emptyItem(input: $input) {
+      ...CurrentOrderFields
+    }
   }
-}
-    ${CurrentOrderFieldsFragmentDoc}`;
-export type EmptyItemMutationFn = Apollo.MutationFunction<EmptyItemMutation, EmptyItemMutationVariables>;
+  ${CurrentOrderFieldsFragmentDoc}
+`;
+export type EmptyItemMutationFn = Apollo.MutationFunction<
+  EmptyItemMutation,
+  EmptyItemMutationVariables
+>;
 
 /**
  * __useEmptyItemMutation__
@@ -38,10 +79,23 @@ export type EmptyItemMutationFn = Apollo.MutationFunction<EmptyItemMutation, Emp
  *   },
  * });
  */
-export function useEmptyItemMutation(baseOptions?: Apollo.MutationHookOptions<EmptyItemMutation, EmptyItemMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<EmptyItemMutation, EmptyItemMutationVariables>(EmptyItemDocument, options);
-      }
-export type EmptyItemMutationHookResult = ReturnType<typeof useEmptyItemMutation>;
+export function useEmptyItemMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    EmptyItemMutation,
+    EmptyItemMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<EmptyItemMutation, EmptyItemMutationVariables>(
+    EmptyItemDocument,
+    options,
+  );
+}
+export type EmptyItemMutationHookResult = ReturnType<
+  typeof useEmptyItemMutation
+>;
 export type EmptyItemMutationResult = Apollo.MutationResult<EmptyItemMutation>;
-export type EmptyItemMutationOptions = Apollo.BaseMutationOptions<EmptyItemMutation, EmptyItemMutationVariables>;
+export type EmptyItemMutationOptions = Apollo.BaseMutationOptions<
+  EmptyItemMutation,
+  EmptyItemMutationVariables
+>;

@@ -1,10 +1,16 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import { ErrorResult } from '@/components/result/error-result';
+import { ErrorResult } from "@/components/result/error-result";
 
-export default function Error({ error, reset }: { error: Error & { digest?: string }; reset?: () => void }) {
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset?: () => void;
+}) {
   const title = getErrorTitle(error);
 
   return (
@@ -18,7 +24,12 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
           </Link>,
           ...(reset
             ? [
-                <button key="2" type="button" className="btn btn-primary" onClick={reset}>
+                <button
+                  key="2"
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={reset}
+                >
                   Try again
                 </button>,
               ]
@@ -30,24 +41,24 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
 }
 
 function getErrorTitle(error: Error): { title: string; description: string } {
-  const status = error.message.replace(/.*(\d{3}).*/, '$1');
+  const status = error.message.replace(/.*(\d{3}).*/, "$1");
   switch (status) {
-    case '401':
+    case "401":
       return {
         title: `Server is down!`,
         description: error.message,
       };
-    case '404':
+    case "404":
       return {
         title: `Not found!`,
         description: error.message,
       };
-    case '501':
+    case "501":
       return {
         title: `Server is down!`,
         description: error.message,
       };
-    case '502':
+    case "502":
       return {
         title: `Server is down!`,
         description: error.message,

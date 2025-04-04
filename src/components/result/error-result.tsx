@@ -1,8 +1,16 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-import { ExclamationTriangleIcon } from '@heroicons/react/16/solid';
+import { ExclamationTriangleIcon } from "@heroicons/react/16/solid";
 
-export function ErrorResult({ message, description, extra }: { message: string; description?: string; extra?: ReactNode }) {
+export function ErrorResult({
+  message,
+  description,
+  extra,
+}: {
+  message: string;
+  description?: string;
+  extra?: ReactNode;
+}) {
   return (
     <div className="flex h-full flex-col items-center justify-center">
       <ExclamationTriangleIcon className="mb-4 w-12 text-error" />

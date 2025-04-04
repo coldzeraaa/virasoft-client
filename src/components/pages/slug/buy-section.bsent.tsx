@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
-import { BtnUpdateQuantity } from './btn-update-quantity';
+import { BtnUpdateQuantity } from "./btn-update-quantity";
 
-import { useProductPage } from '@/lib/context/product-context';
-import { catchHelper } from '@/lib/helper/catch-helper';
-import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
-import { useAddToCart } from '@/lib/hook/use-add-to-cart';
+import { useProductPage } from "@/lib/context/product-context";
+import { catchHelper } from "@/lib/helper/catch-helper";
+import { moneyFormatHelper } from "@/lib/helper/format/money-format-helper";
+import { useAddToCart } from "@/lib/hook/use-add-to-cart";
 
 export function BuySection() {
   const { variant, product } = useProductPage();
@@ -23,7 +23,9 @@ export function BuySection() {
       <div className="mt-4 space-y-10">
         <div className="flex flex-col items-center justify-center">
           <p className="text-2xl font-medium text-primary">{product.title}</p>
-          <p className="text-xl font-normal text-neutral">{moneyFormatHelper(variant?.price || 0)}</p>
+          <p className="text-xl font-normal text-neutral">
+            {moneyFormatHelper(variant?.price || 0)}
+          </p>
         </div>
         <div>
           <div className="mt-4 flex items-center justify-between rounded-full bg-base-200 p-2">
@@ -32,7 +34,9 @@ export function BuySection() {
         </div>
         <div className="text-ac flex justify-between font-semibold">
           <span>Нийт дүн</span>
-          <span className="text-lg text-primary">{moneyFormatHelper((variant?.price || 0) * quantity)}</span>
+          <span className="text-lg text-primary">
+            {moneyFormatHelper((variant?.price || 0) * quantity)}
+          </span>
         </div>
       </div>
 
@@ -44,7 +48,9 @@ export function BuySection() {
           onClick={() => {
             if (!variant?.id) return toast.error(`Please select a variant`);
             addToCart({
-              variables: { input: { items: [{ variantId: variant.id, quantity }] } },
+              variables: {
+                input: { items: [{ variantId: variant.id, quantity }] },
+              },
             }).catch(catchHelper);
           }}
         >
@@ -56,9 +62,11 @@ export function BuySection() {
           onClick={() => {
             if (!variant?.id) return toast.error(`Please select a variant`);
             addToCart({
-              variables: { input: { items: [{ variantId: variant.id, quantity }] } },
+              variables: {
+                input: { items: [{ variantId: variant.id, quantity }] },
+              },
             })
-              .then(() => router.push('/checkout'))
+              .then(() => router.push("/checkout"))
               .catch(catchHelper);
           }}
         >

@@ -1,9 +1,9 @@
-import { ProductSingle } from '@/components/single/product-single';
-import { elService } from '@/lib/service/el-service';
+import { ProductSingle } from "@/components/single/product-single";
+import { elService } from "@/lib/service/el-service";
 
 export async function ProductComponent({ list }: ProductComponentProps) {
   const hits = await elService({
-    slugs: list.split(',').reduce((acc: string[], cur) => {
+    slugs: list.split(",").reduce((acc: string[], cur) => {
       const trimmed = cur.trim();
       if (trimmed.length > 0) return [...acc, trimmed];
       return acc;

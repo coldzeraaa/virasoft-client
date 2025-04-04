@@ -1,8 +1,16 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-import { BugAntIcon } from '@heroicons/react/16/solid';
+import { BugAntIcon } from "@heroicons/react/16/solid";
 
-export function EmptyResult({ message, description, extra }: { message?: string; description?: string; extra?: ReactNode }) {
+export function EmptyResult({
+  message,
+  description,
+  extra,
+}: {
+  message?: string;
+  description?: string;
+  extra?: ReactNode;
+}) {
   return (
     <div className="flex h-full flex-col items-center justify-center">
       <BugAntIcon className="mb-4 w-12 text-error" />

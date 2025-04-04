@@ -1,15 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
-import Image from 'next/image';
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import Image from "next/image";
 
-import { ButtonPersistSearchParams } from '@/components/build/btn-persist-search-params';
-import { ErrorResult } from '@/components/result/error-result';
-import { AllMenusDocument, AllMenusQuery } from '@/gql/query/menu/list.generated';
-import { imageUrlHelper } from '@/lib/helper/img-url-helper';
-import { getClient } from '@/lib/service/apollo-client-service';
+import { ButtonPersistSearchParams } from "@/components/build/btn-persist-search-params";
+import { ErrorResult } from "@/components/result/error-result";
+import {
+  AllMenusDocument,
+  AllMenusQuery,
+} from "@/gql/query/menu/list.generated";
+import { imageUrlHelper } from "@/lib/helper/img-url-helper";
+import { getClient } from "@/lib/service/apollo-client-service";
 
-export default function BuildTypeOptionsPage({ params }: BuildTypeOptionsPageProps) {
+export default function BuildTypeOptionsPage({
+  params,
+}: BuildTypeOptionsPageProps) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   return <Menu type={params.menu} />;
@@ -21,16 +26,23 @@ async function Menu({ type }: { type: string }) {
     variables: { filter: { parent: { icon: { eq: type } } } },
   });
 
-  if (!data?.currentWebsite?.menus || error) return <ErrorResult message={error?.message || 'No menu'} />;
+  if (!data?.currentWebsite?.menus || error)
+    return <ErrorResult message={error?.message || "No menu"} />;
 
   return (
     <>
       <div className="mb-4 mt-2 flex gap-4">
-        <ButtonPersistSearchParams className="btn flex flex-nowrap gap-1" href="/build-type">
+        <ButtonPersistSearchParams
+          className="btn flex flex-nowrap gap-1"
+          href="/build-type"
+        >
           <ChevronLeftIcon />
           Буцах
         </ButtonPersistSearchParams>
-        <ButtonPersistSearchParams className="btn btn-primary flex flex-1 flex-nowrap justify-between" href="/build-type/checkout">
+        <ButtonPersistSearchParams
+          className="btn btn-primary flex flex-1 flex-nowrap justify-between"
+          href="/build-type/checkout"
+        >
           Худалдан авах
           <ChevronRightIcon />
         </ButtonPersistSearchParams>
@@ -54,7 +66,9 @@ async function Menu({ type }: { type: string }) {
                 className="aspect-square w-20 rounded-lg bg-base-300 object-contain transition-transform 
                          duration-300 ease-in-out group-hover:scale-105 md:w-28"
               />
-              <p className="text-xl font-semibold transition-transform duration-300 ease-in-out group-hover:translate-x-2">{menu.title}</p>
+              <p className="text-xl font-semibold transition-transform duration-300 ease-in-out group-hover:translate-x-2">
+                {menu.title}
+              </p>
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100">
                 <div
                   className="animate-shimmer absolute -top-1/2 left-0 h-full w-full translate-x-[-100%] bg-gradient-to-r from-transparent

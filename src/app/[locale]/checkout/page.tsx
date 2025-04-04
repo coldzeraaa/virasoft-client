@@ -1,8 +1,8 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import Loading from './address/loading';
+import Loading from "./address/loading";
 
-import { LineItemsSection } from '@/components/pages/checkout/line-items-section';
+import { LineItemsSection } from "@/components/pages/checkout/line-items-section";
 
 export default async function CheckoutPage() {
   return (

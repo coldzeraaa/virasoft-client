@@ -1,8 +1,14 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-import { FormProvider } from '@/lib/context/form-context';
+import { FormProvider } from "@/lib/context/form-context";
 
-export default function CheckoutLayout({ children, info }: { children: ReactNode; info: ReactNode }) {
+export default function CheckoutLayout({
+  children,
+  info,
+}: {
+  children: ReactNode;
+  info: ReactNode;
+}) {
   return (
     <FormProvider>
       <div className="container grid grid-cols-12 gap-8 py-8">

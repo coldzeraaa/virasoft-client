@@ -1,19 +1,34 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
-import { imageUrlHelper } from '@/lib/helper/img-url-helper';
+import { imageUrlHelper } from "@/lib/helper/img-url-helper";
 
-export function ImageSectionProduct({ images, alt }: { images: string[]; alt: string }) {
+export function ImageSectionProduct({
+  images,
+  alt,
+}: {
+  images: string[];
+  alt: string;
+}) {
   const [selected, setSelected] = useState<number>(0);
 
   return (
-    <section aria-label="images section" className="flex items-center justify-center">
+    <section
+      aria-label="images section"
+      className="flex items-center justify-center"
+    >
       <div className="relative h-full max-h-[530px] w-full max-w-[530px]">
-        <Image src={imageUrlHelper(images[selected])} alt={alt} width={0} height={0} className="h-full w-full bg-base-300 object-contain" />
+        <Image
+          src={imageUrlHelper(images[selected])}
+          alt={alt}
+          width={0}
+          height={0}
+          className="h-full w-full bg-base-300 object-contain"
+        />
         {images.length > 1 && (
           <div className="absolute top-1/2 flex w-full -translate-y-1/2 justify-between px-4">
             <button

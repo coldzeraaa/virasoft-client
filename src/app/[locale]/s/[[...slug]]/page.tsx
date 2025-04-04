@@ -1,8 +1,8 @@
-import { headers } from 'next/headers';
+import { headers } from "next/headers";
 
-import { BaseHits } from '@/components/algolia/base-hits';
-import { Filters } from '@/components/algolia/filters';
-import { SearchProvider } from '@/lib/provider/search-provider';
+import { BaseHits } from "@/components/algolia/base-hits";
+import { Filters } from "@/components/algolia/filters";
+import { SearchProvider } from "@/lib/provider/search-provider";
 
 export default async function Page({
   params,
@@ -12,14 +12,14 @@ export default async function Page({
   searchParams?: Record<string, string>;
 }) {
   const headersList = headers();
-  const origin = `${headersList.get('x-forwarded-proto') || 'http'}://${headersList.get('host')}`;
+  const origin = `${headersList.get("x-forwarded-proto") || "http"}://${headersList.get("host")}`;
 
   return (
     <>
       <SearchProvider
         origin={origin}
         slug={params.slug}
-        referer={`${origin}/s${params.slug ? `/${params.slug.join('/')}` : ''}${searchParams ? `?${new URLSearchParams(searchParams)}` : ''}`}
+        referer={`${origin}/s${params.slug ? `/${params.slug.join("/")}` : ""}${searchParams ? `?${new URLSearchParams(searchParams)}` : ""}`}
       >
         <div className="container py-3">
           <div className="grid md:grid-cols-12 md:gap-8">
@@ -40,4 +40,4 @@ export default async function Page({
   );
 }
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";

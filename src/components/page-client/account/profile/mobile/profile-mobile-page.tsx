@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { FormInput } from 'field-form';
-import Form, { Field } from 'rc-field-form';
-import { toast } from 'react-toastify';
+import { FormInput } from "field-form";
+import Form, { Field } from "rc-field-form";
+import { toast } from "react-toastify";
 
-import { ErrorResult } from '@/components/result/error-result';
-import { LoadingResult } from '@/components/result/loading-result';
-import { useSendOtpMutation } from '@/gql/mutation/user/auth-sendOtp.generated';
-import { useMeQuery } from '@/gql/query/user/me.generated';
-import { catchHelper } from '@/lib/helper/catch-helper';
+import { ErrorResult } from "@/components/result/error-result";
+import { LoadingResult } from "@/components/result/loading-result";
+import { useSendOtpMutation } from "@/gql/mutation/user/auth-sendOtp.generated";
+import { useMeQuery } from "@/gql/query/user/me.generated";
+import { catchHelper } from "@/lib/helper/catch-helper";
 
 export function MobilePageClient() {
   const { data, loading: userDataLoading, error } = useMeQuery();
@@ -17,8 +17,8 @@ export function MobilePageClient() {
     onError: catchHelper,
     onCompleted(TData) {
       if (TData.sendOtp?.id) {
-        toast.success('Token sent');
-      } else toast.error('User not found');
+        toast.success("Token sent");
+      } else toast.error("User not found");
     },
   });
 
@@ -37,8 +37,12 @@ export function MobilePageClient() {
           <FormInput label="Утас" name="mobile" />
         </Field>
 
-        <button disabled={sentOtpLoading} className="btn btn-primary w-fit" type="submit">
-          {data?.me?.mobile ? 'Дугаар солих' : 'Баталгаажуулах код авах'}
+        <button
+          disabled={sentOtpLoading}
+          className="btn btn-primary w-fit"
+          type="submit"
+        >
+          {data?.me?.mobile ? "Дугаар солих" : "Баталгаажуулах код авах"}
         </button>
       </div>
     </Form>

@@ -6,7 +6,9 @@ import Link from 'next/link';
 import { useAllMenusQuery } from '@/gql/query/menu/list.generated';
 
 export function Footer() {
-  const { data, loading } = useAllMenusQuery({ variables: { filter: { title: { in: ['header', 'footer'] } } } });
+  const { data, loading } = useAllMenusQuery({
+    variables: { filter: { title: { in: ['header', 'footer'] } } },
+  });
 
   if (loading) return <p>test</p>;
 

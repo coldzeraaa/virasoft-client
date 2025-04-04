@@ -1,25 +1,66 @@
-import * as Types from '../../graphql.d';
+import * as Types from "../../graphql.d";
 
-import { gql } from '@apollo/client';
-import { CurrentOrderFieldsFragmentDoc } from '../../fragment/current-order.generated';
-import * as Apollo from '@apollo/client';
+import { gql } from "@apollo/client";
+import { CurrentOrderFieldsFragmentDoc } from "../../fragment/current-order.generated";
+import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
 export type RemoveItemMutationVariables = Types.Exact<{
   input: Types.RemoveItemInput;
 }>;
 
-
-export type RemoveItemMutation = { __typename?: 'Mutation', removeItem?: { __typename?: 'Order', id: string, number: string, token: string, userId?: string | null, total?: number | null, itemTotal?: number | null, itemCount?: number | null, shipAddress?: { __typename?: 'UserAddress', id: string, address: { __typename?: 'Address', id: string, firstName?: string | null, mobile?: string | null, address1: string, address2: string, addressAlias?: string | null } } | null, items: Array<{ __typename?: 'Item', id: string, price: number, quantity: number, variant: { __typename?: 'Variant', id: string, images: Array<string>, price: number, sku: string, product: { __typename?: 'Product', id: string, name: string } } }> } | null };
-
+export type RemoveItemMutation = {
+  __typename?: "Mutation";
+  removeItem?: {
+    __typename?: "Order";
+    id: string;
+    number: string;
+    token: string;
+    userId?: string | null;
+    total?: number | null;
+    itemTotal?: number | null;
+    itemCount?: number | null;
+    shipAddress?: {
+      __typename?: "UserAddress";
+      id: string;
+      address: {
+        __typename?: "Address";
+        id: string;
+        firstName?: string | null;
+        mobile?: string | null;
+        address1: string;
+        address2: string;
+        addressAlias?: string | null;
+      };
+    } | null;
+    items: Array<{
+      __typename?: "Item";
+      id: string;
+      price: number;
+      quantity: number;
+      variant: {
+        __typename?: "Variant";
+        id: string;
+        images: Array<string>;
+        price: number;
+        sku: string;
+        product: { __typename?: "Product"; id: string; name: string };
+      };
+    }>;
+  } | null;
+};
 
 export const RemoveItemDocument = gql`
-    mutation removeItem($input: removeItemInput!) {
-  removeItem(input: $input) {
-    ...CurrentOrderFields
+  mutation removeItem($input: removeItemInput!) {
+    removeItem(input: $input) {
+      ...CurrentOrderFields
+    }
   }
-}
-    ${CurrentOrderFieldsFragmentDoc}`;
-export type RemoveItemMutationFn = Apollo.MutationFunction<RemoveItemMutation, RemoveItemMutationVariables>;
+  ${CurrentOrderFieldsFragmentDoc}
+`;
+export type RemoveItemMutationFn = Apollo.MutationFunction<
+  RemoveItemMutation,
+  RemoveItemMutationVariables
+>;
 
 /**
  * __useRemoveItemMutation__
@@ -38,10 +79,24 @@ export type RemoveItemMutationFn = Apollo.MutationFunction<RemoveItemMutation, R
  *   },
  * });
  */
-export function useRemoveItemMutation(baseOptions?: Apollo.MutationHookOptions<RemoveItemMutation, RemoveItemMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<RemoveItemMutation, RemoveItemMutationVariables>(RemoveItemDocument, options);
-      }
-export type RemoveItemMutationHookResult = ReturnType<typeof useRemoveItemMutation>;
-export type RemoveItemMutationResult = Apollo.MutationResult<RemoveItemMutation>;
-export type RemoveItemMutationOptions = Apollo.BaseMutationOptions<RemoveItemMutation, RemoveItemMutationVariables>;
+export function useRemoveItemMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    RemoveItemMutation,
+    RemoveItemMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<RemoveItemMutation, RemoveItemMutationVariables>(
+    RemoveItemDocument,
+    options,
+  );
+}
+export type RemoveItemMutationHookResult = ReturnType<
+  typeof useRemoveItemMutation
+>;
+export type RemoveItemMutationResult =
+  Apollo.MutationResult<RemoveItemMutation>;
+export type RemoveItemMutationOptions = Apollo.BaseMutationOptions<
+  RemoveItemMutation,
+  RemoveItemMutationVariables
+>;

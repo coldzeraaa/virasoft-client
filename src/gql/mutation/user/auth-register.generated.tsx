@@ -1,27 +1,37 @@
-import * as Types from '../../graphql.d';
+import * as Types from "../../graphql.d";
 
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
 export type AuthRegisterMutationVariables = Types.Exact<{
   input: Types.AuthRegisterInput;
 }>;
 
-
-export type AuthRegisterMutation = { __typename?: 'Mutation', authRegister?: { __typename?: 'User', firstName?: string | null, lastName?: string | null, mobile?: string | null, id: string } | null };
-
+export type AuthRegisterMutation = {
+  __typename?: "Mutation";
+  authRegister?: {
+    __typename?: "User";
+    firstName?: string | null;
+    lastName?: string | null;
+    mobile?: string | null;
+    id: string;
+  } | null;
+};
 
 export const AuthRegisterDocument = gql`
-    mutation authRegister($input: authRegisterInput!) {
-  authRegister(input: $input) {
-    firstName
-    lastName
-    mobile
-    id
+  mutation authRegister($input: authRegisterInput!) {
+    authRegister(input: $input) {
+      firstName
+      lastName
+      mobile
+      id
+    }
   }
-}
-    `;
-export type AuthRegisterMutationFn = Apollo.MutationFunction<AuthRegisterMutation, AuthRegisterMutationVariables>;
+`;
+export type AuthRegisterMutationFn = Apollo.MutationFunction<
+  AuthRegisterMutation,
+  AuthRegisterMutationVariables
+>;
 
 /**
  * __useAuthRegisterMutation__
@@ -40,10 +50,24 @@ export type AuthRegisterMutationFn = Apollo.MutationFunction<AuthRegisterMutatio
  *   },
  * });
  */
-export function useAuthRegisterMutation(baseOptions?: Apollo.MutationHookOptions<AuthRegisterMutation, AuthRegisterMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<AuthRegisterMutation, AuthRegisterMutationVariables>(AuthRegisterDocument, options);
-      }
-export type AuthRegisterMutationHookResult = ReturnType<typeof useAuthRegisterMutation>;
-export type AuthRegisterMutationResult = Apollo.MutationResult<AuthRegisterMutation>;
-export type AuthRegisterMutationOptions = Apollo.BaseMutationOptions<AuthRegisterMutation, AuthRegisterMutationVariables>;
+export function useAuthRegisterMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    AuthRegisterMutation,
+    AuthRegisterMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    AuthRegisterMutation,
+    AuthRegisterMutationVariables
+  >(AuthRegisterDocument, options);
+}
+export type AuthRegisterMutationHookResult = ReturnType<
+  typeof useAuthRegisterMutation
+>;
+export type AuthRegisterMutationResult =
+  Apollo.MutationResult<AuthRegisterMutation>;
+export type AuthRegisterMutationOptions = Apollo.BaseMutationOptions<
+  AuthRegisterMutation,
+  AuthRegisterMutationVariables
+>;

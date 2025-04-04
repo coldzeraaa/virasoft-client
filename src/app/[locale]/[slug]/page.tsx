@@ -1,6 +1,8 @@
-import { DynamicComponent } from '@/components/pages/page/dynamic-component';
+import { DynamicComponent } from "@/components/pages/page/dynamic-component";
 
-export default async function SlugPage({ params: { slug, locale } }: SlugPageProps) {
+export default async function SlugPage({
+  params: { slug, locale },
+}: SlugPageProps) {
   return (
     <>
       {/*eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}

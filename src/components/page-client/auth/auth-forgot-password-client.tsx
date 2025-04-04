@@ -1,35 +1,36 @@
-'use client';
-import { InputHTMLAttributes, useState } from 'react';
+"use client";
+import { InputHTMLAttributes, useState } from "react";
 
-import { useRouter } from 'next/navigation';
-import Form, { Field } from 'rc-field-form';
-import { toast } from 'react-toastify';
+import { useRouter } from "next/navigation";
+import Form, { Field } from "rc-field-form";
+import { toast } from "react-toastify";
 
-import { useCheckOtpMutation } from '@/gql/mutation/user/auth-check-otp.generated';
-import { useResetPasswordMutation } from '@/gql/mutation/user/auth-reset-password.generated';
-import { useSendOtpMutation } from '@/gql/mutation/user/auth-sendOtp.generated';
-import { catchHelper } from '@/lib/helper/catch-helper';
+import { useCheckOtpMutation } from "@/gql/mutation/user/auth-check-otp.generated";
+import { useResetPasswordMutation } from "@/gql/mutation/user/auth-reset-password.generated";
+import { useSendOtpMutation } from "@/gql/mutation/user/auth-sendOtp.generated";
+import { catchHelper } from "@/lib/helper/catch-helper";
 
 const ForgotPasswordClient = () => {
   const [step, setStep] = useState(0);
   const router = useRouter();
 
-  const [resetPassword, { loading: resetPasswordLoading }] = useResetPasswordMutation({
-    onCompleted(TData) {
-      if (TData?.resetPassword?.id) {
-        toast.success('Password reset successful');
-        router.push('/auth/login');
-      }
-    },
-  });
+  const [resetPassword, { loading: resetPasswordLoading }] =
+    useResetPasswordMutation({
+      onCompleted(TData) {
+        if (TData?.resetPassword?.id) {
+          toast.success("Password reset successful");
+          router.push("/auth/login");
+        }
+      },
+    });
   const [checkOtp] = useCheckOtpMutation({
     onError: catchHelper,
     onCompleted(TData) {
       if (TData.checkOtp) {
         setStep(2);
-        toast.success('OTP verified');
+        toast.success("OTP verified");
       } else {
-        toast.error('Invalid OTP');
+        toast.error("Invalid OTP");
       }
     },
   });
@@ -37,10 +38,10 @@ const ForgotPasswordClient = () => {
     onError: catchHelper,
     onCompleted(TData) {
       if (TData.sendOtp?.id) {
-        toast.success('OTP sent successfully');
+        toast.success("OTP sent successfully");
         setStep(1);
       } else {
-        toast.error('User not found');
+        toast.error("User not found");
       }
     },
   });
@@ -54,13 +55,23 @@ const ForgotPasswordClient = () => {
             if (step === 0) {
               sendOtp({ variables: { input: { login: values.login } } });
             } else if (step === 1) {
-              checkOtp({ variables: { input: { token: values.token, login: values.login } } });
+              checkOtp({
+                variables: {
+                  input: { token: values.token, login: values.login },
+                },
+              });
             } else if (step === 2 && values.password === values.repassword) {
               resetPassword({
-                variables: { input: { login: values.login, password: values.password, token: values.token } },
+                variables: {
+                  input: {
+                    login: values.login,
+                    password: values.password,
+                    token: values.token,
+                  },
+                },
               });
             } else if (values.password !== values.repassword) {
-              toast.error('Passwords do not match');
+              toast.error("Passwords do not match");
             }
           } catch (error) {
             catchHelper(error);
@@ -68,7 +79,7 @@ const ForgotPasswordClient = () => {
         }}
       >
         {/* Step 1: Enter Phone Number */}
-        <div className={`${step === 0 ? 'block' : 'hidden'}`}>
+        <div className={`${step === 0 ? "block" : "hidden"}`}>
           <Field name="login">
             <CustomInput
               placeholder="Утас"
@@ -78,7 +89,7 @@ const ForgotPasswordClient = () => {
         </div>
 
         {/* Step 2: Enter OTP Code */}
-        <div className={`${step === 1 ? 'block' : 'hidden'}`}>
+        <div className={`${step === 1 ? "block" : "hidden"}`}>
           <Field name="token">
             <CustomInput
               placeholder="OTP код"
@@ -88,7 +99,9 @@ const ForgotPasswordClient = () => {
         </div>
 
         {/* Step 3: Enter New Password */}
-        <div className={`${step === 2 ? 'block' : 'hidden'} flex flex-col gap-4`}>
+        <div
+          className={`${step === 2 ? "block" : "hidden"} flex flex-col gap-4`}
+        >
           <Field name="password">
             <CustomInput
               type="password"
@@ -111,7 +124,11 @@ const ForgotPasswordClient = () => {
           className="hover:bg-primary-dark disabled:base-200 btn btn-primary mt-6 w-full rounded-lg bg-primary py-3 text-sm font-medium text-base-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
           disabled={sentOtpLoading || resetPasswordLoading}
         >
-          {sentOtpLoading || resetPasswordLoading ? <span className="loading loading-spinner"></span> : 'Илгээх'}
+          {sentOtpLoading || resetPasswordLoading ? (
+            <span className="loading loading-spinner"></span>
+          ) : (
+            "Илгээх"
+          )}
         </button>
       </Form>
     </div>
@@ -119,7 +136,11 @@ const ForgotPasswordClient = () => {
 };
 
 // Custom Input Component
-const CustomInput: React.FC<CustomInputProps> = ({ value = '', onChange, ...props }: CustomInputProps) => (
+const CustomInput: React.FC<CustomInputProps> = ({
+  value = "",
+  onChange,
+  ...props
+}: CustomInputProps) => (
   <input
     className="w-full rounded-lg border border-base-200 px-4 py-3 text-sm text-base-300 shadow-sm focus:border-primary focus:ring-primary"
     value={value}

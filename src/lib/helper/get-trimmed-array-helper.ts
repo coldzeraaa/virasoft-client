@@ -1,5 +1,5 @@
 export function getTrimmedArrayHelper(value: unknown) {
   return JSON.stringify(value)
-    .split(',')
+    .split(",")
     .map((v) => v.trim());
 }

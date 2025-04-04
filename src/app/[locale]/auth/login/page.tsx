@@ -1,8 +1,8 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import Loading from '../loading';
+import Loading from "../loading";
 
-import { AuthLoginPageClient } from '@/components/page-client/auth/auth-login-page-client';
+import { AuthLoginPageClient } from "@/components/page-client/auth/auth-login-page-client";
 
 export default function AuthLoginPage() {
   return (

@@ -1,5 +1,5 @@
-import { ChevronLeftIcon } from 'lucide-react';
-import Link from 'next/link';
+import { ChevronLeftIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Default() {
   return (

@@ -1,66 +1,97 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import { ChevronRightIcon } from '@heroicons/react/16/solid';
-import { BtnLoader, FormInput } from 'field-form';
-import { ChevronLeftIcon } from 'lucide-react';
-import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { toast } from 'react-toastify';
+import { ChevronRightIcon } from "@heroicons/react/16/solid";
+import { BtnLoader, FormInput } from "field-form";
+import { ChevronLeftIcon } from "lucide-react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "react-toastify";
 
-import { PhoneInput } from '@/components/form/inputs/phone-input';
-import { TokenInput } from '@/components/form/inputs/token-input';
-import { useCheckOtpMutation } from '@/gql/mutation/user/auth-check-otp.generated';
-import { useResetPasswordMutation } from '@/gql/mutation/user/auth-reset-password.generated';
-import { useSendOtpMutation } from '@/gql/mutation/user/auth-send-otp.generated';
-import { FormProvider, useForm } from '@/lib/context/form-context';
-import { catchHelper } from '@/lib/helper/catch-helper';
-import { mutationOptionHelper } from '@/lib/helper/mutation-option-helper';
+import { PhoneInput } from "@/components/form/inputs/phone-input";
+import { TokenInput } from "@/components/form/inputs/token-input";
+import { useCheckOtpMutation } from "@/gql/mutation/user/auth-check-otp.generated";
+import { useResetPasswordMutation } from "@/gql/mutation/user/auth-reset-password.generated";
+import { useSendOtpMutation } from "@/gql/mutation/user/auth-send-otp.generated";
+import { FormProvider, useForm } from "@/lib/context/form-context";
+import { catchHelper } from "@/lib/helper/catch-helper";
+import { mutationOptionHelper } from "@/lib/helper/mutation-option-helper";
 
 export function AuthForgotPasswordPageClient() {
-  const [step, setStep] = useState<Step>('check');
+  const [step, setStep] = useState<Step>("check");
   const searchParams = useSearchParams();
-  const login = searchParams.get('login');
+  const login = searchParams.get("login");
   const router = useRouter();
 
   return (
-    <FormProvider initialValues={{ login }} onFinish={() => document.getElementById(step)?.click()}>
+    <FormProvider
+      initialValues={{ login }}
+      onFinish={() => document.getElementById(step)?.click()}
+    >
       <div className="mb-4">
         <FormInput
           label="Утасны дугаар"
           name="login"
-          className={step === 'check' ? '' : 'hidden'}
-          rules={[{ required: step === 'check', message: 'Утасны дугаар оруулна уу' }]}
-          input={{ type: 'custom', component: PhoneInput }}
+          className={step === "check" ? "" : "hidden"}
+          rules={[
+            { required: step === "check", message: "Утасны дугаар оруулна уу" },
+          ]}
+          input={{ type: "custom", component: PhoneInput }}
         />
         <FormInput
           label="Утсанд ирсэн код"
           name="token"
-          className={step === 'otp' ? '' : 'hidden'}
-          rules={[{ required: step === 'otp', message: 'Утсанд ирсэн код оруулна уу' }]}
-          input={{ type: 'custom', component: TokenInput }}
+          className={step === "otp" ? "" : "hidden"}
+          rules={[
+            {
+              required: step === "otp",
+              message: "Утсанд ирсэн код оруулна уу",
+            },
+          ]}
+          input={{ type: "custom", component: TokenInput }}
         />
         <FormInput
           label="Нууц үг"
           name="password"
-          className={step === 'reset' ? '' : 'hidden'}
-          rules={[{ required: step === 'reset', message: 'Нууц үг оруулна уу' }]}
-          input={{ type: 'password', placeholder: '******' }}
+          className={step === "reset" ? "" : "hidden"}
+          rules={[
+            { required: step === "reset", message: "Нууц үг оруулна уу" },
+          ]}
+          input={{ type: "password", placeholder: "******" }}
         />
       </div>
-      {step === 'check' && <BtnCheck onSuccess={() => setStep('otp')} />}
-      {step === 'otp' && <BtnOtp onSuccess={() => setStep('reset')} onBack={() => setStep('check')} />}
-      {step === 'reset' && <BtnPassword onSuccess={() => router.replace('/auth/login')} onBack={() => setStep('check')} />}
+      {step === "check" && <BtnCheck onSuccess={() => setStep("otp")} />}
+      {step === "otp" && (
+        <BtnOtp
+          onSuccess={() => setStep("reset")}
+          onBack={() => setStep("check")}
+        />
+      )}
+      {step === "reset" && (
+        <BtnPassword
+          onSuccess={() => router.replace("/auth/login")}
+          onBack={() => setStep("check")}
+        />
+      )}
       <button className="hidden" />
       <ul className="steps mx-auto mt-8 w-full">
-        <li data-content={step === 'check' ? '?' : '✓'} className="step step-primary">
+        <li
+          data-content={step === "check" ? "?" : "✓"}
+          className="step step-primary"
+        >
           Код илгээх
         </li>
-        <li data-content={step === 'otp' ? '?' : step === 'reset' ? '✓' : '●'} className={`step ${step !== 'check' ? 'step-primary' : ''}`}>
+        <li
+          data-content={step === "otp" ? "?" : step === "reset" ? "✓" : "●"}
+          className={`step ${step !== "check" ? "step-primary" : ""}`}
+        >
           Шалгах
         </li>
-        <li data-content={step === 'reset' ? '?' : '●'} className={`step ${step === 'reset' ? 'step-primary' : ''}`}>
+        <li
+          data-content={step === "reset" ? "?" : "●"}
+          className={`step ${step === "reset" ? "step-primary" : ""}`}
+        >
           Нууц үг
         </li>
       </ul>
@@ -70,7 +101,10 @@ export function AuthForgotPasswordPageClient() {
 
 function BtnCheck({ onSuccess }: { onSuccess(): void }) {
   const { form } = useForm();
-  const [sendOtp, { loading }] = useSendOtpMutation({ ...mutationOptionHelper, onCompleted: () => true });
+  const [sendOtp, { loading }] = useSendOtpMutation({
+    ...mutationOptionHelper,
+    onCompleted: () => true,
+  });
 
   return (
     <div className="flex gap-2">
@@ -85,12 +119,14 @@ function BtnCheck({ onSuccess }: { onSuccess(): void }) {
         className="btn btn-primary flex-1 text-base-100"
         onClick={async () => {
           try {
-            const values = await form.validateFields(['login']);
-            const response = await sendOtp({ variables: { input: { login: values.login } } });
+            const values = await form.validateFields(["login"]);
+            const response = await sendOtp({
+              variables: { input: { login: values.login } },
+            });
             if (response.data?.sendOtp?.id) {
               onSuccess();
-              toast.success('Таны утасны дугаар руу код илгээгдлээ');
-            } else toast.error('Хэрэглэгч олдсонгүй');
+              toast.success("Таны утасны дугаар руу код илгээгдлээ");
+            } else toast.error("Хэрэглэгч олдсонгүй");
           } catch (error) {
             catchHelper(error);
           }
@@ -105,7 +141,10 @@ function BtnCheck({ onSuccess }: { onSuccess(): void }) {
 
 function BtnOtp({ onSuccess, onBack }: { onSuccess(): void; onBack(): void }) {
   const { form } = useForm();
-  const [checkOtp, { loading }] = useCheckOtpMutation({ ...mutationOptionHelper, onCompleted: () => true });
+  const [checkOtp, { loading }] = useCheckOtpMutation({
+    ...mutationOptionHelper,
+    onCompleted: () => true,
+  });
 
   return (
     <div className="flex gap-2">
@@ -120,12 +159,18 @@ function BtnOtp({ onSuccess, onBack }: { onSuccess(): void; onBack(): void }) {
         className="btn btn-primary btn-block flex-1 text-base-100"
         onClick={async () => {
           try {
-            const values = await form.validateFields(['login', 'token']);
+            const values = await form.validateFields(["login", "token"]);
             const response = await checkOtp({
-              variables: { input: { login: values.login, token: values.token, unconfirmedMobile: false } },
+              variables: {
+                input: {
+                  login: values.login,
+                  token: values.token,
+                  unconfirmedMobile: false,
+                },
+              },
             });
             if (response.data?.checkOtp) onSuccess();
-            else toast.error('Токен буруу байна');
+            else toast.error("Токен буруу байна");
           } catch (error) {
             catchHelper(error);
           }
@@ -138,9 +183,18 @@ function BtnOtp({ onSuccess, onBack }: { onSuccess(): void; onBack(): void }) {
   );
 }
 
-function BtnPassword({ onSuccess, onBack }: { onSuccess(): void; onBack(): void }) {
+function BtnPassword({
+  onSuccess,
+  onBack,
+}: {
+  onSuccess(): void;
+  onBack(): void;
+}) {
   const { form } = useForm();
-  const [resetPassword, { loading }] = useResetPasswordMutation({ ...mutationOptionHelper, onCompleted: () => true });
+  const [resetPassword, { loading }] = useResetPasswordMutation({
+    ...mutationOptionHelper,
+    onCompleted: () => true,
+  });
 
   return (
     <div className="flex gap-2">
@@ -155,14 +209,24 @@ function BtnPassword({ onSuccess, onBack }: { onSuccess(): void; onBack(): void 
         className="btn btn-primary btn-block flex-1 text-base-100"
         onClick={async () => {
           try {
-            const values = await form.validateFields(['login', 'token', 'password']);
+            const values = await form.validateFields([
+              "login",
+              "token",
+              "password",
+            ]);
             const response = await resetPassword({
-              variables: { input: { login: values.login, token: values.token, password: values.password } },
+              variables: {
+                input: {
+                  login: values.login,
+                  token: values.token,
+                  password: values.password,
+                },
+              },
             });
             if (response.data?.resetPassword) {
-              toast.success('Нууц үг амжилттай солигдлоо');
+              toast.success("Нууц үг амжилттай солигдлоо");
               onSuccess();
-            } else toast.error('Токен буруу байна');
+            } else toast.error("Токен буруу байна");
           } catch (error) {
             catchHelper(error);
           }
@@ -175,4 +239,4 @@ function BtnPassword({ onSuccess, onBack }: { onSuccess(): void; onBack(): void 
   );
 }
 
-type Step = 'check' | 'otp' | 'reset';
+type Step = "check" | "otp" | "reset";

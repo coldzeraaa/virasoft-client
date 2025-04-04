@@ -1,6 +1,6 @@
-import { NextRequest } from 'next/server';
+import { NextRequest } from "next/server";
 
-import { middlewareClient } from '@/configs/middleware-config';
+import { middlewareClient } from "@/configs/middleware-config";
 
 export async function middleware(request: NextRequest) {
   try {
@@ -12,6 +12,8 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|public|_next/static|_next/image|.*\\.png$|.*\\.ico$|.*\\.xlsx$).*)'],
+  matcher: [
+    "/((?!api|public|_next/static|_next/image|.*\\.png$|.*\\.ico$|.*\\.xlsx$).*)",
+  ],
 };
 //favicon.ico

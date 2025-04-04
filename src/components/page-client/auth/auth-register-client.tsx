@@ -55,10 +55,18 @@ export default function AuthRegisterClient() {
         onFinish={(values) => {
           try {
             if (!verified && step === 0) {
-              authCheckLogin({ variables: { input: { login: values.login, sendToken: true } } });
+              authCheckLogin({
+                variables: { input: { login: values.login, sendToken: true } },
+              });
             } else if (step === 1) {
               CheckOTP({
-                variables: { input: { login: values.login, token: values.token, unconfirmedMobile: true } },
+                variables: {
+                  input: {
+                    login: values.login,
+                    token: values.token,
+                    unconfirmedMobile: true,
+                  },
+                },
               });
             } else if (step === 2) {
               authRegister({ variables: { input: values } });

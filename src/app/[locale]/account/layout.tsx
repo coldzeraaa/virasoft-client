@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-import { HeaderAccountMobile } from '@/components/header/header-account-mobile';
-import { AccountSideMenu } from '@/components/pages/account/account-side-menu';
+import { HeaderAccountMobile } from "@/components/header/header-account-mobile";
+import { AccountSideMenu } from "@/components/pages/account/account-side-menu";
 
 export default async function DashboardLayout({ children }: ChildrenType) {
   return (
@@ -10,7 +10,9 @@ export default async function DashboardLayout({ children }: ChildrenType) {
       <aside className="col-span-4 hidden h-full flex-col overflow-auto rounded-lg bg-base-200 p-2 shadow md:flex">
         <AccountSideMenu />
       </aside>
-      <main className="col-span-12 h-full overflow-auto md:col-span-8">{children}</main>
+      <main className="col-span-12 h-full overflow-auto md:col-span-8">
+        {children}
+      </main>
     </div>
   );
 }

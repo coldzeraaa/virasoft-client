@@ -1,33 +1,64 @@
-import * as Types from '../../graphql.d';
+import * as Types from "../../graphql.d";
 
-import { gql } from '@apollo/client';
-import { UserAddressFieldsFragmentDoc } from '../../fragment/user-address.generated';
-import * as Apollo from '@apollo/client';
+import { gql } from "@apollo/client";
+import { UserAddressFieldsFragmentDoc } from "../../fragment/user-address.generated";
+import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
 export type DestroyUserAddressMutationVariables = Types.Exact<{
   input: Types.DestroyUserAddressInput;
 }>;
 
-
-export type DestroyUserAddressMutation = { __typename?: 'Mutation', destroyUserAddress?: { __typename?: 'UserAddress', id: string, user: { __typename?: 'User', id: string, userAddresses: { __typename?: 'UserAddressConnection', nodes: Array<{ __typename?: 'UserAddress', id: string, user: { __typename?: 'User', id: string }, address: { __typename?: 'Address', id: string, address1: string, address2: string, addressAlias?: string | null, longitude?: string | null, latitude?: string | null, mobile?: string | null, firstName?: string | null } }> } } } | null };
-
+export type DestroyUserAddressMutation = {
+  __typename?: "Mutation";
+  destroyUserAddress?: {
+    __typename?: "UserAddress";
+    id: string;
+    user: {
+      __typename?: "User";
+      id: string;
+      userAddresses: {
+        __typename?: "UserAddressConnection";
+        nodes: Array<{
+          __typename?: "UserAddress";
+          id: string;
+          user: { __typename?: "User"; id: string };
+          address: {
+            __typename?: "Address";
+            id: string;
+            address1: string;
+            address2: string;
+            addressAlias?: string | null;
+            longitude?: string | null;
+            latitude?: string | null;
+            mobile?: string | null;
+            firstName?: string | null;
+          };
+        }>;
+      };
+    };
+  } | null;
+};
 
 export const DestroyUserAddressDocument = gql`
-    mutation destroyUserAddress($input: destroyUserAddressInput!) {
-  destroyUserAddress(input: $input) {
-    id
-    user {
+  mutation destroyUserAddress($input: destroyUserAddressInput!) {
+    destroyUserAddress(input: $input) {
       id
-      userAddresses(sort: {field: "updatedAt", direction: desc}) {
-        nodes {
-          ...UserAddressFields
+      user {
+        id
+        userAddresses(sort: { field: "updatedAt", direction: desc }) {
+          nodes {
+            ...UserAddressFields
+          }
         }
       }
     }
   }
-}
-    ${UserAddressFieldsFragmentDoc}`;
-export type DestroyUserAddressMutationFn = Apollo.MutationFunction<DestroyUserAddressMutation, DestroyUserAddressMutationVariables>;
+  ${UserAddressFieldsFragmentDoc}
+`;
+export type DestroyUserAddressMutationFn = Apollo.MutationFunction<
+  DestroyUserAddressMutation,
+  DestroyUserAddressMutationVariables
+>;
 
 /**
  * __useDestroyUserAddressMutation__
@@ -46,10 +77,24 @@ export type DestroyUserAddressMutationFn = Apollo.MutationFunction<DestroyUserAd
  *   },
  * });
  */
-export function useDestroyUserAddressMutation(baseOptions?: Apollo.MutationHookOptions<DestroyUserAddressMutation, DestroyUserAddressMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DestroyUserAddressMutation, DestroyUserAddressMutationVariables>(DestroyUserAddressDocument, options);
-      }
-export type DestroyUserAddressMutationHookResult = ReturnType<typeof useDestroyUserAddressMutation>;
-export type DestroyUserAddressMutationResult = Apollo.MutationResult<DestroyUserAddressMutation>;
-export type DestroyUserAddressMutationOptions = Apollo.BaseMutationOptions<DestroyUserAddressMutation, DestroyUserAddressMutationVariables>;
+export function useDestroyUserAddressMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DestroyUserAddressMutation,
+    DestroyUserAddressMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DestroyUserAddressMutation,
+    DestroyUserAddressMutationVariables
+  >(DestroyUserAddressDocument, options);
+}
+export type DestroyUserAddressMutationHookResult = ReturnType<
+  typeof useDestroyUserAddressMutation
+>;
+export type DestroyUserAddressMutationResult =
+  Apollo.MutationResult<DestroyUserAddressMutation>;
+export type DestroyUserAddressMutationOptions = Apollo.BaseMutationOptions<
+  DestroyUserAddressMutation,
+  DestroyUserAddressMutationVariables
+>;

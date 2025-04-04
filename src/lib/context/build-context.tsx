@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface BuildContextType {
   selectedProducts: Record<string, string>;
@@ -11,8 +11,14 @@ interface BuildContextType {
 
 const BuildContext = createContext<BuildContextType | undefined>(undefined);
 
-export function BuildContextProvider({ children }: { children: React.ReactNode }) {
-  const [selectedProducts, setSelectedProducts] = useState<Record<string, string>>({});
+export function BuildContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [selectedProducts, setSelectedProducts] = useState<
+    Record<string, string>
+  >({});
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -52,7 +58,7 @@ export function BuildContextProvider({ children }: { children: React.ReactNode }
 export function useBuild() {
   const context = useContext(BuildContext);
   if (!context) {
-    throw new Error('useBuild must be used within a BuildProvider');
+    throw new Error("useBuild must be used within a BuildProvider");
   }
   return context;
 }

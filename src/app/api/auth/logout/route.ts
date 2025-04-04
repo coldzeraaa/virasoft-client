@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
+import { STORE_KEY_CONFIG } from "@/configs/STORE_KEY_CONFIG";
 
 export async function GET(req: NextRequest) {
   const response = NextResponse.redirect(new URL(`/auth/login`, req.url));

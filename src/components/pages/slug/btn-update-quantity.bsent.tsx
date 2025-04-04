@@ -1,4 +1,4 @@
-import { MinusIcon, PlusIcon } from '@heroicons/react/16/solid';
+import { MinusIcon, PlusIcon } from "@heroicons/react/16/solid";
 
 export function BtnUpdateQuantity({
   quantity = 1,
@@ -12,7 +12,10 @@ export function BtnUpdateQuantity({
   min?: number;
 }) {
   return (
-    <div aria-label="adjustment quantity" className="join flex w-full justify-center gap-4">
+    <div
+      aria-label="adjustment quantity"
+      className="join flex w-full justify-center gap-4"
+    >
       <button
         disabled={quantity <= 1 || (min ? min >= quantity : false)}
         onClick={() => setQuantity(quantity - 1)}

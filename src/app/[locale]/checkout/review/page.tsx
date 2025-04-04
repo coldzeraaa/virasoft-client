@@ -1,8 +1,11 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import Loading from './loading';
+import Loading from "./loading";
 
-import { ProductListSection, ShippingSection } from '@/components/page-client/checkout/checkout-review-page-client';
+import {
+  ProductListSection,
+  ShippingSection,
+} from "@/components/page-client/checkout/checkout-review-page-client";
 
 export default function Page() {
   return (

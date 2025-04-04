@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { createContext, FC, PropsWithChildren, useContext } from 'react';
+import { createContext, FC, PropsWithChildren, useContext } from "react";
 
-import type { ProductQuery } from '@/gql/query/product/id.generated';
+import type { ProductQuery } from "@/gql/query/product/id.generated";
 
 export const ProductPageContext = createContext<ProductPageContextProps>({
   product: {
-    id: '',
+    id: "",
     images: [],
-    name: '',
-    title: '',
+    name: "",
+    title: "",
     variants: { nodes: [] },
     master: {
-      id: '',
+      id: "",
       price: 0,
-      sku: '',
+      sku: "",
       images: [],
     },
   },
@@ -22,13 +22,15 @@ export const ProductPageContext = createContext<ProductPageContextProps>({
   // setVariant: () => true,
 });
 
-export const useProductPage = () => useContext<ProductPageContextProps>(ProductPageContext);
+export const useProductPage = () =>
+  useContext<ProductPageContextProps>(ProductPageContext);
 
-export const ProductPageProvider: FC<PropsWithChildren<{ product: NonNullable<ProductQuery['product']>; selectedVariant?: string }>> = ({
-  children,
-  product,
-  selectedVariant,
-}) => (
+export const ProductPageProvider: FC<
+  PropsWithChildren<{
+    product: NonNullable<ProductQuery["product"]>;
+    selectedVariant?: string;
+  }>
+> = ({ children, product, selectedVariant }) => (
   // const [variant, setVariant] = useState<NonNullable<ProductQuery['product']>['variants']['0'] | undefined>(
   //   product.variants.length > 1 ? undefined : product.master,
   // );
@@ -36,7 +38,9 @@ export const ProductPageProvider: FC<PropsWithChildren<{ product: NonNullable<Pr
   <ProductPageContext.Provider
     value={{
       product,
-      variant: selectedVariant ? product.variants.nodes.find((v) => v.sku === selectedVariant) : product.master,
+      variant: selectedVariant
+        ? product.variants.nodes.find((v) => v.sku === selectedVariant)
+        : product.master,
       // setVariant,
     }}
   >
@@ -45,7 +49,9 @@ export const ProductPageProvider: FC<PropsWithChildren<{ product: NonNullable<Pr
 );
 
 export interface ProductPageContextProps {
-  product: NonNullable<ProductQuery['product']>;
-  variant: NonNullable<ProductQuery['product']>['variants']['nodes']['0'] | undefined;
+  product: NonNullable<ProductQuery["product"]>;
+  variant:
+    | NonNullable<ProductQuery["product"]>["variants"]["nodes"]["0"]
+    | undefined;
   // setVariant(val?: NonNullable<ProductQuery['product']>['variants']['0']): void;
 }

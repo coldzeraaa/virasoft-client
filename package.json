@@ -4,35 +4,30 @@
   "private": true,
   "scripts": {
     "clean:cache": "rm -rf .next/cache",
-
     "dev:virasoft:prod": "npm run clean:cache &&  APP_INDEX=virasoft next dev -p 3202",
     "dev:virasoft:windows:prod": "npm run clean:cache && cross-env APP_INDEX=virasoft next dev -p 3202",
     "dev:virasoft:local": "npm run clean:cache && STAGE=local APP_INDEX=virasoft next dev -p 3203",
     "dev:virasoft:docker": "npm run clean:cache && STAGE=docker APP_INDEX=virasoft next dev -p 3204",
     "build:virasoft": "APP_INDEX=virasoft next build",
     "build:virasoft:windows": "cross-env APP_INDEX=virasoft next build",
-
     "dev:goldenoil:prod": "npm run clean:cache && APP_INDEX=goldenoil next dev -p 3212",
     "dev:goldenoil:windows:prod": "npm run clean:cache && cross-env APP_INDEX=goldenoil next dev -p 3212",
     "dev:goldenoil:local": "npm run clean:cache && STAGE=local APP_INDEX=goldenoil next dev -p 3213",
     "dev:goldenoil:docker": "npm run clean:cache && STAGE=docker APP_INDEX=goldenoil next dev -p 3214",
     "build:goldenoil": "APP_INDEX=goldenoil next build",
     "build:goldenoil:windows": "cross-env APP_INDEX=goldenoil next build",
-
     "dev:bsent:prod": "npm run clean:cache &&  APP_INDEX=bsent next dev -p 3222",
     "dev:bsent:windows:prod": "npm run clean:cache && cross-env APP_INDEX=bsent next dev -p 3222",
     "dev:bsent:local": "npm run clean:cache && STAGE=local APP_INDEX=bsent next dev -p 3223",
     "dev:bsent:docker": "npm run clean:cache && STAGE=docker APP_INDEX=bsent next dev -p 3224",
     "build:bsent": "APP_INDEX=bsent next build",
     "build:bsent:windows": "cross-env APP_INDEX=bsent next build",
-
     "dev:genrui:prod": "npm run clean:cache &&  APP_INDEX=genrui next dev -p 3232",
     "dev:genrui:windows:prod": "npm run clean:cache && cross-env APP_INDEX=genrui next dev -p 3232",
     "dev:genrui:local": "npm run clean:cache && STAGE=local APP_INDEX=genrui next dev -p 3233",
     "dev:genrui:docker": "npm run clean:cache && STAGE=docker APP_INDEX=genrui next dev -p 3234",
     "build:genrui": "APP_INDEX=genrui next build",
     "build:genrui:windows": "cross-env APP_INDEX=genrui next build",
-
     "start": "next start -p 3099",
     "codegen": "graphql-codegen --config codegen.yml",
     "codegen:docker": "graphql-codegen --config codegen.docker.yml",
@@ -50,9 +45,10 @@
     "js-cookie": "^3.0.5",
     "ks-instantsearch-routing": "^1.0.2",
     "lodash": "^4.17.21",
-    "lucide-react": "^0.471.0",
+    "lucide-react": "^0.471.2",
     "next": "14.2.17",
     "nextjs-middleware-client": "^1.0.12",
+    "qrcode": "^1.5.3",
     "rc-field-form": "^2.7.0",
     "react": "^18",
     "react-animate-height": "^3.2.3",
@@ -60,8 +56,7 @@
     "react-instantsearch-nextjs": "^0.3.20",
     "react-instantsearch-router-nextjs": "^7.13.9",
     "react-toastify": "^10.0.6",
-    "simple-helper-fns": "^1.0.7",
-    "qrcode": "^1.5.3"
+    "simple-helper-fns": "^1.0.7"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.2",
@@ -78,9 +73,9 @@
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.14",
     "@types/node": "^20",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/qrcode": "^1.5.5",
     "cross-env": "^7.0.3",
     "daisyui": "^4.10.2",
     "eslint": "^8",

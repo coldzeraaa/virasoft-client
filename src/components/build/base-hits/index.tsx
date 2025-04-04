@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
-import Image from 'next/image';
-import { useHits } from 'react-instantsearch-core';
+import Image from "next/image";
+import { useHits } from "react-instantsearch-core";
 
-import { useBuild } from '@/lib/context/build-context';
-import { imageUrlHelper } from '@/lib/helper/img-url-helper';
-import { BuildItemType } from '@/types/build-item-type';
+import { useBuild } from "@/lib/context/build-context";
+import { imageUrlHelper } from "@/lib/helper/img-url-helper";
+import { BuildItemType } from "@/types/build-item-type";
 
 export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
   const { hits } = useHits<BuildItemType>();
@@ -21,7 +21,7 @@ export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
             <button
               onClick={() => selectProduct(type, hit.id)}
               type="button"
-              className={`relative flex w-full cursor-pointer flex-col items-center gap-1 rounded-lg border transition-all duration-150 ease-linear hover:border-primary-content md:gap-2 lg:flex-row lg:gap-3 lg:p-1 ${selectedProducts[type] === `${hit.id}` ? 'border-neutral-content' : 'border-base-300'}`}
+              className={`relative flex w-full cursor-pointer flex-col items-center gap-1 rounded-lg border transition-all duration-150 ease-linear hover:border-primary-content md:gap-2 lg:flex-row lg:gap-3 lg:p-1 ${selectedProducts[type] === `${hit.id}` ? "border-neutral-content" : "border-base-300"}`}
             >
               <div
                 className={`relative aspect-square h-20
@@ -30,7 +30,11 @@ export const BaseHits: React.FC<BaseHitsProps> = ({ type }) => {
                 <div className="h-full w-full lg:p-0">
                   <div className="relative flex h-full w-full items-center justify-center md:h-28">
                     <Image
-                      src={hit.images[1] ? imageUrlHelper(hit.images[1]) : imageUrlHelper(hit.images[0])}
+                      src={
+                        hit.images[1]
+                          ? imageUrlHelper(hit.images[1])
+                          : imageUrlHelper(hit.images[0])
+                      }
                       alt={hit.name}
                       className="h-4/5 w-4/5 rounded-md object-cover"
                       width={116}

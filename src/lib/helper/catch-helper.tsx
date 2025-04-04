@@ -1,6 +1,6 @@
-import { ApolloError } from '@apollo/client';
-import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import { toast } from 'react-toastify';
+import { ApolloError } from "@apollo/client";
+import type { ValidateErrorEntity } from "rc-field-form/lib/interface";
+import { toast } from "react-toastify";
 
 export function catchHelper(error: unknown): void {
   if (error instanceof ApolloError) {
@@ -13,8 +13,15 @@ export function catchHelper(error: unknown): void {
     return;
   }
 
-  if (typeof error === 'object' && error !== null && 'errorFields' in error && Array.isArray((error as ValidateErrorEntity).errorFields)) {
-    (error as ValidateErrorEntity).errorFields.forEach((field) => toast.error(field.errors.join('\n')));
+  if (
+    typeof error === "object" &&
+    error !== null &&
+    "errorFields" in error &&
+    Array.isArray((error as ValidateErrorEntity).errorFields)
+  ) {
+    (error as ValidateErrorEntity).errorFields.forEach((field) =>
+      toast.error(field.errors.join("\n")),
+    );
     return;
   }
 

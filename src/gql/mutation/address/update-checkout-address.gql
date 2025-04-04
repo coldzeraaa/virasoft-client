@@ -3,7 +3,7 @@ mutation updateCheckoutAddress($input: updateCheckoutAddressInput!) {
     ...CurrentOrderFields
     user {
       id
-      userAddresses(sort: {field: "updatedAt", direction: desc}) {
+      userAddresses(sort: { field: "updatedAt", direction: desc }) {
         nodes {
           ...UserAddressFields
         }

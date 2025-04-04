@@ -1,24 +1,28 @@
-import * as Types from '../../graphql.d';
+import * as Types from "../../graphql.d";
 
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
 export type AuthCheckLoginMutationVariables = Types.Exact<{
   input: Types.AuthCheckLoginInput;
 }>;
 
-
-export type AuthCheckLoginMutation = { __typename?: 'Mutation', authCheckLogin?: { __typename?: 'AuthCheckLogin', exists: boolean } | null };
-
+export type AuthCheckLoginMutation = {
+  __typename?: "Mutation";
+  authCheckLogin?: { __typename?: "AuthCheckLogin"; exists: boolean } | null;
+};
 
 export const AuthCheckLoginDocument = gql`
-    mutation authCheckLogin($input: authCheckLoginInput!) {
-  authCheckLogin(input: $input) {
-    exists
+  mutation authCheckLogin($input: authCheckLoginInput!) {
+    authCheckLogin(input: $input) {
+      exists
+    }
   }
-}
-    `;
-export type AuthCheckLoginMutationFn = Apollo.MutationFunction<AuthCheckLoginMutation, AuthCheckLoginMutationVariables>;
+`;
+export type AuthCheckLoginMutationFn = Apollo.MutationFunction<
+  AuthCheckLoginMutation,
+  AuthCheckLoginMutationVariables
+>;
 
 /**
  * __useAuthCheckLoginMutation__
@@ -37,10 +41,24 @@ export type AuthCheckLoginMutationFn = Apollo.MutationFunction<AuthCheckLoginMut
  *   },
  * });
  */
-export function useAuthCheckLoginMutation(baseOptions?: Apollo.MutationHookOptions<AuthCheckLoginMutation, AuthCheckLoginMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<AuthCheckLoginMutation, AuthCheckLoginMutationVariables>(AuthCheckLoginDocument, options);
-      }
-export type AuthCheckLoginMutationHookResult = ReturnType<typeof useAuthCheckLoginMutation>;
-export type AuthCheckLoginMutationResult = Apollo.MutationResult<AuthCheckLoginMutation>;
-export type AuthCheckLoginMutationOptions = Apollo.BaseMutationOptions<AuthCheckLoginMutation, AuthCheckLoginMutationVariables>;
+export function useAuthCheckLoginMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    AuthCheckLoginMutation,
+    AuthCheckLoginMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    AuthCheckLoginMutation,
+    AuthCheckLoginMutationVariables
+  >(AuthCheckLoginDocument, options);
+}
+export type AuthCheckLoginMutationHookResult = ReturnType<
+  typeof useAuthCheckLoginMutation
+>;
+export type AuthCheckLoginMutationResult =
+  Apollo.MutationResult<AuthCheckLoginMutation>;
+export type AuthCheckLoginMutationOptions = Apollo.BaseMutationOptions<
+  AuthCheckLoginMutation,
+  AuthCheckLoginMutationVariables
+>;

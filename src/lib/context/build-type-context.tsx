@@ -1,16 +1,26 @@
-'use client';
+"use client";
 
-import { createContext, FC, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  FC,
+  type PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
-import { catchHelper } from '@/lib/helper/catch-helper';
-import { elService } from '@/lib/service/el-service';
-import type { HitType } from '@/types/hit-type';
+import { catchHelper } from "@/lib/helper/catch-helper";
+import { elService } from "@/lib/service/el-service";
+import type { HitType } from "@/types/hit-type";
 
-export const BuildTypeContext = createContext<BuildTypeContextProps>({ hits: [] });
+export const BuildTypeContext = createContext<BuildTypeContextProps>({
+  hits: [],
+});
 
-export const useBuildType = () => useContext<BuildTypeContextProps>(BuildTypeContext);
+export const useBuildType = () =>
+  useContext<BuildTypeContextProps>(BuildTypeContext);
 
 export const BuildTypeProvider: FC<PropsWithChildren> = ({ children }) => {
   const searchParams = useSearchParams();
@@ -29,7 +39,11 @@ export const BuildTypeProvider: FC<PropsWithChildren> = ({ children }) => {
 
   // if (!data?.me && !loading) return redirect(`/auth/login?from=${window.location.pathname}${window.location.search}`);
 
-  return <BuildTypeContext.Provider value={{ loading, hits }}>{children}</BuildTypeContext.Provider>;
+  return (
+    <BuildTypeContext.Provider value={{ loading, hits }}>
+      {children}
+    </BuildTypeContext.Provider>
+  );
 };
 
 export interface BuildTypeContextProps {

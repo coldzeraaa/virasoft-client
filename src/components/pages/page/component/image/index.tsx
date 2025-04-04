@@ -1,9 +1,12 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import type { ImageObject } from '@/gql/graphql';
-import { imageUrlHelper } from '@/lib/helper/img-url-helper';
+import type { ImageObject } from "@/gql/graphql";
+import { imageUrlHelper } from "@/lib/helper/img-url-helper";
 
-export function ImageComponent({ images = [], description = '' }: ImageComponentProps) {
+export function ImageComponent({
+  images = [],
+  description = "",
+}: ImageComponentProps) {
   const [image] = images;
   if (!image) return null;
 

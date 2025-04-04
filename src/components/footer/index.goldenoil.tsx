@@ -1,98 +1,101 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
-
-import ContactForm from './contact-form';
-
-import facebook from '@/components/icons/facebook.svg';
-import instagram from '@/components/icons/instagram.svg';
-import { useHeaderFooterQuery } from '@/gql/query/menu/header-footer.generated';
-import { imageUrlHelper } from '@/lib/helper/img-url-helper';
-
-function FooterSkeleton() {
-  return (
-    <footer className="w-full border-t bg-accent-content text-neutral">
-      <div className="grid w-full grid-cols-1 lg:grid-cols-[0.6fr_0.4fr_0.3fr]">
-        <div className="flex h-full w-full bg-primary px-20 py-20 xl:pl-48">
-          <div className="w-full space-y-4 rounded-l-xl bg-primary">
-            <div className="skeleton h-8 w-48 bg-base-300" />
-            {[...Array(3)].map((_, idx) => (
-              <div key={idx} className="skeleton h-6 w-full rounded-lg bg-base-300" />
-            ))}
-            <div className="flex gap-2">
-              <div className="skeleton h-6 w-6 rounded-lg bg-base-300" />
-              <div className="skeleton h-6 w-6 rounded-lg bg-base-300" />
-            </div>
-          </div>
-        </div>
-
-        <div className="px-20 pt-20 lg:px-10 xl:px-20">
-          <div className="skeleton mb-4 h-8 w-48 bg-base-300" />
-          <ContactForm />
-        </div>
-
-        <div className="flex flex-col gap-14 p-20 lg:px-10 xl:p-20">
-          {[...Array(4)].map((_, idx) => (
-            <div key={idx} className="skeleton h-5 w-32 bg-base-300" />
-          ))}
-        </div>
-      </div>
-    </footer>
-  );
-}
+import { Facebook, Instagram } from 'lucide-react';
 
 export function Footer() {
-  const { data, loading } = useHeaderFooterQuery({ variables: { filter: { title: { in: ['header', 'footer'] } } } });
-  const contactMenu = data?.allMenus?.nodes[1]?.children?.find((menu) => menu.title === 'Бидэнтэй холбогдох');
-
-  if (loading) {
-    return <FooterSkeleton />;
-  }
-
   return (
-    <footer className="w-full border-t bg-accent-content text-neutral">
-      <div className="grid w-full grid-cols-1 lg:grid-cols-[0.6fr_0.4fr_0.3fr]">
-        <div className="flex h-full w-full bg-primary px-20 py-20 lg:justify-end xl:pl-48">
-          <div className="space-y-4 rounded-l-xl bg-primary">
-            <h2 className="text-2xl font-semibold text-accent">{contactMenu?.title}</h2>
-            {contactMenu?.children?.map((menuItem, idx) => (
-              <div key={idx} className="flex items-center gap-4">
-                <div className="h-fit w-fit flex-shrink-0 rounded-full border border-base-100 p-1">
-                  <Image
-                    src={menuItem.images ? imageUrlHelper(menuItem.images['0']) : `https://via.placeholder.com/80`}
-                    alt="location information"
-                    width={20}
-                    height={20}
-                  />
+    <footer className="min-h-[600px] w-full border-t bg-white text-gray-800">
+      <div className="container mx-auto pb-4 pt-4">
+        {/* Бидэнтэй хамтран ажиллах хэсэг */}
+        <div className="mb-16 rounded-lg bg-[#F0F8FF] p-12 text-center">
+          <h2 className="text-3xl font-bold text-[#1D4A74]">Бидэнтэй хамтран ажиллах</h2>
+          <p className="mt-4 text-lg text-[#213D39]">Та бидэнтэй хамтран ажиллахыг хүсвэл и-мэйл хаягаа оруулна уу.</p>
+          <div className="mt-6 flex justify-center">
+            <input
+              type="email"
+              placeholder="И-мэйл хаягаа оруулна уу..."
+              className="w-2/3 max-w-2xl rounded-l-lg border p-4 text-gray-800 focus:outline-none"
+            />
+            <button className="rounded-r-lg bg-[#1D4A74] px-6 py-4 text-white">Илгээх</button>
+          </div>
+        </div>
+
+        {/* Footer үндсэн хэсэг */}
+        <div className="grid grid-cols-1 gap-20 text-lg md:grid-cols-2">
+          {/* Golden Oil Group мэдээлэл */}
+          <div>
+            <h2 className="text-2xl font-bold text-[#1D4A74]">Golden Oil Group</h2>
+            <p className="mt-4 text-lg text-[#213D39]">
+              Бид УЛААНБААТАР хот болон 21 аймагт захиалгаар ОХУ-н шинжилгээний бичиг бүхий ЧАНАРТАЙ ДИЗЕЛЬ ТҮЛШ-ИЙГ хүргэлт хийн худалдан
+              борлуулж байна.
+            </p>
+            {/* Сошиал линкүүд */}
+            <div className="mt-6 flex space-x-4">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1D4A74] text-white shadow-lg transition-transform duration-300 hover:scale-110">
+                  <Facebook className="h-6 w-6" />
                 </div>
-                <Link href={menuItem.link} className="text-base-100">
-                  {menuItem.title}
-                </Link>
-              </div>
-            ))}
-            <div className="flex gap-2">
-              <div className="w-fit rounded-full bg-accent p-1">
-                <Image src={facebook} alt="facebook icon" width={20} height={20} />
-              </div>
-              <div className="w-fit rounded-full bg-accent p-1">
-                <Image src={instagram} alt="facebook icon" width={20} height={20} />
-              </div>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1D4A74] text-white shadow-lg transition-transform duration-300 hover:scale-110">
+                  <Instagram className="h-6 w-6" />
+                </div>
+              </a>
+            </div>
+          </div>
+
+          {/* Холбоо барих ба холбоосууд */}
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+            {/* Холбоо барих хэсэг */}{' '}
+            <div>
+              {' '}
+              <h2 className="text-xl font-bold text-[#1D4A74]">Холбоо барих</h2>{' '}
+              <ul className="mt-2 space-y-4 text-[#213D39]">
+                {' '}
+                <li className="flex items-center">
+                  {' '}
+                  {/* Байршил Icon */}{' '}
+                  <svg className="mr-2 h-6 w-6 text-[#213D39]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    {' '}
+                    <path d="M12 2C7.58 2 4 5.58 4 10c0 4.07 2.64 7.59 6.39 9.02L12 22l1.61-2.98C17.36 17.59 20 14.07 20 10c0-4.42-3.58-8-8-8zm0 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />{' '}
+                  </svg>{' '}
+                  Монгол улс, Улаанбаатар хот, Сүхбаатар дүүрэг 1 хороо{' '}
+                </li>{' '}
+                <li className="flex items-center">
+                  {' '}
+                  {/* Имэйл Icon */}{' '}
+                  <svg className="mr-2 h-6 w-6 text-[#213D39]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    {' '}
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 4v10h16V8l-8 5-8-5z" />{' '}
+                  </svg>{' '}
+                  Fuel@gmail.com{' '}
+                </li>{' '}
+                <li className="flex items-center">
+                  {' '}
+                  {/* Утас Icon */}{' '}
+                  <svg className="mr-2 h-6 w-6 text-[#213D39]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    {' '}
+                    <path d="M6.62 10.79a15.91 15.91 0 006.59 6.59l2.2-2.2a1 1 0 011.06-.24c1.12.37 2.33.57 3.53.57a1 1 0 011 1V21a1 1 0 01-1 1c-10.48 0-19-8.52-19-19a1 1 0 011-1h3.5a1 1 0 011 1c0 1.2.2 2.41.57 3.53a1 1 0 01-.24 1.06l-2.19 2.2z" />{' '}
+                  </svg>{' '}
+                  +976 7000 6002{' '}
+                </li>{' '}
+              </ul>{' '}
+            </div>
+            {/* Хурдан хандалт хэсэг */}
+            <div className="flex flex-col gap-6">
+              <button className="rounded-lg px-6 py-1 text-lg text-[#213D39] transition hover:text-[#163A5F]">
+                Түгээмэл асуулт хариулт
+              </button>
+              <button className="rounded-lg px-6 py-1 text-lg text-[#213D39] transition hover:text-[#163A5F]">Үйлчилгээний нөхцөл</button>
+              <button className="rounded-lg px-6 py-1 text-lg text-[#213D39] transition hover:text-[#163A5F]">Нууцлалын бодлого</button>
             </div>
           </div>
         </div>
-        <div className="px-20 pt-20 lg:px-10 xl:px-20">
-          <h2 className="mb-4 text-2xl font-semibold text-accent">Хамтарч ажиллах</h2>
-          <ContactForm />
-        </div>
-        <div className="flex flex-col gap-10 p-20 lg:px-10 xl:p-20">
-          {data?.allMenus?.nodes[1]?.children
-            ?.filter((menu) => menu.title !== 'Бидэнтэй холбогдох')
-            .map((menuItem) => (
-              <Link key={menuItem.title} href={menuItem.link} className="text-sm font-semibold text-neutral/70">
-                {menuItem.title}
-              </Link>
-            ))}
+        <div>
+          {/* Copyright хэсэг */}
+          <div className="mt-16 border-t pt-6 text-center text-[#213D39]">
+            <p className="text-lg">Copyright © 2025 Golden Oil Group </p>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,1 +1,1 @@
-export const bodyClassName = 'h-screen';
+export const bodyClassName = "h-screen";

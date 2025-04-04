@@ -1,15 +1,22 @@
-'use client';
+"use client";
 
-import { createContext, FC, PropsWithChildren, useCallback, useContext, useState } from 'react';
+import {
+  createContext,
+  FC,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+  useState,
+} from "react";
 
-import { useApolloClient } from '@apollo/client';
-import type { OauthTokenType } from 'doorkeeper-oauth-flow';
-import cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
+import { useApolloClient } from "@apollo/client";
+import type { OauthTokenType } from "doorkeeper-oauth-flow";
+import cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
-import { STORE_KEY_CONFIG } from '@/configs/STORE_KEY_CONFIG';
-import { catchHelper } from '@/lib/helper/catch-helper';
+import { STORE_KEY_CONFIG } from "@/configs/STORE_KEY_CONFIG";
+import { catchHelper } from "@/lib/helper/catch-helper";
 
 export const AuthContext = createContext<AuthContextProps>({
   isAuth: false,
@@ -21,7 +28,10 @@ export const AuthContext = createContext<AuthContextProps>({
 
 export const useAuth = () => useContext<AuthContextProps>(AuthContext);
 
-export const AuthProvider: FC<PropsWithChildren<{ user?: boolean }>> = ({ children, user = false }) => {
+export const AuthProvider: FC<PropsWithChildren<{ user?: boolean }>> = ({
+  children,
+  user = false,
+}) => {
   const [isAuth, setAuth] = useState(user);
   const client = useApolloClient();
   const router = useRouter();
@@ -34,7 +44,7 @@ export const AuthProvider: FC<PropsWithChildren<{ user?: boolean }>> = ({ childr
       .resetStore()
       .then(() => {
         toast.success(`Successfully logged out yes`);
-        router.push('/api/auth/logout');
+        router.push("/api/auth/logout");
       })
       .catch(catchHelper);
   }, []);
@@ -55,13 +65,19 @@ export const AuthProvider: FC<PropsWithChildren<{ user?: boolean }>> = ({ childr
       toast.success(`Welcome`);
       cookies.set(STORE_KEY_CONFIG.NEXT_USER_TOKEN, JSON.stringify(value));
       await client.resetStore();
-      router.push('/api/auth/login');
+      router.push("/api/auth/login");
     } catch (e) {
       catchHelper(e);
     }
   }, []);
 
-  return <AuthContext.Provider value={{ logout, isAuth, setAuth, login, loginWithRouter }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider
+      value={{ logout, isAuth, setAuth, login, loginWithRouter }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export interface AuthContextProps {

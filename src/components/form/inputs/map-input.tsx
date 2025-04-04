@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 
-import { APP_CONFIG } from '@/configs/APP_CONFIG.virasoft';
+import { APP_CONFIG } from "@/configs/APP_CONFIG.virasoft";
 
 export function MapInput({ value, onChange }: MapInputProps) {
   const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script2',
-    googleMapsApiKey: APP_CONFIG.map.googleMapApiKey || '',
+    id: "google-map-script2",
+    googleMapsApiKey: APP_CONFIG.map.googleMapApiKey || "",
   });
 
   if (!isLoaded) return null;
@@ -18,7 +18,7 @@ export function MapInput({ value, onChange }: MapInputProps) {
       center={APP_CONFIG.map.defaultCenter}
       zoom={14}
       options={{
-        mapId: APP_CONFIG.map.googleMapId || '',
+        mapId: APP_CONFIG.map.googleMapId || "",
         disableDefaultUI: false,
         clickableIcons: false,
       }}

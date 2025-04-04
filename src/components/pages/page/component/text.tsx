@@ -1,4 +1,4 @@
-export function TextComponent({ text = '' }: TextComponentProps) {
+export function TextComponent({ text = "" }: TextComponentProps) {
   return <div dangerouslySetInnerHTML={{ __html: text }} />;
 }
 

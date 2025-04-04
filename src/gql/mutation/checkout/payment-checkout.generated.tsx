@@ -1,24 +1,28 @@
-import * as Types from '../../graphql.d';
+import * as Types from "../../graphql.d";
 
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
 export type PaymentCheckoutMutationVariables = Types.Exact<{
   input: Types.PaymentCheckoutInput;
 }>;
 
-
-export type PaymentCheckoutMutation = { __typename?: 'Mutation', paymentCheckout?: { __typename?: 'Order', id: string } | null };
-
+export type PaymentCheckoutMutation = {
+  __typename?: "Mutation";
+  paymentCheckout?: { __typename?: "Order"; id: string } | null;
+};
 
 export const PaymentCheckoutDocument = gql`
-    mutation paymentCheckout($input: paymentCheckoutInput!) {
-  paymentCheckout(input: $input) {
-    id
+  mutation paymentCheckout($input: paymentCheckoutInput!) {
+    paymentCheckout(input: $input) {
+      id
+    }
   }
-}
-    `;
-export type PaymentCheckoutMutationFn = Apollo.MutationFunction<PaymentCheckoutMutation, PaymentCheckoutMutationVariables>;
+`;
+export type PaymentCheckoutMutationFn = Apollo.MutationFunction<
+  PaymentCheckoutMutation,
+  PaymentCheckoutMutationVariables
+>;
 
 /**
  * __usePaymentCheckoutMutation__
@@ -37,10 +41,24 @@ export type PaymentCheckoutMutationFn = Apollo.MutationFunction<PaymentCheckoutM
  *   },
  * });
  */
-export function usePaymentCheckoutMutation(baseOptions?: Apollo.MutationHookOptions<PaymentCheckoutMutation, PaymentCheckoutMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<PaymentCheckoutMutation, PaymentCheckoutMutationVariables>(PaymentCheckoutDocument, options);
-      }
-export type PaymentCheckoutMutationHookResult = ReturnType<typeof usePaymentCheckoutMutation>;
-export type PaymentCheckoutMutationResult = Apollo.MutationResult<PaymentCheckoutMutation>;
-export type PaymentCheckoutMutationOptions = Apollo.BaseMutationOptions<PaymentCheckoutMutation, PaymentCheckoutMutationVariables>;
+export function usePaymentCheckoutMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    PaymentCheckoutMutation,
+    PaymentCheckoutMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    PaymentCheckoutMutation,
+    PaymentCheckoutMutationVariables
+  >(PaymentCheckoutDocument, options);
+}
+export type PaymentCheckoutMutationHookResult = ReturnType<
+  typeof usePaymentCheckoutMutation
+>;
+export type PaymentCheckoutMutationResult =
+  Apollo.MutationResult<PaymentCheckoutMutation>;
+export type PaymentCheckoutMutationOptions = Apollo.BaseMutationOptions<
+  PaymentCheckoutMutation,
+  PaymentCheckoutMutationVariables
+>;

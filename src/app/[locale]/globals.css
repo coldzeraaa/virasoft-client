@@ -4,22 +4,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  
-input::placeholder, textarea::placeholder {
-    opacity: 0.7;
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 0.7;
 }
 
 /* Hide number input spinners */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type="number"] {
-    -moz-appearance: textfield; /* Hide spinner in Firefox */
+  -moz-appearance: textfield; /* Hide spinner in Firefox */
 }
 
 .montserrat {
-    font-family: var(--font-montserrat) !important;
+  font-family: var(--font-montserrat) !important;
 }

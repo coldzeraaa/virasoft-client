@@ -1,4 +1,4 @@
-import { AccountOrdersPageClient } from '@/components/page-client/account/orders/account-orders-page-client';
+import { AccountOrdersPageClient } from "@/components/page-client/account/orders/account-orders-page-client";
 
 export default function Orders() {
   return (

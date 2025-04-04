@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-import { ErrorResult } from '@/components/result/error-result';
-import { useCurrentOrder } from '@/lib/context/current-order-context';
-import { moneyFormatHelper } from '@/lib/helper/format/money-format-helper';
-import { imageUrlHelper } from '@/lib/helper/img-url-helper';
+import { ErrorResult } from "@/components/result/error-result";
+import { useCurrentOrder } from "@/lib/context/current-order-context";
+import { moneyFormatHelper } from "@/lib/helper/format/money-format-helper";
+import { imageUrlHelper } from "@/lib/helper/img-url-helper";
 
 export function ProductListSection() {
   const { order, loading } = useCurrentOrder();
@@ -20,7 +20,7 @@ export function ProductListSection() {
           <div className="relative h-24 w-24 flex-shrink-0">
             <Image
               src={imageUrlHelper(item.variant.images[0])}
-              alt={item.variant.product.name || 'product'}
+              alt={item.variant.product.name || "product"}
               fill
               className="h-full w-full rounded-lg object-cover"
             />
@@ -29,9 +29,13 @@ export function ProductListSection() {
           <div className="grid w-full grid-cols-2">
             <div>
               <h3 className="font-medium">{item.variant.product.name}</h3>
-              <p className="text-sm text-base-content/70">Тоо ширхэг: {item.quantity}</p>
+              <p className="text-sm text-base-content/70">
+                Тоо ширхэг: {item.quantity}
+              </p>
             </div>
-            <p className="text-right font-semibold">{moneyFormatHelper(item.price)}</p>
+            <p className="text-right font-semibold">
+              {moneyFormatHelper(item.price)}
+            </p>
           </div>
         </li>
       ))}
@@ -47,9 +51,18 @@ export function ShippingSection() {
 
   return (
     <div className="rounded-lg bg-base-200 p-4">
-      <SingleShipAddress label="Нэр" value={order.shipAddress?.address.firstName || '-'} />
-      <SingleShipAddress label="Утасны дугаар" value={order.shipAddress?.address.mobile || '-'} />
-      <SingleShipAddress label="Дэлгэрэнгүй хаяг" value={order.shipAddress?.address.address1 || '-'} />
+      <SingleShipAddress
+        label="Нэр"
+        value={order.shipAddress?.address.firstName || "-"}
+      />
+      <SingleShipAddress
+        label="Утасны дугаар"
+        value={order.shipAddress?.address.mobile || "-"}
+      />
+      <SingleShipAddress
+        label="Дэлгэрэнгүй хаяг"
+        value={order.shipAddress?.address.address1 || "-"}
+      />
     </div>
   );
 }

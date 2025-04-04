@@ -1,7 +1,7 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import { ImageBuildPageClient } from '@/components/page-client/build-type/image-build-page-client';
-import { BuildTypeProvider } from '@/lib/context/build-type-context';
+import { ImageBuildPageClient } from "@/components/page-client/build-type/image-build-page-client";
+import { BuildTypeProvider } from "@/lib/context/build-type-context";
 
 export default function BuildTypeType() {
   return (

@@ -1,17 +1,23 @@
-'use client';
-import { ReactNode, useState } from 'react';
+"use client";
+import { ReactNode, useState } from "react";
 
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import { ErrorResult } from '@/components/result/error-result';
-import { useOrderPayQuery } from '@/gql/query/order/order-pay.generated';
-import { generateQCodeHelper } from '@/lib/helper/generate-qrcode-helper';
-import { imageUrlHelper } from '@/lib/helper/img-url-helper';
+import { ErrorResult } from "@/components/result/error-result";
+import { useOrderPayQuery } from "@/gql/query/order/order-pay.generated";
+import { generateQCodeHelper } from "@/lib/helper/generate-qrcode-helper";
+import { imageUrlHelper } from "@/lib/helper/img-url-helper";
 
-export default function PaymentPage({ params }: { params: { number: string } }) {
+export default function PaymentPage({
+  params,
+}: {
+  params: { number: string };
+}) {
   const [qrCode, setQrCode] = useState<string | null>(null);
-  const { data, loading, error } = useOrderPayQuery({ variables: { number: params.number } });
+  const { data, loading, error } = useOrderPayQuery({
+    variables: { number: params.number },
+  });
   const payments = data?.order?.payments || [];
   const [payment] = payments;
 
@@ -39,52 +45,84 @@ export default function PaymentPage({ params }: { params: { number: string } }) 
   if (qrCode)
     return (
       <Container title="QPay уншуулна уу">
-        <Image className="mx-auto max-w-sm" priority width={800} height={800} src={qrCode} alt="QR code" />
+        <Image
+          className="mx-auto max-w-sm"
+          priority
+          width={800}
+          height={800}
+          src={qrCode}
+          alt="QR code"
+        />
       </Container>
     );
 
   return (
     <Container>
       <ul className="flex flex-wrap gap-6">
-        {data?.order?.payments[0]?.source?.bank_list?.map((element: { logo: string; name?: string; link: string }, idx: number) => (
-          <li key={idx} className="min-w-12 flex-1 md:min-w-20">
-            <Link className="block w-full overflow-hidden md:hidden" href={element.link}>
-              <Image
-                className="mx-auto mb-2 aspect-square w-12 rounded-lg object-contain md:w-20"
-                priority
-                width={800}
-                height={800}
-                src={imageUrlHelper(element.logo || '')}
-                alt={element?.name || 'bank name'}
-              />
-              <p className="text-center text-xs font-medium">{element?.name}</p>
-            </Link>
-            <button
-              type="button"
-              className="hidden w-full md:block"
-              onClick={() => generateQCodeHelper(payment.source.qr_code).then(imageUrlHelper).then(setQrCode).catch(console.error)}
-            >
-              <Image
-                className="mx-auto mb-2 aspect-square w-12 rounded-lg object-contain md:w-20"
-                priority
-                width={800}
-                height={800}
-                src={imageUrlHelper(element.logo || '')}
-                alt={element?.name || 'bank name'}
-              />
-              <p className="truncate text-center text-sm font-medium">{element?.name}</p>
-            </button>
-          </li>
-        ))}
+        {data?.order?.payments[0]?.source?.bank_list?.map(
+          (
+            element: { logo: string; name?: string; link: string },
+            idx: number,
+          ) => (
+            <li key={idx} className="min-w-12 flex-1 md:min-w-20">
+              <Link
+                className="block w-full overflow-hidden md:hidden"
+                href={element.link}
+              >
+                <Image
+                  className="mx-auto mb-2 aspect-square w-12 rounded-lg object-contain md:w-20"
+                  priority
+                  width={800}
+                  height={800}
+                  src={imageUrlHelper(element.logo || "")}
+                  alt={element?.name || "bank name"}
+                />
+                <p className="text-center text-xs font-medium">
+                  {element?.name}
+                </p>
+              </Link>
+              <button
+                type="button"
+                className="hidden w-full md:block"
+                onClick={() =>
+                  generateQCodeHelper(payment.source.qr_code)
+                    .then(imageUrlHelper)
+                    .then(setQrCode)
+                    .catch(console.error)
+                }
+              >
+                <Image
+                  className="mx-auto mb-2 aspect-square w-12 rounded-lg object-contain md:w-20"
+                  priority
+                  width={800}
+                  height={800}
+                  src={imageUrlHelper(element.logo || "")}
+                  alt={element?.name || "bank name"}
+                />
+                <p className="truncate text-center text-sm font-medium">
+                  {element?.name}
+                </p>
+              </button>
+            </li>
+          ),
+        )}
       </ul>
     </Container>
   );
 }
 
-function Container({ children, title }: { children: ReactNode; title?: string }) {
+function Container({
+  children,
+  title,
+}: {
+  children: ReactNode;
+  title?: string;
+}) {
   return (
     <>
-      <h2 className="mb-4 text-center text-2xl font-bold">{title || 'Төлбөр төлөх нөхцөл сонгоно уу'}</h2>
+      <h2 className="mb-4 text-center text-2xl font-bold">
+        {title || "Төлбөр төлөх нөхцөл сонгоно уу"}
+      </h2>
       {children}
     </>
   );

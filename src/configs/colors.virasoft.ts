@@ -1,45 +1,45 @@
 export const LIGHT_COLORS = {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  ...require('daisyui/src/theming/themes')['light'],
-  primary: '#102F31', //emerald green
-  'primary-content': '#E7EAEF', //grey with pinkish hue
-  secondary: '#C09049', //golden yellow
-  'secondary-content': '#EDF2F8', //neutral light grey
-  accent: '#17DDDD', //teel
-  'accent-content': '#FFFFFF', //black
-  neutral: '#000', //black
-  'neutral-content': '#6C707D', //muted grey with blue undertone
-  'base-100': '#FFFFFF', //off-white
-  'base-200': '#F6F7F9', //light grey
-  'base-300': '#E7EAEF', //light grey
-  'base-content': '#000', //dark grey
-  info: '#0060F0',
-  'info-content': '#FFFFFF',
-  success: '#09A557',
-  'success-content': '#FFFFFF',
-  warning: '#E98F03',
-  'warning-content': '#FFFFFF',
-  error: '#DD382C',
-  'error-content': '#FFFFFF',
+  ...require("daisyui/src/theming/themes")["light"],
+  primary: "#102F31", //emerald green
+  "primary-content": "#E7EAEF", //grey with pinkish hue
+  secondary: "#C09049", //golden yellow
+  "secondary-content": "#EDF2F8", //neutral light grey
+  accent: "#17DDDD", //teel
+  "accent-content": "#FFFFFF", //black
+  neutral: "#000", //black
+  "neutral-content": "#6C707D", //muted grey with blue undertone
+  "base-100": "#FFFFFF", //off-white
+  "base-200": "#F6F7F9", //light grey
+  "base-300": "#E7EAEF", //light grey
+  "base-content": "#000", //dark grey
+  info: "#0060F0",
+  "info-content": "#FFFFFF",
+  success: "#09A557",
+  "success-content": "#FFFFFF",
+  warning: "#E98F03",
+  "warning-content": "#FFFFFF",
+  error: "#DD382C",
+  "error-content": "#FFFFFF",
 };
 
 export const DARK_COLORS = {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  ...require('daisyui/src/theming/themes')['dark'],
+  ...require("daisyui/src/theming/themes")["dark"],
   ...LIGHT_COLORS,
-  primary: '#C09049',
-  secondary: '#a6adbb',
-  'secondary-content': '#21272D',
-  neutral: '#fff',
-  'neutral-content': '#6C707D',
+  primary: "#C09049",
+  secondary: "#a6adbb",
+  "secondary-content": "#21272D",
+  neutral: "#fff",
+  "neutral-content": "#6C707D",
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  'base-100': require('daisyui/src/theming/themes')['dark']['base-100'],
+  "base-100": require("daisyui/src/theming/themes")["dark"]["base-100"],
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  'base-200': require('daisyui/src/theming/themes')['dark']['base-200'],
+  "base-200": require("daisyui/src/theming/themes")["dark"]["base-200"],
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  'base-300': require('daisyui/src/theming/themes')['dark']['base-300'],
+  "base-300": require("daisyui/src/theming/themes")["dark"]["base-300"],
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  'base-content': require('daisyui/src/theming/themes')['dark']['base-content'],
+  "base-content": require("daisyui/src/theming/themes")["dark"]["base-content"],
 };
 
 const themes = {

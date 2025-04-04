@@ -1,9 +1,9 @@
-'use client';
-import { useEffect, useState } from 'react';
+"use client";
+import { useEffect, useState } from "react";
 
-import { ProductSingle } from '@/components/single/product-single';
-import { elService } from '@/lib/service/el-service';
-import type { HitType } from '@/types/hit-type';
+import { ProductSingle } from "@/components/single/product-single";
+import { elService } from "@/lib/service/el-service";
+import type { HitType } from "@/types/hit-type";
 
 export function HomePageProductSection() {
   const [data, setData] = useState<HitType[]>([]);

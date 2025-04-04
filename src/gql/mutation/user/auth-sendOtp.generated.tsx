@@ -1,24 +1,28 @@
-import * as Types from '../../graphql.d';
+import * as Types from "../../graphql.d";
 
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
 export type SendOtpMutationVariables = Types.Exact<{
   input: Types.SendOtpInput;
 }>;
 
-
-export type SendOtpMutation = { __typename?: 'Mutation', sendOtp?: { __typename?: 'User', id: string } | null };
-
+export type SendOtpMutation = {
+  __typename?: "Mutation";
+  sendOtp?: { __typename?: "User"; id: string } | null;
+};
 
 export const SendOtpDocument = gql`
-    mutation sendOtp($input: sendOtpInput!) {
-  sendOtp(input: $input) {
-    id
+  mutation sendOtp($input: sendOtpInput!) {
+    sendOtp(input: $input) {
+      id
+    }
   }
-}
-    `;
-export type SendOtpMutationFn = Apollo.MutationFunction<SendOtpMutation, SendOtpMutationVariables>;
+`;
+export type SendOtpMutationFn = Apollo.MutationFunction<
+  SendOtpMutation,
+  SendOtpMutationVariables
+>;
 
 /**
  * __useSendOtpMutation__
@@ -37,10 +41,21 @@ export type SendOtpMutationFn = Apollo.MutationFunction<SendOtpMutation, SendOtp
  *   },
  * });
  */
-export function useSendOtpMutation(baseOptions?: Apollo.MutationHookOptions<SendOtpMutation, SendOtpMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<SendOtpMutation, SendOtpMutationVariables>(SendOtpDocument, options);
-      }
+export function useSendOtpMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    SendOtpMutation,
+    SendOtpMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<SendOtpMutation, SendOtpMutationVariables>(
+    SendOtpDocument,
+    options,
+  );
+}
 export type SendOtpMutationHookResult = ReturnType<typeof useSendOtpMutation>;
 export type SendOtpMutationResult = Apollo.MutationResult<SendOtpMutation>;
-export type SendOtpMutationOptions = Apollo.BaseMutationOptions<SendOtpMutation, SendOtpMutationVariables>;
+export type SendOtpMutationOptions = Apollo.BaseMutationOptions<
+  SendOtpMutation,
+  SendOtpMutationVariables
+>;

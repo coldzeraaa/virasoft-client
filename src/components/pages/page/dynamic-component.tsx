@@ -1,19 +1,26 @@
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { GridContainer } from './container/grid-container';
-import { ComponentSwitcher } from './component';
-import type { GridContainerProps, Item } from './dynamic-component.d';
+import { GridContainer } from "./container/grid-container";
+import { ComponentSwitcher } from "./component";
+import type { GridContainerProps, Item } from "./dynamic-component.d";
 
-import { ErrorResult } from '@/components/result/error-result';
-import { CurrentPageDocument, CurrentPageQuery } from '@/gql/query/page/current-page.generated';
-import { query } from '@/lib/service/apollo-client-service';
+import { ErrorResult } from "@/components/result/error-result";
+import {
+  CurrentPageDocument,
+  CurrentPageQuery,
+} from "@/gql/query/page/current-page.generated";
+import { query } from "@/lib/service/apollo-client-service";
 
 export async function DynamicComponent({ slug }: { slug: string }) {
   try {
-    const { data, error } = await query<CurrentPageQuery>({ query: CurrentPageDocument, variables: { slug } });
+    const { data, error } = await query<CurrentPageQuery>({
+      query: CurrentPageDocument,
+      variables: { slug },
+    });
 
-    if (error || !data?.currentPage) return <ErrorResult message={error?.message || 'Page not found'} />;
+    if (error || !data?.currentPage)
+      return <ErrorResult message={error?.message || "Page not found"} />;
 
     const { items } = data.currentPage;
 
@@ -47,7 +54,8 @@ export async function DynamicComponent({ slug }: { slug: string }) {
 export async function Switcher({ component, ...rest }: Item) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  if (component.endsWith('container')) return <GridContainer {...(rest as GridContainerProps)} />;
+  if (component.endsWith("container"))
+    return <GridContainer {...(rest as GridContainerProps)} />;
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   return <ComponentSwitcher component={component} {...rest} />;

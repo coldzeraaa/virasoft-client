@@ -1,1 +1,1 @@
-export const lightTheme = 'light';
+export const lightTheme = "light";

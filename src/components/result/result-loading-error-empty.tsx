@@ -1,11 +1,17 @@
-import type { ApolloError } from '@apollo/client';
-import { PackageOpenIcon, ShieldXIcon } from 'lucide-react';
+import type { ApolloError } from "@apollo/client";
+import { PackageOpenIcon, ShieldXIcon } from "lucide-react";
 
-export function ResultLoadingErrorEmpty({ loading, error, dataUndefined, emptyMessage, empty }: ResultLoadingErrorEmptyProps) {
+export function ResultLoadingErrorEmpty({
+  loading,
+  error,
+  dataUndefined,
+  emptyMessage,
+  empty,
+}: ResultLoadingErrorEmptyProps) {
   if (loading) return <div className="skeleton min-h-40" />;
   if (error) return <ResultError message={error.message} />;
   if (dataUndefined) return <ResultError message="Data is undefined" />;
-  if (empty) return <ResultEmpty message={emptyMessage || 'Хоосон байна'} />;
+  if (empty) return <ResultEmpty message={emptyMessage || "Хоосон байна"} />;
   return <ResultError message="Error is not found" />;
 }
 

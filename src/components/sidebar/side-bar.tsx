@@ -1,10 +1,10 @@
-'use client';
-import { ReactElement } from 'react';
+"use client";
+import { ReactElement } from "react";
 
-import { IdCard, ListOrdered, User } from 'lucide-react';
-import Link from 'next/link';
+import { IdCard, ListOrdered, User } from "lucide-react";
+import Link from "next/link";
 
-import { useAuth } from '@/lib/context/auth-context';
+import { useAuth } from "@/lib/context/auth-context";
 
 export function SideBar() {
   const { logout } = useAuth();
@@ -13,7 +13,12 @@ export function SideBar() {
     <div className="hidden h-full w-full flex-col justify-between rounded-lg bg-base-100 py-3 shadow-lg md:col-span-4 md:flex lg:col-span-3">
       <div className="flex h-full w-full flex-col gap-4 px-6 py-4">
         {sidebarItems.map((element, index) => (
-          <SideBarItem key={index} link={element.link} icon={element.icon} text={element.name} />
+          <SideBarItem
+            key={index}
+            link={element.link}
+            icon={element.icon}
+            text={element.name}
+          />
         ))}
       </div>
       <div className="flex flex-col items-center justify-center gap-3">
@@ -27,7 +32,10 @@ export function SideBar() {
 }
 
 const SideBarItem = (props: CardDataType) => (
-  <Link href={props.link} className="flex items-center gap-2 rounded-lg p-2 text-neutral-content hover:bg-base-300 hover:text-neutral">
+  <Link
+    href={props.link}
+    className="flex items-center gap-2 rounded-lg p-2 text-neutral-content hover:bg-base-300 hover:text-neutral"
+  >
     {props.icon}
     <p className="text-lg">{props.text}</p>
   </Link>
@@ -35,14 +43,14 @@ const SideBarItem = (props: CardDataType) => (
 
 const sidebarItems = [
   {
-    name: 'Миний самбар',
-    link: '/account',
+    name: "Миний самбар",
+    link: "/account",
     icon: <IdCard />,
   },
   {
-    name: 'Захиалгууд',
+    name: "Захиалгууд",
     icon: <ListOrdered />,
-    link: '/account/orders',
+    link: "/account/orders",
   },
 ];
 interface CardDataType {

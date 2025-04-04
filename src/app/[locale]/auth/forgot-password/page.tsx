@@ -1,8 +1,8 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import Loading from '../loading';
+import Loading from "../loading";
 
-import { AuthForgotPasswordPageClient } from '@/components/page-client/auth/auth-forgot-password-page-client';
+import { AuthForgotPasswordPageClient } from "@/components/page-client/auth/auth-forgot-password-page-client";
 
 export default async function ForgotPassword() {
   return (

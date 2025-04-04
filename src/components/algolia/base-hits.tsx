@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { times } from 'lodash';
-import { useInstantSearch } from 'react-instantsearch';
-import { useHits } from 'react-instantsearch-core';
+import { times } from "lodash";
+import { useInstantSearch } from "react-instantsearch";
+import { useHits } from "react-instantsearch-core";
 
-import { EmptyResult } from '@/components/result/empty-result';
-import { ProductSingle } from '@/components/single/product-single';
-import type { HitType } from '@/types/hit-type';
+import { EmptyResult } from "@/components/result/empty-result";
+import { ProductSingle } from "@/components/single/product-single";
+import type { HitType } from "@/types/hit-type";
 
 export function BaseHits() {
   const { hits, results } = useHits<HitType>();
@@ -21,7 +21,7 @@ export function BaseHits() {
 function Loader({ hits, dfl }: { hits: Array<HitType>; dfl: number }) {
   const { status } = useInstantSearch();
 
-  if (status === 'stalled' || (dfl === 0 && hits.length === 0))
+  if (status === "stalled" || (dfl === 0 && hits.length === 0))
     return times(8, (n) => (
       <li key={n} className="grid gap-2">
         <div className="skeleton aspect-square w-full" />

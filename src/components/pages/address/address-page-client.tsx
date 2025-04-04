@@ -1,9 +1,9 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
-import { PaymentSection } from '../checkout/payment-section';
+import { PaymentSection } from "../checkout/payment-section";
 
-import UserAddresses from '@/components/pages/address/user-addresses';
+import UserAddresses from "@/components/pages/address/user-addresses";
 
 export function AddressPageClient() {
   const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
