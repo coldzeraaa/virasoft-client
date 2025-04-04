@@ -60,7 +60,7 @@ export function Footer() {
 
         {/* Доод хэсэг */}
         <div className="container mx-auto mt-10 flex justify-between border-t border-white/30 px-6 pt-4 text-sm opacity-90 lg:px-20">
-          <p>© 2025 Genrui Mongol || Virasoft Solution LLC</p>
+          <p>© 2025 Genrui Mongol ||| Virasoft Solution LLC</p>
         </div>
       </footer>
     </div>
