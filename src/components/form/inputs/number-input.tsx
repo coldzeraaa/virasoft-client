@@ -61,6 +61,7 @@ const spans = [
   "grid-cols-1",
   "grid-cols-2",
   "grid-cols-3",
+  git restore src / components / footer / index.bsent.tsx
   "grid-cols-4",
   "grid-cols-5",
   "grid-cols-6",
