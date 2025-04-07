@@ -1,36 +1,24 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/16/solid";
-import Image from "next/image";
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/16/solid';
+import Image from 'next/image';
 
-import { imageUrlHelper } from "@/lib/helper/img-url-helper";
+import { imageUrlHelper } from '@/lib/helper/img-url-helper';
 
-export function ImageSectionProduct({
-  images,
-  alt,
-}: {
-  images: string[];
-  alt: string;
-}) {
+export function ImageSectionProduct({ images, alt }: { images: string[]; alt: string }) {
   const [selected, setSelected] = useState<number>(0);
 
   return (
-    <section
-      aria-label="images section"
-      className="grid grid-rows-[1fr_auto] gap-3 md:grid-cols-[auto,1fr] md:grid-rows-1"
-    >
-      <ul
-        aria-label="images"
-        className="row-start-2 flex h-20 gap-2 lg:row-start-1 lg:block lg:h-auto lg:w-20 lg:space-y-4"
-      >
+    <section aria-label="images section" className="grid grid-rows-[1fr_auto] gap-3 md:grid-cols-[auto,1fr] md:grid-rows-1">
+      <ul aria-label="images" className="row-start-2 flex h-20 gap-2 lg:row-start-1 lg:block lg:h-auto lg:w-20 lg:space-y-4">
         {images.map((img, idx) => (
           <li key={idx} className="flex aspect-square">
             <button
               type="button"
               onClick={() => setSelected(idx)}
-              className={`rounded-lg border-2 transition-colors ${idx === selected ? "border-primary" : "border-transparent"}`}
+              className={`rounded-lg border-2 transition-colors ${idx === selected ? 'border-primary' : 'border-transparent'}`}
             >
               <Image
                 src={imageUrlHelper(img)}
