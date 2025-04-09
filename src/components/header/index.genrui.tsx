@@ -13,19 +13,28 @@ export function Header() {
   const { order } = useCurrentOrder();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // Search bar toggle
 
-  if (loading) return <div>Түр хүлээнэ үү...</div>;
+  if (loading) {
+    return <div>Түр хүлээнэ үү...</div>;
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-md">
       <div className="mx-auto flex flex-col bg-[#209F48] px-4 py-2 md:flex-row md:items-center md:justify-between">
         {/* Лого + мобайл icon-ууд */}
-        <div className="flex w-full items-center justify-between md:w-auto md:gap-8">
+        <div className="ml-auto flex w-full items-center justify-between md:w-auto md:gap-8">
           {/* Лого */}
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-white">GM</span>
+              <span className="ml-auto text-xl font-bold text-white">Genrui Mongol</span>
             </Link>
+            <button
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="flex h-6 w-6 items-center justify-center rounded-full bg-white md:hidden"
+            >
+              <Search className="text-gray-600" size={18} />
+            </button>
           </div>
 
           {/* Мобайл дээрх icon-ууд */}
@@ -50,24 +59,27 @@ export function Header() {
           </div>
         </div>
 
-        {/* Хайлтын хэсэг (зөвхөн md ба түүнээс дээш) */}
-        <div className="relative hidden md:ml-6 md:block">
+        {/* Хайлтын хэсэг (зөвхөн md ба түүнээс дээш + мобайл дээр center болгох) */}
+        <div
+          className={`relative ${isSearchOpen ? 'absolute left-1/2 top-2 z-50 w-[90%] -translate-x-1/2 md:static md:translate-x-0' : 'hidden md:block'
+            } md:ml-6`}
+        >
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Хайх..."
-            className="rounded-full bg-white py-2 pl-10 pr-4 text-sm text-gray-700 shadow-inner focus:outline-none"
+            className="w-full max-w-xs rounded-full bg-white py-2 pl-10 pr-4 text-sm text-gray-700 shadow-inner focus:outline-none md:w-96"
           />
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
         </div>
 
         {/* Navigation цэс (md ба түүнээс дээш) */}
         <nav className="mt-4 hidden w-full justify-center text-white md:mt-0 md:flex md:items-center">
-          <ul className="flex gap-8 text-sm font-medium">
+          <ul className="flex gap-4 text-sm font-medium">
             {menuLinks.map((item, i) => (
               <li key={i}>
-                <Link href={item.href} className="transition-colors duration-150 hover:text-green-300">
+                <Link href={item.href} className="rounded-full px-4 py-1.5 text-white transition hover:bg-green-100 hover:text-[#1C9E48]">
                   {item.label}
                 </Link>
               </li>
@@ -78,7 +90,11 @@ export function Header() {
         {/* Icon-ууд (md ба түүнээс дээш) */}
         <div className="hidden items-center gap-4 md:flex">
           {menuItems(userData).map((item, i) => (
-            <Link key={i} href={item.link} className="group relative">
+            <Link
+              key={i}
+              href={item.link}
+              className="group relative rounded-full border-2 border-white p-2 hover:border-green-300 hover:bg-green-100"
+            >
               {item.title === 'Сагс' && order?.itemCount !== undefined && (
                 <span className="absolute -right-2 -top-2 rounded-full bg-red-500 px-1.5 text-xs text-white">{order.itemCount}</span>
               )}
@@ -90,7 +106,7 @@ export function Header() {
 
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
-        <div className="mt-4 w-full space-y-4 bg-[#1C9E48] px-4 py-4 text-white md:hidden">
+        <div className="w-full space-y-4 border-t-4 border-white bg-[#1C9E48] px-4 py-4 text-white md:hidden">
           {menuLinks.map((item, i) => (
             <Link key={i} href={item.href} className="block text-center text-sm hover:text-green-300">
               {item.label}

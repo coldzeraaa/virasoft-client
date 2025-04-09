@@ -4,7 +4,7 @@ import { Facebook, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="min-h-[600px] w-full border-t bg-white text-gray-800">
+    <footer className="hidden min-h-[600px] w-full border-t bg-white text-gray-800 md:block">
       <div className="container mx-auto pb-4 pt-4">
         {/* Бидэнтэй хамтран ажиллах хэсэг */}
         <div className="mb-16 rounded-lg bg-[#F0F8FF] p-12 text-center">

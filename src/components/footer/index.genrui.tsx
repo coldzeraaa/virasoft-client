@@ -22,8 +22,8 @@ export function Footer() {
       {/* Хамтарч ажиллах хэсэг */}
       <section className="w-full bg-gray-200 py-10 text-center">
         <div className="container mx-auto px-6 lg:px-20">
-          <h2 className="text-2xl font-semibold text-green-700">Хамтарч ажиллах</h2>
-          <p className="mt-2 text-black">
+          <h2 className="text-2xl font-semibold text-green-700">Хамтарч ажиллах </h2>
+          <p className="mt-2 text-sm text-black">
             Манай байгууллага олон улсад итгэмжлэгдсэн эмнэлгийн тоног төхөөрөмжийн компаниудтай хамтран ажилладаг билээ.
           </p>
 
@@ -54,8 +54,8 @@ export function Footer() {
       <footer className="w-full bg-gradient-to-r from-[#1C9E48] to-[#8DC03E] py-10 text-white">
         <div className="container mx-auto grid grid-cols-1 gap-10 px-6 md:grid-cols-2 lg:px-20">
           {/* Зүүн тал */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">ЖЕНРУЙ МОНГОЛ ГРУПП</h3>
+          <div className="hidden space-y-4 md:block">
+            <h3 className="text-sm font-semibold">ЖЕНРУЙ МОНГОЛ ГРУПП</h3>
             <p className="opacity-90">
               ЖЕНРУЙ МОНГОЛ ГРУПП нь Монгол улсын Эрүүл мэндийн салбарт тоног төхөөрөмж, хувцас хэрэгсэл ханган нийлүүлэлт, засвар
               үйлчилгээний чиглэлээр үйл ажиллагаагаа явуулдаг билээ.
@@ -64,7 +64,7 @@ export function Footer() {
 
           {/* Баруун тал */}
           <div className="space-y-3">
-            <h4 className="text-lg font-semibold">Холбоо барих</h4>
+            <h4 className="text-sm font-semibold">Холбоо барих</h4>
             <ul className="space-y-2">
               <li className="flex items-center gap-2">
                 <MapPin size={16} /> Ulaanbaatar, Mongolia
