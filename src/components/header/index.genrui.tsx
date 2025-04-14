@@ -64,7 +64,7 @@ export function Header() {
             {/* Hamburger button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="group flex h-8 w-8 flex-col items-center justify-center space-y-1 rounded-full bg-gradient-to-t from-[#088933] to-[#77AE09] hover:bg-[#088933]"
+              className="group flex h-8 w-8 items-center justify-center space-y-1 rounded-full bg-gradient-to-t from-[#088933] to-[#77AE09] hover:bg-[#088933]"
               aria-label="Цэс нээх"
             >
               <span className="h-0.5 w-5 rounded-full bg-white transition-all group-hover:bg-green-300" />

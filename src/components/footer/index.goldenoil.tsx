@@ -1,6 +1,7 @@
 'use client';
 
 import { Facebook, Instagram } from 'lucide-react';
+import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -83,11 +84,15 @@ export function Footer() {
             </div>
             {/* Хурдан хандалт хэсэг */}
             <div className="flex flex-col gap-6">
-              <button className="rounded-lg px-6 py-1 text-lg text-[#213D39] transition hover:text-[#163A5F]">
+              <Link href="/faq" className="rounded-lg px-6 py-1 text-lg text-[#213D39] transition hover:text-[#163A5F]">
                 Түгээмэл асуулт хариулт
-              </button>
-              <button className="rounded-lg px-6 py-1 text-lg text-[#213D39] transition hover:text-[#163A5F]">Үйлчилгээний нөхцөл</button>
-              <button className="rounded-lg px-6 py-1 text-lg text-[#213D39] transition hover:text-[#163A5F]">Нууцлалын бодлого</button>
+              </Link>
+              <Link href="/terms" className="rounded-lg px-6 py-1 text-lg text-[#213D39] transition hover:text-[#163A5F]">
+                Үйлчилгээний нөхцөл
+              </Link>
+              <Link href="/privacy" className="rounded-lg px-6 py-1 text-lg text-[#213D39] transition hover:text-[#163A5F]">
+                Нууцлалын бодлого
+              </Link>
             </div>
           </div>
         </div>
