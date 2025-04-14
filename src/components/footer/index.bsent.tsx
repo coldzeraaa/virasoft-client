@@ -25,7 +25,6 @@ export function Footer() {
 
   return (
     <>
-      {/* --- Хамтрагч байгууллага --- */}
       <section className="w-full bg-white py-10 text-center">
         <div className="mx-auto max-w-7xl px-6 lg:px-20">
           <h2 className="mb-8 text-2xl font-bold text-neutral">Хамтрагч байгууллага</h2>
@@ -44,7 +43,6 @@ export function Footer() {
         </div>
       </section>
 
-      {/* --- Хамтран ажиллах --- */}
       <section className="w-full bg-[#C9C9C9] py-10 text-center">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 lg:px-20">
           <div className="w-full max-w-2xl rounded-xl bg-[#C9C9C9] px-6 py-10 text-center shadow-sm">
@@ -63,7 +61,6 @@ export function Footer() {
         </div>
       </section>
 
-      {/* --- Footer --- */}
       <footer className="mt-20 w-full border-t bg-primary-content p-6 text-accent-content/80 lg:pb-6 lg:pt-16">
         <div className="container mx-auto flex w-full items-center justify-between gap-20">
           <div className="hidden items-center justify-center md:flex">

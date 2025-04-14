@@ -1,10 +1,6 @@
-import { DynamicComponent } from "@/components/pages/page/dynamic-component";
+import { DynamicComponent } from '@/components/pages/page/dynamic-component';
 
-export default async function Home({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export default async function Home({ params: { locale } }: { params: { locale: string } }) {
   return (
     <>
       {/*eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
